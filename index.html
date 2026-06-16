@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merkle Demos — Modern CRM (Cannes)</title>
+<style>
+  :root {
+    --ink: #10131a; --paper: #f6f7f9; --blue: #2563eb; --blue-deep: #0f2454;
+    --accent: #0fb5a5; --muted: #5a6473; --line: #d9dde4;
+    --font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --mono: 'SF Mono', 'Fira Code', 'Consolas', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: var(--font); color: var(--ink);
+    background: linear-gradient(160deg, var(--paper) 0%, #eef1f5 100%);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 48px 24px;
+  }
+  .wrap { width: 100%; max-width: 1040px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin: 0 0 14px;
+  }
+  h1 { font-size: 44px; line-height: 1.1; letter-spacing: -0.5px; margin: 0 0 12px; }
+  .lede { font-size: 18px; color: var(--muted); margin: 0 0 44px; max-width: 60ch; line-height: 1.5; }
+  .decks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 760px) { .decks { grid-template-columns: 1fr; } h1 { font-size: 34px; } }
+  .card {
+    display: flex; flex-direction: column; text-decoration: none; color: inherit;
+    background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 30px 30px 26px;
+    box-shadow: 0 10px 30px rgba(16,19,26,.06); transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(16,19,26,.12); border-color: var(--blue); }
+  .card__tag {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue); font-weight: 600; margin-bottom: 12px;
+  }
+  .card__title { font-size: 26px; font-weight: 700; margin: 0 0 6px; }
+  .card__brand { font-size: 15px; color: var(--muted); margin: 0 0 18px; }
+  .card__go {
+    margin-top: auto; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 8px;
+  }
+  .card__go::after { content: '→'; transition: transform .15s ease; }
+  .card:hover .card__go::after { transform: translateX(4px); }
+  .scenes {
+    margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line);
+  }
+  .scenes h2 {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; margin: 0 0 14px;
+  }
+  .scenes p { font-size: 14px; color: var(--muted); margin: 0 0 16px; }
+  .scene-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .scene-links a {
+    font-family: var(--mono); font-size: 13px; text-decoration: none; color: var(--ink);
+    background: #fff; border: 1px solid var(--line); border-radius: 100px; padding: 7px 15px;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .scene-links a:hover { border-color: var(--accent); color: var(--accent); }
+  footer { margin-top: 44px; font-size: 13px; color: var(--muted); }
+  footer code { font-family: var(--mono); background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 2px 7px; }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">Merkle · Modern CRM · Cannes</p>
+    <h1>One relationship. Owned and paid as one.</h1>
+    <p class="lede">Two 12-minute executive demos showing how Modern CRM unifies owned and paid engagement into a single growth system — so every signal, audience, decision, message, and offer works as one.</p>
+
+    <div class="decks">
+      <a class="card" href="hospitality.html">
+        <span class="card__tag">Hospitality</span>
+        <span class="card__title">The connected guest</span>
+        <span class="card__brand">Rivage — a Riviera resort · guest: Elena</span>
+        <span class="card__go">Open the deck</span>
+      </a>
+      <a class="card" href="retail.html">
+        <span class="card__tag">Retail</span>
+        <span class="card__title">The connected customer</span>
+        <span class="card__brand">Nordhem — home furnishings · customer: Emma</span>
+        <span class="card__go">Open the deck</span>
+      </a>
+    </div>
+
+    <section class="scenes">
+      <h2>Demo scenes — full-screen record mode</h2>
+      <p>Open a scene directly and press <strong>F11</strong>, then drive it with the arrow keys to record a clean vignette (no deck chrome). See <strong>RUN-LOCALLY.md</strong> for the record-and-swap workflow.</p>
+      <div class="scene-links">
+        <a href="demo/hospitality/journey/index.html">hospitality · journey</a>
+        <a href="demo/hospitality/copilot/index.html">hospitality · copilot</a>
+        <a href="demo/retail/journey/index.html">retail · journey</a>
+        <a href="demo/retail/copilot/index.html">retail · copilot</a>
+      </div>
+    </section>
+
+    <footer>Runs 100% offline — serve over <code>http://</code> (double-click <code>start.bat</code> / <code>start.command</code>), not <code>file://</code>.</footer>
+  </main>
+</body>
+</html>
