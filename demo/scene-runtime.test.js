@@ -35,3 +35,22 @@ test('ignores messages not targeted to demo-scene', () => {
   handleSceneMessage(p, { target: 'other', type: 'demo:advance' });
   assert.equal(p.state().index, 0);
 });
+
+import { standaloneKeyAction } from './scene-runtime.js';
+
+test('standaloneKeyAction maps forward keys to advance', () => {
+  for (const k of ['ArrowRight', 'PageDown', ' ', 'Spacebar']) {
+    assert.equal(standaloneKeyAction(k), 'advance');
+  }
+});
+
+test('standaloneKeyAction maps back keys to rewind', () => {
+  for (const k of ['ArrowLeft', 'PageUp']) {
+    assert.equal(standaloneKeyAction(k), 'rewind');
+  }
+});
+
+test('standaloneKeyAction ignores other keys', () => {
+  assert.equal(standaloneKeyAction('a'), null);
+  assert.equal(standaloneKeyAction('Enter'), null);
+});
