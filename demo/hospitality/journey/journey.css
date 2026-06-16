@@ -1,0 +1,373 @@
+/* ════════════════════════════════════════════════════════════════════
+   Rivage · Connected Guest Journey — scripted scene
+   Standalone, 100% offline. Modern CRM palette copied from deck.css.
+   Designed for 1920×1080 full-screen capture.
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --ink:        #10131a;
+  --paper:      #f6f7f9;
+  --paper-2:    #eef1f5;
+  --blue:       #2563eb;
+  --blue-deep:  #0f2454;
+  --accent:     #0fb5a5;
+  --muted:      #5a6473;
+  --line:       #d9dde4;
+  --card-bg:    #ffffff;
+  --blue-tint:  rgba(37, 99, 235, 0.08);
+  --accent-tint:rgba(15, 181, 165, 0.10);
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --dim: 0.32;            /* opacity of an inactive node */
+  --t: 0.55s cubic-bezier(.4, 0, .2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 100vw; height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background:
+    radial-gradient(1200px 700px at 78% 18%, var(--accent-tint), transparent 60%),
+    radial-gradient(1100px 800px at 12% 92%, var(--blue-tint), transparent 60%),
+    var(--paper);
+}
+
+/* ───────────────────────── Top bar ───────────────────────── */
+.topbar {
+  display: flex; align-items: center; gap: 16px;
+  padding: 30px 56px 14px;
+}
+.brand {
+  display: flex; align-items: baseline; gap: 12px;
+}
+.brand__mark {
+  font-size: 26px; font-weight: 700; letter-spacing: 4px;
+  color: var(--ink);
+}
+.brand__sub {
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); font-weight: 600;
+}
+.topbar__spacer { flex: 1; }
+.routelabel {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--blue);
+  background: var(--blue-tint); border: 1px solid rgba(37,99,235,.18);
+  padding: 8px 16px; border-radius: 999px;
+}
+.routelabel svg { width: 16px; height: 16px; }
+
+/* ───────────────────────── Main canvas ───────────────────────── */
+.canvas {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 48px;
+  padding: 8px 56px 0;
+  min-height: 0;
+}
+
+/* === Route map (left) === */
+.routemap {
+  position: relative;
+  align-self: center;
+}
+
+/* SVG edges sit behind the nodes */
+.edges {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.edge {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 7 9;
+  opacity: var(--dim);
+  transition: stroke var(--t), opacity var(--t);
+}
+.edge.is-live {
+  stroke: var(--accent);
+  opacity: 1;
+}
+/* the travelling dash that reads like a moving GPS route */
+.edge.is-live.is-flow {
+  animation: dashflow 1.1s linear infinite;
+}
+@keyframes dashflow { to { stroke-dashoffset: -32; } }
+
+.nodes {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 60px 120px;
+  width: 760px; height: 560px;
+}
+
+/* a surface node */
+.node {
+  position: relative;
+  background: var(--card-bg);
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 18px rgba(16,19,26,.05);
+  opacity: var(--dim);
+  transform: translateY(0) scale(.98);
+  transition: opacity var(--t), border-color var(--t),
+              box-shadow var(--t), transform var(--t), background var(--t);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.node.is-live {
+  opacity: 1;
+  border-color: var(--accent);
+  transform: translateY(0) scale(1);
+  box-shadow: 0 10px 34px rgba(15,181,165,.18), 0 0 0 4px var(--accent-tint);
+  background: linear-gradient(180deg, #ffffff 0%, #f4fffd 100%);
+}
+.node__top {
+  display: flex; align-items: center; gap: 12px;
+}
+.node__icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: var(--paper-2); color: var(--muted);
+  transition: background var(--t), color var(--t);
+}
+.node.is-live .node__icon { background: var(--accent); color: #fff; }
+.node__icon svg { width: 22px; height: 22px; }
+.node__label {
+  display: flex; flex-direction: column;
+}
+.node__kicker {
+  font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+}
+.node__name { font-size: 19px; font-weight: 700; color: var(--ink); }
+.node__detail {
+  font-size: 14px; line-height: 1.45; color: var(--muted);
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height var(--t), opacity var(--t), margin var(--t);
+}
+.node.is-live .node__detail { max-height: 120px; opacity: 1; margin-top: 2px; }
+.node__detail strong { color: var(--ink); font-weight: 600; }
+
+/* channel-tag: shows owned + paid working as one route */
+.node__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 11px; font-weight: 600; letter-spacing: .3px;
+  padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--muted); background: #fff;
+}
+.chip--owned { color: var(--blue); border-color: rgba(37,99,235,.3); background: var(--blue-tint); }
+.chip--paid  { color: var(--accent); border-color: rgba(15,181,165,.35); background: var(--accent-tint); }
+
+/* the "ping" badge on an as-yet-unknown node */
+.node__ping {
+  position: absolute; top: -9px; right: -9px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--blue); box-shadow: 0 0 0 6px var(--blue-tint);
+  opacity: 0; transform: scale(.4);
+  transition: opacity var(--t), transform var(--t);
+}
+.node.show-ping .node__ping {
+  opacity: 1; transform: scale(1);
+  animation: pingpulse 1.6s ease-in-out infinite;
+}
+@keyframes pingpulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--blue-tint); }
+  50%      { box-shadow: 0 0 0 12px rgba(37,99,235,.04); }
+}
+
+/* === Profile + advisor (right) === */
+.rail { display: flex; flex-direction: column; gap: 22px; align-self: center; }
+
+.profile {
+  background: var(--card-bg);
+  border: 1.5px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 14px 44px rgba(16,19,26,.10);
+  padding: 26px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.profile::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 5px;
+  background: linear-gradient(90deg, var(--blue), var(--accent));
+  opacity: 0; transition: opacity var(--t);
+}
+.profile.is-known::before { opacity: 1; }
+
+.profile__head { display: flex; align-items: center; gap: 16px; }
+.avatar {
+  width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: var(--paper-2); color: var(--muted);
+  border: 2px dashed var(--line);
+  transition: background var(--t), color var(--t), border var(--t);
+}
+.avatar svg { width: 34px; height: 34px; }
+.profile.is-known .avatar {
+  background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+  color: #fff; border: 2px solid transparent;
+}
+.profile__id { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.profile__name {
+  font-size: 22px; font-weight: 700; color: var(--ink);
+  transition: color var(--t);
+}
+.profile.is-anon .profile__name { color: var(--muted); font-weight: 600; }
+.profile__status {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 600; letter-spacing: .4px;
+  color: var(--muted);
+}
+.profile__status .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--muted);
+  transition: background var(--t);
+}
+.profile.is-known .profile__status { color: var(--accent); }
+.profile.is-known .profile__status .dot { background: var(--accent); }
+
+/* the resolving fields */
+.fields {
+  margin-top: 20px;
+  display: grid; gap: 0;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height .6s cubic-bezier(.4,0,.2,1), opacity .6s ease, margin .6s ease;
+}
+.profile.is-known .fields { max-height: 460px; opacity: 1; }
+.field {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+}
+.field:first-child { border-top: 0; }
+.field__k {
+  font-size: 12px; letter-spacing: .6px; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; flex-shrink: 0;
+}
+.field__v { font-size: 15px; color: var(--ink); font-weight: 600; text-align: right; }
+.field__v .accent { color: var(--accent); }
+
+.profile__note {
+  margin-top: 16px; padding: 12px 14px;
+  background: var(--accent-tint); border: 1px solid rgba(15,181,165,.25);
+  border-radius: 12px;
+  font-size: 12.5px; color: var(--ink); line-height: 1.45;
+  display: flex; align-items: center; gap: 9px;
+  max-height: 0; opacity: 0; overflow: hidden; padding-top: 0; padding-bottom: 0;
+  transition: max-height var(--t), opacity var(--t), padding var(--t);
+}
+.profile.is-known .profile__note { max-height: 90px; opacity: 1; padding-top: 12px; padding-bottom: 12px; }
+.profile__note svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+
+/* === Advisor presence === */
+.advisor {
+  background: linear-gradient(135deg, var(--blue-deep) 0%, #081634 100%);
+  color: #fff;
+  border-radius: 22px;
+  padding: 22px 24px;
+  box-shadow: 0 14px 44px rgba(15,36,84,.28);
+  display: flex; gap: 16px; align-items: flex-start;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity var(--t), transform var(--t);
+}
+.advisor.is-on { opacity: 1; transform: translateY(0); }
+.advisor__orb {
+  width: 48px; height: 48px; flex-shrink: 0;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(15,181,165,.18);
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  position: relative;
+}
+.advisor__orb svg { width: 26px; height: 26px; }
+.advisor.is-on .advisor__orb::after {
+  content: ""; position: absolute; inset: -6px; border-radius: 50%;
+  border: 1.5px solid rgba(15,181,165,.4);
+  animation: orbpulse 2.4s ease-in-out infinite;
+}
+@keyframes orbpulse {
+  0%, 100% { opacity: .7; transform: scale(1); }
+  50%      { opacity: 0;  transform: scale(1.18); }
+}
+.advisor__body { min-width: 0; }
+.advisor__title {
+  font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase;
+  color: var(--accent); font-weight: 700; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.advisor__msg { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,.92); }
+.advisor__msg strong { color: #fff; font-weight: 700; }
+.advisor__surfaces {
+  display: flex; gap: 8px; margin-top: 12px;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height var(--t), opacity var(--t), margin var(--t);
+}
+.advisor.show-surfaces .advisor__surfaces { max-height: 60px; opacity: 1; }
+.surf {
+  font-size: 11px; font-weight: 600; letter-spacing: .3px;
+  color: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.07);
+  padding: 4px 11px; border-radius: 999px;
+}
+
+/* ───────────────────────── Caption bar ───────────────────────── */
+.captionbar {
+  display: flex; align-items: center; gap: 22px;
+  padding: 20px 56px 34px;
+}
+.beatdots { display: flex; gap: 9px; }
+.beatdots i {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--line);
+  transition: background var(--t), transform var(--t);
+}
+.beatdots i.is-done { background: var(--blue); }
+.beatdots i.is-now  { background: var(--accent); transform: scale(1.4); }
+
+.caption {
+  flex: 1;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.caption__kicker {
+  font-size: 12px; letter-spacing: 2.4px; text-transform: uppercase;
+  font-weight: 700; color: var(--accent);
+}
+.caption__text {
+  font-size: 25px; font-weight: 700; letter-spacing: -.3px; color: var(--ink);
+  line-height: 1.2;
+}
+
+/* the closing measurement loop indicator */
+.loopbadge {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 13px; font-weight: 700; letter-spacing: .5px;
+  color: var(--blue); background: var(--blue-tint);
+  border: 1px solid rgba(37,99,235,.2);
+  padding: 9px 16px; border-radius: 999px;
+  opacity: 0; transform: scale(.9);
+  transition: opacity var(--t), transform var(--t);
+}
+.loopbadge.is-on { opacity: 1; transform: scale(1); }
+.loopbadge svg { width: 16px; height: 16px; animation: spin 6s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rivage · Executive Copilot</title>
+<link rel="stylesheet" href="copilot.css" />
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- ════════════ Top bar ════════════ -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__mark">RIVAGE</span>
+      <span class="brand__sub">Riviera · Maison &amp; Spa</span>
+    </div>
+    <span class="topbar__spacer"></span>
+    <span class="copilot-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/>
+        <circle cx="12" cy="9.5" r="1.1" fill="currentColor"/>
+      </svg>
+      Executive Copilot
+    </span>
+  </header>
+
+  <!-- ════════════ Canvas ════════════ -->
+  <main class="canvas">
+
+    <!-- ─── Left: copilot chat column ─── -->
+    <section class="copilot-col">
+
+      <!-- Composer: CMO question -->
+      <div class="composer">
+        <div class="composer__avatar">C</div>
+        <div class="composer__body">
+          <div class="composer__from">CMO · Rivage</div>
+          <div class="composer__question">
+            How do I increase repeat-booking rate among new loyalty members without overspending on media?<span id="composerCursor" class="composer__cursor"></span>
+          </div>
+        </div>
+        <div id="composerSend" class="composer__send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Reply panel -->
+      <div id="replyPanel" class="reply-panel">
+
+        <!-- Thinking bar -->
+        <div id="thinkBar" class="think-bar">
+          <div class="think-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span id="thinkText" class="think-text">Analyzing loyalty data…</span>
+        </div>
+
+        <!-- Step 1: Identify & assemble audience -->
+        <div id="step1" class="step">
+          <div class="step__head">
+            <div class="step__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="step__label">
+              <span class="step__kicker">Step 1 · Audience</span>
+              <span class="step__title">Identified &amp; assembled the audience</span>
+            </div>
+          </div>
+          <div class="audience-chips">
+            <div class="aud-chip chip--owned-aud">
+              New loyalty members
+              <span class="aud-chip__count">48,200</span>
+            </div>
+            <div class="aud-chip chip--owned-aud">
+              High-intent prospects
+              <span class="aud-chip__count">31,700</span>
+            </div>
+            <div class="aud-chip chip--lookalike">
+              Lookalikes · modeled
+              <span class="aud-chip__count">112,400</span>
+            </div>
+          </div>
+          <div class="aud-total">
+            Total addressable: <strong>192,300</strong> &nbsp;·&nbsp; Loyalty overlap deduped &nbsp;·&nbsp; Privacy-safe IDs resolved
+          </div>
+        </div>
+
+        <!-- Step 2: Plan owned + paid -->
+        <div id="step2" class="step">
+          <div class="step__head">
+            <div class="step__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <div class="step__label">
+              <span class="step__kicker">Step 2 · Plan</span>
+              <span class="step__title">Owned first, paid to extend &amp; cut waste</span>
+            </div>
+          </div>
+          <div class="plan-rows">
+            <div class="plan-row">
+              <span class="plan-row__badge owned">Owned</span>
+              <div class="plan-row__body">
+                <span class="plan-row__channel">Loyalty email · post-stay sequence</span>
+                <span class="plan-row__desc">Personalized return offer at 30, 60, 90 days — where Rivage already has permission</span>
+              </div>
+            </div>
+            <div class="plan-row">
+              <span class="plan-row__badge owned">Owned</span>
+              <div class="plan-row__body">
+                <span class="plan-row__channel">Site &amp; app · recognized members</span>
+                <span class="plan-row__desc">Tailored booking nudges for logged-in loyalty members; suppress generic rate cards</span>
+              </div>
+            </div>
+            <div class="plan-row">
+              <span class="plan-row__badge paid">Paid</span>
+              <div class="plan-row__body">
+                <span class="plan-row__channel">Paid social · re-engage &amp; lookalikes</span>
+                <span class="plan-row__desc">Only members not re-booking after 2 owned touches; suppress converters in real time</span>
+              </div>
+            </div>
+            <div class="plan-row">
+              <span class="plan-row__badge paid">Paid</span>
+              <div class="plan-row__body">
+                <span class="plan-row__channel">Programmatic · extend reach</span>
+                <span class="plan-row__desc">Lookalike expansion where owned has no reach — frequency-capped to protect spend</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Agentic execution -->
+        <div id="step3" class="step">
+          <div class="step__head">
+            <div class="step__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <div class="step__label">
+              <span class="step__kicker">Step 3 · Execution</span>
+              <span class="step__title">Play launched — adapting spend &amp; sequence</span>
+            </div>
+          </div>
+          <div class="exec-grid">
+            <div class="exec-card is-active">
+              <span class="exec-card__dot"></span>
+              <div>
+                <div class="exec-card__name">CRM · loyalty</div>
+                <div class="exec-card__status">Sequences activated</div>
+              </div>
+            </div>
+            <div class="exec-card is-active">
+              <span class="exec-card__dot"></span>
+              <div>
+                <div class="exec-card__name">Site &amp; app</div>
+                <div class="exec-card__status">Member banners live</div>
+              </div>
+            </div>
+            <div class="exec-card is-active">
+              <span class="exec-card__dot"></span>
+              <div>
+                <div class="exec-card__name">Paid social</div>
+                <div class="exec-card__status">Re-engagement running</div>
+              </div>
+            </div>
+            <div class="exec-card is-active">
+              <span class="exec-card__dot"></span>
+              <div>
+                <div class="exec-card__name">Programmatic</div>
+                <div class="exec-card__status">Lookalike reach on</div>
+              </div>
+            </div>
+          </div>
+          <div class="adapting-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/>
+            </svg>
+            Agent adapting — reallocating budget from paid to owned as results come in
+          </div>
+        </div>
+
+        <!-- Step 4: Carry the goal + estimate impact -->
+        <div id="step4" class="step">
+          <div class="step__head">
+            <div class="step__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
+            <div class="step__label">
+              <span class="step__kicker">Step 4 · Impact</span>
+              <span class="step__title">Projected lift estimated up front</span>
+            </div>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card highlight">
+              <div class="metric-card__label">Repeat booking lift</div>
+              <div class="metric-card__value">+18%</div>
+              <div class="metric-card__sub">new loyalty members · 90 days</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-card__label">Media efficiency (ROAS)</div>
+              <div class="metric-card__value">4.2×</div>
+              <div class="metric-card__sub">vs. 2.9× baseline</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-card__label">Incremental stays</div>
+              <div class="metric-card__value">+8,700</div>
+              <div class="metric-card__sub">attributable · 90-day window</div>
+            </div>
+          </div>
+          <div style="margin-top:10px; font-size:12px; color:var(--muted); font-style:italic;">
+            Goal carried: first repeat booking → on-property stay → next trip earned — full journey tracked.
+          </div>
+        </div>
+
+        <!-- Step 5: Proven in one loop -->
+        <div id="step5" class="step">
+          <div class="step__head">
+            <div class="step__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <div class="step__label">
+              <span class="step__kicker">Step 5 · Proof</span>
+              <span class="step__title">Estimate vs. actual — closed loop</span>
+            </div>
+          </div>
+          <div class="loop-table">
+            <div class="loop-row">
+              <span class="loop-row__metric">Repeat booking rate lift</span>
+              <div class="loop-cell">
+                <span class="loop-cell__label">Estimated</span>
+                <span class="loop-cell__val">+18%</span>
+              </div>
+              <div class="loop-cell actual">
+                <span class="loop-cell__label">Actual</span>
+                <span class="loop-cell__val">+21%</span>
+              </div>
+            </div>
+            <div class="loop-row">
+              <span class="loop-row__metric">Media efficiency (ROAS)</span>
+              <div class="loop-cell">
+                <span class="loop-cell__label">Estimated</span>
+                <span class="loop-cell__val">4.2×</span>
+              </div>
+              <div class="loop-cell actual">
+                <span class="loop-cell__label">Actual</span>
+                <span class="loop-cell__val">4.7×</span>
+              </div>
+            </div>
+            <div class="loop-row">
+              <span class="loop-row__metric">Incremental stays</span>
+              <div class="loop-cell">
+                <span class="loop-cell__label">Estimated</span>
+                <span class="loop-cell__val">+8,700</span>
+              </div>
+              <div class="loop-cell actual">
+                <span class="loop-cell__label">Actual</span>
+                <span class="loop-cell__val">+9,400</span>
+              </div>
+            </div>
+          </div>
+          <div id="closedBadge" class="closed-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/>
+            </svg>
+            Results feed back — loop closed, impact proven
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Right: context / insight rail ─── -->
+    <aside class="rail">
+
+      <!-- Objective card (always shown) -->
+      <div class="objective-card">
+        <div class="objective-card__kicker">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+          Objective
+        </div>
+        <div class="objective-card__goal">Grow repeat-booking rate among new loyalty members — without overspending on media</div>
+        <div class="objective-card__sub">Cercle Rivage · new members &lt; 12 months &nbsp;·&nbsp; media efficiency constraint</div>
+        <div id="objStats" class="obj-stats">
+          <div class="obj-stat">
+            <span>Current repeat rate · new members</span>
+            <span class="obj-stat__val">14%</span>
+          </div>
+          <div class="obj-stat">
+            <span>All-member benchmark</span>
+            <span class="obj-stat__val">31%</span>
+          </div>
+          <div class="obj-stat">
+            <span>Opportunity gap</span>
+            <span class="obj-stat__val">17 pts</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent card: appears at beat 1 -->
+      <div id="agentCard" class="agent-card">
+        <div class="agent-card__orb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/>
+            <circle cx="12" cy="9.5" r="1.1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="agent-card__body">
+          <div class="agent-card__title">Rivage · Executive Copilot</div>
+          <p id="agentMsg" class="agent-card__msg">Reading your question.</p>
+        </div>
+      </div>
+
+    </aside>
+  </main>
+
+  <!-- ════════════ Caption bar ════════════ -->
+  <footer class="captionbar">
+    <div id="beatdots" class="beatdots">
+      <i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <div class="caption">
+      <span id="captionKicker" class="caption__kicker">CMO</span>
+      <span id="captionText" class="caption__text">The CMO asks.</span>
+    </div>
+    <span id="loopBadge" class="loopbadge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/>
+      </svg>
+      Estimate → actual · one feedback loop
+    </span>
+  </footer>
+
+</div>
+
+<script type="module">
+import { startSceneRuntime } from '../../scene-runtime.js';
+
+const $ = (id) => document.getElementById(id);
+
+/* ─────────────────────────────────────────────────────────────────
+   Per-beat data table. Index 0..5. All state recomputed from scratch
+   on every renderBeat call — no element relies on prior-beat DOM.
+   ───────────────────────────────────────────────────────────────── */
+const BEATS = [
+  { // 0 — Initial: question typed, awaiting response
+    kicker: 'CMO',
+    caption: 'The CMO asks.',
+    cursor: true,
+    send: false,
+    think: false,
+    thinkText: '',
+    step1: false, step2: false, step3: false, step4: false, step5: false,
+    objStats: false,
+    agent: false,
+    agentMsg: 'Reading your question.',
+    loop: false,
+    closedBadge: false,
+  },
+  { // 1 — Identify & assemble audience
+    kicker: 'Audience',
+    caption: 'Identify the opportunity. Assemble the audience.',
+    cursor: false,
+    send: true,
+    think: true,
+    thinkText: 'Analyzing loyalty data…',
+    step1: true, step2: false, step3: false, step4: false, step5: false,
+    objStats: true,
+    agent: true,
+    agentMsg: 'Found the gap — 14% repeat rate vs. 31% for established members. I\'ve assembled <strong>192K addressable guests</strong>: loyalty members, high-intent prospects, and modeled lookalikes.',
+    loop: false,
+    closedBadge: false,
+  },
+  { // 2 — Plan owned + paid
+    kicker: 'Plan',
+    caption: 'Owned first. Paid only to extend reach or cut waste.',
+    cursor: false,
+    send: true,
+    think: true,
+    thinkText: 'Planning interventions…',
+    step1: true, step2: true, step3: false, step4: false, step5: false,
+    objStats: true,
+    agent: true,
+    agentMsg: 'Owned channels first — email sequences and site nudges where Rivage has permission. <strong>Paid only for re-engagement and lookalike reach</strong>, not to spray spend at the whole list.',
+    loop: false,
+    closedBadge: false,
+  },
+  { // 3 — Agentic execution
+    kicker: 'Execution',
+    caption: 'Agent launches the play. Adapts spend as results arrive.',
+    cursor: false,
+    send: true,
+    think: true,
+    thinkText: 'Activating channels…',
+    step1: true, step2: true, step3: true, step4: false, step5: false,
+    objStats: true,
+    agent: true,
+    agentMsg: 'All four channels live. I\'m watching results in real time — <strong>rebalancing budget from paid to owned</strong> as loyalty email outperforms. No manual tweaking needed.',
+    loop: false,
+    closedBadge: false,
+  },
+  { // 4 — Carry the goal + estimate impact
+    kicker: 'Impact',
+    caption: 'Full journey tracked. Business impact estimated up front.',
+    cursor: false,
+    send: true,
+    think: false,
+    thinkText: '',
+    step1: true, step2: true, step3: true, step4: true, step5: false,
+    objStats: true,
+    agent: true,
+    agentMsg: '<strong>+18% repeat booking lift, 4.2× ROAS, +8,700 incremental stays</strong> — projected before you commit spend. Goal carried through first repeat booking → the stay → the next trip.',
+    loop: false,
+    closedBadge: false,
+  },
+  { // 5 — Proven in one feedback loop (complete)
+    kicker: 'Proof',
+    caption: 'Estimated up front. Proven in one feedback loop.',
+    cursor: false,
+    send: true,
+    think: false,
+    thinkText: '',
+    step1: true, step2: true, step3: true, step4: true, step5: true,
+    objStats: true,
+    agent: true,
+    agentMsg: 'Actuals beat estimates: <strong>+21% booking lift, 4.7× ROAS, +9,400 stays</strong>. Every result fed back — the loop is closed. Impact proven, not assumed.',
+    loop: true,
+    closedBadge: true,
+  },
+];
+
+function renderBeat(index, direction) {
+  // Clamp to valid range
+  const i = Math.max(0, Math.min(index, BEATS.length - 1));
+  const b = BEATS[i];
+
+  // ── Composer cursor + send button ──
+  const cursor = $('composerCursor');
+  if (cursor) cursor.classList.toggle('is-hidden', !b.cursor);
+  const send = $('composerSend');
+  if (send) send.classList.toggle('is-visible', b.send);
+
+  // ── Think bar ──
+  const thinkBar = $('thinkBar');
+  if (thinkBar) thinkBar.classList.toggle('is-on', b.think);
+  const thinkText = $('thinkText');
+  if (thinkText) thinkText.textContent = b.thinkText;
+
+  // ── Reply steps (set both on AND off every call) ──
+  const stepIds = ['step1', 'step2', 'step3', 'step4', 'step5'];
+  const stepKeys = ['step1', 'step2', 'step3', 'step4', 'step5'];
+  stepIds.forEach((id, k) => {
+    const el = $(id);
+    if (el) el.classList.toggle('is-on', !!b[stepKeys[k]]);
+  });
+
+  // ── Objective stats ──
+  const objStats = $('objStats');
+  if (objStats) objStats.classList.toggle('is-on', b.objStats);
+
+  // ── Agent card ──
+  const agentCard = $('agentCard');
+  if (agentCard) agentCard.classList.toggle('is-on', b.agent);
+  const agentMsg = $('agentMsg');
+  if (agentMsg) agentMsg.innerHTML = b.agentMsg;
+
+  // ── Closed-loop badge (inside step5) ──
+  const closedBadge = $('closedBadge');
+  if (closedBadge) closedBadge.classList.toggle('is-on', b.closedBadge);
+
+  // ── Loop badge (footer) ──
+  $('loopBadge').classList.toggle('is-on', b.loop);
+
+  // ── Caption + beat dots ──
+  $('captionKicker').textContent = b.kicker;
+  $('captionText').textContent = b.caption;
+  const dots = $('beatdots').children;
+  for (let k = 0; k < dots.length; k++) {
+    dots[k].classList.toggle('is-done', k < i);
+    dots[k].classList.toggle('is-now', k === i);
+  }
+
+  // ── Scroll reply panel to show the latest step ──
+  requestAnimationFrame(() => setTimeout(() => {
+    const panel = $('replyPanel');
+    if (!panel) return;
+    if (i === 0) { panel.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    const targets = { 1: $('step1'), 2: $('step2'), 3: $('step3'), 4: $('step4'), 5: $('step5') };
+    const target = targets[i];
+    if (target) {
+      const top = panel.scrollTop + (target.getBoundingClientRect().top - panel.getBoundingClientRect().top) - 10;
+      panel.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+  }, 90));
+}
+
+startSceneRuntime({ total: 5, renderBeat });
+</script>
+</body>
+</html>
