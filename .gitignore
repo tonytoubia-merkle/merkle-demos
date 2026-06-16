@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+.playwright-mcp/
+# recorded vignettes are large; keep the folder, ignore the media until we decide on LFS
+vignettes/*.mp4
+vignettes/*.mov
+!vignettes/.gitkeep
