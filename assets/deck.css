@@ -641,6 +641,98 @@
 .cta-partners strong { color: var(--mc-secondary); display: block; opacity: 1; font-weight: 700; font-size: 24px; margin-bottom: 8px; letter-spacing: 1px; text-transform: none; font-family: var(--font-display); }
 
 /* ================================================================
+   AGENDA — 3-beat overview (dark slide, 3-col grid)
+   Markup:
+     .agenda
+       .beat-card  (x3, each an <a href="#beat-*">)
+         .beat-card__num    "01"
+         .beat-card__head   bold title ~24px
+         .beat-card__sub    muted descriptor ~16px
+         .beat-card__go     "Open →" affordance
+   ================================================================ */
+.agenda {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;          /* 8 × 4px grid */
+  margin-top: 48px;   /* 12 × 4px */
+  width: 100%;
+  max-width: 1600px;
+}
+
+.beat-card {
+  display: flex; flex-direction: column; gap: 16px;
+  padding: 40px 36px;          /* 10 / 9 on the 4px grid */
+  border-radius: var(--mc-radius-lg);   /* 16px outer */
+  border: 1px solid var(--mc-on-dark-line);
+  background: var(--mc-on-dark-fill);  /* translucent on dark */
+  text-decoration: none; color: inherit;
+  /* concentric inner radius: children use --mc-radius (8px) */
+  position: relative; overflow: hidden;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* paper-slide variant (white card, ink border) */
+.slide--paper .beat-card {
+  background: var(--mc-card-bg);
+  border-color: var(--mc-line);
+  box-shadow: var(--mc-card-shadow);
+}
+
+/* hover: lift + accent border */
+.beat-card:hover,
+.beat-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--mc-secondary);
+  box-shadow: 0 12px 40px rgba(47, 152, 247, 0.18);
+  outline: none;
+}
+.slide--paper .beat-card:hover,
+.slide--paper .beat-card:focus-visible {
+  border-color: var(--mc-blue);
+  box-shadow: 0 12px 40px rgba(3, 40, 209, 0.12);
+}
+
+/* top-edge accent line (thin, secondary blue) */
+.beat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--mc-secondary); opacity: 0.5;
+  border-radius: var(--mc-radius-lg) var(--mc-radius-lg) 0 0;
+  transition: opacity 0.18s ease;
+}
+.beat-card:hover::before { opacity: 1; }
+.slide--paper .beat-card::before { background: var(--mc-blue); }
+
+/* number eyebrow — small mono */
+.beat-card__num {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--mc-secondary);
+}
+.slide--paper .beat-card__num { color: var(--mc-blue); }
+
+/* card headline */
+.beat-card__head {
+  font-family: var(--font-display); font-size: 24px; font-weight: 700;
+  line-height: 1.2; color: var(--mc-on-dark); margin: 0;
+}
+.slide--paper .beat-card__head { color: var(--mc-ink); }
+
+/* descriptor copy */
+.beat-card__sub {
+  font-size: 16px; line-height: 1.55; color: var(--mc-on-dark-muted);
+  margin: 0; flex: 1;
+}
+.slide--paper .beat-card__sub { color: var(--mc-muted); }
+
+/* "Open →" affordance */
+.beat-card__go {
+  font-size: 14px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--mc-secondary); margin-top: 8px;
+  text-transform: uppercase;
+}
+.slide--paper .beat-card__go { color: var(--mc-blue); }
+
+/* ================================================================
    PRINT (PDF EXPORT)
    ================================================================ */
 @media print {
