@@ -215,6 +215,36 @@
             <span class="surf">Purchase</span>
             <span class="surf">Loyalty</span>
           </div>
+
+          <!-- Agentic execution: autopilot status + human-in-the-loop chip -->
+          <div id="agentic" class="agentic">
+            <span class="agentic__run">
+              <span class="agentic__dot"></span>
+              Running autonomously · audience, activation, measurement &amp; optimization
+            </span>
+            <span class="agentic__esc">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8v4M12 16h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
+              </svg>
+              Escalates to a human only when judgment calls.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Governed by design: permissions / consent / privacy / brand band -->
+      <section id="governance" class="governance">
+        <span class="governance__lead">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+          Governed by design
+        </span>
+        <div class="governance__badges">
+          <span class="gbadge">Permissions</span>
+          <span class="gbadge">Consent</span>
+          <span class="gbadge">Privacy</span>
+          <span class="gbadge">Brand guidelines</span>
         </div>
       </section>
 
@@ -224,7 +254,7 @@
   <!-- ════════════ Caption bar ════════════ -->
   <footer class="captionbar">
     <div id="beatdots" class="beatdots">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
     </div>
     <div class="caption">
       <span id="captionKicker" class="caption__kicker">Arrival</span>
@@ -245,7 +275,7 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 
 const $ = (id) => document.getElementById(id);
 
-/* Per-beat copy. Index 0..8. Everything is recomputed from `index`
+/* Per-beat copy. Index 0..10. Everything is recomputed from `index`
    on every call, so renderBeat is fully reversible — no element relies
    on a prior beat's side effects. Each beat lists which signals flow IN,
    which channels radiate OUT, and which graph edges are live. */
@@ -346,7 +376,33 @@ const BEATS = [
              outEmail: true, outApp: true, outSite: true, outMedia: true },
     flowIn: true, flowOut: true, loyalty: true, loop: false,
   },
-  { // 8 — Measurement in the loop (complete)
+  { // 8 — Agentic execution (engine runs the sequence on its own)
+    kicker: 'Agentic execution',
+    caption: 'The engine runs it automatically — audience, activation, measurement, optimization.',
+    profile: { known: true, name: 'Emma Lindqvist', status: 'Autonomous · human-in-the-loop' },
+    advisor: { on: true, surfaces: true, msg: "I run the sequence automatically — audience creation, activation, measurement and optimization across channels — and bring a human in only when judgment calls for it." },
+    hub: { known: true, name: 'Emma Lindqvist', status: 'Autonomous · human-in-the-loop', ping: false, loop: false },
+    signals: { social: 'live', browse: 'live', list: 'live', store: 'live' },
+    channels: { email: 'live', app: 'live', site: 'live', media: 'live' },
+    edges: { inSocial: true, inBrowse: true, inList: true, inStore: true,
+             outEmail: true, outApp: true, outSite: true, outMedia: true },
+    flowIn: true, flowOut: true, loyalty: true, loop: false,
+    agentic: true, governance: false,
+  },
+  { // 9 — Governed by design (every decision within permissions)
+    kicker: 'Governed by design',
+    caption: 'Every decision respects permissions, consent, privacy, and brand guidelines.',
+    profile: { known: true, name: 'Emma Lindqvist', status: 'Governed · within permissions' },
+    advisor: { on: true, surfaces: true, msg: "Every decision respects permissions, consent, privacy requirements and brand guidelines." },
+    hub: { known: true, name: 'Emma Lindqvist', status: 'Governed · within permissions', ping: false, loop: false },
+    signals: { social: 'live', browse: 'live', list: 'live', store: 'live' },
+    channels: { email: 'live', app: 'live', site: 'live', media: 'live' },
+    edges: { inSocial: true, inBrowse: true, inList: true, inStore: true,
+             outEmail: true, outApp: true, outSite: true, outMedia: true },
+    flowIn: true, flowOut: true, loyalty: true, loop: false,
+    agentic: true, governance: true,
+  },
+  { // 10 — Measurement in the loop (complete)
     kicker: 'Measurement',
     caption: 'Results feed back — every decision improves.',
     profile: { known: true, name: 'Emma Lindqvist', status: 'Adapting · measured in real time' },
@@ -357,6 +413,7 @@ const BEATS = [
     edges: { inSocial: true, inBrowse: true, inList: true, inStore: true,
              outEmail: true, outApp: true, outSite: true, outMedia: true },
     flowIn: true, flowOut: true, loyalty: true, loop: true,
+    agentic: true, governance: true,
   },
 ];
 
@@ -380,7 +437,7 @@ function setChannel(key, mode) {
 }
 
 function renderBeat(index, direction) {
-  // Clamp/guard so any 0..8 target (or `total`) renders the right end state.
+  // Clamp/guard so any 0..10 target (or `total`) renders the right end state.
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
 
@@ -406,6 +463,10 @@ function renderBeat(index, direction) {
   advisor.classList.toggle('is-on', b.advisor.on);
   advisor.classList.toggle('show-surfaces', b.advisor.surfaces);
   $('advisorMsg').textContent = b.advisor.msg;
+
+  // ── Agentic execution indicator + governance band (declarative on/off) ──
+  $('agentic').classList.toggle('is-on', !!b.agentic);
+  $('governance').classList.toggle('is-on', !!b.governance);
 
   // ── Inbound signals + outbound channels (set BOTH on and off every call) ──
   ['social', 'browse', 'list', 'store'].forEach((k) => setSignal(k, b.signals[k]));
@@ -437,7 +498,7 @@ function renderBeat(index, direction) {
   }
 }
 
-startSceneRuntime({ total: 8, renderBeat });
+startSceneRuntime({ total: 10, renderBeat });
 </script>
 </body>
 </html>
