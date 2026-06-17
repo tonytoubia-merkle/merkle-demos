@@ -134,7 +134,10 @@ html, body {
 .phase {
   flex-grow: 0; flex-shrink: 0;
   flex-basis: 20%;
-  min-width: 0;
+  /* Floor the width so a heavily-compressed phase (e.g. Review at 0.5 wk) still
+     fits its label instead of clipping. Plenty of empty track remains, so this
+     doesn't cause overflow. */
+  min-width: 96px;
   display: flex; flex-direction: column;
   transition: flex-basis var(--t);
 }
@@ -147,7 +150,7 @@ html, body {
   border: 1.5px solid #b9bfcb;
   display: flex; flex-direction: column; justify-content: center;
   align-items: flex-start;
-  padding: 0 18px;
+  padding: 0 15px;
   overflow: hidden;
   transition: background var(--t), border-color var(--t), box-shadow var(--t);
 }
@@ -174,50 +177,53 @@ html, body {
 }
 .phase.is-compressed .phase__weeks { color: rgba(255,255,255,.9); }
 
-/* ── AI-in-this-phase card — fixed width, below the track ── */
-.ai-card {
-  width: 580px;
-  margin-top: 20px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--blue-lt);
-  border-radius: 14px;
-  padding: 16px 22px 18px;
+/* ── Running AI summary — one column per phase, below the track.
+   All five slots hold position; each lights up (and reveals its bullets)
+   as its phase is compressed, so the bullets ACCUMULATE across stages
+   instead of being replaced. ── */
+.ai-row {
+  display: flex; gap: 16px; width: 100%;
+  margin-top: 28px;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .5s ease, transform .5s ease;
+  transition: opacity .4s ease;
   pointer-events: none;
 }
-.ai-card.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+.ai-row.is-visible { opacity: 1; pointer-events: auto; }
+.ai-col {
+  flex: 1 1 0; min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px 16px;
+  opacity: .45;
+  transition: opacity .5s ease, border-color .5s ease;
 }
-.ai-card__heading {
-  font-size: 12px; font-weight: 700; letter-spacing: 1.8px;
-  text-transform: uppercase; color: var(--blue-lt);
+.ai-col.is-on { opacity: 1; border-top-color: var(--blue-lt); }
+.ai-col__head {
+  font-size: 12px; font-weight: 800; letter-spacing: 1.4px;
+  text-transform: uppercase; color: #9aa2b1;
   margin-bottom: 10px;
+  transition: color .5s ease;
 }
-.ai-card__list {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 8px;
+.ai-col.is-on .ai-col__head { color: var(--blue-lt); }
+.ai-col__list {
+  list-style: none; display: flex; flex-direction: column; gap: 7px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .5s ease, transform .5s ease;
 }
-.ai-card__list li {
-  font-size: 14px; font-weight: 600; line-height: 1.35;
+.ai-col.is-on .ai-col__list { opacity: 1; transform: translateY(0); }
+.ai-col__list li {
+  font-size: 13.5px; font-weight: 600; line-height: 1.35;
   color: var(--ink);
-  padding-left: 18px;
-  position: relative;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .45s ease, transform .45s ease;
+  padding-left: 16px; position: relative;
 }
-.ai-card__list li::before {
+.ai-col__list li::before {
   content: "";
   position: absolute; left: 0; top: 6px;
   width: 6px; height: 6px; border-radius: 50%;
   background: var(--blue-lt);
 }
-.ai-card.is-visible .ai-card__list li { opacity: 1; transform: translateY(0); }
 
 /* ═══════════════ Before vs after view (beat 6) ═══════════════ */
 .compare-view {
