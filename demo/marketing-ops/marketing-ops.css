@@ -129,7 +129,7 @@ html, body {
   display: flex;
   align-items: stretch;
   gap: 6px;
-  height: 360px;
+  height: 100px;
 }
 .phase {
   flex-grow: 0; flex-shrink: 0;
@@ -174,28 +174,50 @@ html, body {
 }
 .phase.is-compressed .phase__weeks { color: rgba(255,255,255,.9); }
 
-/* AI bullets that animate into a phase once compressed */
-.phase__bullets {
-  list-style: none;
-  margin-top: 14px;
-  display: flex; flex-direction: column; gap: 9px;
-  min-width: 0;
-}
-.phase__bullets li {
-  font-size: 13px; font-weight: 600; line-height: 1.3;
-  color: var(--ink);
+/* ── AI-in-this-phase card — fixed width, below the track ── */
+.ai-card {
+  width: 580px;
+  margin-top: 20px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-left: 3px solid var(--blue-lt);
-  border-radius: 9px;
-  padding: 8px 11px;
+  border-radius: 14px;
+  padding: 16px 22px 18px;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity .5s ease, transform .5s ease;
+  pointer-events: none;
 }
-.phase.show-bullets .phase__bullets li { opacity: 1; transform: translateY(0); }
-.phase.show-bullets .phase__bullets li:nth-child(2) { transition-delay: .08s; }
-.phase.show-bullets .phase__bullets li:nth-child(3) { transition-delay: .16s; }
+.ai-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.ai-card__heading {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.8px;
+  text-transform: uppercase; color: var(--blue-lt);
+  margin-bottom: 10px;
+}
+.ai-card__list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.ai-card__list li {
+  font-size: 14px; font-weight: 600; line-height: 1.35;
+  color: var(--ink);
+  padding-left: 18px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+.ai-card__list li::before {
+  content: "";
+  position: absolute; left: 0; top: 6px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue-lt);
+}
+.ai-card.is-visible .ai-card__list li { opacity: 1; transform: translateY(0); }
 
 /* ═══════════════ Before vs after view (beat 6) ═══════════════ */
 .compare-view {
