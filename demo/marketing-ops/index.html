@@ -79,11 +79,10 @@
 
       </div>
 
-      <!-- AI-in-this-phase card — fixed width, decoupled from bar widths -->
-      <div id="aiCard" class="ai-card">
-        <div class="ai-card__heading" id="aiCardHeading"></div>
-        <ul class="ai-card__list" id="aiCardList"></ul>
-      </div>
+      <!-- Running AI summary — one column per phase, accumulates across stages.
+           Columns are built from PHASES at load; renderBeat lights each up
+           as its phase compresses (bullets accumulate, not replaced). -->
+      <div id="aiRow" class="ai-row"></div>
 
     </section>
 
@@ -246,6 +245,31 @@ const BEATS = [
   make($('afterTrack'),  'after');
 })();
 
+// Build the running AI summary columns once (one per phase, in order).
+(function buildAiRow() {
+  const row = $('aiRow');
+  if (!row) return;
+  row.innerHTML = '';
+  PHASES.forEach((p) => {
+    const col = document.createElement('div');
+    col.className = `ai-col ai-col--${p.key}`;
+    col.setAttribute('data-phase', p.key);
+    const head = document.createElement('div');
+    head.className = 'ai-col__head';
+    head.textContent = p.name;
+    col.appendChild(head);
+    const ul = document.createElement('ul');
+    ul.className = 'ai-col__list';
+    p.bullets.forEach((t) => {
+      const li = document.createElement('li');
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+    col.appendChild(ul);
+    row.appendChild(col);
+  });
+})();
+
 function renderBeat(index, direction) {
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
@@ -276,23 +300,13 @@ function renderBeat(index, direction) {
     if (wkEl) wkEl.textContent = wk(weeks);
   });
 
-  // ── AI card: show on beats 1–5 with newest-compressed phase bullets ──
-  const aiCard = $('aiCard');
-  const newestKey = b.compressed.length > 0 ? b.compressed[b.compressed.length - 1] : null;
-  const showCard = !b.compare && newestKey !== null;
-  aiCard.classList.toggle('is-visible', showCard);
-  if (showCard) {
-    const activePhase = PHASES.find((p) => p.key === newestKey);
-    $('aiCardHeading').textContent = `${activePhase.name} — with AI`;
-    const listEl = $('aiCardList');
-    listEl.innerHTML = '';
-    activePhase.bullets.forEach((text, idx) => {
-      const li = document.createElement('li');
-      li.textContent = text;
-      li.style.transitionDelay = `${idx * 0.08}s`;
-      listEl.appendChild(li);
-    });
-  }
+  // ── Running AI summary: each compressed phase's column lights up and keeps
+  //    its bullets visible (cumulative), so they accumulate across stages. ──
+  $('aiRow').classList.toggle('is-visible', !b.compare && b.compressed.length > 0);
+  document.querySelectorAll('.ai-col').forEach((col) => {
+    const on = !b.compare && compressed.has(col.getAttribute('data-phase'));
+    col.classList.toggle('is-on', on);
+  });
 
   // ── Total marker reflects current sum of visible widths ──
   const totalWeeks = PHASES.reduce(
