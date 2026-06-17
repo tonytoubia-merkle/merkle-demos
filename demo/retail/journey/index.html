@@ -9,399 +9,405 @@
 <body>
 
 <div class="stage">
-
-  <!-- ════════════ Top bar ════════════ -->
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand__mark">NORDHEM</span>
-      <span class="brand__sub">Scandinavian Home &amp; Living</span>
-    </div>
-    <span class="topbar__spacer"></span>
-    <span class="scene-label">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
-      </svg>
-      Customer Journey · Annotated
-    </span>
-  </header>
-
-  <!-- ════════════ Canvas: two panes ════════════ -->
   <main class="canvas">
 
-    <!-- ─────────── LEFT: the Nordhem website ─────────── -->
+    <!-- ═══════════════════ LEFT: the browser ═══════════════════ -->
     <section class="web-col">
       <div class="browser">
 
-        <!-- browser chrome -->
-        <div class="browser__chrome">
-          <div class="browser__dots"><i></i><i></i><i></i></div>
-          <div class="browser__url">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
-            <span><b id="urlPath">nordhem.com</b><span id="urlRest"></span></span>
+        <!-- Browser chrome: traffic lights + dynamic URL -->
+        <div class="chrome">
+          <div class="chrome__dots"><i></i><i></i><i></i></div>
+          <div class="chrome__bar">
+            <svg class="chrome__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="chrome__url"><b id="urlHost">nordhem.com</b><span id="urlPath"></span></span>
+          </div>
+          <div class="chrome__tools">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
           </div>
         </div>
 
-        <!-- viewport: stacked screens + overlays -->
+        <!-- Viewport hosts both "apps"; one is active at a time -->
         <div class="viewport">
 
-          <!-- Screen A: homepage / kitchen inspiration hero -->
-          <div id="scrHero" class="screen screen--hero">
-            <nav class="site-nav">
-              <span class="site-nav__brand">NORDHEM</span>
-              <span class="site-nav__links"><span>Kitchen</span><span>Living</span><span>Bedroom</span><span>Inspiration</span></span>
-            </nav>
-            <div class="hero"></div>
-            <div class="hero__content">
-              <span class="hero__kicker">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg>
-                <span class="gen">Scandinavian home, beautifully made</span>
-                <span class="pers">Welcome back, Emma</span>
+          <!-- ─────────────── APP A: consumer site nordhem.com ─────────────── -->
+          <div id="appSite" class="app app--site">
+
+            <!-- top nav -->
+            <nav class="snav">
+              <span class="snav__brand">NORDHEM</span>
+              <span class="snav__links">
+                <span>Kitchens</span><span>Living</span><span>Dining</span><span>Bedroom</span>
               </span>
-              <div class="hero__title">
-                <span class="gen">Design for everyday living.</span>
-                <span class="pers">Furnish your new apartment, room by room.</span>
-              </div>
-              <div class="hero__sub">
-                <span class="gen">Considered furniture, lighting, and kitchenware for the whole home.</span>
-                <span class="pers">Start with the kitchen — saved picks and a shopping list, ready when you are.</span>
-              </div>
-              <div class="hero__cta">
-                <span class="gen">Shop the collection</span>
-                <span class="pers">Continue your shopping list</span>
-              </div>
-            </div>
-            <div class="hero__cards">
-              <div class="mini-card">
-                <div class="mini-card__tag">For your kitchen</div>
-                <div class="mini-card__name">Vik Oak Dining Table</div>
-                <div class="mini-card__meta">Solid oak · seats four · flat-pack</div>
-              </div>
-              <div class="mini-card">
-                <div class="mini-card__tag">Small-space living</div>
-                <div class="mini-card__name">Fjord Modular Shelving</div>
-                <div class="mini-card__meta">Configurable · for first apartments</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Screen B: kitchen product grid + product detail (personalized) -->
-          <div id="scrDetail" class="screen screen--detail">
-            <div class="detail">
-              <div class="detail__hero">
-                <div class="detail__hero-label">
-                  <div class="k">Kitchen · Dining</div>
-                  <div class="t">Vik Oak Dining Table</div>
-                </div>
-              </div>
-              <div class="detail__body">
-                <div class="detail__row">
-                  <div class="detail__price">€349 <small>/ each</small></div>
-                  <div class="detail__chips">
-                    <span class="detail__chip">Solid oak</span>
-                    <span class="detail__chip">Seats 4</span>
-                    <span class="detail__chip">Flat-pack</span>
-                  </div>
-                </div>
-                <div class="anniv-banner">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-                  Recognized as <b>furnishing a new home</b> — pairs well with the chairs and lighting on her list.
-                </div>
-                <div class="detail__dining">
-                  <div class="detail__dining-ic">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3z"/><path d="M5 7v14"/><path d="M19 7v14"/><path d="M5 14h14"/></svg>
-                  </div>
-                  <div>
-                    <div class="detail__dining-name">Add Saga Oak Chairs · set of 2</div>
-                    <div class="detail__dining-meta">Matches the table · completes the dining set</div>
-                  </div>
-                  <div class="reserve-btn">
-                    <span class="lbl-save">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                      Save to list
-                    </span>
-                    <span class="lbl-saved">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      Saved to list
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Screen C: shopping list / cart (with abandoned-cart state) -->
-          <div id="scrItin" class="screen">
-            <div class="itin" id="itin">
-              <div class="itin__head">
-                <div>
-                  <div class="itin__title">Emma's kitchen shopping list</div>
-                  <div class="itin__sub">New apartment · first home · 4 items</div>
-                </div>
-                <span class="itin__badge">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  Saved for you
+              <span class="snav__right">
+                <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                <span class="snav__cart">
+                  <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+                  <span id="cartCount" class="snav__badge">0</span>
                 </span>
-              </div>
-              <div class="itin__list">
-                <div class="itin-item">
-                  <div class="itin-item__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3z"/><path d="M5 7v14"/><path d="M19 7v14"/><path d="M5 14h14"/></svg></div>
-                  <div>
-                    <div class="itin-item__name">Vik Oak Dining Table</div>
-                    <div class="itin-item__meta">Solid oak · seats four · the centrepiece</div>
-                  </div>
-                  <span class="itin-item__state">Saved</span>
-                </div>
-                <div class="itin-item">
-                  <div class="itin-item__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V7a2 2 0 0 1 2-2h2v14M16 19V5h2a2 2 0 0 1 2 2v12M8 9h8M8 13h8"/></svg></div>
-                  <div>
-                    <div class="itin-item__name">Saga Oak Chairs · set of 2</div>
-                    <div class="itin-item__meta">Matches the table · completes the set</div>
-                  </div>
-                  <span class="itin-item__state">Saved</span>
-                </div>
-                <div class="itin-item itin-item--abandon">
-                  <div class="itin-item__ic is-cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
-                  <div>
-                    <div class="itin-item__name">Halla Pendant Light</div>
-                    <div class="itin-item__meta">Added to cart, then left — recovery in progress</div>
-                  </div>
-                  <span class="itin-item__state is-abandon">In cart</span>
-                </div>
-                <div class="itin-item itin-item--offer">
-                  <div class="itin-item__ic is-upgrade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 16.8 5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
-                  <div>
-                    <div class="itin-item__name">Next best: complete the dining set &amp; save 10%</div>
-                    <div class="itin-item__meta">Table + chairs + pendant · one bundle · members' price</div>
-                  </div>
-                  <span class="itin-item__state is-offer">Offered</span>
-                </div>
-              </div>
-            </div>
-          </div>
+                <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+              </span>
+            </nav>
 
-          <!-- Screen D: inbox / email orchestration -->
-          <div id="scrInbox" class="screen">
-            <div class="inbox">
-              <div class="inbox__head">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
-                <div>
-                  <div class="inbox__title">For Emma — one shopper, not a segment</div>
-                  <div class="inbox__sub">Inspiration → planning → purchase → loyalty, orchestrated</div>
-                </div>
-              </div>
-              <div class="mail-list">
-                <div class="mail">
-                  <div class="mail__seq">1</div>
-                  <div class="mail__body">
-                    <div class="mail__subject">Your kitchen list, ready to finish</div>
-                    <div class="mail__preview">Owned email: the table and chairs you saved, plus the pendant still in your cart.</div>
-                  </div>
-                  <span class="mail__tag owned">Owned</span>
-                </div>
-                <div class="mail">
-                  <div class="mail__seq">2</div>
-                  <div class="mail__body">
-                    <div class="mail__subject">Forgot something? Your pendant is waiting</div>
-                    <div class="mail__preview">Cart-abandonment recovery: complete the dining set at members' price.</div>
-                  </div>
-                  <span class="mail__tag owned">Owned</span>
-                </div>
-                <div class="mail">
-                  <div class="mail__seq">3</div>
-                  <div class="mail__body">
-                    <div class="mail__subject">Now your home's together — what's next</div>
-                    <div class="mail__preview">Post-purchase: living-room ideas and points on your next order.</div>
-                  </div>
-                  <span class="mail__tag owned">Owned</span>
-                </div>
-                <div class="mail">
-                  <div class="mail__seq">+</div>
-                  <div class="mail__body">
-                    <div class="mail__subject">Paid only to extend reach — or suppress waste</div>
-                    <div class="mail__preview">A single social reminder where owned can't reach; purchasers suppressed from acquisition.</div>
-                  </div>
-                  <span class="mail__tag paid">Paid</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Overlays -->
-          <div id="anonChip" class="anon-chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-            Anonymous visitor
-          </div>
-
-          <div id="toast" class="toast">
-            <div class="toast__ic">
+            <!-- recognition greeting banner -->
+            <div id="greet" class="greet">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <div class="greet__txt"><b>Welcome back, Emma.</b> Recognized across our site, app, and store — privacy-safe.</div>
+              <span class="greet__pill">Recognized</span>
             </div>
-            <div>
-              <div class="toast__title">Recognized <span class="toast__pill">Privacy-safe</span></div>
-              <div class="toast__msg">Same shopper who watched an influencer's <b>apartment-transformation Reel</b> — owned &amp; paid resolved to <b>one profile</b>.</div>
+
+            <!-- scrollable site body -->
+            <div id="siteBody" class="site-body">
+
+              <!-- PAGE: home / for-you hero -->
+              <section id="pgHome" class="page">
+                <div class="shero">
+                  <img class="shero__img" src="../../../assets/photos/nordhem/living.jpg" alt="Nordhem living room" />
+                  <div class="shero__scrim"></div>
+                  <div class="shero__copy">
+                    <span class="shero__kicker" id="heroKicker">Scandinavian home furnishings</span>
+                    <h1 class="shero__title" id="heroTitle">Make the new place feel like home</h1>
+                    <p class="shero__sub" id="heroSub">Considered design for every room — built to live with, priced to move in.</p>
+                    <span class="shero__cta" id="heroCta">Shop the rooms</span>
+                  </div>
+                </div>
+
+                <!-- "For you" recommendation rail (personalized) -->
+                <div id="forYou" class="foryou">
+                  <div class="foryou__head">
+                    <span class="foryou__title">Chosen for you, Emma</span>
+                    <span class="foryou__note">For furnishing a first apartment — room by room</span>
+                  </div>
+                  <div class="foryou__grid">
+                    <article class="pcard">
+                      <img class="pcard__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="Skagen kitchen" />
+                      <div class="pcard__body">
+                        <span class="pcard__tag">Start here</span>
+                        <h3 class="pcard__name">Skagen Kitchen Series</h3>
+                        <p class="pcard__meta">Modular cabinetry · oak &amp; matte white · from $1,690</p>
+                      </div>
+                    </article>
+                    <article class="pcard">
+                      <img class="pcard__img" src="../../../assets/photos/nordhem/dining.jpg" alt="Dining set" />
+                      <div class="pcard__body">
+                        <span class="pcard__tag">Complete the room</span>
+                        <h3 class="pcard__name">Fjord Dining Set</h3>
+                        <p class="pcard__meta">Solid ash table + 4 chairs · seats six · $880</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <!-- PAGE: kitchen listing -->
+              <section id="pgKitchens" class="page">
+                <div class="page__head">
+                  <h2 class="page__h">Kitchens</h2>
+                  <span class="page__hint">12 series · 3 picked for your space</span>
+                </div>
+                <div class="prod-grid">
+                  <article class="scard scard--lead">
+                    <img class="scard__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="" />
+                    <div class="scard__body">
+                      <span class="scard__tag">Best for small spaces</span>
+                      <h3 class="scard__name">Skagen Kitchen Series</h3>
+                      <p class="scard__meta">Modular · oak &amp; matte white · fits a galley layout</p>
+                      <span class="scard__price">$1,690 <small>/ starter set</small></span>
+                    </div>
+                  </article>
+                  <article class="scard">
+                    <img class="scard__img" src="../../../assets/photos/nordhem/living.jpg" alt="" />
+                    <div class="scard__body">
+                      <h3 class="scard__name">Lumi Open Shelving</h3>
+                      <p class="scard__meta">Wall-mount · birch ply</p>
+                      <span class="scard__price">$320</span>
+                    </div>
+                  </article>
+                  <article class="scard">
+                    <img class="scard__img" src="../../../assets/photos/nordhem/dining.jpg" alt="" />
+                    <div class="scard__body">
+                      <h3 class="scard__name">Fjord Dining Set</h3>
+                      <p class="scard__meta">Ash table + 4 chairs · seats six</p>
+                      <span class="scard__price">$880</span>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <!-- PAGE: product detail -->
+              <section id="pgDetail" class="page">
+                <div class="detail">
+                  <div class="detail__gallery">
+                    <img class="detail__main" src="../../../assets/photos/nordhem/kitchen.jpg" alt="Skagen kitchen" />
+                    <div class="detail__thumbs">
+                      <img src="../../../assets/photos/nordhem/living.jpg" alt="" />
+                      <img src="../../../assets/photos/nordhem/dining.jpg" alt="" />
+                      <img src="../../../assets/photos/nordhem/living2.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div class="detail__info">
+                    <h2 class="detail__name">Skagen Kitchen Series</h2>
+                    <p class="detail__loc">Modular cabinetry · oak &amp; matte white · fits a galley layout</p>
+                    <div class="detail__price">$1,690 <small>/ starter set</small></div>
+                    <div class="detail__chips">
+                      <span>Free design plan</span><span>Flat-pack delivery</span><span>10-year guarantee</span>
+                    </div>
+
+                    <div id="storeNote" class="storenote">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg>
+                      <span><b>Seen in store</b> — you measured this in the Brooklyn showroom Saturday. Saved to your list.</span>
+                    </div>
+
+                    <div class="resv">
+                      <div class="resv__txt">
+                        <span class="resv__name">Add Skagen Kitchen to your list</span>
+                        <span class="resv__meta">Building a room plan · compare before you buy</span>
+                      </div>
+                      <span class="resv__btn">
+                        <span class="resv__save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>Save to list</span>
+                        <span class="resv__saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Saved to list</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- PAGE: shopping list / cart -->
+              <section id="pgList" class="page">
+                <div class="book">
+                  <div class="book__head">
+                    <div>
+                      <h2 class="book__title">Your room plan</h2>
+                      <p class="book__sub">First apartment · kitchen + dining · building over a few visits</p>
+                    </div>
+                    <span id="cartFlag" class="book__flag">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                      Left in cart 2 days ago
+                    </span>
+                    <span class="book__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Saved for you</span>
+                  </div>
+                  <div class="book__list">
+                    <div class="brow">
+                      <div class="brow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+                      <div class="brow__txt"><span class="brow__name">Skagen Kitchen Series</span><span class="brow__meta">Modular starter set · oak &amp; matte white</span></div>
+                      <span class="brow__amt">$1,690</span>
+                    </div>
+                    <div class="brow">
+                      <div class="brow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18"/><path d="M5 10V6h14v4"/><path d="M5 10v8"/><path d="M19 10v8"/></svg></div>
+                      <div class="brow__txt"><span class="brow__name">Fjord Dining Set</span><span class="brow__meta">Ash table + 4 chairs · seats six</span></div>
+                      <span class="brow__amt">$880</span>
+                    </div>
+                    <div class="brow brow--offer">
+                      <div class="brow__ic is-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 16.8 5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
+                      <div class="brow__txt"><span class="brow__name">Next best: complete the set — Lumi Open Shelving</span><span class="brow__meta">Pairs with the Skagen kitchen · one tap to add</span></div>
+                      <span class="brow__amt is-offer">+$320</span>
+                    </div>
+                  </div>
+                  <div class="book__foot">
+                    <span class="book__total">Subtotal <b>$2,570</b></span>
+                    <span class="book__confirm">Checkout</span>
+                  </div>
+                </div>
+              </section>
+
+              <!-- PAGE: Nordhem Members loyalty -->
+              <section id="pgMembers" class="page">
+                <div class="members">
+                  <div class="members__hero">
+                    <svg class="members__crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.2 1.2 6L12 16.8 6.3 19l1.2-6L3 8.8 9 8z"/></svg>
+                    <span class="members__kicker">Nordhem Members</span>
+                    <h2 class="members__title">Join free — and this order gets better</h2>
+                    <p class="members__sub">You're furnishing a whole home. Members save on every room, in store and online.</p>
+                  </div>
+                  <div class="members__grid">
+                    <div class="mcard">
+                      <span class="mcard__big">−10%</span>
+                      <span class="mcard__lbl">Member price on this order</span>
+                      <span class="mcard__sub">Applied to your room plan today</span>
+                    </div>
+                    <div class="mcard">
+                      <span class="mcard__big">257 pts</span>
+                      <span class="mcard__lbl">Points earned on this order</span>
+                      <span class="mcard__sub">Toward your next room</span>
+                    </div>
+                    <div class="mcard">
+                      <span class="mcard__big">Bedroom</span>
+                      <span class="mcard__lbl">Members-only offer next</span>
+                      <span class="mcard__sub">15% off when you furnish the bedroom</span>
+                    </div>
+                  </div>
+                  <div class="members__foot">
+                    <span class="members__join">Join &amp; apply — it's free</span>
+                    <span class="members__note">Same connected experience · in store, online, and in the app</span>
+                  </div>
+                </div>
+              </section>
+
             </div>
           </div>
 
-          <div id="memberToast" class="member-toast">
-            <div class="member-toast__ic">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 16.8 5.7 21.4 8 14 2 9.4h7.6z"/></svg>
-            </div>
-            <div>
-              <div class="member-toast__title">Join Nordhem Members</div>
-              <div class="member-toast__msg">Member pricing today, points on this order, and a members-only offer next time.</div>
-            </div>
-          </div>
+          <!-- ─────────── APP B: backend console nordhem-marketing-ops.cloud ─────────── -->
+          <div id="appOps" class="app app--ops">
+            <div class="ops">
+              <!-- sidebar -->
+              <aside class="ops__side">
+                <div class="ops__logo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+                  Marketing Ops
+                </div>
+                <nav class="ops__nav">
+                  <span class="ops__navitem" data-nav="journeys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Journeys</span>
+                  <span class="ops__navitem" data-nav="audiences"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 21c0-4 3.5-6 7-6s7 2 7 6"/><circle cx="18" cy="8" r="2.5"/></svg>Audiences</span>
+                  <span class="ops__navitem" data-nav="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Messages</span>
+                  <span class="ops__navitem" data-nav="suppression"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>Suppression</span>
+                  <span class="ops__navitem" data-nav="measurement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>Measurement</span>
+                </nav>
+                <div class="ops__env">
+                  <span class="ops__envdot"></span> Production workspace
+                </div>
+              </aside>
 
-          <div id="advisor" class="advisor">
-            <div class="advisor__orb">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>
-            </div>
-            <div class="advisor__body">
-              <div class="advisor__name">Nordhem Retail Advisor</div>
-              <div id="advisorMsg" class="advisor__msg">From inspiration to planning to purchase to loyalty — one connected advisor.</div>
-            </div>
-          </div>
+              <!-- work area -->
+              <div class="ops__main">
+                <div class="ops__toolbar">
+                  <span id="opsTitle" class="ops__h">Journeys</span>
+                  <span class="ops__crumb" id="opsCrumb">Customer journeys / New-home play</span>
+                  <span class="ops__spacer"></span>
+                  <span id="opsRun" class="ops__runchip"><span class="ops__rundot"></span><span id="opsRunTxt">Active</span></span>
+                </div>
 
-          <div id="autopilot" class="autopilot">
-            <div class="autopilot__orb">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <div class="ops__work">
+
+                  <!-- VIEW: journeys orchestration -->
+                  <div id="vJourneys" class="opsview">
+                    <div class="jflow">
+                      <div class="jnode owned">
+                        <span class="jnode__tag">Owned · Email</span>
+                        <span class="jnode__name">Room-plan nudge</span>
+                        <span class="jnode__meta">Personalized to her saved kitchen</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode owned">
+                        <span class="jnode__tag">Owned · App + Site</span>
+                        <span class="jnode__name">Cart-recovery</span>
+                        <span class="jnode__meta">Complete-the-set reminder</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode owned">
+                        <span class="jnode__tag">Owned · Email</span>
+                        <span class="jnode__name">Members invite</span>
+                        <span class="jnode__meta">At her high-intent moment</span>
+                      </div>
+                    </div>
+                    <div class="jpaid">
+                      <div class="jpaid__row">
+                        <span class="jbadge paid">Paid</span>
+                        <span class="jpaid__txt">High-intent shoppers — inspiration in social &amp; media</span>
+                        <span class="jpaid__state extend">Extend reach</span>
+                      </div>
+                      <div class="jpaid__row">
+                        <span class="jbadge paid">Paid</span>
+                        <span class="jpaid__txt">Existing purchasers — acquisition campaigns</span>
+                        <span class="jpaid__state suppress">Suppressed</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW: agentic execution -->
+                  <div id="vAgent" class="opsview">
+                    <div class="runhead">
+                      <div class="runhead__orb"><span></span></div>
+                      <div>
+                        <div class="runhead__title">Agent running the play autonomously</div>
+                        <div class="runhead__sub">Creates audiences, activates, measures &amp; optimizes across channels — escalates to a human only on judgment calls</div>
+                      </div>
+                      <span class="runhead__live">Running</span>
+                    </div>
+                    <div class="runlog">
+                      <div class="logrow"><span class="logrow__t">09:14</span><span class="logrow__d ok"></span><span class="logrow__m">Audience built · "New-home, high-intent" — activated to email + site</span></div>
+                      <div class="logrow"><span class="logrow__t">12:30</span><span class="logrow__d ok"></span><span class="logrow__m">Cart-recovery sent · personalized to her saved kitchen</span></div>
+                      <div class="logrow"><span class="logrow__t">15:02</span><span class="logrow__d ok"></span><span class="logrow__m">Paid acquisition suppressed — she's already an active shopper</span></div>
+                      <div class="logrow"><span class="logrow__t">—</span><span class="logrow__d wait"></span><span class="logrow__m">Members offer creative · awaiting brand sign-off</span><span class="logrow__esc">Escalated</span></div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW: governance -->
+                  <div id="vGov" class="opsview">
+                    <div class="gov__intro">Every action the agent takes is checked against policy before it ships.</div>
+                    <div class="gov__grid">
+                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="govcard__txt"><span class="govcard__name">Permissions</span><span class="govcard__sub">Channel rights honored</span></div><span class="toggle on"></span></div>
+                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="govcard__txt"><span class="govcard__name">Consent</span><span class="govcard__sub">Opt-ins verified per channel</span></div><span class="toggle on"></span></div>
+                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="govcard__txt"><span class="govcard__name">Privacy</span><span class="govcard__sub">One profile · purpose enforced</span></div><span class="toggle on"></span></div>
+                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div><div class="govcard__txt"><span class="govcard__name">Brand guidelines</span><span class="govcard__sub">Tone &amp; assets approved</span></div><span class="toggle on"></span></div>
+                    </div>
+                  </div>
+
+                  <!-- VIEW: measurement -->
+                  <div id="vMeasure" class="opsview">
+                    <div class="meas__intro">Audience performance, media effectiveness, and business outcomes — proven, then fed back into the next decision.</div>
+                    <div class="meas__grid">
+                      <div class="statcard"><span class="statcard__label">Conversion lift</span><span class="statcard__val">+24%</span><span class="statcard__sub">vs. holdout · 90 days</span></div>
+                      <div class="statcard"><span class="statcard__label">Media efficiency</span><span class="statcard__val">5.1×</span><span class="statcard__sub">ROAS · owned + paid</span></div>
+                      <div class="statcard"><span class="statcard__label">Incremental revenue</span><span class="statcard__val">+$3.2M</span><span class="statcard__sub">attributable · quarter</span></div>
+                      <div class="statcard"><span class="statcard__label">Paid waste cut</span><span class="statcard__val">−41%</span><span class="statcard__sub">suppression in real time</span></div>
+                    </div>
+                    <div class="meas__note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>Results feed back into the next play — the loop is closed and continuously improving.</div>
+                  </div>
+
+                </div>
+              </div>
             </div>
-            <div class="autopilot__txt"><b>Autopilot on</b> — the engine plans &amp; runs the full sequence, escalating to a human only on judgment calls.</div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ─────────── RIGHT: explainer panel ─────────── -->
-    <aside class="rail">
+    <!-- ═══════════════════ RIGHT: AI retail advisor ═══════════════════ -->
+    <aside class="agent">
 
-      <!-- "What we know" profile card -->
-      <div id="profileCard" class="profile-card">
-        <div class="profile-card__head">
-          <div id="profileAvatar" class="profile-card__avatar">?</div>
-          <div class="profile-card__who">
-            <span class="profile-card__kicker">What we know</span>
-            <span class="profile-card__name">
-              <span class="anon">Anonymous visitor</span>
-              <span class="known">Emma</span>
-            </span>
+      <!-- profile chip -->
+      <div id="profile" class="profile">
+        <div class="profile__top">
+          <div id="avatar" class="profile__avatar">?</div>
+          <div class="profile__who">
+            <span class="profile__kicker">What we know</span>
+            <span class="profile__name"><span class="anon">Anonymous visitor</span><span class="known">Emma</span></span>
           </div>
         </div>
-        <div class="profile-empty">Nothing yet — an anonymous click, no name, no history, no thread to pull.</div>
-        <div class="profile-fields">
-          <div id="pfId" class="pfield">
-            <span class="pfield__k">Identity</span>
-            <span class="pfield__v">One persistent, <span class="hl">privacy-safe profile</span> across owned &amp; paid</span>
-          </div>
-          <div id="pfLife" class="pfield">
-            <span class="pfield__k">Life stage</span>
-            <span class="pfield__v">Just moved into a new apartment — <span class="hl">furnishing a new home</span></span>
-          </div>
-          <div id="pfInterest" class="pfield">
-            <span class="pfield__k">Top interests</span>
-            <span class="pfield__v">Kitchens &amp; home furnishings</span>
-          </div>
-          <div id="pfIntent" class="pfield">
-            <span class="pfield__k">Intent signals</span>
-            <span class="pfield__v">Saving products, building a list, comparing — <span class="hl">high purchase intent</span></span>
-          </div>
-          <div id="pfHouse" class="pfield">
-            <span class="pfield__k">Household</span>
-            <span class="pfield__v">New household · first home · budget-conscious</span>
-          </div>
-          <div id="pfChannels" class="pfield">
-            <span class="pfield__k">Channels</span>
-            <span class="pfield__v">
-              <span class="chan-tags"><span>Social</span><span>Site</span><span>App</span><span>Email</span><span>Store</span></span>
-            </span>
-          </div>
+        <div class="profile__facts">
+          <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">One privacy-safe profile · owned + paid</span></div>
+          <div id="fLife" class="fact"><span class="fact__k">Life stage</span><span class="fact__v">Just moved · furnishing a new home</span></div>
+          <div id="fInterest" class="fact"><span class="fact__k">Interests</span><span class="fact__v">Kitchens &amp; home furnishings</span></div>
+          <div id="fIntent" class="fact"><span class="fact__k">Intent</span><span class="fact__v">Saving, building a list, comparing · high</span></div>
+          <div id="fHouse" class="fact"><span class="fact__k">Household</span><span class="fact__v">New household · first home · budget-conscious</span></div>
+          <div id="fChannels" class="fact"><span class="fact__k">Channels</span><span class="fact__v">Social · site · app · email · store</span></div>
         </div>
       </div>
 
-      <!-- Step block -->
-      <div class="step-block">
-        <div class="step-block__head">
-          <div id="stepNum" class="step-block__num">1</div>
-          <div class="step-block__heading">
-            <span id="stepCount" class="step-block__count">Step 1 of 11</span>
-            <span id="stepTitle" class="step-block__title">Anonymous first touch</span>
-          </div>
+      <!-- chat transcript -->
+      <div class="chat">
+        <div class="chat__head">
+          <div class="chat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
+          <div class="chat__id"><span class="chat__name">Nordhem Advisor</span><span class="chat__status"><i></i>Online · site, app &amp; store</span></div>
         </div>
+        <div id="transcript" class="transcript"></div>
+      </div>
 
-        <div class="step-actions">
-          <div id="actHer" class="action-row her">
-            <div class="action-row__ic">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-            </div>
-            <div class="action-row__body">
-              <div class="action-row__who">Emma is doing</div>
-              <div id="actHerTxt" class="action-row__txt">Browsing Nordhem for the first time — no sign-in.</div>
-            </div>
-          </div>
-          <div class="action-row ai">
-            <div class="action-row__ic">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>
-            </div>
-            <div class="action-row__body">
-              <div class="action-row__who">The AI is doing</div>
-              <div id="actAiTxt" class="action-row__txt">Watching, but with nothing to act on yet.</div>
-            </div>
-          </div>
+      <!-- progress + caption -->
+      <div class="agent__foot">
+        <div id="dots" class="dots">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
-
-        <!-- contrast framing (only beat 0) -->
-        <div id="contrastWithout" class="contrast without">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-          <span><b>Without Modern CRM:</b> this is an anonymous click that leaks away.</span>
-        </div>
-        <div id="contrastWith" class="contrast with">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <span id="contrastWithTxt"><b>With Modern CRM:</b> one click becomes a recognized shopper with a thread to pull.</span>
-        </div>
-
-        <!-- governance band (beat 9) -->
-        <div id="govBand" class="gov-band">
-          <span class="gov-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Permissions</span>
-          <span class="gov-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Consent</span>
-          <span class="gov-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Privacy</span>
-          <span class="gov-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg>Brand guidelines</span>
-        </div>
-
-        <div class="step-tags" id="stepTags"></div>
-
-        <div class="step-foot">
-          <div class="status-line">
-            <span class="status-line__dot"></span>
-            <span id="statusText">Profile empty · awaiting first signal.</span>
-          </div>
-          <div class="progress">
-            <div class="progress__track"><div id="progressFill" class="progress__fill"></div></div>
-            <span id="progressPct" class="progress__pct">0%</span>
-          </div>
+        <div class="cap">
+          <span id="capKicker" class="cap__kicker">Arrival</span>
+          <span id="capText" class="cap__text">An anonymous first touch.</span>
         </div>
       </div>
 
     </aside>
+
   </main>
-
-  <!-- ════════════ Caption bar ════════════ -->
-  <footer class="captionbar">
-    <div id="beatdots" class="beatdots">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-    </div>
-    <div class="caption">
-      <span id="captionKicker" class="caption__kicker">Arrival</span>
-      <span id="captionText" class="caption__text">An anonymous click that leaks away.</span>
-    </div>
-    <span class="guest-badge">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-      Emma · furnishing a new home
-    </span>
-  </footer>
-
 </div>
 
 <script type="module">
@@ -410,280 +416,205 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 const $ = (id) => document.getElementById(id);
 
 /* ─────────────────────────────────────────────────────────────────
-   Per-beat data table. Index 0..10. ALL state is recomputed from
-   scratch on every renderBeat call — fully reversible, no element
-   relies on prior-beat DOM. total = 10 (index 10 = complete).
+   Per-beat data table, index 0..10 (total = 10; index 10 = complete).
+   renderBeat() recomputes EVERYTHING from this table on every call —
+   fully reversible, no element depends on prior-beat DOM.
 
-   Fields:
-     screen   — which left screen is active: hero|detail|itin|inbox
-     heroPers — hero personalizes (kitchen/furnishings cards)
-     detSaved/detAnniv — detail screen states (saved-to-list / recognized banner)
-     itinAbandon — list shows the abandoned-cart row
-     itinOffer — list shows the next-best offer row
-     toast/member/advisor/autopilot/anonChip — overlays
-     known    — profile resolved (Emma) vs anonymous
-     fields[] — which profile fields are filled (by id key)
-     stepNum/stepCount/stepTitle
-     herOn/herTxt/aiTxt — what she's doing / what AI is doing
-     tags[]   — {l, k} owned|paid|chan
-     contrast — none|without|with  (+ withTxt override)
-     gov      — governance band on
-     status   — status line text
-     kicker/caption — footer
-     url      — browser url path suffix
+   Fields per beat:
+     app      'site' | 'ops'                which app shows
+     host     'nordhem.com' | 'nordhem-marketing-ops.cloud'
+     url      string                        path appended after host
+     page     site page id (home|kitchens|detail|list|members)  [site only]
+     opsView  ops view (journeys|agent|gov|measure)             [ops only]
+     opsTitle/opsCrumb/opsRun  ops toolbar text
+     greet    bool   recognition banner visible
+     foryou   bool   personalized "for you" rail visible (home page)
+     store    bool   detail "seen in store" note
+     saved    bool   detail "saved to list" state
+     cart     bool   list page abandoned-cart flag (+ nav badge=2)
+     offer    bool   list next-best (complete-the-set) row visible
+     known    bool   profile resolved (Emma) vs anonymous
+     facts[]  which profile facts filled (ids)
+     msgsTo   cumulative chat index shown (0..N)
+     kicker/caption  footer
    ───────────────────────────────────────────────────────────────── */
+
+// Cumulative chat lines — beat N shows lines [0..N].
+const LINE = [
+  { who:'sys', html:'Anonymous first touch — owned and paid handled as one from here.' },
+  { who:'ai',  html:'Recognized from an influencer\'s apartment-transformation Reel — resolved to <b>one privacy-safe profile</b> across owned and paid.' },
+  { who:'ai',  html:'I can see she just <b>moved into a new apartment</b> and is furnishing a first home — high purchase intent, budget-conscious.' },
+  { who:'ai',  html:'I\'m her retail advisor — I connect <b>inspiration → planning → purchase → loyalty</b> across site, app, and store.' },
+  { who:'ai',  html:'Every interaction updates the profile in real time — saved products, a list in progress, a cart left open, a store visit noted.' },
+  { who:'ai',  html:'Next best move: <b>complete the set</b> with a cross-sell at the right moment — inspire, convert, cross-sell, and suppress when she shouldn\'t be targeted.' },
+  { who:'ai',  html:'At her high-intent moment I surface <b>Nordhem Members</b> — member pricing, points on this order, and a members-only offer on her next room.' },
+  { who:'ai',  html:'Switching to orchestration. <b>Owned first</b> — site, app, email — with paid only to extend reach, acquire, or suppress.' },
+  { who:'ai',  html:'I\'m running the play autonomously now — building audiences, activating, measuring &amp; optimizing — and escalating to a human only on judgment calls.' },
+  { who:'ai',  html:'Every action stays inside the guardrails: <b>permissions, consent, privacy, and brand guidelines</b>.' },
+  { who:'ai',  html:'Results feed back: audience performance, media effectiveness, and business outcomes <b>proven, not assumed</b> — improving every future decision.' },
+];
+
 const BEATS = [
   { // 0 — Anonymous arrival
-    screen: 'hero', heroPers: false,
-    anonChip: true, toast: false, member: false, advisor: false, autopilot: false,
-    known: false, fields: [],
-    stepNum: 1, stepCount: 'Step 1 of 11', stepTitle: 'Anonymous first touch',
-    herOn: true,
-    herTxt: 'Lands on Nordhem for the first time — no sign-in, just browsing.',
-    aiTxt: 'Sees a click it cannot name. Nothing to personalize, nothing to remember.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Site', k:'chan'}],
-    contrast: 'without',
-    gov: false,
-    url: '',
-    status: 'Profile empty · awaiting first signal.',
-    kicker: 'Arrival', caption: 'An anonymous click that leaks away.',
+    app:'site', host:'nordhem.com', url:'', page:'home',
+    greet:false, foryou:false,
+    known:false, facts:[],
+    msgsTo:0,
+    kicker:'Arrival', caption:'An anonymous first touch.',
   },
   { // 1 — Recognized
-    screen: 'hero', heroPers: false,
-    anonChip: false, toast: true, member: false, advisor: false, autopilot: false,
-    known: true, fields: ['pfId'],
-    stepNum: 2, stepCount: 'Step 2 of 11', stepTitle: 'Identity resolves',
-    herOn: true,
-    herTxt: 'Arrives from an influencer\'s apartment-transformation Reel she saw on social.',
-    aiTxt: 'Resolves owned &amp; paid into <b>one persistent, privacy-safe profile</b> — the same person, recognized.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Paid', k:'paid'}, {l:'Social → Site', k:'chan'}],
-    contrast: 'with',
-    contrastWith: '<b>With Modern CRM:</b> the click is now a recognized shopper — owned and paid as one.',
-    gov: false,
-    url: '/welcome',
-    status: 'Identity resolved · one profile across channels.',
-    kicker: 'Recognized', caption: 'One profile across owned and paid.',
+    app:'site', host:'nordhem.com', url:'', page:'home',
+    greet:true, foryou:false,
+    known:true, facts:['fId'],
+    msgsTo:1,
+    kicker:'Recognized', caption:'One privacy-safe profile across owned + paid.',
   },
   { // 2 — Profile enriches
-    screen: 'hero', heroPers: true,
-    anonChip: false, toast: false, member: false, advisor: false, autopilot: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 3, stepCount: 'Step 3 of 11', stepTitle: 'What we know',
-    herOn: true,
-    herTxt: 'Saves products and compares kitchen pieces — clearly furnishing a new place.',
-    aiTxt: 'Reads the <b>new-home life stage</b> and high intent; personalizes the homepage to kitchens &amp; furnishings.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Site', k:'chan'}, {l:'App', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/kitchen',
-    status: 'Profile enriched · 6 attributes resolved.',
-    kicker: 'Profile', caption: 'New home, high intent — known.',
+    app:'site', host:'nordhem.com', url:'/for-you', page:'home',
+    greet:true, foryou:true,
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:2,
+    kicker:'Profile', caption:'New home, high intent — known.',
   },
   { // 3 — Meet the advisor
-    screen: 'hero', heroPers: true,
-    anonChip: false, toast: false, member: false, advisor: true, autopilot: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 4, stepCount: 'Step 4 of 11', stepTitle: 'Meet the advisor',
-    herOn: false,
-    herTxt: '',
-    aiTxt: 'One retail advisor connects <b>inspiration → planning → purchase → loyalty</b> — it senses, decides, and acts.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Site · App · Store', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/kitchen',
-    status: 'Advisor active · one experience across every touch.',
-    kicker: 'Advisor', caption: 'One advisor — inspiration to loyalty.',
+    app:'site', host:'nordhem.com', url:'/kitchens', page:'kitchens',
+    greet:true, foryou:false,
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:3,
+    kicker:'Advisor', caption:'One advisor — inspiration to loyalty.',
   },
   { // 4 — Signals: she acts
-    screen: 'detail', heroPers: false, detSaved: true, detAnniv: true,
-    anonChip: false, toast: false, member: false, advisor: false, autopilot: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 5, stepCount: 'Step 5 of 11', stepTitle: 'Signals',
-    herOn: true,
-    herTxt: 'Saves products, builds her shopping list, leaves a pendant in her cart; visits a store.',
-    aiTxt: 'Updates the profile in real time — every save, cart, and store visit <b>sharpens what we know</b>.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Site', k:'chan'}, {l:'Store', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/kitchen/vik-oak-table',
-    status: 'Live signals · saves, cart, store visit logged.',
-    kicker: 'Signals', caption: 'She acts — the profile updates live.',
+    app:'site', host:'nordhem.com', url:'/p/skagen-kitchen', page:'detail',
+    greet:true, store:true, saved:true,
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:4,
+    kicker:'Signals', caption:'She acts — the profile updates live.',
   },
   { // 5 — Decisions: next best
-    screen: 'itin', itinAbandon: true, itinOffer: true,
-    anonChip: false, toast: false, member: false, advisor: false, autopilot: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 6, stepCount: 'Step 6 of 11', stepTitle: 'Decisions',
-    herOn: true,
-    herTxt: 'Reviews her shopping list — never re-asked for anything she\'s already told us.',
-    aiTxt: 'Decides the <b>next best audience, offer, content &amp; channel</b> — inspire, convert, cross-sell, or suppress unnecessary spend.',
-    tags: [{l:'Owned', k:'owned'}, {l:'App', k:'chan'}, {l:'Next best action', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/list',
-    status: 'Next-best decision determined · convert or suppress.',
-    kicker: 'Decisions', caption: 'The next best move — never re-asked.',
+    app:'site', host:'nordhem.com', url:'/list', page:'list',
+    greet:true, cart:true, offer:true,
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:5,
+    kicker:'Decisions', caption:'The next best move — complete the set.',
   },
   { // 6 — Loyalty
-    screen: 'itin', itinAbandon: true, itinOffer: true, member: true,
-    anonChip: false, toast: false, advisor: false, autopilot: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 7, stepCount: 'Step 7 of 11', stepTitle: 'Loyalty',
-    herOn: true,
-    herTxt: 'At her high-intent moment, she\'s invited into Nordhem Members.',
-    aiTxt: 'Invited at exactly the right time — <b>member pricing, points on this order, a members-only offer next time</b>, all in one connected experience (owned + paid as one).',
-    tags: [{l:'Owned', k:'owned'}, {l:'Paid', k:'paid'}, {l:'Membership', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/list',
-    status: 'Membership offered · right moment, member pricing.',
-    kicker: 'Loyalty', caption: 'Invited in — at exactly the right moment.',
+    app:'site', host:'nordhem.com', url:'/members', page:'members',
+    greet:true,
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:6,
+    kicker:'Loyalty', caption:'Members — at her high-intent moment.',
   },
-  { // 7 — Orchestration: owned + paid as one
-    screen: 'inbox',
-    anonChip: false, toast: false, member: false, advisor: false, autopilot: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 8, stepCount: 'Step 8 of 11', stepTitle: 'Orchestration',
-    herOn: true,
-    herTxt: 'Receives a personalized email, a cart-recovery nudge, then post-purchase ideas.',
-    aiTxt: 'Owned first; <b>paid only to extend reach, acquire, or suppress</b> — high-intent shoppers get inspiration; existing purchasers suppressed from acquisition.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Paid', k:'paid'}, {l:'Email · App · Site · Media', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/messages',
-    status: 'Owned + paid sequenced as one — for one shopper.',
-    kicker: 'Orchestration', caption: 'Owned + paid, sequenced as one.',
+  { // 7 — Orchestration
+    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys',
+    opsView:'journeys', opsTitle:'Journeys', opsCrumb:'Customer journeys / New-home play', opsRun:'Active',
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:7,
+    kicker:'Orchestration', caption:'Owned + paid, sequenced as one.',
   },
   { // 8 — Agentic execution
-    screen: 'inbox', autopilot: true,
-    anonChip: false, toast: false, member: false, advisor: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 9, stepCount: 'Step 9 of 11', stepTitle: 'Agentic execution',
-    herOn: false,
-    herTxt: '',
-    aiTxt: 'Plans and runs the sequence automatically — <b>audience creation, activation, measurement, optimization</b> across channels — escalating to a human only on judgment calls.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Paid', k:'paid'}, {l:'Autonomous', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/messages',
-    status: 'Autopilot · engine running the sequence end-to-end.',
-    kicker: 'Execution', caption: 'The engine runs it — autonomously.',
+    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/agent',
+    opsView:'agent', opsTitle:'Agent', opsCrumb:'Automation / Autonomous run', opsRun:'Running',
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:8,
+    kicker:'Execution', caption:'The engine runs it — autonomously.',
   },
   { // 9 — Governed by design
-    screen: 'inbox', autopilot: true,
-    anonChip: false, toast: false, member: false, advisor: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 10, stepCount: 'Step 10 of 11', stepTitle: 'Governed by design',
-    herOn: false,
-    herTxt: '',
-    aiTxt: 'Every action stays inside guardrails — <b>permissions, consent, privacy, and brand guidelines</b>.',
-    tags: [{l:'Governance', k:'owned'}],
-    contrast: 'none',
-    gov: true,
-    url: '/messages',
-    status: 'Governed by design · guardrails enforced on every action.',
-    kicker: 'Governance', caption: 'Personal — and inside the guardrails.',
+    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/governance',
+    opsView:'gov', opsTitle:'Governance', opsCrumb:'Policy / Guardrails', opsRun:'Enforced',
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:9,
+    kicker:'Governance', caption:'Personal — and inside the guardrails.',
   },
-  { // 10 — Measurement in the loop (complete)
-    screen: 'itin', itinAbandon: true, itinOffer: true,
-    anonChip: false, toast: false, member: false, advisor: false, autopilot: false,
-    known: true, fields: ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'],
-    stepNum: 11, stepCount: 'Step 11 of 11', stepTitle: 'Measurement',
-    herOn: true,
-    herTxt: 'Comes back for the living room — and tells friends about the store that just gets her.',
-    aiTxt: 'Results flow back: <b>audience performance, media effectiveness, business outcomes</b> continuously improve future decisions.',
-    tags: [{l:'Owned', k:'owned'}, {l:'Paid', k:'paid'}, {l:'Closed loop', k:'chan'}],
-    contrast: 'none',
-    gov: false,
-    url: '/list',
-    status: 'Loop closed · results continuously improving decisions.',
-    kicker: 'Measurement', caption: 'Results feed back. Decisions improve.',
+  { // 10 — Measurement (complete)
+    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/measurement',
+    opsView:'measure', opsTitle:'Measurement', opsCrumb:'Impact / Incrementality', opsRun:'Proven',
+    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
+    msgsTo:10,
+    kicker:'Measurement', caption:'Results feed back. Impact proven.',
   },
 ];
 
-const PROFILE_FIELDS = ['pfId','pfLife','pfInterest','pfIntent','pfHouse','pfChannels'];
-const SCREENS = { hero: 'scrHero', detail: 'scrDetail', itin: 'scrItin', inbox: 'scrInbox' };
+const FACTS = ['fId','fLife','fInterest','fIntent','fHouse','fChannels'];
+const PAGES = { home:'pgHome', kitchens:'pgKitchens', detail:'pgDetail', list:'pgList', members:'pgMembers' };
+const OPSVIEWS = { journeys:'vJourneys', agent:'vAgent', gov:'vGov', measure:'vMeasure' };
+const OPSNAV = { journeys:'journeys', agent:'messages', gov:'suppression', measure:'measurement' };
 
 function renderBeat(index, direction) {
-  // total = 10; index 10 = complete. Clamp into table range [0..10].
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
 
-  // ── Left: active screen (set on AND off for all) ──
-  Object.entries(SCREENS).forEach(([key, id]) => {
-    const el = $(id);
-    if (el) el.classList.toggle('is-on', b.screen === key);
-  });
-
-  // ── Screen sub-states (always recomputed) ──
-  $('scrHero').classList.toggle('is-pers', !!b.heroPers);
-  $('scrDetail').classList.toggle('is-saved', !!b.detSaved);
-  $('scrDetail').classList.toggle('is-anniv', !!b.detAnniv);
-  $('itin').classList.toggle('is-abandon', !!b.itinAbandon);
-  $('itin').classList.toggle('is-offer', !!b.itinOffer);
-
-  // ── Overlays ──
-  $('anonChip').classList.toggle('is-on', !!b.anonChip);
-  $('toast').classList.toggle('is-on', !!b.toast);
-  $('memberToast').classList.toggle('is-on', !!b.member);
-  $('advisor').classList.toggle('is-on', !!b.advisor);
-  $('autopilot').classList.toggle('is-on', !!b.autopilot);
+  // ── App switch (both toggled every call) ──
+  $('appSite').classList.toggle('is-on', b.app === 'site');
+  $('appOps').classList.toggle('is-on', b.app === 'ops');
 
   // ── Browser URL ──
-  $('urlRest').textContent = b.url || '';
+  $('urlHost').textContent = b.host;
+  $('urlPath').textContent = b.url || '';
 
-  // ── Right: profile card ──
-  $('profileCard').classList.toggle('is-known', !!b.known);
-  $('profileAvatar').textContent = b.known ? 'E' : '?';
-  const filled = new Set(b.fields || []);
-  PROFILE_FIELDS.forEach((id) => {
+  // ── Consumer site: active page, banner, rails ──
+  Object.entries(PAGES).forEach(([key, id]) => {
+    const el = $(id);
+    if (el) el.classList.toggle('is-on', b.app === 'site' && b.page === key);
+  });
+  $('greet').classList.toggle('is-on', !!b.greet);
+  $('forYou').classList.toggle('is-on', !!b.foryou);
+  $('storeNote').classList.toggle('is-on', !!b.store);
+  $('pgDetail').classList.toggle('is-saved', !!b.saved);
+  $('pgList').classList.toggle('is-offer', !!b.offer);
+  $('pgList').classList.toggle('is-cart', !!b.cart);
+
+  // cart badge in nav: building a 2-item plan once she carts; 1 once saved
+  const cartN = b.cart ? 2 : (b.saved ? 1 : 0);
+  $('cartCount').textContent = String(cartN);
+  $('cartCount').classList.toggle('is-on', cartN > 0);
+
+  // ── Backend console: active view, toolbar, sidebar highlight ──
+  Object.entries(OPSVIEWS).forEach(([key, id]) => {
+    const el = $(id);
+    if (el) el.classList.toggle('is-on', b.app === 'ops' && b.opsView === key);
+  });
+  $('opsTitle').textContent = b.opsTitle || '';
+  $('opsCrumb').textContent = b.opsCrumb || '';
+  $('opsRunTxt').textContent = b.opsRun || '';
+  const activeNav = b.app === 'ops' ? OPSNAV[b.opsView] : null;
+  document.querySelectorAll('.ops__navitem').forEach((el) => {
+    el.classList.toggle('is-active', el.dataset.nav === activeNav);
+  });
+
+  // ── Profile chip ──
+  $('profile').classList.toggle('is-known', !!b.known);
+  $('avatar').textContent = b.known ? 'E' : '?';
+  const filled = new Set(b.facts || []);
+  FACTS.forEach((id) => {
     const el = $(id);
     if (el) el.classList.toggle('is-on', filled.has(id));
   });
 
-  // ── Step block head ──
-  $('stepNum').textContent = String(b.stepNum);
-  $('stepCount').textContent = b.stepCount;
-  $('stepTitle').textContent = b.stepTitle;
-
-  // ── Her / AI action rows ──
-  const her = $('actHer');
-  her.classList.toggle('is-off', !b.herOn);
-  $('actHerTxt').innerHTML = b.herTxt || '';
-  $('actAiTxt').innerHTML = b.aiTxt || '';
-
-  // ── Contrast framing ──
-  $('contrastWithout').classList.toggle('is-on', b.contrast === 'without');
-  $('contrastWith').classList.toggle('is-on', b.contrast === 'with');
-  if (b.contrastWith) {
-    $('contrastWithTxt').innerHTML = b.contrastWith;
-  } else {
-    $('contrastWithTxt').innerHTML = '<b>With Modern CRM:</b> one click becomes a recognized shopper with a thread to pull.';
+  // ── Chat transcript (rebuilt cumulative every call) ──
+  const t = $('transcript');
+  t.innerHTML = '';
+  for (let k = 0; k <= b.msgsTo && k < LINE.length; k++) {
+    const line = LINE[k];
+    const row = document.createElement('div');
+    row.className = 'msg msg--' + line.who + (k === b.msgsTo ? ' is-latest' : '');
+    if (line.who === 'ai') {
+      const orb = document.createElement('div');
+      orb.className = 'msg__orb';
+      orb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>';
+      row.appendChild(orb);
+    }
+    const bub = document.createElement('div');
+    bub.className = 'msg__bub';
+    bub.innerHTML = line.html;
+    row.appendChild(bub);
+    t.appendChild(row);
   }
+  requestAnimationFrame(() => { t.scrollTop = t.scrollHeight; });
 
-  // ── Governance band ──
-  $('govBand').classList.toggle('is-on', !!b.gov);
-
-  // ── Tags (rebuilt every call) ──
-  const tagsEl = $('stepTags');
-  tagsEl.innerHTML = '';
-  (b.tags || []).forEach((t) => {
-    const span = document.createElement('span');
-    span.className = 'step-tag' + (t.k === 'owned' ? ' owned' : t.k === 'paid' ? ' paid' : '');
-    span.textContent = t.l;
-    tagsEl.appendChild(span);
-  });
-
-  // ── Status + progress (progress = index / 10, the true beat index) ──
-  $('statusText').textContent = b.status;
-  const pct = Math.round((index / (BEATS.length - 1)) * 100);
-  $('progressFill').style.width = pct + '%';
-  $('progressPct').textContent = pct + '%';
-
-  // ── Caption + beat dots ──
-  $('captionKicker').textContent = b.kicker;
-  $('captionText').textContent = b.caption;
-  const dots = $('beatdots').children;
+  // ── Footer: caption + dots ──
+  $('capKicker').textContent = b.kicker;
+  $('capText').textContent = b.caption;
+  const dots = $('dots').children;
   for (let k = 0; k < dots.length; k++) {
     dots[k].classList.toggle('is-done', k < i);
     dots[k].classList.toggle('is-now', k === i);
