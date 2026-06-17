@@ -1,47 +1,88 @@
 /* ================================================================
-   deck.css — Shared "Modern CRM" deck stylesheet
+   deck.css — Shared "Modern CRM" deck stylesheet (Merkle brand)
    ----------------------------------------------------------------
    Single source of visual truth for BOTH Cannes "Modern CRM" decks.
    Reveal.js core CSS is <link>ed separately in each deck (NOT here).
    The .demo-window / [data-demo-scene] chrome lives in
    demo/demo-chrome.css — do NOT restate it here.
 
-   Identity: restrained, brand-agnostic, confident modern enterprise
-   keynote. Clean sans throughout, one accent, hairline keylines.
-   Retokened from a luxury frame; all luxury vocabulary removed.
+   Identity: Merkle design system — Work Sans + Geist Mono, a single
+   focal brand blue (#0328D1), neutral surfaces, a 4px spacing grid,
+   and a concentric radius scale (16 -> 8 -> 2 / pill). One brand
+   focal point per view: blue on paper, lighter secondary blue on dark.
+   100% offline — fonts are vendored locally; no external requests.
+
+   This is a RETOKEN of the prior generic-accent stylesheet: all class
+   names + layout/grid behavior are preserved; only the identity tokens
+   and a few new components changed.
    ================================================================ */
 
 /* ================================================================
-   TOKENS — Modern CRM identity
+   FONTS — vendored variable fonts (offline)
+   Work Sans (weight axis) for display + body.
+   Geist Mono (weight axis) for data / technical labels / URLs.
+   Paths are relative to assets/deck.css; fonts live in assets/fonts/.
+   ================================================================ */
+@font-face {
+  font-family: 'Work Sans';
+  src: url('fonts/work-sans-vf.woff2') format('woff2-variations');
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('fonts/geist-mono-vf.woff2') format('woff2-variations');
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+
+/* ================================================================
+   TOKENS — Merkle identity (light theme)
    ================================================================ */
 :root {
-  /* Core palette */
-  --mc-ink:        #10131a;   /* near-black primary text */
-  --mc-paper:      #f6f7f9;   /* soft off-white slide bg */
-  --mc-blue:       #2563eb;   /* confident primary blue (non-Salesforce) */
-  --mc-blue-deep:  #0f2454;   /* deep variant for dark slides / gradients */
-  --mc-accent:     #0fb5a5;   /* single restrained accent (teal) */
-  --mc-muted:      #5a6473;   /* secondary text */
-  --mc-line:       #d9dde4;   /* hairline / border color */
+  /* Core text + paper surfaces (neutrals) */
+  --mc-ink:        #1F1F1F;   /* primary text */
+  --mc-paper:      #FCFCFC;   /* paper slide bg */
+  --mc-paper-2:    #F7F7F7;   /* secondary surface */
+  --mc-surface-3:  #EEEEEE;   /* card / chip fill */
+  --mc-surface-4:  #E4E4E4;   /* heavier fill / hairline */
+  --mc-muted:      #505050;   /* secondary text */
 
-  /* Supporting tints (derived; used sparingly) */
-  --mc-paper-2:    #eef1f5;   /* slightly cooler panel bg */
-  --mc-blue-tint:  rgba(37, 99, 235, 0.08);    /* faint blue wash */
-  --mc-accent-tint:rgba(15, 181, 165, 0.10);   /* faint accent wash */
-  --mc-card-bg:    #ffffff;
-  --mc-card-radius:16px;
-  --mc-card-shadow:0 6px 28px rgba(16, 19, 26, 0.08);
+  /* Hairlines / borders (light -> heavy) */
+  --mc-line:       #E4E4E4;   /* hairline */
+  --mc-line-med:   #D7D7D7;   /* medium border */
+  --mc-line-heavy: #C7C7C7;   /* heavy border */
 
-  /* Dark-slide surfaces */
+  /* Brand — single focal color on paper */
+  --mc-blue:        #0328D1;  /* PRIMARY BRAND focal */
+  --mc-blue-hover:  #1E56FA;  /* hover / lighter primary */
+  --mc-blue-tint:   #E7EFFF;  /* primary-container wash */
+  --mc-secondary:   #2F98F7;  /* lighter blue — accent ON DARK */
+  --mc-tertiary:    #6311CB;  /* violet — VERY sparingly (e.g. 2nd data series) */
+
+  /* Dark slides — deep brand-tinted near-black gradient */
+  --mc-dark-1:     #0B1240;
+  --mc-dark-2:     #060A22;
+
+  /* On-dark surfaces (neutral translucent whites) */
   --mc-on-dark:        #ffffff;
   --mc-on-dark-muted:  rgba(255, 255, 255, 0.78);
   --mc-on-dark-line:   rgba(255, 255, 255, 0.16);
   --mc-on-dark-fill:   rgba(255, 255, 255, 0.07);
 
-  /* Type — single clean modern sans for display + body */
-  --font-display: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-body:    system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono:    'SF Mono', 'Fira Code', 'Consolas', ui-monospace, monospace;
+  /* Card defaults */
+  --mc-card-bg:    #ffffff;
+  --mc-card-shadow:0 6px 28px rgba(31, 31, 31, 0.08);
+
+  /* Radius scale (Merkle, concentric: outer 16 -> inner 8 -> pill/2) */
+  --mc-radius-sm:   2px;     /* subtle inputs */
+  --mc-radius:      8px;     /* default / inner elements */
+  --mc-radius-lg:   16px;    /* large cards & panels */
+  --mc-radius-full: 999px;   /* pills / chips / dots */
+  --mc-card-radius: var(--mc-radius-lg);  /* back-compat alias */
+
+  /* Type */
+  --font-display: 'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-body:    'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:    'Geist Mono', 'SF Mono', 'Consolas', ui-monospace, monospace;
 }
 
 /* ================================================================
@@ -51,29 +92,45 @@
 .reveal .slides { text-align: left; }
 .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
   font-family: var(--font-display); text-transform: none;
-  letter-spacing: -0.5px; line-height: 1.1; margin: 0 0 22px; color: inherit;
+  letter-spacing: -0.5px; line-height: 1.1; margin: 0 0 24px; color: inherit;
 }
 .reveal em { font-style: italic; font-weight: 400; color: var(--mc-blue); }
 .reveal strong { font-weight: 700; }
-.reveal p { line-height: 1.55; margin-bottom: 16px; }
+.reveal p { line-height: 1.5; margin-bottom: 16px; }
 .reveal ul, .reveal ol { margin-left: 0; }
 .reveal section img { background: none; border: none; box-shadow: none; }
 .reveal .progress { color: var(--mc-blue); height: 4px; }
 
 /* ================================================================
+   BRAND LOGO — small fixed-in-slide Merkle wordmark (top-right).
+   Decks inject the <img> per slide and choose merkle-white.svg (dark
+   slides) vs merkle-black.svg (paper slides). 40/48 sit on the 4px grid.
+   ================================================================ */
+.brand-logo {
+  position: absolute; top: 40px; right: 48px; height: 22px; width: auto;
+  opacity: .9; z-index: 6; pointer-events: none;
+}
+
+/* ================================================================
    SLIDE BASE — each <section> is a 1920x1080 slide
    ================================================================ */
 .reveal .slides > section {
-  padding: 90px 100px 80px; height: 100%; box-sizing: border-box;
+  padding: 88px 100px 80px; height: 100%; box-sizing: border-box;
   display: flex; flex-direction: column; justify-content: center;
 }
 .reveal .slides > section.slide-vcenter { justify-content: center; }
 .reveal .slides > section.slide-vstart  { justify-content: flex-start; padding-top: 80px; }
+/* Reveal writes inline `display:block` on the active/adjacent sections, which
+   would defeat the flex column above (so vcenter/vstart never take effect and
+   sparse slides sit high). Re-assert flex on the slides Reveal makes visible. */
+.reveal .slides > section.present,
+.reveal .slides > section.past,
+.reveal .slides > section.future { display: flex !important; }
 
 /* ================================================================
    SLIDE VARIANTS
    slide--paper : paper bg, ink text
-   slide--dark  : deep-blue gradient bg, light text
+   slide--dark  : deep brand-tinted near-black gradient, light text
    !important needed to override Reveal core theme color.
    ================================================================ */
 .reveal .slide--paper { background: var(--mc-paper); color: var(--mc-ink); }
@@ -84,37 +141,71 @@
 .reveal .slide--paper .label { color: var(--mc-blue); }
 
 .reveal .slide--dark {
-  background: linear-gradient(135deg, var(--mc-blue-deep) 0%, #081634 100%);
+  background: linear-gradient(160deg, var(--mc-dark-1), var(--mc-dark-2));
   color: var(--mc-on-dark);
 }
 .reveal .slide--dark h1,
 .reveal .slide--dark h2,
 .reveal .slide--dark h3 { color: var(--mc-on-dark) !important; }
-.reveal .slide--dark em { color: var(--mc-accent) !important; }
-.reveal .slide--dark .label { color: var(--mc-accent); }
+.reveal .slide--dark em { color: var(--mc-secondary) !important; }
+.reveal .slide--dark .label { color: var(--mc-secondary); }
 
-/* Dark slide — thin accent keyline along the top edge */
+/* Dark slide — thin secondary-blue keyline along the top edge */
 .reveal .slide--dark::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, transparent, var(--mc-accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--mc-secondary), transparent);
   opacity: 0.7; pointer-events: none;
 }
+
+/* ================================================================
+   TRIANGLE MOTIF — subtle brand texture for dark divider slides.
+   The Merkle mark is a right triangle. Add the class .has-motif to a
+   .slide--dark <section> (or drop in a .brand-motif element) to get a
+   large, low-opacity right-triangle drawn in secondary blue, anchored
+   bottom-left, behind content. Tasteful + out of the way.
+   ================================================================ */
+.reveal .slide--dark.has-motif::before,
+.brand-motif {
+  content: ''; position: absolute; left: 0; bottom: 0;
+  width: 760px; height: 760px; z-index: 0; pointer-events: none;
+  background: var(--mc-secondary); opacity: 0.06;
+  /* right triangle: square corner at bottom-left */
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+.brand-motif { position: absolute; }
+/* keep slide content above the motif */
+.reveal .slide--dark.has-motif > * { position: relative; z-index: 1; }
 
 /* ================================================================
    TYPE PRIMITIVES — label / title / subtitle
    ================================================================ */
 .label {
-  display: inline-block; font-size: 19px; font-weight: 700;
-  letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 26px;
+  display: inline-block; font-size: 13px; font-weight: 700;
+  letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 24px;
   color: var(--mc-blue);
 }
-.title { font-size: 72px; font-weight: 700; line-height: 1.05; max-width: 1620px; }
-.title--big { font-size: 96px; }
+.title { font-size: 44px; font-weight: 700; line-height: 1.1; max-width: 1620px; }
+.title--big { font-size: 64px; font-weight: 600; line-height: 1.05; }
 .subtitle {
-  font-size: 30px; line-height: 1.45; max-width: 1500px;
-  opacity: 0.9; margin-top: 16px; margin-bottom: 0; color: var(--mc-muted);
+  font-size: 22px; line-height: 1.5; max-width: 1500px;
+  margin-top: 16px; margin-bottom: 0; color: var(--mc-muted); font-weight: 400;
 }
-.slide--dark .subtitle { color: var(--mc-on-dark-muted); opacity: 1; }
+.slide--dark .subtitle { color: var(--mc-on-dark-muted); }
+
+/* ----------------------------------------------------------------
+   TITLE-BALANCE — util for title / intro slides.
+   Centers the eyebrow -> title -> subtitle stack vertically with a
+   comfortable rhythm and a constrained measure, so intro slides feel
+   balanced rather than top-loaded. Pairs with (or stands in for)
+   slide-vcenter.
+   ---------------------------------------------------------------- */
+.reveal .slides > section.title-balance {
+  justify-content: center; align-items: flex-start;
+}
+.title-balance .label { margin-bottom: 28px; }
+.title-balance .title,
+.title-balance .title--big { max-width: 26ch; }
+.title-balance .subtitle { margin-top: 28px; max-width: 56ch; }
 
 /* ================================================================
    HERO / TITLE TREATMENT
@@ -123,13 +214,13 @@
 .hero-slide::before {
   content: ''; position: absolute; top: -25%; right: -8%;
   width: 1300px; height: 1300px;
-  background: radial-gradient(circle, var(--mc-accent-tint) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(47,152,247,0.12) 0%, transparent 60%);
   border-radius: 50%; pointer-events: none; z-index: 1;
 }
 .hero-slide::after {
   content: ''; position: absolute; bottom: -18%; left: -10%;
   width: 900px; height: 900px;
-  background: radial-gradient(circle, rgba(37,99,235,0.16) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(3,40,209,0.20) 0%, transparent 65%);
   border-radius: 50%; pointer-events: none; z-index: 1;
 }
 .hero-grid {
@@ -137,43 +228,43 @@
   grid-template-columns: 1.4fr 1fr; align-items: center;
   height: 100%; min-height: 1080px; gap: 0;
 }
-.hero-left { padding: 100px 70px 100px 110px; display: flex; flex-direction: column; justify-content: center; }
+.hero-left { padding: 100px 72px 100px 112px; display: flex; flex-direction: column; justify-content: center; }
 .hero-right { position: relative; height: 100%; min-height: 1080px; overflow: hidden; }
 .hero-right__img { position: absolute; inset: 0; background-size: cover; background-position: center; }
 .hero-right__overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(270deg, transparent 0%, rgba(15,36,84,0.6) 70%, var(--mc-blue-deep) 100%);
+  background: linear-gradient(270deg, transparent 0%, rgba(11,18,64,0.6) 70%, var(--mc-dark-1) 100%);
 }
 .hero-chip {
-  display: inline-block; font-size: 14px; font-weight: 700; letter-spacing: 5px;
-  text-transform: uppercase; color: var(--mc-accent);
-  padding-bottom: 18px; margin-bottom: 32px;
-  border-bottom: 1px solid rgba(15,181,165,0.4); width: fit-content;
+  display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--mc-secondary);
+  padding-bottom: 16px; margin-bottom: 32px;
+  border-bottom: 1px solid rgba(47,152,247,0.4); width: fit-content;
 }
-.hero-title { font-size: 108px; line-height: 0.98; letter-spacing: -2.5px; margin-bottom: 32px; max-width: 1100px; font-weight: 700; }
-.hero-title em { font-style: normal; color: var(--mc-accent); letter-spacing: -1px; }
-.hero-sub { font-size: 26px; line-height: 1.45; max-width: 900px; opacity: 0.82; margin-bottom: 64px; font-weight: 400; }
+.hero-title { font-size: 96px; line-height: 1; letter-spacing: -2.5px; margin-bottom: 32px; max-width: 1100px; font-weight: 600; }
+.hero-title em { font-style: normal; color: var(--mc-secondary); letter-spacing: -1px; }
+.hero-sub { font-size: 26px; line-height: 1.5; max-width: 900px; opacity: 0.82; margin-bottom: 64px; font-weight: 400; }
 .hero-meta {
-  position: absolute; top: 56px; left: 110px; z-index: 3;
-  display: flex; align-items: center; gap: 18px;
+  position: absolute; top: 56px; left: 112px; z-index: 3;
+  display: flex; align-items: center; gap: 16px;
   font-family: var(--font-mono); font-size: 13px; letter-spacing: 3px;
   text-transform: uppercase; color: rgba(255,255,255,0.62); font-weight: 600;
 }
 .hero-meta__dot {
-  width: 9px; height: 9px; background: var(--mc-accent); border-radius: 50%;
-  box-shadow: 0 0 14px var(--mc-accent); animation: heroDotPulse 2.4s ease-in-out infinite;
+  width: 8px; height: 8px; background: var(--mc-secondary); border-radius: var(--mc-radius-full);
+  box-shadow: 0 0 14px var(--mc-secondary); animation: heroDotPulse 2.4s ease-in-out infinite;
 }
 @keyframes heroDotPulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--mc-accent); }
-  50%      { opacity: 0.6; box-shadow: 0 0 20px var(--mc-accent); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--mc-secondary); }
+  50%      { opacity: 0.6; box-shadow: 0 0 20px var(--mc-secondary); }
 }
 
 /* Speaker row (title slide) */
 .speakers { display: flex; gap: 56px; padding-top: 36px; border-top: 1px solid var(--mc-on-dark-line); flex-wrap: wrap; }
-.speaker { display: flex; align-items: center; gap: 22px; }
+.speaker { display: flex; align-items: center; gap: 20px; }
 .speaker-photo {
-  width: 96px; height: 96px; border-radius: 50%; object-fit: cover;
-  border: 3px solid var(--mc-accent); flex-shrink: 0;
+  width: 96px; height: 96px; border-radius: var(--mc-radius-full); object-fit: cover;
+  border: 3px solid var(--mc-secondary); flex-shrink: 0;
   background: rgba(255,255,255,0.08); box-shadow: 0 8px 28px rgba(0,0,0,0.35);
 }
 .speaker-text { display: flex; flex-direction: column; gap: 4px; }
@@ -187,16 +278,16 @@
 .headline-stat__big {
   font-family: var(--font-display); font-size: 280px; font-weight: 700;
   line-height: 1; color: var(--mc-blue); letter-spacing: -10px;
-  margin-bottom: 30px; position: relative; display: inline-block;
+  margin-bottom: 32px; position: relative; display: inline-block;
 }
 .headline-stat__big::before,
 .headline-stat__big::after {
   content: ''; position: absolute; top: 50%; width: 280px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--mc-line), transparent);
+  background: linear-gradient(90deg, transparent, var(--mc-line-med), transparent);
 }
 .headline-stat__big::before { right: calc(100% + 60px); }
 .headline-stat__big::after  { left: calc(100% + 60px); }
-.headline-stat__cap { font-size: 48px; margin: 0 0 18px; line-height: 1.25; color: var(--mc-ink); text-align: center; font-weight: 400; }
+.headline-stat__cap { font-size: 48px; margin: 0 0 16px; line-height: 1.25; color: var(--mc-ink); text-align: center; font-weight: 400; }
 .headline-stat__cap strong { font-weight: 700; color: var(--mc-blue); }
 .headline-stat__src { font-size: 16px; opacity: 0.55; letter-spacing: 1.5px; text-transform: uppercase; }
 
@@ -207,62 +298,64 @@
 .stat-grid--2 { grid-template-columns: repeat(2, 1fr); }
 .stat-grid--4 { grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .stat-card {
-  background: var(--mc-card-bg); border-radius: var(--mc-card-radius);
-  padding: 44px 30px; box-shadow: var(--mc-card-shadow);
+  background: var(--mc-card-bg); border-radius: var(--mc-radius-lg);
+  padding: 44px 32px; box-shadow: var(--mc-card-shadow);
   text-align: center; position: relative; overflow: hidden;
+  border: 1px solid var(--mc-line);
 }
 .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--mc-blue); }
-.stat-card--accent::before { background: var(--mc-accent); }
+/* --accent: kept for back-compat; tertiary violet, used VERY sparingly */
+.stat-card--accent::before { background: var(--mc-tertiary); }
 .stat-card__num { font-family: var(--font-display); font-size: 76px; font-weight: 700; color: var(--mc-blue); line-height: 1; margin-bottom: 16px; letter-spacing: -1px; }
-.stat-card--accent .stat-card__num { color: var(--mc-accent); }
-.stat-card__lbl { font-size: 18px; color: var(--mc-muted); line-height: 1.45; }
+.stat-card--accent .stat-card__num { color: var(--mc-tertiary); }
+.stat-card__lbl { font-size: 18px; color: var(--mc-muted); line-height: 1.5; }
 .stat-card__src { font-size: 13px; color: var(--mc-muted); margin-top: 16px; opacity: 0.7; font-style: italic; }
-.stat-grid--4 .stat-card { padding: 32px 22px; }
+.stat-grid--4 .stat-card { padding: 32px 24px; }
 .stat-grid--4 .stat-card__num { font-size: 60px; }
 .stat-grid--4 .stat-card__lbl { font-size: 16px; }
 
 /* ================================================================
-   MANDATE band — the prescription beneath stats
+   MANDATE band — the prescription beneath stats (dark panel)
    ================================================================ */
 .mandate {
   margin-top: 48px; padding: 36px 56px;
-  background: linear-gradient(135deg, var(--mc-blue-deep) 0%, #102a63 100%);
-  border-radius: var(--mc-card-radius); position: relative; overflow: hidden;
-  box-shadow: 0 18px 56px rgba(15,36,84,0.32);
-  border: 1px solid rgba(15,181,165,0.40);
+  background: linear-gradient(135deg, var(--mc-dark-1) 0%, var(--mc-dark-2) 100%);
+  border-radius: var(--mc-radius-lg); position: relative; overflow: hidden;
+  box-shadow: 0 18px 56px rgba(6,10,34,0.32);
+  border: 1px solid rgba(47,152,247,0.40);
 }
 .mandate::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, var(--mc-accent), var(--mc-blue));
+  background: linear-gradient(90deg, var(--mc-secondary), var(--mc-blue));
 }
 .mandate::after {
   content: ''; position: absolute; top: -40%; right: -8%; width: 480px; height: 480px;
-  background: radial-gradient(circle, var(--mc-accent-tint) 0%, transparent 65%);
-  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(47,152,247,0.12) 0%, transparent 65%);
+  border-radius: var(--mc-radius-full); pointer-events: none;
 }
-.mandate__lbl { position: relative; font-family: var(--font-mono); font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--mc-accent); font-weight: 700; margin-bottom: 12px; }
+.mandate__lbl { position: relative; font-family: var(--font-mono); font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--mc-secondary); font-weight: 700; margin-bottom: 12px; }
 .mandate__line { position: relative; font-family: var(--font-display); font-size: 56px; font-weight: 700; color: var(--mc-on-dark); line-height: 1.08; letter-spacing: -1px; }
 .mandate__verb { color: var(--mc-on-dark); }
-.mandate__sep { color: var(--mc-accent); margin: 0 14px; font-weight: 400; }
+.mandate__sep { color: var(--mc-secondary); margin: 0 14px; font-weight: 400; }
 .mandate__obj { color: var(--mc-on-dark); }
-.mandate__obj em { font-style: italic; color: var(--mc-accent); font-weight: 400; }
+.mandate__obj em { font-style: italic; color: var(--mc-secondary); font-weight: 400; }
 .mandate__sub { position: relative; font-size: 18px; color: var(--mc-on-dark-muted); margin-top: 16px; line-height: 1.4; }
 
 /* ================================================================
    TWO-COLUMN layout
    ================================================================ */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 36px; }
-.two-col__head { font-family: var(--font-display); font-size: 32px; font-weight: 700; margin-bottom: 18px; line-height: 1.2; }
+.two-col__head { font-family: var(--font-display); font-size: 32px; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
 .slide--dark .two-col__head { color: var(--mc-on-dark); }
 .two-col__body { font-size: 19px; line-height: 1.6; }
-.two-col__body p { margin-bottom: 14px; }
+.two-col__body p { margin-bottom: 12px; }
 .two-col__body strong { color: var(--mc-blue); }
-.slide--dark .two-col__body strong { color: var(--mc-accent); }
+.slide--dark .two-col__body strong { color: var(--mc-secondary); }
 .two-col__body .pull {
   font-style: italic; font-size: 22px; color: var(--mc-muted);
-  border-left: 3px solid var(--mc-accent); padding-left: 20px; margin-top: 24px;
+  border-left: 3px solid var(--mc-blue); padding-left: 20px; margin-top: 24px;
 }
-.slide--dark .two-col__body .pull { color: var(--mc-on-dark-muted); border-color: var(--mc-accent); }
+.slide--dark .two-col__body .pull { color: var(--mc-on-dark-muted); border-color: var(--mc-secondary); }
 
 /* ================================================================
    FORCE / FRAMEWORK GRID ("Why now" — numbered columns)
@@ -270,46 +363,49 @@
 .force-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 56px; }
 .force { position: relative; padding-top: 28px; border-top: 1px solid var(--mc-line); }
 .slide--dark .force { border-top-color: var(--mc-on-dark-line); }
-.force__num { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--mc-accent); line-height: 1; margin-bottom: 18px; letter-spacing: 4px; }
-.force__title { font-family: var(--font-display); font-size: 30px; font-weight: 700; margin-bottom: 22px; line-height: 1.18; color: var(--mc-ink); }
+.force__num { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--mc-blue); line-height: 1; margin-bottom: 16px; letter-spacing: 4px; }
+.slide--dark .force__num { color: var(--mc-secondary); }
+.force__title { font-family: var(--font-display); font-size: 30px; font-weight: 700; margin-bottom: 20px; line-height: 1.18; color: var(--mc-ink); }
 .slide--dark .force__title { color: var(--mc-on-dark); }
-.force__list { list-style: none; padding: 0; margin: 0; font-size: 21px; line-height: 1.55; color: var(--mc-ink); }
+.force__list { list-style: none; padding: 0; margin: 0; font-size: 21px; line-height: 1.5; color: var(--mc-ink); }
 .slide--dark .force__list { color: var(--mc-on-dark-muted); }
-.force__list li { padding: 9px 0 9px 26px; position: relative; }
-.force__list li::before { content: '\2192'; position: absolute; left: 0; color: var(--mc-accent); font-weight: 700; }
+.force__list li { padding: 8px 0 8px 26px; position: relative; }
+.force__list li::before { content: '\2192'; position: absolute; left: 0; color: var(--mc-blue); font-weight: 700; }
+.slide--dark .force__list li::before { color: var(--mc-secondary); }
 .force__list strong { color: var(--mc-blue); font-weight: 700; }
 .slide--dark .force__list strong { color: var(--mc-on-dark); }
-.force__src { margin-top: 22px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--mc-muted); font-weight: 700; opacity: 0.8; }
+.force__src { margin-top: 20px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--mc-muted); font-weight: 700; opacity: 0.8; }
 
 /* ================================================================
    CARD GRID — customer / proof cards
    ================================================================ */
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 36px; }
 .proof-card {
-  background: var(--mc-card-bg); border-radius: var(--mc-card-radius);
-  padding: 36px 30px; box-shadow: var(--mc-card-shadow);
-  border-top: 4px solid var(--mc-blue); display: flex; flex-direction: column;
+  background: var(--mc-card-bg); border-radius: var(--mc-radius-lg);
+  padding: 36px 32px; box-shadow: var(--mc-card-shadow);
+  border: 1px solid var(--mc-line); border-top: 4px solid var(--mc-blue);
+  display: flex; flex-direction: column;
 }
-.proof-card__logo { height: 40px; display: flex; align-items: center; justify-content: flex-start; margin-bottom: 18px; }
+.proof-card__logo { height: 40px; display: flex; align-items: center; justify-content: flex-start; margin-bottom: 16px; }
 .proof-card__logo img { max-height: 40px; width: auto; max-width: 100%; object-fit: contain; }
 .proof-card__brand { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--mc-ink); margin-bottom: 8px; }
-.proof-card__tag { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--mc-blue); margin-bottom: 22px; }
-.proof-card__metrics { list-style: none; padding: 18px 0 14px; border-top: 1px solid var(--mc-line); border-bottom: 1px solid var(--mc-line); margin-bottom: 14px; }
+.proof-card__tag { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--mc-blue); margin-bottom: 20px; }
+.proof-card__metrics { list-style: none; padding: 16px 0 12px; border-top: 1px solid var(--mc-line); border-bottom: 1px solid var(--mc-line); margin-bottom: 12px; }
 .proof-card__metrics li { font-size: 18px; line-height: 1.5; color: var(--mc-ink); padding: 6px 0; }
-.proof-card__metrics li::before { content: '\2192  '; color: var(--mc-accent); font-weight: 700; }
+.proof-card__metrics li::before { content: '\2192  '; color: var(--mc-blue); font-weight: 700; }
 .proof-card__metrics strong { color: var(--mc-blue); font-weight: 700; }
 .proof-card__quote { font-style: italic; font-size: 22px; color: var(--mc-muted); line-height: 1.35; margin-top: 6px; }
-.proof-card__attrib { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--mc-muted); margin-top: 10px; line-height: 1.4; }
+.proof-card__attrib { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--mc-muted); margin-top: 8px; line-height: 1.4; }
 
 /* ================================================================
    QUOTE BLOCK (centered, dark slide)
    ================================================================ */
 .quote-big { font-style: italic; font-size: 60px; line-height: 1.3; margin: 30px 0 36px; text-align: center; color: var(--mc-on-dark); }
-.quote-big::before { content: '\201C'; color: var(--mc-accent); font-size: 1em; }
-.quote-big::after  { content: '\201D'; color: var(--mc-accent); font-size: 1em; }
+.quote-big::before { content: '\201C'; color: var(--mc-secondary); font-size: 1em; }
+.quote-big::after  { content: '\201D'; color: var(--mc-secondary); font-size: 1em; }
 .quote-attr { text-align: center; font-size: 17px; opacity: 0.7; letter-spacing: 1px; }
 .quote-attr strong {
-  display: block; color: var(--mc-accent); font-style: normal;
+  display: block; color: var(--mc-secondary); font-style: normal;
   font-family: var(--font-body); font-weight: 700; letter-spacing: 1.5px;
   text-transform: uppercase; font-size: 14px; margin-bottom: 6px; opacity: 1;
 }
@@ -318,35 +414,38 @@
    STACK — two-column layered panels (dark)
    ================================================================ */
 .stack { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1620px; margin: 48px auto 0; }
-.stack__layer { background: var(--mc-on-dark-fill); border: 1px solid var(--mc-on-dark-line); border-radius: 14px; padding: 36px 38px; position: relative; }
-.stack__layer::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--mc-accent); border-radius: 14px 0 0 14px; }
-.stack__num { font-family: var(--font-mono); font-size: 15px; color: var(--mc-accent); letter-spacing: 2px; margin-bottom: 12px; font-weight: 700; }
-.stack__title { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--mc-on-dark); margin-bottom: 14px; line-height: 1.2; }
+.stack__layer { background: var(--mc-on-dark-fill); border: 1px solid var(--mc-on-dark-line); border-radius: var(--mc-radius-lg); padding: 36px 40px; position: relative; }
+.stack__layer::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--mc-secondary); border-radius: var(--mc-radius-lg) 0 0 var(--mc-radius-lg); }
+.stack__num { font-family: var(--font-mono); font-size: 15px; color: var(--mc-secondary); letter-spacing: 2px; margin-bottom: 12px; font-weight: 700; }
+.stack__title { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--mc-on-dark); margin-bottom: 12px; line-height: 1.2; }
 .stack__body { font-size: 21px; color: var(--mc-on-dark-muted); line-height: 1.5; }
 .stack__body strong { color: var(--mc-on-dark); }
-.stack__body em { color: var(--mc-accent); font-size: 1.05em; }
+.stack__body em { color: var(--mc-secondary); font-size: 1.05em; }
 
 /* ================================================================
    CALLOUT — emphasis panel
    ================================================================ */
-.callout { background: var(--mc-accent-tint); border-left: 4px solid var(--mc-accent); border-radius: 12px; padding: 28px 32px; margin: 24px 0; }
-.slide--paper .callout { background: var(--mc-accent-tint); }
-.callout__lbl { font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--mc-accent); margin-bottom: 12px; }
+.callout { background: var(--mc-blue-tint); border-left: 4px solid var(--mc-blue); border-radius: var(--mc-radius); padding: 28px 32px; margin: 24px 0; }
+.slide--paper .callout { background: var(--mc-blue-tint); }
+.slide--dark .callout { background: var(--mc-on-dark-fill); border-left-color: var(--mc-secondary); }
+.callout__lbl { font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--mc-blue); margin-bottom: 12px; }
+.slide--dark .callout__lbl { color: var(--mc-secondary); }
 .callout__title { font-family: var(--font-display); font-size: 26px; font-weight: 700; line-height: 1.25; color: var(--mc-ink); }
 .slide--dark .callout__title { color: var(--mc-on-dark); }
-.callout__title em { color: var(--mc-accent); }
+.callout__title em { color: var(--mc-blue); }
+.slide--dark .callout__title em { color: var(--mc-secondary); }
 
 /* ================================================================
    HANDOFF — speaker-to-speaker quote bridge (dark)
    ================================================================ */
 .handoff-quote { font-style: italic; font-size: 36px; line-height: 1.4; color: var(--mc-on-dark-muted); margin: 24px 0 40px; text-align: center; }
 .handoff-quote .keyline {
-  display: block; font-style: normal; font-weight: 400; color: var(--mc-accent);
-  margin-top: 14px; font-size: 38px; line-height: 1.35; letter-spacing: -0.3px;
+  display: block; font-style: normal; font-weight: 400; color: var(--mc-secondary);
+  margin-top: 12px; font-size: 38px; line-height: 1.35; letter-spacing: -0.3px;
 }
 
 /* ================================================================
-   FROM → TO FRAMEWORK
+   FROM -> TO FRAMEWORK
    Clean two-column block both decks close on.
    Markup: .from-to > .from-to__row* ; each row has .from-to__from,
    .from-to__arrow, .from-to__to.
@@ -356,28 +455,29 @@
 .from-to__head-from,
 .from-to__head-to { font-family: var(--font-mono); font-size: 14px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
 .from-to__head-from { color: var(--mc-muted); }
-.from-to__head-to   { color: var(--mc-accent); }
+.from-to__head-to   { color: var(--mc-blue); }
+.slide--dark .from-to__head-to { color: var(--mc-secondary); }
 .from-to__row {
   display: grid; grid-template-columns: 1fr 64px 1fr; gap: 24px; align-items: center;
 }
 .from-to__from,
 .from-to__to {
-  border-radius: 14px; padding: 26px 32px; font-size: 24px; line-height: 1.35;
+  border-radius: var(--mc-radius-lg); padding: 26px 32px; font-size: 24px; line-height: 1.35;
 }
 .from-to__from {
   background: var(--mc-paper-2); color: var(--mc-muted);
   border: 1px solid var(--mc-line); text-decoration: line-through;
-  text-decoration-color: rgba(90,100,115,0.4); text-decoration-thickness: 2px;
+  text-decoration-color: rgba(80,80,80,0.4); text-decoration-thickness: 2px;
 }
 .from-to__to {
   background: var(--mc-card-bg); color: var(--mc-ink); font-weight: 600;
-  border: 1px solid var(--mc-line); border-left: 4px solid var(--mc-accent);
+  border: 1px solid var(--mc-line); border-left: 4px solid var(--mc-blue);
   box-shadow: var(--mc-card-shadow);
 }
 .from-to__to strong { color: var(--mc-blue); }
-.from-to__arrow { text-align: center; font-size: 30px; line-height: 1; color: var(--mc-accent); font-weight: 700; }
+.from-to__arrow { text-align: center; font-size: 30px; line-height: 1; color: var(--mc-blue); font-weight: 700; }
 
-/* Dark-slide variant of From → To */
+/* Dark-slide variant of From -> To */
 .slide--dark .from-to__from {
   background: var(--mc-on-dark-fill); color: var(--mc-on-dark-muted);
   border-color: var(--mc-on-dark-line);
@@ -385,23 +485,90 @@
 }
 .slide--dark .from-to__to {
   background: rgba(255,255,255,0.05); color: var(--mc-on-dark);
-  border-color: var(--mc-on-dark-line); border-left-color: var(--mc-accent);
+  border-color: var(--mc-on-dark-line); border-left-color: var(--mc-secondary);
   box-shadow: none;
 }
-.slide--dark .from-to__to strong { color: var(--mc-accent); }
+.slide--dark .from-to__to strong { color: var(--mc-secondary); }
 .slide--dark .from-to__head-from { color: var(--mc-on-dark-muted); }
+.slide--dark .from-to__arrow { color: var(--mc-secondary); }
+
+/* ================================================================
+   BROKEN-PATH — "Without Modern CRM": a row of 5 disconnected step
+   nodes joined by BROKEN / dashed gaps, muted, to contrast the one
+   connected journey. Designed to read on a DARK slide; legible at
+   1920x1080. (Visual opposite of a single connected route.)
+   Markup:
+     .broken-path
+       .broken-path__step   (x5, with .broken-path__gap between them
+                              OR rely on the ::after dashed connector)
+   ================================================================ */
+.broken-path {
+  display: flex; align-items: stretch; justify-content: center;
+  gap: 0; margin-top: 56px; flex-wrap: nowrap;
+}
+.broken-path__step {
+  flex: 1 1 0; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 8px;
+  min-height: 120px; padding: 24px 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px dashed rgba(255,255,255,0.22);
+  border-radius: var(--mc-radius);
+  color: rgba(255,255,255,0.6);
+  font-size: 18px; line-height: 1.35;
+}
+.broken-path__step strong { color: rgba(255,255,255,0.82); font-weight: 700; display: block; }
+/* dashed, BROKEN connector with a clear gap between steps */
+.broken-path__step:not(:last-child)::after {
+  content: ''; position: absolute; top: 50%; left: 100%;
+  width: 32px; height: 0;
+  border-top: 2px dashed rgba(255,255,255,0.22);
+  transform: translateY(-50%);
+}
+/* the break marker: a small x sitting in the gap */
+.broken-path__step:not(:last-child)::before {
+  content: '\00D7'; position: absolute; top: 50%; left: 100%;
+  transform: translate(calc(16px - 50%), -50%);
+  color: rgba(255,255,255,0.35); font-size: 18px; font-weight: 700;
+  line-height: 1; z-index: 1;
+}
+/* push steps apart to make room for the broken connector */
+.broken-path__step + .broken-path__step { margin-left: 32px; }
+
+/* Explicit gap element (optional alternative to the ::after connector) */
+.broken-path__gap {
+  flex: 0 0 32px; align-self: center; position: relative; height: 0;
+  border-top: 2px dashed rgba(255,255,255,0.22);
+}
+.broken-path__gap::after {
+  content: '\00D7'; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255,255,255,0.35); font-size: 18px; font-weight: 700;
+}
+
+/* Paper-slide fallback tones (neutral greys) if used on a light bg */
+.slide--paper .broken-path__step {
+  background: var(--mc-surface-3);
+  border: 1px dashed var(--mc-line-heavy);
+  color: var(--mc-muted);
+}
+.slide--paper .broken-path__step strong { color: var(--mc-ink); }
+.slide--paper .broken-path__step:not(:last-child)::after { border-top-color: var(--mc-line-heavy); }
+.slide--paper .broken-path__step:not(:last-child)::before { color: var(--mc-line-heavy); }
+.slide--paper .broken-path__gap,
+.slide--paper .broken-path__gap::after { border-top-color: var(--mc-line-heavy); color: var(--mc-line-heavy); }
 
 /* ================================================================
    IMAGE-PANEL LAYOUT — text beside framed media
    ================================================================ */
 .slide-with-image {
   display: grid !important; grid-template-columns: 1fr 1fr; gap: 80px;
-  align-items: center; padding: 90px 100px 80px !important;
+  align-items: center; padding: 88px 100px 80px !important;
 }
 .slide-with-image__media { display: flex; align-items: center; justify-content: center; max-height: 760px; }
 .slide-with-image__media img {
   display: block; width: 100%; height: auto; max-height: 760px; object-fit: cover;
-  border-radius: 16px; box-shadow: 0 12px 48px rgba(16,19,26,0.18);
+  border-radius: var(--mc-radius-lg); box-shadow: 0 12px 48px rgba(31,31,31,0.18);
 }
 .slide-with-image__media--bordered img { border: 1px solid var(--mc-line); }
 .slide-with-image__content { display: flex; flex-direction: column; justify-content: center; }
@@ -411,39 +578,39 @@
    ================================================================ */
 .demo-break {
   text-align: center;
-  background: radial-gradient(ellipse at center, var(--mc-blue-deep) 0%, #050b1c 75%);
+  background: radial-gradient(ellipse at center, var(--mc-dark-1) 0%, var(--mc-dark-2) 75%);
   position: relative; overflow: hidden;
 }
 .demo-break::before {
   content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 1500px; height: 1500px;
-  background: radial-gradient(circle, var(--mc-accent-tint) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(47,152,247,0.12) 0%, transparent 60%);
   pointer-events: none;
 }
 .demo-break__chip {
   position: relative; z-index: 1; display: inline-block; font-size: 14px; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase; color: var(--mc-accent);
-  background: var(--mc-accent-tint); border: 1px solid rgba(15,181,165,0.45);
-  padding: 12px 24px; border-radius: 100px; margin-bottom: 56px;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--mc-secondary);
+  background: var(--mc-on-dark-fill); border: 1px solid rgba(47,152,247,0.45);
+  padding: 12px 24px; border-radius: var(--mc-radius-full); margin-bottom: 56px;
 }
 .demo-break__title {
   position: relative; z-index: 1; font-family: var(--font-display);
   font-size: 130px; font-weight: 700; line-height: 0.95; letter-spacing: -3px;
   margin-bottom: 32px; color: var(--mc-on-dark);
 }
-.demo-break__title em { color: var(--mc-accent); font-style: normal; }
+.demo-break__title em { color: var(--mc-secondary); font-style: normal; }
 .demo-break__sub {
   position: relative; z-index: 1; font-weight: 400; font-size: 36px;
   color: var(--mc-on-dark-muted); line-height: 1.45; margin: 0 0 64px; text-align: center;
 }
 .demo-break__handoff {
   position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 28px;
-  padding: 26px 42px; background: var(--mc-on-dark-fill);
-  border: 1px solid rgba(255,255,255,0.18); border-radius: 100px;
+  padding: 24px 40px; background: var(--mc-on-dark-fill);
+  border: 1px solid rgba(255,255,255,0.18); border-radius: var(--mc-radius-full);
 }
-.demo-break__handoff img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--mc-accent); }
+.demo-break__handoff img { width: 80px; height: 80px; border-radius: var(--mc-radius-full); object-fit: cover; border: 3px solid var(--mc-secondary); }
 .demo-break__handoff-text { text-align: left; }
-.demo-break__handoff-lbl { font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--mc-accent); margin-bottom: 4px; }
+.demo-break__handoff-lbl { font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--mc-secondary); margin-bottom: 4px; }
 .demo-break__handoff-name { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--mc-on-dark); line-height: 1.1; }
 .demo-break__handoff-role { font-size: 15px; color: rgba(255,255,255,0.65); margin-top: 3px; }
 
@@ -451,27 +618,27 @@
    CTA / CLOSING
    ================================================================ */
 .cta-slide {
-  background: linear-gradient(135deg, var(--mc-blue-deep) 0%, #081634 100%);
+  background: linear-gradient(135deg, var(--mc-dark-1) 0%, var(--mc-dark-2) 100%);
   text-align: center; position: relative; overflow: hidden;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
 .cta-slide::before {
   content: ''; position: absolute; top: -30%; left: 50%; transform: translateX(-50%);
   width: 1200px; height: 1200px;
-  background: radial-gradient(circle, var(--mc-accent-tint) 0%, transparent 65%);
-  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(47,152,247,0.12) 0%, transparent 65%);
+  border-radius: var(--mc-radius-full); pointer-events: none;
 }
 .cta-title { position: relative; z-index: 1; font-family: var(--font-display); font-size: 124px; font-weight: 700; line-height: 1.05; margin: 0 0 48px; letter-spacing: -1px; color: var(--mc-on-dark); text-align: center; max-width: 1700px; }
-.cta-title em { color: var(--mc-accent); font-weight: 700; font-style: normal; }
+.cta-title em { color: var(--mc-secondary); font-weight: 700; font-style: normal; }
 .cta-sub { position: relative; z-index: 1; font-size: 26px; opacity: 0.85; margin: 0 0 56px; line-height: 1.5; color: var(--mc-on-dark); text-align: center; }
-.cta-line { position: relative; z-index: 1; font-style: italic; font-size: 46px; color: var(--mc-accent); margin: 0; line-height: 1.4; text-align: center; }
+.cta-line { position: relative; z-index: 1; font-style: italic; font-size: 46px; color: var(--mc-secondary); margin: 0; line-height: 1.4; text-align: center; }
 .cta-partners {
   position: relative; z-index: 1; margin-top: 96px; padding-top: 48px;
   border-top: 1px solid rgba(255,255,255,0.18); display: flex; justify-content: center;
   gap: 120px; flex-wrap: wrap; font-size: 18px; letter-spacing: 2px; text-transform: uppercase;
   opacity: 0.7; color: var(--mc-on-dark); width: 90%; max-width: 1500px;
 }
-.cta-partners strong { color: var(--mc-accent); display: block; opacity: 1; font-weight: 700; font-size: 24px; margin-bottom: 8px; letter-spacing: 1px; text-transform: none; font-family: var(--font-display); }
+.cta-partners strong { color: var(--mc-secondary); display: block; opacity: 1; font-weight: 700; font-size: 24px; margin-bottom: 8px; letter-spacing: 1px; text-transform: none; font-family: var(--font-display); }
 
 /* ================================================================
    PRINT (PDF EXPORT)

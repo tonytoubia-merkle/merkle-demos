@@ -185,6 +185,36 @@
             <span class="surf">Site</span>
             <span class="surf">Inbox</span>
           </div>
+
+          <!-- Agentic execution: autopilot status + human-in-the-loop chip -->
+          <div id="agentic" class="agentic">
+            <span class="agentic__run">
+              <span class="agentic__dot"></span>
+              Running autonomously · next best action, content, channel &amp; offer
+            </span>
+            <span class="agentic__esc">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 8v4M12 16h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
+              </svg>
+              Escalates to a human only when judgment calls.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Governed by design: privacy / brand / on-brand / permissions band -->
+      <section id="governance" class="governance">
+        <span class="governance__lead">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+          Governed by design
+        </span>
+        <div class="governance__badges">
+          <span class="gbadge">Privacy-safe</span>
+          <span class="gbadge">Brand-safe</span>
+          <span class="gbadge">On-brand</span>
+          <span class="gbadge">Within permissions</span>
         </div>
       </section>
 
@@ -194,7 +224,7 @@
   <!-- ════════════ Caption bar ════════════ -->
   <footer class="captionbar">
     <div id="beatdots" class="beatdots">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
     </div>
     <div class="caption">
       <span id="captionKicker" class="caption__kicker">Arrival</span>
@@ -215,7 +245,7 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 
 const $ = (id) => document.getElementById(id);
 
-/* Per-beat copy. Index 0..7. Everything is recomputed from `index`
+/* Per-beat copy. Index 0..9. Everything is recomputed from `index`
    on every call, so renderBeat is fully reversible — no element relies
    on a prior beat's side effects. */
 const BEATS = [
@@ -315,7 +345,43 @@ const BEATS = [
       inbox: "Pre-arrival note → in-stay nudges → post-stay thank-you, review invite and next reason to return. Owned first; paid to extend reach, not waste it.",
     },
   },
-  { // 7 — Measurement in the loop (complete)
+  { // 7 — Agentic execution (engine runs the sequence on its own)
+    kicker: 'Agentic execution',
+    caption: 'The engine runs the whole sequence on its own — a human only when judgment calls.',
+    profile: { known: true, name: 'Elena Marchetti', status: 'Autonomous · human-in-the-loop' },
+    advisor: { on: true, surfaces: true, msg: "I'm running the full sequence on my own — next best action, content, channel and offer — and I bring a human in only when judgment calls for it." },
+    social: 'live', site: 'live', onprop: 'live', inbox: 'live',
+    ping: {},
+    edges: { socialSite: true, siteOnprop: true, onpropInbox: true },
+    loop: false,
+    agentic: true,
+    governance: false,
+    details: {
+      social: "A creator's Reel of the anniversary suite at sunset. Owned and paid work as <strong>one route</strong> from the first tap.",
+      onprop: "Anniversary logged. Sea-view suite, a cliffside dinner reservation, and a quiet surprise amenity — composed in real time.",
+      site: "The storefront knows her and never re-asks. Next best action, offer and channel chosen for <strong>her</strong> — a frictionless booking.",
+      inbox: "Pre-arrival note → in-stay nudges → post-stay thank-you, review invite and next reason to return. Owned first; paid to extend reach, not waste it.",
+    },
+  },
+  { // 8 — Governed by design (every decision within permissions)
+    kicker: 'Governed by design',
+    caption: 'Every decision — privacy-safe, brand-safe, on-brand, within permissions.',
+    profile: { known: true, name: 'Elena Marchetti', status: 'Governed · within permissions' },
+    advisor: { on: true, surfaces: true, msg: "Every decision runs inside Elena's permissions — privacy-safe, brand-safe, and on-brand at every step." },
+    social: 'live', site: 'live', onprop: 'live', inbox: 'live',
+    ping: {},
+    edges: { socialSite: true, siteOnprop: true, onpropInbox: true },
+    loop: false,
+    agentic: true,
+    governance: true,
+    details: {
+      social: "A creator's Reel of the anniversary suite at sunset. Owned and paid work as <strong>one route</strong> from the first tap.",
+      onprop: "Anniversary logged. Sea-view suite, a cliffside dinner reservation, and a quiet surprise amenity — composed in real time.",
+      site: "The storefront knows her and never re-asks. Next best action, offer and channel chosen for <strong>her</strong> — a frictionless booking.",
+      inbox: "Pre-arrival note → in-stay nudges → post-stay thank-you, review invite and next reason to return. Owned first; paid to extend reach, not waste it.",
+    },
+  },
+  { // 9 — Measurement in the loop (complete)
     kicker: 'Measurement',
     caption: 'Results feed back — impact proven, not assumed.',
     profile: { known: true, name: 'Elena Marchetti', status: 'Adapting · measured in real time' },
@@ -324,6 +390,8 @@ const BEATS = [
     ping: {},
     edges: { socialSite: true, siteOnprop: true, onpropInbox: true },
     loop: true,
+    agentic: true,
+    governance: true,
     details: {
       social: "A creator's Reel of the anniversary suite at sunset. Owned and paid work as <strong>one route</strong> from the first tap.",
       onprop: "Anniversary logged. Sea-view suite, a cliffside dinner reservation, and a quiet surprise amenity — composed in real time.",
@@ -345,7 +413,7 @@ function setNode(key, mode, ping) {
 }
 
 function renderBeat(index, direction) {
-  // Clamp/guard so any 0..7 target (or `total`) renders the right end state.
+  // Clamp/guard so any 0..9 target (or `total`) renders the right end state.
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
 
@@ -362,6 +430,10 @@ function renderBeat(index, direction) {
   advisor.classList.toggle('is-on', b.advisor.on);
   advisor.classList.toggle('show-surfaces', b.advisor.surfaces);
   $('advisorMsg').textContent = b.advisor.msg;
+
+  // ── Agentic execution indicator + governance band (declarative on/off) ──
+  $('agentic').classList.toggle('is-on', !!b.agentic);
+  $('governance').classList.toggle('is-on', !!b.governance);
 
   // ── Nodes + their detail copy (set BOTH on and off every call) ──
   ['social', 'site', 'onprop', 'inbox'].forEach((key) => {
@@ -392,7 +464,7 @@ function renderBeat(index, direction) {
   }
 }
 
-startSceneRuntime({ total: 7, renderBeat });
+startSceneRuntime({ total: 9, renderBeat });
 </script>
 </body>
 </html>
