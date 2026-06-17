@@ -47,11 +47,6 @@
             <span class="phase__name">Strategy</span>
             <span class="phase__weeks" data-weeks></span>
           </div>
-          <ul class="phase__bullets">
-            <li>Faster time to insights</li>
-            <li>Sharper, unique messaging</li>
-            <li>Audiences modeled in hours</li>
-          </ul>
         </div>
 
         <div class="phase" data-phase="creative">
@@ -59,11 +54,6 @@
             <span class="phase__name">Creative</span>
             <span class="phase__weeks" data-weeks></span>
           </div>
-          <ul class="phase__bullets">
-            <li>Generative variants at scale</li>
-            <li>On-brand automatically</li>
-            <li>Localized in one pass</li>
-          </ul>
         </div>
 
         <div class="phase" data-phase="review">
@@ -71,10 +61,6 @@
             <span class="phase__name">Review</span>
             <span class="phase__weeks" data-weeks></span>
           </div>
-          <ul class="phase__bullets">
-            <li>Automated brand &amp; compliance checks</li>
-            <li>Fewer review rounds</li>
-          </ul>
         </div>
 
         <div class="phase" data-phase="build">
@@ -82,10 +68,6 @@
             <span class="phase__name">Build</span>
             <span class="phase__weeks" data-weeks></span>
           </div>
-          <ul class="phase__bullets">
-            <li>Audiences &amp; journeys assembled automatically</li>
-            <li>No manual list pulls</li>
-          </ul>
         </div>
 
         <div class="phase" data-phase="launch">
@@ -93,13 +75,16 @@
             <span class="phase__name">Launch</span>
             <span class="phase__weeks" data-weeks></span>
           </div>
-          <ul class="phase__bullets">
-            <li>Cross-channel activation from one trigger</li>
-            <li>Every market at once</li>
-          </ul>
         </div>
 
       </div>
+
+      <!-- AI-in-this-phase card — fixed width, decoupled from bar widths -->
+      <div id="aiCard" class="ai-card">
+        <div class="ai-card__heading" id="aiCardHeading"></div>
+        <ul class="ai-card__list" id="aiCardList"></ul>
+      </div>
+
     </section>
 
     <!-- ─── Before vs after view (beat 6) ─── -->
@@ -153,11 +138,11 @@ const $ = (id) => document.getElementById(id);
    "after" weeks are the compressed durations once AI is applied.
    ───────────────────────────────────────────────────────────────── */
 const PHASES = [
-  { key: 'strategy', name: 'Strategy', before: 3,   after: 1   },
-  { key: 'creative', name: 'Creative', before: 4,   after: 1.5 },
-  { key: 'review',   name: 'Review',   before: 2,   after: 0.5 },
-  { key: 'build',    name: 'Build',    before: 3,   after: 1   },
-  { key: 'launch',   name: 'Launch',   before: 2,   after: 1   },
+  { key: 'strategy', name: 'Strategy', before: 3,   after: 1,   bullets: ['Faster time to insights', 'Sharper, unique messaging', 'Audiences modeled in hours'] },
+  { key: 'creative', name: 'Creative', before: 4,   after: 1.5, bullets: ['Generative variants at scale', 'On-brand automatically', 'Localized in one pass'] },
+  { key: 'review',   name: 'Review',   before: 2,   after: 0.5, bullets: ['Automated brand & compliance checks', 'Fewer review rounds'] },
+  { key: 'build',    name: 'Build',    before: 3,   after: 1,   bullets: ['Audiences & journeys assembled automatically', 'No manual list pulls'] },
+  { key: 'launch',   name: 'Launch',   before: 2,   after: 1,   bullets: ['Cross-channel activation from one trigger', 'Every market at once'] },
 ];
 const BEFORE_TOTAL = PHASES.reduce((s, p) => s + p.before, 0); // 14
 const AFTER_TOTAL  = PHASES.reduce((s, p) => s + p.after,  0); // 5
@@ -273,7 +258,7 @@ function renderBeat(index, direction) {
   $('timelineView').classList.toggle('is-hidden', b.compare);
   $('compareView').classList.toggle('is-on', b.compare);
 
-  // ── Each phase: width ∝ weeks (before or after), bullets, active state ──
+  // ── Each phase: width ∝ weeks (before or after), active state ──
   document.querySelectorAll('.phase').forEach((el) => {
     const key = el.getAttribute('data-phase');
     const phase = PHASES.find((p) => p.key === key);
@@ -289,9 +274,25 @@ function renderBeat(index, direction) {
     // week label
     const wkEl = el.querySelector('[data-weeks]');
     if (wkEl) wkEl.textContent = wk(weeks);
-    // bullets shown only once this phase has AI applied
-    el.classList.toggle('show-bullets', isAI);
   });
+
+  // ── AI card: show on beats 1–5 with newest-compressed phase bullets ──
+  const aiCard = $('aiCard');
+  const newestKey = b.compressed.length > 0 ? b.compressed[b.compressed.length - 1] : null;
+  const showCard = !b.compare && newestKey !== null;
+  aiCard.classList.toggle('is-visible', showCard);
+  if (showCard) {
+    const activePhase = PHASES.find((p) => p.key === newestKey);
+    $('aiCardHeading').textContent = `${activePhase.name} — with AI`;
+    const listEl = $('aiCardList');
+    listEl.innerHTML = '';
+    activePhase.bullets.forEach((text, idx) => {
+      const li = document.createElement('li');
+      li.textContent = text;
+      li.style.transitionDelay = `${idx * 0.08}s`;
+      listEl.appendChild(li);
+    });
+  }
 
   // ── Total marker reflects current sum of visible widths ──
   const totalWeeks = PHASES.reduce(
