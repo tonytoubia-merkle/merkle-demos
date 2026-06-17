@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Marketing Operations · Compressed</title>
+<link rel="stylesheet" href="marketing-ops.css" />
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- ════════════ Top bar ════════════ -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__mark">MARKETING OPERATIONS</span>
+      <span class="brand__sub">Plan to launch</span>
+    </div>
+    <span class="topbar__spacer"></span>
+    <span class="ai-label" id="aiLabel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/>
+        <circle cx="12" cy="9.5" r="1.1" fill="currentColor"/>
+      </svg>
+      AI applied, phase by phase
+    </span>
+  </header>
+
+  <!-- ════════════ Canvas ════════════ -->
+  <main class="canvas">
+
+    <!-- ─── Single-timeline view (beats 0–5) ─── -->
+    <section id="timelineView" class="timeline-view">
+
+      <div class="tl-meta">
+        <span id="totalMarker" class="total-marker">14 weeks</span>
+      </div>
+
+      <!-- Week ruler -->
+      <div id="ruler" class="ruler"></div>
+
+      <!-- The 5 phase segments -->
+      <div id="track" class="track">
+
+        <div class="phase" data-phase="strategy">
+          <div class="phase__bar">
+            <span class="phase__name">Strategy</span>
+            <span class="phase__weeks" data-weeks></span>
+          </div>
+          <ul class="phase__bullets">
+            <li>Faster time to insights</li>
+            <li>Sharper, unique messaging</li>
+            <li>Audiences modeled in hours</li>
+          </ul>
+        </div>
+
+        <div class="phase" data-phase="creative">
+          <div class="phase__bar">
+            <span class="phase__name">Creative</span>
+            <span class="phase__weeks" data-weeks></span>
+          </div>
+          <ul class="phase__bullets">
+            <li>Generative variants at scale</li>
+            <li>On-brand automatically</li>
+            <li>Localized in one pass</li>
+          </ul>
+        </div>
+
+        <div class="phase" data-phase="review">
+          <div class="phase__bar">
+            <span class="phase__name">Review</span>
+            <span class="phase__weeks" data-weeks></span>
+          </div>
+          <ul class="phase__bullets">
+            <li>Automated brand &amp; compliance checks</li>
+            <li>Fewer review rounds</li>
+          </ul>
+        </div>
+
+        <div class="phase" data-phase="build">
+          <div class="phase__bar">
+            <span class="phase__name">Build</span>
+            <span class="phase__weeks" data-weeks></span>
+          </div>
+          <ul class="phase__bullets">
+            <li>Audiences &amp; journeys assembled automatically</li>
+            <li>No manual list pulls</li>
+          </ul>
+        </div>
+
+        <div class="phase" data-phase="launch">
+          <div class="phase__bar">
+            <span class="phase__name">Launch</span>
+            <span class="phase__weeks" data-weeks></span>
+          </div>
+          <ul class="phase__bullets">
+            <li>Cross-channel activation from one trigger</li>
+            <li>Every market at once</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Before vs after view (beat 6) ─── -->
+    <section id="compareView" class="compare-view">
+
+      <div class="compare-row">
+        <div class="compare-row__label">
+          <span class="compare-row__kicker">Before</span>
+          <span class="compare-row__total">~14 weeks</span>
+        </div>
+        <div id="beforeTrack" class="cmp-track cmp-track--before"></div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-row__label">
+          <span class="compare-row__kicker is-after">After</span>
+          <span class="compare-row__total is-after">~5 weeks</span>
+        </div>
+        <div id="afterTrack" class="cmp-track cmp-track--after"></div>
+      </div>
+
+      <div class="impact">
+        <div class="impact__headline">~14 weeks <span class="impact__arrow">&rarr;</span> ~5 weeks &nbsp;&middot;&nbsp; roughly 3&times; faster</div>
+        <div class="impact__sub">Same team, more output &nbsp;&middot;&nbsp; when ops are planned and executed as one system.</div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ════════════ Caption bar ════════════ -->
+  <footer class="captionbar">
+    <div id="beatdots" class="beatdots">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <div class="caption">
+      <span id="captionKicker" class="caption__kicker">Today</span>
+      <span id="captionText" class="caption__text">Plan to launch today — about 14 weeks.</span>
+    </div>
+  </footer>
+
+</div>
+
+<script type="module">
+import { startSceneRuntime } from '../scene-runtime.js';
+
+const $ = (id) => document.getElementById(id);
+
+/* ─────────────────────────────────────────────────────────────────
+   Phase model. "before" weeks set the full-width scale (sum 14);
+   "after" weeks are the compressed durations once AI is applied.
+   ───────────────────────────────────────────────────────────────── */
+const PHASES = [
+  { key: 'strategy', name: 'Strategy', before: 3,   after: 1   },
+  { key: 'creative', name: 'Creative', before: 4,   after: 1.5 },
+  { key: 'review',   name: 'Review',   before: 2,   after: 0.5 },
+  { key: 'build',    name: 'Build',    before: 3,   after: 1   },
+  { key: 'launch',   name: 'Launch',   before: 2,   after: 1   },
+];
+const BEFORE_TOTAL = PHASES.reduce((s, p) => s + p.before, 0); // 14
+const AFTER_TOTAL  = PHASES.reduce((s, p) => s + p.after,  0); // 5
+
+// Round a week count to a friendly label.
+const wk = (n) => {
+  const r = Math.round(n * 2) / 2;            // nearest half
+  const txt = Number.isInteger(r) ? `${r}` : `${r}`;
+  return `${txt} ${r === 1 ? 'wk' : 'wks'}`;
+};
+
+/* ─────────────────────────────────────────────────────────────────
+   Per-beat data table. Index 0..6 → 7 states. Every render recomputes
+   ALL state from BEATS[i] (no reliance on prior-beat DOM).
+   - compressed: set of phase keys that have AI applied (shrunk + bullets)
+   - compare: show the before/after stacked view instead of the timeline
+   ───────────────────────────────────────────────────────────────── */
+const BEATS = [
+  { // 0 — Today: full 14-week timeline, no AI
+    kicker: 'Today',
+    caption: 'Plan to launch today — about 14 weeks.',
+    aiOn: false,
+    compressed: [],
+    compare: false,
+  },
+  { // 1 — Strategy + AI
+    kicker: 'Strategy + AI',
+    caption: 'Strategy: faster insights, sharper messaging — 3 wks → 1 wk.',
+    aiOn: true,
+    compressed: ['strategy'],
+    compare: false,
+  },
+  { // 2 — Creative + AI
+    kicker: 'Creative + AI',
+    caption: 'Creative: generative, on-brand variants — 4 wks → 1.5 wks.',
+    aiOn: true,
+    compressed: ['strategy', 'creative'],
+    compare: false,
+  },
+  { // 3 — Review + AI
+    kicker: 'Review + AI',
+    caption: 'Review: automated checks, fewer rounds — 2 wks → 0.5 wk.',
+    aiOn: true,
+    compressed: ['strategy', 'creative', 'review'],
+    compare: false,
+  },
+  { // 4 — Build + AI
+    kicker: 'Build + AI',
+    caption: 'Build: audiences & journeys assembled — 3 wks → 1 wk.',
+    aiOn: true,
+    compressed: ['strategy', 'creative', 'review', 'build'],
+    compare: false,
+  },
+  { // 5 — Launch + AI
+    kicker: 'Launch + AI',
+    caption: 'Launch: one trigger, every market — 2 wks → 1 wk.',
+    aiOn: true,
+    compressed: ['strategy', 'creative', 'review', 'build', 'launch'],
+    compare: false,
+  },
+  { // 6 — Before vs after (complete)
+    kicker: 'Compressed',
+    caption: 'Plan to launch, compressed.',
+    aiOn: true,
+    compressed: ['strategy', 'creative', 'review', 'build', 'launch'],
+    compare: true,
+  },
+];
+
+// Build the week ruler ticks once (0..14).
+(function buildRuler() {
+  const ruler = $('ruler');
+  if (!ruler) return;
+  ruler.innerHTML = '';
+  for (let w = 0; w <= BEFORE_TOTAL; w++) {
+    const tick = document.createElement('span');
+    tick.className = 'ruler__tick';
+    tick.style.left = `${(w / BEFORE_TOTAL) * 100}%`;
+    tick.textContent = w;
+    ruler.appendChild(tick);
+  }
+})();
+
+// Build the stacked compare bars once (segments, scaled to BEFORE_TOTAL).
+(function buildCompare() {
+  const make = (track, durKey) => {
+    if (!track) return;
+    track.innerHTML = '';
+    PHASES.forEach((p) => {
+      const seg = document.createElement('div');
+      seg.className = `cmp-seg cmp-seg--${p.key}`;
+      seg.style.width = `${(p[durKey] / BEFORE_TOTAL) * 100}%`;
+      const label = document.createElement('span');
+      label.className = 'cmp-seg__label';
+      label.textContent = p.name;
+      seg.appendChild(label);
+      track.appendChild(seg);
+    });
+  };
+  make($('beforeTrack'), 'before');
+  make($('afterTrack'),  'after');
+})();
+
+function renderBeat(index, direction) {
+  const i = Math.max(0, Math.min(index, BEATS.length - 1));
+  const b = BEATS[i];
+  const compressed = new Set(b.compressed);
+
+  // ── AI label (top bar) ──
+  $('aiLabel').classList.toggle('is-on', b.aiOn);
+
+  // ── Toggle between timeline view and compare view ──
+  $('timelineView').classList.toggle('is-hidden', b.compare);
+  $('compareView').classList.toggle('is-on', b.compare);
+
+  // ── Each phase: width ∝ weeks (before or after), bullets, active state ──
+  document.querySelectorAll('.phase').forEach((el) => {
+    const key = el.getAttribute('data-phase');
+    const phase = PHASES.find((p) => p.key === key);
+    if (!phase) return;
+    const isAI = compressed.has(key);
+    const weeks = isAI ? phase.after : phase.before;
+    // width as a flex-basis percentage of the 14-week scale
+    el.style.flexBasis = `${(weeks / BEFORE_TOTAL) * 100}%`;
+    el.classList.toggle('is-compressed', isAI);
+    // newly-compressed phase (the one this beat just applied) gets "active" glow
+    const isNewest = isAI && key === b.compressed[b.compressed.length - 1];
+    el.classList.toggle('is-active', !!isNewest);
+    // week label
+    const wkEl = el.querySelector('[data-weeks]');
+    if (wkEl) wkEl.textContent = wk(weeks);
+    // bullets shown only once this phase has AI applied
+    el.classList.toggle('show-bullets', isAI);
+  });
+
+  // ── Total marker reflects current sum of visible widths ──
+  const totalWeeks = PHASES.reduce(
+    (s, p) => s + (compressed.has(p.key) ? p.after : p.before), 0
+  );
+  const rounded = Math.round(totalWeeks * 2) / 2;
+  $('totalMarker').textContent = `${rounded} weeks`;
+
+  // ── Caption + beat dots ──
+  $('captionKicker').textContent = b.kicker;
+  $('captionText').textContent = b.caption;
+  const dots = $('beatdots').children;
+  for (let k = 0; k < dots.length; k++) {
+    dots[k].classList.toggle('is-done', k < i);
+    dots[k].classList.toggle('is-now', k === i);
+  }
+}
+
+startSceneRuntime({ total: 6, renderBeat });
+</script>
+</body>
+</html>
