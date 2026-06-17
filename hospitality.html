@@ -19,7 +19,7 @@
          ============================================================ -->
 
     <!-- Title slide -->
-    <section class="slide--dark slide-vcenter">
+    <section class="slide--dark slide-vcenter title-balance">
       <div class="label">MODERN CRM · CANNES</div>
       <h1 class="title">One relationship. Owned and paid as one.</h1>
       <p class="subtitle">Hospitality — a 12-minute executive demo.</p>
@@ -88,21 +88,17 @@
     <!-- Without Modern CRM -->
     <section class="slide--dark slide-vstart">
       <h2 class="title">Without Modern CRM</h2>
-      <div class="force-grid" style="margin-top: 48px;">
-        <div class="force">
-          <ul class="force__list">
-            <li>Guest sees a digital ad for a destination</li>
-            <li>Clicks, browses room rates, leaves</li>
-            <li>Receives a generic promotional email</li>
-            <li>Is retargeted with disconnected paid media</li>
-            <li>Brand hopes for a booking</li>
-          </ul>
-        </div>
+      <div class="broken-path">
+        <div class="broken-path__step"><strong>Sees a digital ad</strong></div>
+        <div class="broken-path__step"><strong>Browses rates, leaves</strong></div>
+        <div class="broken-path__step"><strong>Generic email</strong></div>
+        <div class="broken-path__step"><strong>Disconnected retargeting</strong></div>
+        <div class="broken-path__step"><strong>Brand hopes for a booking</strong></div>
       </div>
     </section>
 
     <!-- Lead-in -->
-    <section class="slide--dark slide-vcenter">
+    <section class="slide--dark slide-vcenter has-motif">
       <h1 class="title--big" style="text-align: center;">Contrast that with how we do it now.</h1>
     </section>
 
@@ -132,6 +128,7 @@
     <section class="slide--paper slide-vcenter">
       <div class="label">EXECUTIVE COPILOT</div>
       <p class="quote-big" style="color: var(--mc-ink); text-align: left; font-size: 52px;">How do I increase repeat-booking rate among new loyalty members without overspending on media?</p>
+      <p class="subtitle">The same concierge — now running across the entire guest base.</p>
     </section>
 
     <!-- COPILOT DEMO SLOT -->
@@ -226,6 +223,15 @@
   });
   bindRevealDemoSlides(Reveal);
   bindRevealVideoSlots(Reveal);
+  document.querySelectorAll('.reveal .slides > section').forEach((s) => {
+    const dark = s.classList.contains('slide--dark') || s.classList.contains('cta-slide')
+              || s.classList.contains('hero-slide') || s.classList.contains('demo-break');
+    const img = document.createElement('img');
+    img.className = 'brand-logo';
+    img.src = dark ? 'assets/brand/merkle-white.svg' : 'assets/brand/merkle-black.svg';
+    img.alt = 'Merkle';
+    s.appendChild(img);
+  });
 </script>
 
 </body>
