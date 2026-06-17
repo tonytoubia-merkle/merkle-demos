@@ -120,6 +120,12 @@
 }
 .reveal .slides > section.slide-vcenter { justify-content: center; }
 .reveal .slides > section.slide-vstart  { justify-content: flex-start; padding-top: 80px; }
+/* Reveal writes inline `display:block` on the active/adjacent sections, which
+   would defeat the flex column above (so vcenter/vstart never take effect and
+   sparse slides sit high). Re-assert flex on the slides Reveal makes visible. */
+.reveal .slides > section.present,
+.reveal .slides > section.past,
+.reveal .slides > section.future { display: flex !important; }
 
 /* ================================================================
    SLIDE VARIANTS
