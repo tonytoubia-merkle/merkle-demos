@@ -331,6 +331,71 @@ html, body {
   padding: 4px 11px; border-radius: 999px;
 }
 
+/* === Agentic execution: autopilot status inside the advisor card === */
+.agentic {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 14px;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height var(--t), opacity var(--t), margin var(--t);
+}
+.advisor .agentic.is-on { max-height: 120px; opacity: 1; }
+.agentic__run {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 12px; font-weight: 700; letter-spacing: .3px;
+  color: var(--accent);
+  background: rgba(15,181,165,.14);
+  border: 1px solid rgba(15,181,165,.45);
+  padding: 6px 12px; border-radius: 999px;
+  align-self: flex-start;
+}
+.agentic__dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(15,181,165,.5);
+  animation: agentpulse 1.6s ease-in-out infinite;
+}
+@keyframes agentpulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(15,181,165,.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(15,181,165,0); }
+}
+.agentic__esc {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11.5px; font-weight: 600; letter-spacing: .2px;
+  color: rgba(255,255,255,.82);
+  border: 1px dashed rgba(255,255,255,.3);
+  background: rgba(255,255,255,.06);
+  padding: 5px 11px; border-radius: 999px;
+  align-self: flex-start;
+}
+.agentic__esc svg { width: 14px; height: 14px; color: rgba(255,255,255,.78); flex-shrink: 0; }
+
+/* === Governed by design: badge band in the rail === */
+.governance {
+  background: var(--card-bg);
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 34px rgba(16,19,26,.07);
+  padding: 0 20px;
+  display: flex; flex-direction: column; gap: 10px;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height var(--t), opacity var(--t), padding var(--t);
+}
+.governance.is-on { max-height: 160px; opacity: 1; padding: 18px 20px; }
+.governance__lead {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase;
+  font-weight: 700; color: var(--blue);
+}
+.governance__lead svg { width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; }
+.governance__badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.gbadge {
+  font-size: 12px; font-weight: 600; letter-spacing: .3px;
+  color: var(--accent);
+  border: 1px solid rgba(15,181,165,.35);
+  background: var(--accent-tint);
+  padding: 5px 12px; border-radius: 999px;
+}
+
 /* ───────────────────────── Caption bar ───────────────────────── */
 .captionbar {
   display: flex; align-items: center; gap: 22px;
