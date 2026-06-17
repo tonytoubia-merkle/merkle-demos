@@ -1,0 +1,297 @@
+/* ════════════════════════════════════════════════════════════════════
+   Marketing Operations · Compressed — scripted scene (generic, shared)
+   Standalone, 100% offline. Neutral palette, single blue accent.
+   Designed for 1920×1080 full-screen capture.
+   ════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --ink:        #16181d;
+  --paper:      #f7f8fa;
+  --surface:    #ffffff;
+  --surface-2:  #eef0f4;
+  --muted:      #5a6473;
+  --line:       #e3e6ec;
+  --blue:       #0328D1;   /* AI / after accent */
+  --blue-lt:    #2F98F7;   /* lighter AI highlight */
+  --before:     #c7ccd6;   /* muted "before" grey */
+  --blue-tint:  rgba(3, 40, 209, 0.08);
+  --blue-tint2: rgba(47, 152, 247, 0.12);
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --t: 0.6s cubic-bezier(.4, 0, .2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 100vw; height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background:
+    radial-gradient(1300px 760px at 82% 14%, var(--blue-tint2), transparent 62%),
+    radial-gradient(1100px 800px at 10% 96%, var(--blue-tint), transparent 60%),
+    var(--paper);
+}
+
+/* ───────────────────────── Top bar ───────────────────────── */
+.topbar {
+  display: flex; align-items: center; gap: 16px;
+  padding: 30px 64px 14px;
+}
+.brand { display: flex; align-items: baseline; gap: 14px; }
+.brand__mark {
+  font-size: 22px; font-weight: 800; letter-spacing: 3px;
+  color: var(--ink);
+}
+.brand__sub {
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); font-weight: 600;
+}
+.topbar__spacer { flex: 1; }
+.ai-label {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 13px; font-weight: 600; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--blue);
+  background: var(--blue-tint); border: 1px solid rgba(3,40,209,.18);
+  padding: 8px 16px; border-radius: 999px;
+  opacity: 0; transform: translateY(-4px);
+  transition: opacity var(--t), transform var(--t);
+}
+.ai-label.is-on { opacity: 1; transform: translateY(0); }
+.ai-label svg { width: 16px; height: 16px; }
+
+/* ───────────────────────── Main canvas ───────────────────────── */
+.canvas {
+  position: relative;
+  padding: 12px 64px 0;
+  min-height: 0;
+  display: grid;
+}
+/* both views stacked in the same grid cell so we can cross-fade */
+.timeline-view, .compare-view {
+  grid-area: 1 / 1;
+  min-height: 0;
+}
+
+/* ═══════════════ Timeline view (beats 0–5) ═══════════════ */
+.timeline-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  opacity: 1;
+  transition: opacity var(--t);
+}
+.timeline-view.is-hidden { opacity: 0; pointer-events: none; }
+
+.tl-meta {
+  display: flex; justify-content: flex-end; align-items: center;
+  height: 30px;
+}
+.total-marker {
+  font-size: 15px; font-weight: 800; letter-spacing: .4px;
+  color: var(--blue);
+  background: var(--surface); border: 1.5px solid var(--blue);
+  padding: 7px 18px; border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(3,40,209,.12);
+}
+
+/* Week ruler */
+.ruler {
+  position: relative;
+  height: 22px;
+  margin: 0 2px;
+  border-bottom: 1px solid var(--line);
+}
+.ruler__tick {
+  position: absolute; bottom: 0;
+  transform: translateX(-50%);
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  padding-bottom: 4px;
+}
+.ruler__tick::after {
+  content: ""; position: absolute; left: 50%; bottom: -1px;
+  width: 1px; height: 6px; background: var(--line);
+  transform: translateX(-50%);
+}
+
+/* The 5 phase segments — flex-basis = width ∝ weeks */
+.track {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  height: 360px;
+}
+.phase {
+  flex-grow: 0; flex-shrink: 0;
+  flex-basis: 20%;
+  min-width: 0;
+  display: flex; flex-direction: column;
+  transition: flex-basis var(--t);
+}
+
+.phase__bar {
+  position: relative;
+  height: 84px;
+  border-radius: 14px;
+  background: var(--before);
+  border: 1.5px solid #b9bfcb;
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: flex-start;
+  padding: 0 18px;
+  overflow: hidden;
+  transition: background var(--t), border-color var(--t), box-shadow var(--t);
+}
+.phase.is-compressed .phase__bar {
+  background: linear-gradient(135deg, var(--blue) 0%, #021ba0 100%);
+  border-color: var(--blue);
+}
+.phase.is-active .phase__bar {
+  box-shadow: 0 0 0 4px var(--blue-tint2), 0 12px 30px rgba(3,40,209,.22);
+}
+.phase__name {
+  font-size: 16px; font-weight: 800; letter-spacing: .3px;
+  color: #424a59;
+  white-space: nowrap;
+  transition: color var(--t);
+}
+.phase.is-compressed .phase__name { color: #fff; }
+.phase__weeks {
+  font-size: 12px; font-weight: 700; letter-spacing: .3px;
+  color: #5d6573;
+  margin-top: 3px;
+  white-space: nowrap;
+  transition: color var(--t);
+}
+.phase.is-compressed .phase__weeks { color: rgba(255,255,255,.9); }
+
+/* AI bullets that animate into a phase once compressed */
+.phase__bullets {
+  list-style: none;
+  margin-top: 14px;
+  display: flex; flex-direction: column; gap: 9px;
+  min-width: 0;
+}
+.phase__bullets li {
+  font-size: 13px; font-weight: 600; line-height: 1.3;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--blue-lt);
+  border-radius: 9px;
+  padding: 8px 11px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.phase.show-bullets .phase__bullets li { opacity: 1; transform: translateY(0); }
+.phase.show-bullets .phase__bullets li:nth-child(2) { transition-delay: .08s; }
+.phase.show-bullets .phase__bullets li:nth-child(3) { transition-delay: .16s; }
+
+/* ═══════════════ Before vs after view (beat 6) ═══════════════ */
+.compare-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 34px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t);
+}
+.compare-view.is-on { opacity: 1; pointer-events: auto; }
+
+.compare-row {
+  display: flex; align-items: center; gap: 28px;
+}
+.compare-row__label {
+  width: 180px; flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 4px;
+  text-align: right;
+}
+.compare-row__kicker {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+}
+.compare-row__kicker.is-after { color: var(--blue); }
+.compare-row__total {
+  font-size: 30px; font-weight: 800; letter-spacing: -.5px;
+  color: #6b7280;
+}
+.compare-row__total.is-after { color: var(--blue); }
+
+.cmp-track {
+  flex: 1;
+  display: flex; align-items: stretch; gap: 4px;
+  height: 76px;
+}
+.cmp-seg {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 11px;
+  min-width: 0;
+  overflow: hidden;
+}
+.cmp-track--before .cmp-seg {
+  background: var(--before);
+  border: 1.5px solid #b9bfcb;
+}
+.cmp-track--after .cmp-seg {
+  background: linear-gradient(135deg, var(--blue) 0%, #021ba0 100%);
+  border: 1.5px solid var(--blue);
+}
+.cmp-seg__label {
+  font-size: 12px; font-weight: 700; letter-spacing: .2px;
+  white-space: nowrap;
+  padding: 0 4px;
+}
+.cmp-track--before .cmp-seg__label { color: #4a5160; }
+.cmp-track--after .cmp-seg__label { color: #fff; }
+
+.impact {
+  margin-top: 8px;
+  text-align: center;
+}
+.impact__headline {
+  font-size: 30px; font-weight: 800; letter-spacing: -.4px;
+  color: var(--ink);
+}
+.impact__arrow { color: var(--blue); font-weight: 800; }
+.impact__sub {
+  margin-top: 10px;
+  font-size: 16px; font-weight: 600; color: var(--muted);
+}
+
+/* ───────────────────────── Caption bar ───────────────────────── */
+.captionbar {
+  display: flex; align-items: center; gap: 24px;
+  padding: 20px 64px 34px;
+}
+.beatdots { display: flex; gap: 9px; }
+.beatdots i {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--line);
+  transition: background var(--t), transform var(--t);
+}
+.beatdots i.is-done { background: var(--blue); }
+.beatdots i.is-now  { background: var(--blue-lt); transform: scale(1.4); }
+
+.caption {
+  flex: 1;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.caption__kicker {
+  font-size: 12px; letter-spacing: 2.4px; text-transform: uppercase;
+  font-weight: 700; color: var(--blue-lt);
+}
+.caption__text {
+  font-size: 25px; font-weight: 700; letter-spacing: -.3px; color: var(--ink);
+  line-height: 1.2;
+}
