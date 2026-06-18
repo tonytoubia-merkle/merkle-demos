@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Merkle Demos — Modern CRM (Cannes)</title>
+<title>Merkle — Modern CRM (Cannes)</title>
 <style>
   @font-face {
     font-family: 'Work Sans';
@@ -16,97 +16,335 @@
     font-weight: 100 900; font-style: normal; font-display: swap;
   }
   :root {
-    /* Merkle design system */
-    --ink: #1F1F1F; --paper: #FCFCFC; --paper-2: #F7F7F7; --surface-3: #EEEEEE;
-    --blue: #0328D1; --blue-hover: #1E56FA; --blue-tint: #E7EFFF; --secondary: #2F98F7;
-    --muted: #505050; --line: #E4E4E4; --line-med: #D7D7D7;
     --font: 'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --mono: 'Geist Mono', 'SF Mono', 'Consolas', ui-monospace, monospace;
-    --radius: 8px; --radius-lg: 16px; --radius-full: 999px;
+    --nav-h: 96px;
+    --ink: #0c1020;
+    --red: #E4002B;            /* Merkle triangle */
+    --radius: 18px;
   }
   * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
   body {
-    margin: 0; font-family: var(--font); color: var(--ink);
-    background: linear-gradient(160deg, var(--paper) 0%, var(--surface-3) 100%);
-    min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 48px 24px;
+    font-family: var(--font); color: #fff; background: #04081c;
+    overflow: hidden;
   }
-  .wrap { width: 100%; max-width: 1040px; }
-  .brand { height: 24px; width: auto; display: block; margin: 0 0 40px; }
+
+  /* ============ Vivid blue gradient field (the hero background) ============ */
+  .bg {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden;
+    background:
+      radial-gradient(135% 120% at -5% 65%, #16a6ff 0%, rgba(22,166,255,0) 42%),
+      radial-gradient(120% 120% at 105% 38%, #1d63ff 0%, rgba(29,99,255,0) 48%),
+      radial-gradient(110% 120% at 92% 100%, #00d8ff 0%, rgba(0,216,255,0) 42%),
+      linear-gradient(125deg, #0a1c70 0%, #06133f 52%, #0c34a0 100%);
+    background-color: #07153f;
+  }
+  /* vertical light streaks toward the right */
+  .bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg,
+      rgba(255,255,255,0) 0px, rgba(255,255,255,0) 26px,
+      rgba(255,255,255,.05) 27px, rgba(255,255,255,0) 30px);
+    -webkit-mask-image: linear-gradient(90deg, transparent 55%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 55%, #000 100%);
+    opacity: .9;
+  }
+  /* film grain */
+  .bg::after {
+    content: ''; position: absolute; inset: 0; opacity: .12; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ============ Top nav (black bar) ============ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 30;
+    background: #000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px;
+  }
+  .nav__logo { height: 30px; width: auto; display: block; }
+  .nav__logo svg { height: 100%; width: auto; display: block; }
+  .nav__menu {
+    appearance: none; background: none; border: 0; cursor: pointer; padding: 10px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .nav__menu span { display: block; width: 30px; height: 2.5px; background: #fff; border-radius: 2px; }
+
+  /* ============ View system ============ */
+  .stage { position: relative; z-index: 1; height: 100%; }
+  .view {
+    position: absolute; inset: 0; padding: calc(var(--nav-h) + 40px) 56px 56px;
+    display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity .45s ease;
+    overflow-y: auto;
+  }
+  .view.is-active { opacity: 1; visibility: visible; }
+
   .eyebrow {
-    font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 3.5px;
-    text-transform: uppercase; color: var(--blue); margin: 0 0 16px;
+    font-size: 13px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase;
+    color: rgba(255,255,255,.72); margin: 0 0 14px;
   }
-  h1 { font-size: 56px; line-height: 1.05; letter-spacing: -1px; font-weight: 600; margin: 0 0 16px; max-width: 22ch; }
-  .lede { font-size: 18px; color: var(--muted); margin: 0 0 48px; max-width: 64ch; line-height: 1.5; }
-  .decks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 760px) { .decks { grid-template-columns: 1fr; } h1 { font-size: 38px; } }
+  .h1 { font-size: 84px; font-weight: 800; line-height: 1.02; letter-spacing: -1.5px; margin: 0 0 22px; }
+  .lede { font-size: 22px; line-height: 1.5; max-width: 60ch; margin: 0 0 48px; color: rgba(255,255,255,.92); font-weight: 400; }
+  @media (max-width: 1100px) { .h1 { font-size: 56px; } }
+
+  /* ============ Cards ============ */
+  .cards { display: grid; gap: 26px; }
+  .cards--two   { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 1120px; }
+  .cards--three { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1480px; }
+
   .card {
-    display: flex; flex-direction: column; text-decoration: none; color: inherit;
-    background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px 32px 28px;
-    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    position: relative; display: flex; flex-direction: column; text-decoration: none; color: #fff;
+    min-height: 300px; border-radius: var(--radius); overflow: hidden;
+    background:
+      linear-gradient(165deg, rgba(13,22,54,.72) 0%, rgba(3,7,22,.9) 100%);
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 30px 60px rgba(0,0,0,.35);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
-  .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(3,40,209,.10); border-color: var(--blue); }
-  .card__tag {
-    font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--blue); margin-bottom: 12px;
+  .card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.4); box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+  .card__body { flex: 1; padding: 34px 34px 20px; display: flex; flex-direction: column; }
+  .card__icon { width: 60px; height: 60px; color: #fff; margin-bottom: auto; }
+  .card__icon svg { width: 100%; height: 100%; display: block; }
+  .card__title { font-size: 40px; font-weight: 700; line-height: 1.08; letter-spacing: -0.5px; margin: 18px 0 0; }
+  .cards--three .card__title { margin-top: 4px; }
+  .card__cta {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; color: #000; font-size: 19px; font-weight: 700;
+    padding: 20px 30px; gap: 16px;
   }
-  .card__title { font-size: 26px; font-weight: 600; margin: 0 0 6px; letter-spacing: -.3px; }
-  .card__brand { font-size: 15px; color: var(--muted); margin: 0 0 20px; }
-  .card__go { margin-top: auto; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 8px; }
-  .card__go::after { content: '→'; transition: transform .15s ease; }
-  .card:hover .card__go::after { transform: translateX(4px); }
-  .scenes { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); }
-  .scenes h2 {
-    font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--muted); font-weight: 500; margin: 0 0 14px;
+  .card__cta svg { width: 22px; height: 22px; flex: 0 0 auto; }
+
+  /* ============ Player view ============ */
+  .player { padding: calc(var(--nav-h) + 28px) 56px 40px; justify-content: flex-start; }
+  .player__back {
+    display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+    background: none; border: 0; cursor: pointer; color: rgba(255,255,255,.85);
+    font-family: var(--font); font-size: 15px; font-weight: 600; letter-spacing: .3px;
+    padding: 8px 0; margin-bottom: 16px; text-decoration: none;
   }
-  .scenes p { font-size: 14px; color: var(--muted); margin: 0 0 16px; max-width: 70ch; line-height: 1.5; }
-  .scene-links { display: flex; flex-wrap: wrap; gap: 10px; }
-  .scene-links a {
-    font-family: var(--mono); font-size: 13px; text-decoration: none; color: var(--ink);
-    background: #fff; border: 1px solid var(--line); border-radius: var(--radius-full); padding: 7px 16px;
-    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  .player__back:hover { color: #fff; }
+  .player__back svg { width: 18px; height: 18px; }
+  .player__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.6); margin: 0 0 8px; }
+  .player__title { font-size: 40px; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 22px; }
+  .player__frame {
+    position: relative; width: 100%; max-width: 1280px; aspect-ratio: 16 / 9;
+    background: #000; border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.14); box-shadow: 0 30px 70px rgba(0,0,0,.5);
   }
-  .scene-links a:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-tint); }
-  footer { margin-top: 44px; font-size: 13px; color: var(--muted); }
-  footer code { font-family: var(--mono); background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 2px 7px; }
+  .player__frame video { width: 100%; height: 100%; display: block; object-fit: contain; background:#000; }
+  .player__missing {
+    position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 40px; gap: 12px;
+    background: linear-gradient(165deg, rgba(13,22,54,.9), rgba(3,7,22,.96));
+  }
+  .player__frame.is-missing .player__missing { display: flex; }
+  .player__frame.is-missing video { visibility: hidden; }
+  .player__missing-title { font-size: 22px; font-weight: 700; }
+  .player__missing-sub { font-size: 15px; color: rgba(255,255,255,.7); max-width: 46ch; line-height: 1.5; }
+  .player__missing code { font-family: var(--mono); background: rgba(255,255,255,.1); padding: 2px 8px; border-radius: 6px; }
+
+  /* ============ Menu overlay (record mode) ============ */
+  .menu {
+    position: fixed; inset: 0; z-index: 40; background: rgba(2,5,16,.86); backdrop-filter: blur(6px);
+    opacity: 0; visibility: hidden; transition: opacity .3s ease;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .menu.is-open { opacity: 1; visibility: visible; }
+  .menu__panel { width: min(720px, 90vw); }
+  .menu__close { position: absolute; top: 30px; right: 52px; background: none; border: 0; color: #fff; font-size: 34px; cursor: pointer; line-height: 1; }
+  .menu h2 { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.55); font-weight: 700; margin: 0 0 18px; }
+  .menu__group { margin-bottom: 30px; }
+  .menu__links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .menu a {
+    color: #fff; text-decoration: none; font-size: 16px; font-weight: 600;
+    padding: 14px 18px; border: 1px solid rgba(255,255,255,.16); border-radius: 10px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .menu a:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+  .menu a .mono { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); }
+  .menu__note { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 8px; line-height: 1.5; }
 </style>
 </head>
 <body>
-  <main class="wrap">
-    <img class="brand" src="assets/brand/merkle-black.svg" alt="Merkle" />
-    <p class="eyebrow">Modern CRM · Cannes</p>
-    <h1>One relationship. Owned and paid as one.</h1>
-    <p class="lede">Two 12-minute executive demos showing how Modern CRM unifies owned and paid engagement into a single growth system — so every signal, audience, decision, message, and offer works as one.</p>
 
-    <div class="decks">
-      <a class="card" href="hospitality.html">
-        <span class="card__tag">Hospitality</span>
-        <span class="card__title">The connected guest</span>
-        <span class="card__brand">Rivage — a Riviera resort · guest: Elena</span>
-        <span class="card__go">Open the deck</span>
+<div class="bg" aria-hidden="true"></div>
+
+<!-- ════════════ Nav ════════════ -->
+<header class="nav">
+  <a class="nav__logo" href="#/" aria-label="Merkle — home">
+    <svg viewBox="0 0 480 60" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#E4002B" d="m0 27 33 33V27z"/>
+      <path fill="#fff" d="M103.192 0 77.988 25.078 52.803 0H46v60h12.802V24.359l19.196 19.108 19.2-19.108V60H110V0zM126 0v60h59V47.975h-46.052V34.291h28.591V22.265h-28.591v-9.894h43.558V0zm121.459 17.633a4.85 4.85 0 0 0-1.653-3.965 10.1 10.1 0 0 0-5.62-1.32h-27.458v11.043h27.458c2.645 0 4.467-.484 5.62-1.484a6.64 6.64 0 0 0 1.653-4.284M264 59.971h-14.385l-15.878-24.532h-21.009V60H200V0h40.351c5.959 0 10.586 1.484 14.225 4.284q5.96 4.694 5.96 13.349a18.13 18.13 0 0 1-3.314 10.554 18.4 18.4 0 0 1-9.095 6.595zM319.954 0l-26.89 22.427V0H280v60h13.035V37.742L302.226 30l22.559 30H340l-28.406-37.921L337.991 0zM354 0v60h54V47.975h-41.161V0zm68 0v60h58V47.975h-45.417v-13.68h28.085V22.27h-28.085v-9.899h42.952V0z"/>
+    </svg>
+  </a>
+  <button class="nav__menu" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<main class="stage">
+
+  <!-- ════════════ START ════════════ -->
+  <section class="view" data-view="start">
+    <p class="eyebrow">Modern CRM · Cannes</p>
+    <h1 class="h1">Modern CRM</h1>
+    <p class="lede">Our approach unifies owned and paid engagement into a single growth system, so every signal, audience, decision, message, and offer works as one.</p>
+    <div class="cards cards--two">
+      <a class="card" href="#/retail">
+        <div class="card__body">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12.5a1.5 1.5 0 0 1-1.5 1.4h-9A1.5 1.5 0 0 1 4 20.5z"/><path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2"/></svg>
+          </span>
+          <h3 class="card__title">Retail</h3>
+        </div>
+        <div class="card__cta">See videos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
       </a>
-      <a class="card" href="retail.html">
-        <span class="card__tag">Retail</span>
-        <span class="card__title">The connected customer</span>
-        <span class="card__brand">Nordhem — home furnishings · customer: Emma</span>
-        <span class="card__go">Open the deck</span>
+      <a class="card" href="#/hospitality">
+        <div class="card__body">
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.5" r="2.5"/><path d="M7 13a5 5 0 0 1 10 0"/><path d="M5 13h14"/><path d="M6 13v5.5a1.5 1.5 0 0 0 1.5 1.5h9a1.5 1.5 0 0 0 1.5-1.5V13"/><path d="M12 8v2"/></svg>
+          </span>
+          <h3 class="card__title">Hospitality</h3>
+        </div>
+        <div class="card__cta">See videos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
       </a>
     </div>
+  </section>
 
-    <section class="scenes">
-      <h2>Demo scenes — full-screen record mode</h2>
-      <p>Open a scene directly and press <strong>F11</strong>, then drive it with the arrow keys to record a clean vignette (no deck chrome). See <strong>RUN-LOCALLY.md</strong> for the record-and-swap workflow.</p>
-      <div class="scene-links">
-        <a href="demo/hospitality/journey/index.html">hospitality · customer</a>
-        <a href="demo/hospitality/copilot/index.html">hospitality · copilot</a>
-        <a href="demo/retail/journey/index.html">retail · customer</a>
-        <a href="demo/retail/copilot/index.html">retail · copilot</a>
-        <a href="demo/marketing-ops/index.html">marketing ops · shared</a>
+  <!-- ════════════ DEMOS (rendered per vertical) ════════════ -->
+  <section class="view" data-view="demos">
+    <h1 class="h1" id="demosTitle">Demos</h1>
+    <div class="cards cards--three" id="demosCards"></div>
+  </section>
+
+  <!-- ════════════ PLAYER ════════════ -->
+  <section class="view player" data-view="player">
+    <a class="player__back" id="playerBack" href="#/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      <span id="playerBackLabel">Back</span>
+    </a>
+    <p class="player__eyebrow" id="playerEyebrow"></p>
+    <h2 class="player__title" id="playerTitle"></h2>
+    <div class="player__frame" id="playerFrame">
+      <video id="playerVideo" controls playsinline preload="metadata"></video>
+      <div class="player__missing">
+        <div class="player__missing-title">Recording coming soon</div>
+        <div class="player__missing-sub">Drop the file at <code id="playerPath"></code> to play it here. Capture it from the live demo via the menu → <strong>Record mode</strong>.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>Runs 100% offline — serve over <code>http://</code> (double-click <code>start.bat</code> / <code>start.command</code>), not <code>file://</code>.</footer>
-  </main>
+</main>
+
+<!-- ════════════ Menu (record mode) ════════════ -->
+<div class="menu" id="menu" role="dialog" aria-label="Menu">
+  <button class="menu__close" id="menuClose" aria-label="Close">&times;</button>
+  <div class="menu__panel">
+    <div class="menu__group">
+      <h2>Presentation</h2>
+      <div class="menu__links">
+        <a href="#/">Start <span class="mono">Modern CRM</span></a>
+        <a href="#/retail">Retail demos <span class="mono">3 videos</span></a>
+        <a href="#/hospitality">Hospitality demos <span class="mono">3 videos</span></a>
+      </div>
+    </div>
+    <div class="menu__group">
+      <h2>Record mode — live demos (drive with arrow keys, F11 to record)</h2>
+      <div class="menu__links">
+        <a href="hospitality.html" target="_blank" rel="noopener">Hospitality deck <span class="mono">hospitality.html</span></a>
+        <a href="retail.html" target="_blank" rel="noopener">Retail deck <span class="mono">retail.html</span></a>
+        <a href="demo/hospitality/journey/index.html" target="_blank" rel="noopener">Hospitality · customer <span class="mono">scene</span></a>
+        <a href="demo/hospitality/copilot/index.html" target="_blank" rel="noopener">Hospitality · copilot <span class="mono">scene</span></a>
+        <a href="demo/retail/journey/index.html" target="_blank" rel="noopener">Retail · customer <span class="mono">scene</span></a>
+        <a href="demo/retail/copilot/index.html" target="_blank" rel="noopener">Retail · copilot <span class="mono">scene</span></a>
+        <a href="demo/marketing-ops/index.html" target="_blank" rel="noopener">Marketing ops <span class="mono">scene</span></a>
+      </div>
+      <p class="menu__note">The live demos are the recording rigs — record each vignette, save it to <code>vignettes/</code>, and it plays in the video screens above. See RUN-LOCALLY.md.</p>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+const $ = (s) => document.querySelector(s);
+
+const VERTICALS = {
+  retail:      { label: 'Retail' },
+  hospitality: { label: 'Hospitality' },
+};
+const DEMOS = [
+  { key: 'customer', title: 'Creating a Unified Experience' },
+  { key: 'copilot',  title: 'Marketer’s Co-pilot' },
+  { key: 'ops',      title: 'Optimizing Campaign Creations' },
+];
+// Recorded vignette per vertical+demo. The marketing-ops vignette is generic, so
+// both verticals point at the one shared recording.
+const VIDEO = {
+  retail:      { customer: 'vignettes/retail-customer.mp4',      copilot: 'vignettes/retail-copilot.mp4',      ops: 'vignettes/marketing-ops.mp4' },
+  hospitality: { customer: 'vignettes/hospitality-customer.mp4', copilot: 'vignettes/hospitality-copilot.mp4', ops: 'vignettes/marketing-ops.mp4' },
+};
+
+const views = document.querySelectorAll('.view');
+const showView = (name) => views.forEach((v) => v.classList.toggle('is-active', v.dataset.view === name));
+
+const chevron = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+
+function renderDemos(vertical) {
+  $('#demosTitle').textContent = `${VERTICALS[vertical].label} Demos`;
+  $('#demosCards').innerHTML = DEMOS.map((d) => `
+    <a class="card" href="#/${vertical}/${d.key}">
+      <div class="card__body"><h3 class="card__title">${d.title}</h3></div>
+      <div class="card__cta">Play video ${chevron}</div>
+    </a>`).join('');
+}
+
+function renderPlayer(vertical, key) {
+  const demo = DEMOS.find((d) => d.key === key);
+  const src = (VIDEO[vertical] || {})[key];
+  $('#playerEyebrow').textContent = `${VERTICALS[vertical].label} · Modern CRM`;
+  $('#playerTitle').textContent = demo ? demo.title : 'Demo';
+  $('#playerBack').setAttribute('href', `#/${vertical}`);
+  $('#playerBackLabel').textContent = `All ${VERTICALS[vertical].label.toLowerCase()} demos`;
+  const frame = $('#playerFrame');
+  const video = $('#playerVideo');
+  $('#playerPath').textContent = src || '';
+  frame.classList.remove('is-missing');
+  video.onerror = () => frame.classList.add('is-missing');
+  video.src = src || '';
+  const p = video.play && video.play();
+  if (p && p.catch) p.catch(() => {});
+}
+
+function route() {
+  const parts = (location.hash.replace(/^#\/?/, '').split('/').filter(Boolean));
+  const video = $('#playerVideo');
+  // Stop any playing video when leaving the player.
+  if (parts[0] !== 'retail' && parts[0] !== 'hospitality') { video.pause(); video.removeAttribute('src'); video.load(); }
+
+  if (parts.length === 0) { showView('start'); return; }
+  const vertical = parts[0];
+  if (!VERTICALS[vertical]) { location.hash = '#/'; return; }
+  if (parts.length === 1) { renderDemos(vertical); showView('demos'); video.pause(); return; }
+  const key = parts[1];
+  if (!DEMOS.some((d) => d.key === key)) { location.hash = `#/${vertical}`; return; }
+  renderPlayer(vertical, key);
+  showView('player');
+}
+
+window.addEventListener('hashchange', route);
+route();
+
+// Menu (record mode)
+const menu = $('#menu');
+$('#menuBtn').addEventListener('click', () => menu.classList.add('is-open'));
+$('#menuClose').addEventListener('click', () => menu.classList.remove('is-open'));
+menu.addEventListener('click', (e) => { if (e.target === menu) menu.classList.remove('is-open'); });
+menu.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', () => menu.classList.remove('is-open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') menu.classList.remove('is-open'); });
+</script>
 </body>
 </html>
