@@ -11,347 +11,367 @@
 <div class="stage">
   <main class="canvas">
 
-    <!-- ═══════════════════ LEFT: the browser ═══════════════════ -->
+    <!-- ═══════════════════ LEFT: the surface ═══════════════════ -->
     <section class="web-col">
       <div class="browser">
 
-        <!-- Browser chrome: traffic lights + dynamic URL -->
+        <!-- Chrome: traffic lights + dynamic URL/label -->
         <div class="chrome">
           <div class="chrome__dots"><i></i><i></i><i></i></div>
           <div class="chrome__bar">
             <svg class="chrome__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span class="chrome__url"><b id="urlHost">nordhem.com</b><span id="urlPath"></span></span>
+            <span class="chrome__url"><b id="urlHost">nordhem-clienteling.app</b><span id="urlPath"></span></span>
           </div>
           <div class="chrome__tools">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
           </div>
         </div>
 
-        <!-- Viewport hosts both "apps"; one is active at a time -->
+        <!-- Viewport hosts every surface; one is active at a time -->
         <div class="viewport">
 
-          <!-- ─────────────── APP A: consumer site nordhem.com ─────────────── -->
-          <div id="appSite" class="app app--site">
+          <!-- ═════════ SURFACE A: in-store clienteling app ═════════ -->
+          <div id="appClient" class="app app--client">
+            <div class="cl">
+              <!-- top bar -->
+              <div class="cl__top">
+                <span class="cl__brand"><span class="cl__crest">N</span>Nordhem · Clienteling</span>
+                <span class="cl__store"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg>Brooklyn Showroom · Floor</span>
+                <span class="cl__assoc">Associate · Maya R.</span>
+              </div>
 
-            <!-- top nav -->
-            <nav class="snav">
-              <span class="snav__brand">NORDHEM</span>
-              <span class="snav__links">
-                <span>Kitchens</span><span>Living</span><span>Dining</span><span>Bedroom</span>
-              </span>
-              <span class="snav__right">
-                <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                <span class="snav__cart">
-                  <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-                  <span id="cartCount" class="snav__badge">0</span>
-                </span>
-                <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-              </span>
-            </nav>
+              <div class="cl__body">
+                <!-- LEFT: customer record -->
+                <div class="cl__record">
+                  <div class="rec__head">
+                    <div id="recAvatar" class="rec__avatar">?</div>
+                    <div class="rec__who">
+                      <span class="rec__name"><span class="rec__anon">New walk-in</span><span class="rec__known">Emma Lindqvist</span></span>
+                      <span id="recStatus" class="rec__status">Unidentified · no record yet</span>
+                    </div>
+                    <span id="recFlag" class="rec__flag">Walk-in · Now</span>
+                  </div>
 
-            <!-- recognition greeting banner -->
-            <div id="greet" class="greet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <div class="greet__txt"><b>Welcome back, Emma.</b> Recognized across our site, app, and store — privacy-safe.</div>
-              <span class="greet__pill">Recognized</span>
-            </div>
+                  <!-- identity + consent capture -->
+                  <div id="recCapture" class="reccard">
+                    <div class="reccard__h">Capture</div>
+                    <div class="capgrid">
+                      <div class="caprow" id="capId">
+                        <span class="caprow__k">Identity</span>
+                        <span class="caprow__v"><span class="caprow__empty">— not captured —</span><span class="caprow__set">Emma Lindqvist · emma.lindqvist@email.com</span></span>
+                      </div>
+                      <div class="caprow" id="capConsent">
+                        <span class="caprow__k">Consent</span>
+                        <span class="caprow__v consent">
+                          <span class="optline"><span class="opt">Email</span><span class="sw"></span></span>
+                          <span class="optline"><span class="opt">SMS</span><span class="sw"></span></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
-            <!-- scrollable site body -->
-            <div id="siteBody" class="site-body">
+                  <!-- consult notes / attributes -->
+                  <div id="recNotes" class="reccard">
+                    <div class="reccard__h">Consult notes</div>
+                    <div class="notechips">
+                      <span class="notechip" id="attrApt">Furnishing a new apartment</span>
+                      <span class="notechip" id="attrBk">New to Brooklyn</span>
+                    </div>
+                    <p class="notebody">Came in overwhelmed by the choices — wants help making an empty apartment feel like home.</p>
+                  </div>
 
-              <!-- PAGE: home / for-you hero -->
-              <section id="pgHome" class="page">
-                <div class="shero">
-                  <img class="shero__img" src="../../../assets/photos/nordhem/living.jpg" alt="Nordhem living room" />
-                  <div class="shero__scrim"></div>
-                  <div class="shero__copy">
-                    <span class="shero__kicker" id="heroKicker">Scandinavian home furnishings</span>
-                    <h1 class="shero__title" id="heroTitle">Make the new place feel like home</h1>
-                    <p class="shero__sub" id="heroSub">Considered design for every room — built to live with, priced to move in.</p>
-                    <span class="shero__cta" id="heroCta">Shop the rooms</span>
+                  <!-- in-store order -->
+                  <div id="recOrder" class="reccard reccard--order">
+                    <div class="reccard__h">In-store order</div>
+                    <div class="orderrow">
+                      <img class="orderrow__img" src="../../../assets/photos/nordhem/living.jpg" alt="Sofa" />
+                      <div class="orderrow__txt">
+                        <span class="orderrow__name">Fjäll 3-Seat Sofa</span>
+                        <span class="orderrow__meta">Oatmeal bouclé · delivery to Brooklyn</span>
+                      </div>
+                      <span class="orderrow__amt">$1,490</span>
+                    </div>
+                    <div class="orderopts">
+                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email + SMS opt-in</span>
+                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>App download · track shipping</span>
+                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Nordhem Members · 149 pts</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- "For you" recommendation rail (personalized) -->
+                <!-- RIGHT: associate next-best rail -->
+                <div class="cl__rail">
+                  <div class="railcard">
+                    <div class="railcard__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>For the associate</div>
+                    <p id="railTip" class="railcard__tip">New face on the floor — no record yet. Greet, help her get oriented, and capture what matters if she's open to it.</p>
+                  </div>
+                  <div id="railAttr" class="railcard railcard--soft">
+                    <div class="railcard__h2">Meaningful attributes</div>
+                    <ul class="railattr">
+                      <li><b>New apartment</b> — whole-home furnishing, not one piece</li>
+                      <li><b>New to Brooklyn</b> — local life stage, delivery matters</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═════════ SURFACE B: delivered confirmation (time marker) ═════════ -->
+          <div id="appDelivered" class="app app--marker">
+            <div class="marker">
+              <img class="marker__img" src="../../../assets/photos/nordhem/living2.jpg" alt="Living room with sofa" />
+              <div class="marker__scrim"></div>
+              <div class="marker__body">
+                <span class="marker__chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Delivered</span>
+                <h1 class="marker__title">A few weeks later</h1>
+                <p class="marker__sub">The Fjäll sofa arrived. Emma loves it — but the apartment around it still feels bare.</p>
+                <span class="marker__time">Order #NH-40912 · delivered to Brooklyn</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═════════ SURFACE C: social feed (influencer ad) ═════════ -->
+          <div id="appSocial" class="app app--social">
+            <div class="sof">
+              <div class="sof__top">
+                <span class="sof__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></span>
+                <span class="sof__tabs"><i class="is-on"></i><i></i><i></i></span>
+                <span class="sof__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>
+              </div>
+              <div class="sof__feed">
+                <article class="post">
+                  <div class="post__head">
+                    <span class="post__ava">@</span>
+                    <div class="post__id"><span class="post__user">studio.aveline</span><span class="post__spon">Sponsored · Paid partnership with Nordhem</span></div>
+                    <span class="post__dots">···</span>
+                  </div>
+                  <div class="post__media">
+                    <img class="post__img" src="../../../assets/photos/nordhem/living.jpg" alt="Styled living room" />
+                    <span class="post__ad">Ad</span>
+                  </div>
+                  <div class="post__actions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+                    <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="post__cap"><b>studio.aveline</b> One sofa, a whole room. How I finished my tiny Brooklyn living room with @nordhem — end tables, lamps, the lot. <span class="post__tag">#newapartment #nordhempartner</span></div>
+                  <div class="post__cta">
+                    <span class="post__shop">Shop this room at nordhem.com</span>
+                    <span class="post__tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 11V8a2 2 0 0 1 4 0v3"/><path d="M17 11a2 2 0 0 1 4 0v3a7 7 0 0 1-7 7h-1.5a5 5 0 0 1-3.6-1.5L5 16a2 2 0 0 1 3-2.6l1 .9V6a2 2 0 0 1 4 0"/></svg>Tap</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═════════ SURFACE D: nordhem.com (recognized home) ═════════ -->
+          <div id="appSite" class="app app--site">
+            <nav class="snav">
+              <span class="snav__brand">NORDHEM</span>
+              <span class="snav__links"><span>Living</span><span>Kitchen</span><span>Dining</span><span>Bedroom</span><span>Lighting</span></span>
+              <span class="snav__right">
+                <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                <span class="snav__signin">Sign in to see everything</span>
+              </span>
+            </nav>
+
+            <!-- recognition strip -->
+            <div id="recog" class="recog">
+              <span class="recog__dot"></span>
+              <span class="recog__txt"><b>Welcome, Emma.</b> Recognized from your visit — no login needed.</span>
+              <span class="recog__src">via Merkury · from studio.aveline</span>
+            </div>
+
+            <div id="siteBody" class="site-body">
+              <!-- PAGE: personalized home -->
+              <section id="pgHome" class="page">
+                <div class="shero">
+                  <img class="shero__img" id="heroImg" src="../../../assets/photos/nordhem/living.jpg" alt="Nordhem living room" />
+                  <div class="shero__scrim"></div>
+                  <div class="shero__copy">
+                    <span class="shero__kicker" id="heroKicker">The look you saved</span>
+                    <h1 class="shero__title" id="heroTitle">Finish the room from @studio.aveline</h1>
+                    <p class="shero__sub" id="heroSub">The exact pieces that completed her Brooklyn living room — styled around a sofa just like yours.</p>
+                    <span class="shero__cta" id="heroCta">Shop the room</span>
+                  </div>
+                </div>
+
+                <!-- loyalty banner -->
+                <div id="loyaltyBanner" class="loyb">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.2 1.2 6L12 16.8 6.3 19l1.2-6L3 8.8 9 8z"/></svg>
+                  <span class="loyb__txt"><b>Rewards waiting</b> to help furnish your apartment.</span>
+                  <span class="loyb__cta">Log in to see</span>
+                </div>
+
+                <!-- complete-the-room rail -->
                 <div id="forYou" class="foryou">
                   <div class="foryou__head">
-                    <span class="foryou__title">Chosen for you, Emma</span>
-                    <span class="foryou__note">For furnishing a first apartment — room by room</span>
+                    <span class="foryou__title">Complete the room</span>
+                    <span class="foryou__note">End tables &amp; lighting to match the sofa you already own</span>
                   </div>
                   <div class="foryou__grid">
                     <article class="pcard">
-                      <img class="pcard__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="Skagen kitchen" />
+                      <img class="pcard__img" src="../../../assets/photos/nordhem/living2.jpg" alt="End table" />
                       <div class="pcard__body">
-                        <span class="pcard__tag">Start here</span>
-                        <h3 class="pcard__name">Skagen Kitchen Series</h3>
-                        <p class="pcard__meta">Modular cabinetry · oak &amp; matte white · from $1,690</p>
+                        <span class="pcard__tag">Pairs with your sofa</span>
+                        <h3 class="pcard__name">Birk End Table</h3>
+                        <p class="pcard__meta">Solid ash · pair of two · $240</p>
                       </div>
                     </article>
                     <article class="pcard">
-                      <img class="pcard__img" src="../../../assets/photos/nordhem/dining.jpg" alt="Dining set" />
+                      <img class="pcard__img" src="../../../assets/photos/nordhem/bedroom.jpg" alt="Floor lamp" />
                       <div class="pcard__body">
-                        <span class="pcard__tag">Complete the room</span>
-                        <h3 class="pcard__name">Fjord Dining Set</h3>
-                        <p class="pcard__meta">Solid ash table + 4 chairs · seats six · $880</p>
+                        <span class="pcard__tag">Warm it up</span>
+                        <h3 class="pcard__name">Sol Floor &amp; Table Lights</h3>
+                        <p class="pcard__meta">Linen shade · warm dimmable · from $180</p>
                       </div>
                     </article>
                   </div>
                 </div>
               </section>
 
-              <!-- PAGE: kitchen listing -->
-              <section id="pgKitchens" class="page">
-                <div class="page__head">
-                  <h2 class="page__h">Kitchens</h2>
-                  <span class="page__hint">12 series · 3 picked for your space</span>
+              <!-- PAGE: advisor (chat happens in right pane) -->
+              <section id="pgAdvisor" class="page">
+                <div class="advstage">
+                  <img class="advstage__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="Nordhem kitchen" />
+                  <div class="advstage__scrim"></div>
+                  <div class="advstage__copy">
+                    <span class="advstage__kicker">Nordhem Advisor</span>
+                    <h2 class="advstage__title">Kitchen, sorted</h2>
+                    <p class="advstage__sub">Ask about pieces, delivery, and install — answers in the panel on the right.</p>
+                  </div>
                 </div>
-                <div class="prod-grid">
-                  <article class="scard scard--lead">
+                <div class="advgrid">
+                  <article class="scard">
                     <img class="scard__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="" />
                     <div class="scard__body">
-                      <span class="scard__tag">Best for small spaces</span>
-                      <h3 class="scard__name">Skagen Kitchen Series</h3>
-                      <p class="scard__meta">Modular · oak &amp; matte white · fits a galley layout</p>
-                      <span class="scard__price">$1,690 <small>/ starter set</small></span>
-                    </div>
-                  </article>
-                  <article class="scard">
-                    <img class="scard__img" src="../../../assets/photos/nordhem/living.jpg" alt="" />
-                    <div class="scard__body">
-                      <h3 class="scard__name">Lumi Open Shelving</h3>
-                      <p class="scard__meta">Wall-mount · birch ply</p>
-                      <span class="scard__price">$320</span>
+                      <span class="scard__tag">Small-space pick</span>
+                      <h3 class="scard__name">Skär Kitchen Island</h3>
+                      <p class="scard__meta">Oak top · storage both sides</p>
+                      <span class="scard__price">$640</span>
                     </div>
                   </article>
                   <article class="scard">
                     <img class="scard__img" src="../../../assets/photos/nordhem/dining.jpg" alt="" />
                     <div class="scard__body">
+                      <span class="scard__tag">Seats four</span>
                       <h3 class="scard__name">Fjord Dining Set</h3>
-                      <p class="scard__meta">Ash table + 4 chairs · seats six</p>
-                      <span class="scard__price">$880</span>
+                      <p class="scard__meta">Ash table + 2 benches</p>
+                      <span class="scard__price">$720</span>
                     </div>
                   </article>
                 </div>
               </section>
-
-              <!-- PAGE: product detail -->
-              <section id="pgDetail" class="page">
-                <div class="detail">
-                  <div class="detail__gallery">
-                    <img class="detail__main" src="../../../assets/photos/nordhem/kitchen.jpg" alt="Skagen kitchen" />
-                    <div class="detail__thumbs">
-                      <img src="../../../assets/photos/nordhem/living.jpg" alt="" />
-                      <img src="../../../assets/photos/nordhem/dining.jpg" alt="" />
-                      <img src="../../../assets/photos/nordhem/living2.jpg" alt="" />
-                    </div>
-                  </div>
-                  <div class="detail__info">
-                    <h2 class="detail__name">Skagen Kitchen Series</h2>
-                    <p class="detail__loc">Modular cabinetry · oak &amp; matte white · fits a galley layout</p>
-                    <div class="detail__price">$1,690 <small>/ starter set</small></div>
-                    <div class="detail__chips">
-                      <span>Free design plan</span><span>Flat-pack delivery</span><span>10-year guarantee</span>
-                    </div>
-
-                    <div id="storeNote" class="storenote">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/></svg>
-                      <span><b>Seen in store</b> — you measured this in the Brooklyn showroom Saturday. Saved to your list.</span>
-                    </div>
-
-                    <div class="resv">
-                      <div class="resv__txt">
-                        <span class="resv__name">Add Skagen Kitchen to your list</span>
-                        <span class="resv__meta">Building a room plan · compare before you buy</span>
-                      </div>
-                      <span class="resv__btn">
-                        <span class="resv__save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>Save to list</span>
-                        <span class="resv__saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Saved to list</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <!-- PAGE: shopping list / cart -->
-              <section id="pgList" class="page">
-                <div class="book">
-                  <div class="book__head">
-                    <div>
-                      <h2 class="book__title">Your room plan</h2>
-                      <p class="book__sub">First apartment · kitchen + dining · building over a few visits</p>
-                    </div>
-                    <span id="cartFlag" class="book__flag">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                      Left in cart 2 days ago
-                    </span>
-                    <span class="book__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Saved for you</span>
-                  </div>
-                  <div class="book__list">
-                    <div class="brow">
-                      <div class="brow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
-                      <div class="brow__txt"><span class="brow__name">Skagen Kitchen Series</span><span class="brow__meta">Modular starter set · oak &amp; matte white</span></div>
-                      <span class="brow__amt">$1,690</span>
-                    </div>
-                    <div class="brow">
-                      <div class="brow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18"/><path d="M5 10V6h14v4"/><path d="M5 10v8"/><path d="M19 10v8"/></svg></div>
-                      <div class="brow__txt"><span class="brow__name">Fjord Dining Set</span><span class="brow__meta">Ash table + 4 chairs · seats six</span></div>
-                      <span class="brow__amt">$880</span>
-                    </div>
-                    <div class="brow brow--offer">
-                      <div class="brow__ic is-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 16.8 5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
-                      <div class="brow__txt"><span class="brow__name">Next best: complete the set — Lumi Open Shelving</span><span class="brow__meta">Pairs with the Skagen kitchen · one tap to add</span></div>
-                      <span class="brow__amt is-offer">+$320</span>
-                    </div>
-                  </div>
-                  <div class="book__foot">
-                    <span class="book__total">Subtotal <b>$2,570</b></span>
-                    <span class="book__confirm">Checkout</span>
-                  </div>
-                </div>
-              </section>
-
-              <!-- PAGE: Nordhem Members loyalty -->
-              <section id="pgMembers" class="page">
-                <div class="members">
-                  <div class="members__hero">
-                    <svg class="members__crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.2 1.2 6L12 16.8 6.3 19l1.2-6L3 8.8 9 8z"/></svg>
-                    <span class="members__kicker">Nordhem Members</span>
-                    <h2 class="members__title">Join free — and this order gets better</h2>
-                    <p class="members__sub">You're furnishing a whole home. Members save on every room, in store and online.</p>
-                  </div>
-                  <div class="members__grid">
-                    <div class="mcard">
-                      <span class="mcard__big">−10%</span>
-                      <span class="mcard__lbl">Member price on this order</span>
-                      <span class="mcard__sub">Applied to your room plan today</span>
-                    </div>
-                    <div class="mcard">
-                      <span class="mcard__big">257 pts</span>
-                      <span class="mcard__lbl">Points earned on this order</span>
-                      <span class="mcard__sub">Toward your next room</span>
-                    </div>
-                    <div class="mcard">
-                      <span class="mcard__big">Bedroom</span>
-                      <span class="mcard__lbl">Members-only offer next</span>
-                      <span class="mcard__sub">15% off when you furnish the bedroom</span>
-                    </div>
-                  </div>
-                  <div class="members__foot">
-                    <span class="members__join">Join &amp; apply — it's free</span>
-                    <span class="members__note">Same connected experience · in store, online, and in the app</span>
-                  </div>
-                </div>
-              </section>
-
             </div>
           </div>
 
-          <!-- ─────────── APP B: backend console nordhem-marketing-ops.cloud ─────────── -->
+          <!-- ═════════ SURFACE E: backend ops (profile + journey) ═════════ -->
           <div id="appOps" class="app app--ops">
             <div class="ops">
-              <!-- sidebar -->
               <aside class="ops__side">
                 <div class="ops__logo">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
                   Marketing Ops
                 </div>
                 <nav class="ops__nav">
+                  <span class="ops__navitem" data-nav="profiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profiles</span>
                   <span class="ops__navitem" data-nav="journeys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Journeys</span>
                   <span class="ops__navitem" data-nav="audiences"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 21c0-4 3.5-6 7-6s7 2 7 6"/><circle cx="18" cy="8" r="2.5"/></svg>Audiences</span>
                   <span class="ops__navitem" data-nav="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Messages</span>
-                  <span class="ops__navitem" data-nav="suppression"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>Suppression</span>
-                  <span class="ops__navitem" data-nav="measurement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>Measurement</span>
                 </nav>
-                <div class="ops__env">
-                  <span class="ops__envdot"></span> Production workspace
-                </div>
+                <div class="ops__env"><span class="ops__envdot"></span> Production workspace</div>
               </aside>
 
-              <!-- work area -->
               <div class="ops__main">
                 <div class="ops__toolbar">
-                  <span id="opsTitle" class="ops__h">Journeys</span>
-                  <span class="ops__crumb" id="opsCrumb">Customer journeys / New-home play</span>
+                  <span id="opsTitle" class="ops__h">Profiles</span>
+                  <span class="ops__crumb" id="opsCrumb">Profiles / Emma Lindqvist</span>
                   <span class="ops__spacer"></span>
-                  <span id="opsRun" class="ops__runchip"><span class="ops__rundot"></span><span id="opsRunTxt">Active</span></span>
+                  <span id="opsRun" class="ops__runchip"><span class="ops__rundot"></span><span id="opsRunTxt">Resolved</span></span>
                 </div>
 
                 <div class="ops__work">
 
-                  <!-- VIEW: journeys orchestration -->
-                  <div id="vJourneys" class="opsview">
-                    <div class="jflow">
-                      <div class="jnode owned">
-                        <span class="jnode__tag">Owned · Email</span>
-                        <span class="jnode__name">Room-plan nudge</span>
-                        <span class="jnode__meta">Personalized to her saved kitchen</span>
+                  <!-- VIEW: complete profile -->
+                  <div id="vProfile" class="opsview">
+                    <div class="prof">
+                      <div class="prof__head">
+                        <div class="prof__avatar">E</div>
+                        <div>
+                          <div class="prof__name">Emma Lindqvist</div>
+                          <div class="prof__sub">One unified profile · in-store + online + social · ID 0.97 confidence</div>
+                        </div>
+                        <span class="prof__chip">Consent: Email · SMS · App</span>
                       </div>
-                      <span class="jarrow">→</span>
-                      <div class="jnode owned">
-                        <span class="jnode__tag">Owned · App + Site</span>
-                        <span class="jnode__name">Cart-recovery</span>
-                        <span class="jnode__meta">Complete-the-set reminder</span>
+                      <div class="prof__grid">
+                        <div class="pfield"><span class="pfield__k">Life stage</span><span class="pfield__v">New apartment · furnishing a first home</span></div>
+                        <div class="pfield"><span class="pfield__k">Location</span><span class="pfield__v">New to Brooklyn, NY</span></div>
+                        <div class="pfield"><span class="pfield__k">Purchase</span><span class="pfield__v">Fjäll 3-Seat Sofa · $1,490 · in store</span></div>
+                        <div class="pfield"><span class="pfield__k">Loyalty</span><span class="pfield__v">Nordhem Members · 149 pts</span></div>
+                        <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · Social</span></div>
+                        <div class="pfield"><span class="pfield__k">Inbound media</span><span class="pfield__v">Merkury · paid social @studio.aveline</span></div>
+                        <div class="pfield"><span class="pfield__k">Browse + chat</span><span class="pfield__v">Complete-the-room · kitchen inquiry</span></div>
+                        <div class="pfield pfield--flag"><span class="pfield__k">Delivery constraint</span><span class="pfield__v">3rd floor · no elevator · stair-carry + install</span></div>
                       </div>
-                      <span class="jarrow">→</span>
-                      <div class="jnode owned">
-                        <span class="jnode__tag">Owned · Email</span>
-                        <span class="jnode__name">Members invite</span>
-                        <span class="jnode__meta">At her high-intent moment</span>
-                      </div>
-                    </div>
-                    <div class="jpaid">
-                      <div class="jpaid__row">
-                        <span class="jbadge paid">Paid</span>
-                        <span class="jpaid__txt">High-intent shoppers — inspiration in social &amp; media</span>
-                        <span class="jpaid__state extend">Extend reach</span>
-                      </div>
-                      <div class="jpaid__row">
-                        <span class="jbadge paid">Paid</span>
-                        <span class="jpaid__txt">Existing purchasers — acquisition campaigns</span>
-                        <span class="jpaid__state suppress">Suppressed</span>
+                      <div class="prov-row">
+                        <span class="provb provb--store">in store</span>
+                        <span class="provb provb--mer">Merkury</span>
+                        <span class="provb provb--web">site + chat</span>
+                        <span class="provb provb--agent">agent · unified</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- VIEW: agentic execution -->
-                  <div id="vAgent" class="opsview">
+                  <!-- VIEW: agent-built 1:1 journey -->
+                  <div id="vJourney" class="opsview">
                     <div class="runhead">
                       <div class="runhead__orb"><span></span></div>
                       <div>
-                        <div class="runhead__title">Agent running the play autonomously</div>
-                        <div class="runhead__sub">Creates audiences, activates, measures &amp; optimizes across channels — escalates to a human only on judgment calls</div>
+                        <div class="runhead__title">Agent built a journey for Emma</div>
+                        <div class="runhead__sub">Decided 1:1 from her complete profile — not a segment, not 1:many</div>
                       </div>
-                      <span class="runhead__live">Running</span>
+                      <span class="runhead__live">1:1 · for Emma</span>
                     </div>
-                    <div class="runlog">
-                      <div class="logrow"><span class="logrow__t">09:14</span><span class="logrow__d ok"></span><span class="logrow__m">Audience built · "New-home, high-intent" — activated to email + site</span></div>
-                      <div class="logrow"><span class="logrow__t">12:30</span><span class="logrow__d ok"></span><span class="logrow__m">Cart-recovery sent · personalized to her saved kitchen</span></div>
-                      <div class="logrow"><span class="logrow__t">15:02</span><span class="logrow__d ok"></span><span class="logrow__m">Paid acquisition suppressed — she's already an active shopper</span></div>
-                      <div class="logrow"><span class="logrow__t">—</span><span class="logrow__d wait"></span><span class="logrow__m">Members offer creative · awaiting brand sign-off</span><span class="logrow__esc">Escalated</span></div>
-                    </div>
-                  </div>
 
-                  <!-- VIEW: governance -->
-                  <div id="vGov" class="opsview">
-                    <div class="gov__intro">Every action the agent takes is checked against policy before it ships.</div>
-                    <div class="gov__grid">
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="govcard__txt"><span class="govcard__name">Permissions</span><span class="govcard__sub">Channel rights honored</span></div><span class="toggle on"></span></div>
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="govcard__txt"><span class="govcard__name">Consent</span><span class="govcard__sub">Opt-ins verified per channel</span></div><span class="toggle on"></span></div>
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="govcard__txt"><span class="govcard__name">Privacy</span><span class="govcard__sub">One profile · purpose enforced</span></div><span class="toggle on"></span></div>
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div><div class="govcard__txt"><span class="govcard__name">Brand guidelines</span><span class="govcard__sub">Tone &amp; assets approved</span></div><span class="toggle on"></span></div>
-                    </div>
-                  </div>
+                    <div class="jtheme">“Build out your new apartment.”</div>
 
-                  <!-- VIEW: measurement -->
-                  <div id="vMeasure" class="opsview">
-                    <div class="meas__intro">Audience performance, media effectiveness, and business outcomes — proven, then fed back into the next decision.</div>
-                    <div class="meas__grid">
-                      <div class="statcard"><span class="statcard__label">Conversion lift</span><span class="statcard__val">+24%</span><span class="statcard__sub">vs. holdout · 90 days</span></div>
-                      <div class="statcard"><span class="statcard__label">Media efficiency</span><span class="statcard__val">5.1×</span><span class="statcard__sub">ROAS · owned + paid</span></div>
-                      <div class="statcard"><span class="statcard__label">Incremental revenue</span><span class="statcard__val">+$3.2M</span><span class="statcard__sub">attributable · quarter</span></div>
-                      <div class="statcard"><span class="statcard__label">Paid waste cut</span><span class="statcard__val">−41%</span><span class="statcard__sub">suppression in real time</span></div>
+                    <div class="jflow">
+                      <div class="jnode email">
+                        <span class="jnode__tag">Email</span>
+                        <span class="jnode__name">Complete the room</span>
+                        <span class="jnode__meta">End tables + lights to match her sofa</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode app">
+                        <span class="jnode__tag">App</span>
+                        <span class="jnode__name">Kitchen design pros</span>
+                        <span class="jnode__meta">Matched to her · book a free plan</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode sms">
+                        <span class="jnode__tag">SMS</span>
+                        <span class="jnode__name">Delivery + install</span>
+                        <span class="jnode__meta">3rd floor, no elevator — handled</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode media">
+                        <span class="jnode__tag">Media</span>
+                        <span class="jnode__name">Suppress acquisition</span>
+                        <span class="jnode__meta">She's a customer — retarget the room, not the brand</span>
+                      </div>
                     </div>
-                    <div class="meas__note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>Results feed back into the next play — the loop is closed and continuously improving.</div>
+
+                    <div class="jwhy">
+                      <div class="jwhy__h">Why these, for Emma</div>
+                      <ul class="jwhy__list">
+                        <li><b>New apartment, new to Brooklyn</b> → whole-home build-out, not one product</li>
+                        <li><b>Owns the sofa</b> → end tables + lights that match, from the look she saved</li>
+                        <li><b>Asked about the kitchen</b> → real design pros, matched and booked</li>
+                        <li><b>3rd floor, no elevator</b> → install promised up front, by SMS</li>
+                      </ul>
+                    </div>
                   </div>
 
                 </div>
@@ -363,45 +383,43 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ RIGHT: AI retail advisor ═══════════════════ -->
+    <!-- ═══════════════════ RIGHT: profile + advisor ═══════════════════ -->
     <aside class="agent">
 
-      <!-- profile chip -->
+      <!-- profile card -->
       <div id="profile" class="profile">
         <div class="profile__top">
           <div id="avatar" class="profile__avatar">?</div>
           <div class="profile__who">
             <span class="profile__kicker">What we know</span>
-            <span class="profile__name"><span class="anon">Anonymous visitor</span><span class="known">Emma</span></span>
+            <span class="profile__name"><span class="anon">Nobody yet</span><span class="known">Emma</span></span>
           </div>
         </div>
         <div class="profile__facts">
-          <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">One privacy-safe profile · owned + paid</span></div>
-          <div id="fLife" class="fact"><span class="fact__k">Life stage</span><span class="fact__v">Just moved · furnishing a new home</span></div>
-          <div id="fInterest" class="fact"><span class="fact__k">Interests</span><span class="fact__v">Kitchens &amp; home furnishings</span></div>
-          <div id="fIntent" class="fact"><span class="fact__k">Intent</span><span class="fact__v">Saving, building a list, comparing · high</span></div>
-          <div id="fHouse" class="fact"><span class="fact__k">Household</span><span class="fact__v">New household · first home · budget-conscious</span></div>
-          <div id="fChannels" class="fact"><span class="fact__k">Channels</span><span class="fact__v">Social · site · app · email · store</span></div>
+          <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">Emma Lindqvist · captured in store</span></div>
+          <div id="fLife" class="fact"><span class="fact__k">Life stage</span><span class="fact__v">New apartment · new to Brooklyn</span></div>
+          <div id="fConsent" class="fact"><span class="fact__k">Consent</span><span class="fact__v">Email · SMS · App · opted in</span></div>
+          <div id="fPurchase" class="fact"><span class="fact__k">Purchase</span><span class="fact__v">Fjäll Sofa · $1,490 · Members 149 pts</span></div>
+          <div id="fMerkury" class="fact"><span class="fact__k">Merkury</span><span class="fact__v">Recognized online · inbound @studio.aveline</span></div>
+          <div id="fChat" class="fact"><span class="fact__k">Signals</span><span class="fact__v">Kitchen · delivery · 3rd floor, no elevator</span></div>
         </div>
       </div>
 
-      <!-- chat transcript -->
+      <!-- advisor transcript -->
       <div class="chat">
         <div class="chat__head">
           <div class="chat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
-          <div class="chat__id"><span class="chat__name">Nordhem Advisor</span><span class="chat__status"><i></i>Online · site, app &amp; store</span></div>
+          <div class="chat__id"><span class="chat__name">Nordhem Advisor</span><span class="chat__status"><i></i>Online · store, site &amp; app</span></div>
         </div>
         <div id="transcript" class="transcript"></div>
       </div>
 
       <!-- progress + caption -->
       <div class="agent__foot">
-        <div id="dots" class="dots">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
+        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
-          <span id="capKicker" class="cap__kicker">Arrival</span>
-          <span id="capText" class="cap__text">An anonymous first touch.</span>
+          <span id="capKicker" class="cap__kicker">In store</span>
+          <span id="capText" class="cap__text">A new walk-in, no record yet.</span>
         </div>
       </div>
 
@@ -416,181 +434,158 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 const $ = (id) => document.getElementById(id);
 
 /* ─────────────────────────────────────────────────────────────────
-   Per-beat data table, index 0..10 (total = 10; index 10 = complete).
-   renderBeat() recomputes EVERYTHING from this table on every call —
-   fully reversible, no element depends on prior-beat DOM.
+   9 beats (total: 8, indices 0–8). renderBeat recomputes EVERYTHING
+   from the BEATS table each call — fully reversible, no element
+   depends on prior-beat DOM. Every visual is toggled on AND off.
 
-   Fields per beat:
-     app      'site' | 'ops'                which app shows
-     host     'nordhem.com' | 'nordhem-marketing-ops.cloud'
-     url      string                        path appended after host
-     page     site page id (home|kitchens|detail|list|members)  [site only]
-     opsView  ops view (journeys|agent|gov|measure)             [ops only]
-     opsTitle/opsCrumb/opsRun  ops toolbar text
-     greet    bool   recognition banner visible
-     foryou   bool   personalized "for you" rail visible (home page)
-     store    bool   detail "seen in store" note
-     saved    bool   detail "saved to list" state
-     cart     bool   list page abandoned-cart flag (+ nav badge=2)
-     offer    bool   list next-best (complete-the-set) row visible
-     known    bool   profile resolved (Emma) vs anonymous
-     facts[]  which profile facts filled (ids)
-     msgsTo   cumulative chat index shown (0..N)
-     kicker/caption  footer
+   Surfaces:  client | delivered | social | site | ops
+   Right pane: profile facts (cumulative) + advisor transcript
+   (cumulative) + progress dots + caption.
    ───────────────────────────────────────────────────────────────── */
 
-// Cumulative chat lines — beat N shows lines [0..N].
+// Cumulative advisor transcript — beat N shows lines [0..msgsTo].
 const LINE = [
-  { who:'sys', html:'Anonymous first touch — owned and paid handled as one from here.' },
-  { who:'ai',  html:'Recognized from an influencer\'s apartment-transformation Reel — resolved to <b>one privacy-safe profile</b> across owned and paid.' },
-  { who:'ai',  html:'I can see she just <b>moved into a new apartment</b> and is furnishing a first home — high purchase intent, budget-conscious.' },
-  { who:'ai',  html:'I\'m her retail advisor — I connect <b>inspiration → planning → purchase → loyalty</b> across site, app, and store.' },
-  { who:'ai',  html:'Every interaction updates the profile in real time — saved products, a list in progress, a cart left open, a store visit noted.' },
-  { who:'ai',  html:'Next best move: <b>complete the set</b> with a cross-sell at the right moment — inspire, convert, cross-sell, and suppress when she shouldn\'t be targeted.' },
-  { who:'ai',  html:'At her high-intent moment I surface <b>Nordhem Members</b> — member pricing, points on this order, and a members-only offer on her next room.' },
-  { who:'ai',  html:'Switching to orchestration. <b>Owned first</b> — site, app, email — with paid only to extend reach, acquire, or suppress.' },
-  { who:'ai',  html:'I\'m running the play autonomously now — building audiences, activating, measuring &amp; optimizing — and escalating to a human only on judgment calls.' },
-  { who:'ai',  html:'Every action stays inside the guardrails: <b>permissions, consent, privacy, and brand guidelines</b>.' },
-  { who:'ai',  html:'Results feed back: audience performance, media effectiveness, and business outcomes <b>proven, not assumed</b> — improving every future decision.' },
+  // 0
+  { who:'sys', html:'In store · Brooklyn showroom — a new walk-in, nothing on file.' },
+  // 1
+  { who:'ai',  html:'From the associate\'s notes I\'m flagging two meaningful attributes: <b>furnishing a new apartment</b> and <b>new to Brooklyn</b>. Profile resolves to <b>Emma</b>.' },
+  // 2
+  { who:'ai',  html:'Couch ordered in store. <b>Email, SMS, app, and loyalty</b> all opted in — Emma is now one connected profile across every channel.' },
+  // 3
+  { who:'ai',  html:'A few weeks on — sofa delivered, she loves it. The room around it is still empty, so there\'s a clear reason to come back.' },
+  // 4
+  { who:'ai',  html:'First touch back is on <b>social</b> — an influencer\'s post, a Nordhem paid partnership. Owned and paid are one inbound signal here.' },
+  // 5
+  { who:'ai',  html:'She lands on nordhem.com and we recognize her instantly via <b>Merkury — no login</b>. We know the <b>inbound media</b>, so the homepage flips to the room she saw.' },
+  // 6 — active exchange
+  { who:'user', html:'Can you help me with kitchen stuff? And do you deliver and install — I\'m on the 3rd floor with no elevator.' },
+  { who:'ai',  html:'Absolutely. The <b>Skär Island</b> fits a small kitchen and ships flat-pack. Delivery includes <b>stair carry and in-home install</b> — I\'ve noted <b>3rd floor, no elevator</b> so the crew comes prepared. Want a free kitchen plan?' },
+  // 7
+  { who:'ai',  html:'Everything we\'ve learned is now <b>one complete profile</b> — in-store attributes, the couch, channels, loyalty, the Merkury inbound media, her browse + chat, and the 3rd-floor delivery constraint.' },
+  // 8
+  { who:'ai',  html:'An agent just built her a journey — <b>“build out your new apartment,”</b> sequenced across email, app, SMS and media. Decided <b>1:1 for Emma</b>, not a segment.' },
 ];
 
 const BEATS = [
-  { // 0 — Anonymous arrival
-    app:'site', host:'nordhem.com', url:'', page:'home',
-    greet:false, foryou:false,
+  { // 0 — Walk-in
+    surface:'client', host:'nordhem-clienteling.app', url:' · In store',
+    clRecognized:false, clCapture:false, clNotes:false, clOrder:false, clAttrRail:false,
     known:false, facts:[],
-    msgsTo:0,
-    kicker:'Arrival', caption:'An anonymous first touch.',
+    msgsTo:0, kicker:'In store', caption:'New to Brooklyn, overwhelmed by the choices.',
   },
-  { // 1 — Recognized
-    app:'site', host:'nordhem.com', url:'', page:'home',
-    greet:true, foryou:false,
-    known:true, facts:['fId'],
-    msgsTo:1,
-    kicker:'Recognized', caption:'One privacy-safe profile across owned + paid.',
+  { // 1 — Associate captures the moment
+    surface:'client', host:'nordhem-clienteling.app', url:' · In store',
+    clRecognized:true, clCapture:true, clNotes:true, clOrder:false, clAttrRail:true,
+    known:true, facts:['fId','fLife'],
+    msgsTo:1, kicker:'Capture', caption:'The associate captures it — ID, consent, the moment that matters.',
   },
-  { // 2 — Profile enriches
-    app:'site', host:'nordhem.com', url:'/for-you', page:'home',
-    greet:true, foryou:true,
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:2,
-    kicker:'Profile', caption:'New home, high intent — known.',
+  { // 2 — Orders a couch, opts in
+    surface:'client', host:'nordhem-clienteling.app', url:' · In store · order',
+    clRecognized:true, clCapture:true, clNotes:true, clOrder:true, clAttrRail:true,
+    known:true, facts:['fId','fLife','fConsent','fPurchase'],
+    msgsTo:2, kicker:'Order', caption:'Couch ordered. Email, SMS, app, loyalty — all opted in.',
   },
-  { // 3 — Meet the advisor
-    app:'site', host:'nordhem.com', url:'/kitchens', page:'kitchens',
-    greet:true, foryou:false,
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:3,
-    kicker:'Advisor', caption:'One advisor — inspiration to loyalty.',
+  { // 3 — A few weeks later (delivered)
+    surface:'delivered', host:'nordhem.com', url:'/orders/NH-40912',
+    known:true, facts:['fId','fLife','fConsent','fPurchase'],
+    msgsTo:3, kicker:'Weeks later', caption:'A few weeks later…',
   },
-  { // 4 — Signals: she acts
-    app:'site', host:'nordhem.com', url:'/p/skagen-kitchen', page:'detail',
-    greet:true, store:true, saved:true,
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:4,
-    kicker:'Signals', caption:'She acts — the profile updates live.',
+  { // 4 — Social first touch
+    surface:'social', host:'social', url:' · influencer ad',
+    known:true, facts:['fId','fLife','fConsent','fPurchase'],
+    msgsTo:4, kicker:'Social', caption:'Inspiration on social — she taps an influencer\'s post.',
   },
-  { // 5 — Decisions: next best
-    app:'site', host:'nordhem.com', url:'/list', page:'list',
-    greet:true, cart:true, offer:true,
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:5,
-    kicker:'Decisions', caption:'The next best move — complete the set.',
+  { // 5 — The site knows her (Merkury)
+    surface:'site', host:'nordhem.com', url:'', page:'home',
+    recog:true, loyalty:true, foryou:true,
+    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury'],
+    msgsTo:5, kicker:'Merkury', caption:'Never logged in — the site knows her. Merkury, and the media that brought her.',
   },
-  { // 6 — Loyalty
-    app:'site', host:'nordhem.com', url:'/members', page:'members',
-    greet:true,
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:6,
-    kicker:'Loyalty', caption:'Members — at her high-intent moment.',
+  { // 6 — She asks the advisor
+    surface:'site', host:'nordhem.com', url:'/advisor', page:'advisor',
+    recog:true,
+    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
+    msgsTo:7, kicker:'Advisor', caption:'She asks about the kitchen — delivery, install, 3rd floor, no elevator.',
   },
-  { // 7 — Orchestration
-    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys',
-    opsView:'journeys', opsTitle:'Journeys', opsCrumb:'Customer journeys / New-home play', opsRun:'Active',
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:7,
-    kicker:'Orchestration', caption:'Owned + paid, sequenced as one.',
+  { // 7 — One complete profile
+    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/profiles/emma',
+    opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Emma Lindqvist', opsRun:'Resolved',
+    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
+    msgsTo:8, kicker:'Profile', caption:'One complete profile — everything we\'ve learned about Emma.',
   },
-  { // 8 — Agentic execution
-    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/agent',
-    opsView:'agent', opsTitle:'Agent', opsCrumb:'Automation / Autonomous run', opsRun:'Running',
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:8,
-    kicker:'Execution', caption:'The engine runs it — autonomously.',
-  },
-  { // 9 — Governed by design
-    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/governance',
-    opsView:'gov', opsTitle:'Governance', opsCrumb:'Policy / Guardrails', opsRun:'Enforced',
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:9,
-    kicker:'Governance', caption:'Personal — and inside the guardrails.',
-  },
-  { // 10 — Measurement (complete)
-    app:'ops', host:'nordhem-marketing-ops.cloud', url:'/measurement',
-    opsView:'measure', opsTitle:'Measurement', opsCrumb:'Impact / Incrementality', opsRun:'Proven',
-    known:true, facts:['fId','fLife','fInterest','fIntent','fHouse','fChannels'],
-    msgsTo:10,
-    kicker:'Measurement', caption:'Results feed back. Impact proven.',
+  { // 8 — A 1:1 journey, built by an agent (complete)
+    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · 1:1', opsRun:'Built · 1:1',
+    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
+    msgsTo:9, kicker:'1:1 journey', caption:'An agent builds her a journey — 1:1, decided for Emma, not a segment.',
   },
 ];
 
-const FACTS = ['fId','fLife','fInterest','fIntent','fHouse','fChannels'];
-const PAGES = { home:'pgHome', kitchens:'pgKitchens', detail:'pgDetail', list:'pgList', members:'pgMembers' };
-const OPSVIEWS = { journeys:'vJourneys', agent:'vAgent', gov:'vGov', measure:'vMeasure' };
-const OPSNAV = { journeys:'journeys', agent:'messages', gov:'suppression', measure:'measurement' };
+const SURFACES = { client:'appClient', delivered:'appDelivered', social:'appSocial', site:'appSite', ops:'appOps' };
+const FACTS = ['fId','fLife','fConsent','fPurchase','fMerkury','fChat'];
+const PAGES = { home:'pgHome', advisor:'pgAdvisor' };
+const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
+const OPSNAV = { profile:'profiles', journey:'journeys' };
+
+const RAIL_TIP = {
+  base: 'New face on the floor — no record yet. Greet, help her get oriented, and capture what matters if she\'s open to it.',
+  captured: 'Identity and consent captured. She\'s furnishing a whole apartment — think rooms, not one piece. Set her up on email, SMS and the app.',
+};
 
 function renderBeat(index, direction) {
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
 
-  // ── App switch (both toggled every call) ──
-  $('appSite').classList.toggle('is-on', b.app === 'site');
-  $('appOps').classList.toggle('is-on', b.app === 'ops');
+  // ── Surface switch (every surface toggled on/off each call) ──
+  Object.entries(SURFACES).forEach(([key, id]) => {
+    $(id).classList.toggle('is-on', b.surface === key);
+  });
 
-  // ── Browser URL ──
-  $('urlHost').textContent = b.host;
+  // ── Chrome URL/label ──
+  $('urlHost').textContent = b.host === 'social' ? 'social' : b.host;
   $('urlPath').textContent = b.url || '';
 
-  // ── Consumer site: active page, banner, rails ──
+  // ── Clienteling surface state ──
+  $('appClient').classList.toggle('is-recognized', !!b.clRecognized);
+  $('recCapture').classList.toggle('is-on', !!b.clCapture);
+  $('recNotes').classList.toggle('is-on', !!b.clNotes);
+  $('recOrder').classList.toggle('is-on', !!b.clOrder);
+  $('railAttr').classList.toggle('is-on', !!b.clAttrRail);
+  $('recAvatar').textContent = b.clRecognized ? 'E' : '?';
+  $('recStatus').textContent = b.clRecognized
+    ? (b.clOrder ? 'Emma Lindqvist · Member · new client' : 'Emma Lindqvist · identity + consent captured')
+    : 'Unidentified · no record yet';
+  $('railTip').textContent = b.clCapture ? RAIL_TIP.captured : RAIL_TIP.base;
+
+  // ── Consumer site: page + recognition + rails ──
   Object.entries(PAGES).forEach(([key, id]) => {
-    const el = $(id);
-    if (el) el.classList.toggle('is-on', b.app === 'site' && b.page === key);
+    $(id).classList.toggle('is-on', b.surface === 'site' && b.page === key);
   });
-  $('greet').classList.toggle('is-on', !!b.greet);
+  $('recog').classList.toggle('is-on', !!b.recog);
+  $('loyaltyBanner').classList.toggle('is-on', !!b.loyalty);
   $('forYou').classList.toggle('is-on', !!b.foryou);
-  $('storeNote').classList.toggle('is-on', !!b.store);
-  $('pgDetail').classList.toggle('is-saved', !!b.saved);
-  $('pgList').classList.toggle('is-offer', !!b.offer);
-  $('pgList').classList.toggle('is-cart', !!b.cart);
 
-  // cart badge in nav: building a 2-item plan once she carts; 1 once saved
-  const cartN = b.cart ? 2 : (b.saved ? 1 : 0);
-  $('cartCount').textContent = String(cartN);
-  $('cartCount').classList.toggle('is-on', cartN > 0);
-
-  // ── Backend console: active view, toolbar, sidebar highlight ──
+  // ── Backend ops: view + toolbar + sidebar highlight ──
   Object.entries(OPSVIEWS).forEach(([key, id]) => {
-    const el = $(id);
-    if (el) el.classList.toggle('is-on', b.app === 'ops' && b.opsView === key);
+    $(id).classList.toggle('is-on', b.surface === 'ops' && b.opsView === key);
   });
   $('opsTitle').textContent = b.opsTitle || '';
   $('opsCrumb').textContent = b.opsCrumb || '';
   $('opsRunTxt').textContent = b.opsRun || '';
-  const activeNav = b.app === 'ops' ? OPSNAV[b.opsView] : null;
+  const activeNav = b.surface === 'ops' ? OPSNAV[b.opsView] : null;
   document.querySelectorAll('.ops__navitem').forEach((el) => {
     el.classList.toggle('is-active', el.dataset.nav === activeNav);
   });
 
-  // ── Profile chip ──
+  // ── Profile card ──
   $('profile').classList.toggle('is-known', !!b.known);
   $('avatar').textContent = b.known ? 'E' : '?';
   const filled = new Set(b.facts || []);
   FACTS.forEach((id) => {
-    const el = $(id);
-    if (el) el.classList.toggle('is-on', filled.has(id));
+    $(id).classList.toggle('is-on', filled.has(id));
   });
 
-  // ── Chat transcript (rebuilt cumulative every call) ──
+  // ── Advisor transcript (rebuilt cumulative every call) ──
   const t = $('transcript');
   t.innerHTML = '';
   for (let k = 0; k <= b.msgsTo && k < LINE.length; k++) {
@@ -621,7 +616,7 @@ function renderBeat(index, direction) {
   }
 }
 
-startSceneRuntime({ total: 10, renderBeat });
+startSceneRuntime({ total: 8, renderBeat });
 </script>
 </body>
 </html>
