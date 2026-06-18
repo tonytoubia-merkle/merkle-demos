@@ -132,6 +132,23 @@
                 </div>
               </section>
             </div>
+
+            <!-- ON-SITE CHAT WIDGET (customer-facing, anchored bottom-right) -->
+            <div id="siteChat" class="schat">
+              <div class="schat__head">
+                <span class="schat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></span>
+                <div class="schat__id">
+                  <span class="schat__name">Rivage Concierge</span>
+                  <span class="schat__status"><i></i>Online</span>
+                </div>
+                <span class="schat__min">—</span>
+              </div>
+              <div id="schatBody" class="schat__body"></div>
+              <div class="schat__compose">
+                <span class="schat__inp">Message the concierge…</span>
+                <span class="schat__send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>
+              </div>
+            </div>
           </div>
 
           <!-- ═════════ SURFACE C: backend ops (profile + journey) ═════════ -->
@@ -272,11 +289,11 @@
         </div>
       </div>
 
-      <!-- concierge transcript -->
+      <!-- agentic context (NO customer dialogue) -->
       <div class="chat">
         <div class="chat__head">
           <div class="chat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
-          <div class="chat__id"><span class="chat__name">Rivage Concierge</span><span class="chat__status"><i></i>Online · plans across web &amp; app</span></div>
+          <div class="chat__id"><span class="chat__name">Agentic context</span><span class="chat__status"><i></i>Reasoning across signals</span></div>
         </div>
         <div id="transcript" class="transcript"></div>
       </div>
@@ -306,33 +323,54 @@ const $ = (id) => document.getElementById(id);
    depends on prior-beat DOM. Every visual is toggled on AND off.
 
    Hospitality is social-first: the rich capture happens through the
-   concierge trip-planning conversation, not an in-store associate.
+   concierge trip-planning conversation — which now plays on an ON-SITE
+   CHAT WIDGET (rivage.com surface), customer-facing. The right rail
+   carries AGENTIC reasoning only — never Elena's words.
 
    Surfaces:  social | site | ops
-   Right pane: profile facts (cumulative) + concierge transcript
-   (cumulative) + progress dots + caption.
+   On-site chat: lives INSIDE the site surface (customer-facing).
+   Right pane: profile facts (cumulative) + AGENTIC context (cumulative,
+   no customer dialogue) + progress dots + caption.
    ───────────────────────────────────────────────────────────────── */
 
-// Cumulative concierge transcript — beat N shows lines [0..msgsTo].
+// Cumulative AGENTIC context log — beat N shows lines [0..msgsTo].
+// These are the concierge agent's INTERNAL reasoning/flags, never Elena's words.
 const LINE = [
   // 0 — social first touch
-  { who:'sys', html:'On social · a creator\'s Reel of the anniversary suite at sunset — a Rivage paid partnership. Owned and paid, one inbound signal.' },
+  { who:'ai', html:'One inbound signal from <b>social</b> — a creator\'s Reel of the anniversary suite at sunset, a Rivage paid partnership. Owned and paid, the same relationship.' },
   // 1 — arrives, meets the concierge
-  { who:'ai',  html:'Welcome to Rivage. I\'m your concierge — I can help you plan the whole trip. What\'s the occasion?' },
-  // 2 — the trip-planning capture exchange
-  { who:'user', html:'It\'s our <b>10th anniversary</b> — a trip for just the two of us. I\'d love an <b>anniversary suite with a view</b>, and somewhere special for dinner. Late September, if that works.' },
-  { who:'ai',  html:'A milestone — congratulations. I\'ve noted a <b>suite with a view</b> and our <b>signature dining</b> for two, around <b>late September</b>. Shall I send confirmations by <b>email and SMS</b>, set you up in the <b>app</b>, and add <b>Rivage Cercle</b> for celebration perks?' },
-  { who:'user', html:'Yes to all of it.' },
+  { who:'ai', html:'She lands on rivage.com and we recognize her via <b>Merkury — no login</b>, carried from @cami.travels. Opening the concierge so she can plan the whole trip.' },
+  // 2 — captured from the trip-planning chat
+  { who:'ai', html:'Captured from the trip-planning chat: <b>10th anniversary, trip for two</b>, a <b>suite with a view + signature dining</b>, <b>late September</b>. She opted into email, SMS, the app and <b>Cercle</b> — building a celebration profile.' },
   // 3 — the site composes around her celebration
-  { who:'ai',  html:'Done — you\'re opted into <b>email, SMS, the app and Cercle</b>. I\'ve composed rivage.com around your celebration: the suite from the Reel, signature dining, a sunset moment. Sign in any time to see your held perks.' },
-  // 4 — one more ask
-  { who:'user', html:'One more thing — can you arrange a small <b>surprise for my partner at the sunset dinner</b>?' },
-  { who:'ai',  html:'A lovely idea. I\'ll arrange a champagne toast and a handwritten note timed to golden hour at Le Rivage, and brief the team so it\'s seamless. It\'s on your plan — nothing more to do.' },
+  { who:'ai', html:'Composing rivage.com around the occasion — the suite from the Reel, signature dining, a sunset moment — and surfacing her held <b>Cercle perks</b>. Personalization, not a generic homepage.' },
+  // 4 — the specific ask, captured
+  { who:'ai', html:'New signal from the chat: a request for a <b>surprise at the sunset dinner</b>. Logged against the plan and routed to the on-property team — <b>intent</b>, not a support ticket.' },
   // 5 — one complete profile
-  { who:'ai',  html:'Everything is now <b>one complete profile</b> — the occasion, the preferences, party of two, dates, channels, Cercle loyalty, the Merkury inbound media, and the sunset-dinner surprise.' },
+  { who:'ai', html:'Everything assembles into <b>one complete profile</b> — occasion, preferences, party of two, dates, channels, Cercle loyalty, the Merkury inbound media, and the sunset-dinner surprise.' },
   // 6 — 1:1 journey, built by an agent
-  { who:'ai',  html:'An agent just composed her celebration — <b>pre-arrival note, sunset dinner with the surprise, spa, in-stay touches</b> — sequenced across email, app, SMS and media. Decided <b>1:1 for Elena</b>, not a segment.' },
+  { who:'ai', html:'An agent composed her celebration — <b>pre-arrival note, sunset dinner with the surprise, spa, in-stay touches</b> — sequenced across email, app, SMS and media. Decided <b>1:1 for Elena</b>, not a segment.' },
 ];
+
+// On-site chat widget (rivage.com) — the customer-facing concierge thread.
+// Keyed by beat index; only beats where Elena is conversing have entries.
+// Each beat that opens the widget shows the cumulative thread up to that point.
+const CHAT = {
+  // beat 2 — trip-planning capture
+  2: [
+    { who:'ai',   html:'Welcome to Rivage. I\'m your concierge — I can help you plan the whole trip. What\'s the occasion?' },
+    { who:'user', html:'It\'s our <b>10th anniversary</b> — a trip for just the two of us. I\'d love an <b>anniversary suite with a view</b>, and somewhere special for dinner. Late September, if that works.' },
+    { who:'ai',   html:'A milestone — congratulations. I\'ve noted a <b>suite with a view</b> and our <b>signature dining</b> for two, around <b>late September</b>. Shall I send confirmations by <b>email and SMS</b>, set you up in the <b>app</b>, and add <b>Rivage Cercle</b> for celebration perks?' },
+    { who:'user', html:'Yes to all of it.' },
+    { who:'ai',   html:'All set — you\'re confirmed and opted in. I\'ll have rivage.com ready around your celebration.' },
+  ],
+  // beat 4 — the specific ask
+  4: [
+    { who:'ai',   html:'Anything else I can arrange for the trip?' },
+    { who:'user', html:'One more thing — can you arrange a small <b>surprise for my partner at the sunset dinner</b>?' },
+    { who:'ai',   html:'A lovely idea. I\'ll arrange a champagne toast and a handwritten note timed to golden hour at Le Rivage, and brief the team so it\'s seamless. It\'s on your plan — nothing more to do.' },
+  ],
+};
 
 const BEATS = [
   { // 0 — Social first touch
@@ -340,41 +378,41 @@ const BEATS = [
     known:false, facts:[],
     msgsTo:0, kicker:'Social', caption:'It starts on social — a creator\'s Reel of the suite at sunset.',
   },
-  { // 1 — Arrives + meets the concierge
-    surface:'site', host:'rivage.com', url:'', page:'home',
+  { // 1 — Arrives + recognized (concierge available, chat closed)
+    surface:'site', host:'rivage.com', url:'', page:'home', chat:false,
     recog:true, loyalty:false, foryou:false, heroComposed:false,
     known:false, facts:['fMerkury'],
     msgsTo:1, kicker:'Concierge', caption:'She comes to plan — and meets the concierge.',
   },
-  { // 2 — Trip-planning conversation captures occasion + preferences
-    surface:'site', host:'rivage.com', url:'/concierge', page:'home',
+  { // 2 — Trip-planning conversation (on-site chat) captures occasion + preferences
+    surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     recog:true, loyalty:false, foryou:false, heroComposed:false,
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent'],
-    msgsTo:4, kicker:'Trip planning', caption:'Trip planning — the occasion and the preferences, captured in conversation.',
+    msgsTo:2, kicker:'Trip planning', caption:'Trip planning — the occasion and the preferences, captured in the on-site chat.',
   },
-  { // 3 — The site composes around her celebration
-    surface:'site', host:'rivage.com', url:'', page:'home',
+  { // 3 — The site composes around her celebration (chat closed)
+    surface:'site', host:'rivage.com', url:'', page:'home', chat:false,
     recog:true, loyalty:true, foryou:true, heroComposed:true,
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent'],
-    msgsTo:5, kicker:'Personalized', caption:'The experience composes around her celebration.',
+    msgsTo:3, kicker:'Personalized', caption:'The experience composes around her celebration.',
   },
-  { // 4 — One more ask
-    surface:'site', host:'rivage.com', url:'/concierge', page:'home',
+  { // 4 — The specific ask (on-site chat)
+    surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     recog:true, loyalty:true, foryou:true, heroComposed:true,
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
-    msgsTo:7, kicker:'One more ask', caption:'One more ask — a surprise for the occasion.',
+    msgsTo:4, kicker:'One more ask', caption:'One more ask — a surprise for the occasion, in the on-site chat.',
   },
   { // 5 — One complete profile
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/profiles/elena',
     opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Elena Rossi', opsRun:'Resolved',
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
-    msgsTo:8, kicker:'Profile', caption:'One complete profile — Elena\'s celebration, understood.',
+    msgsTo:5, kicker:'Profile', caption:'One complete profile — Elena\'s celebration, understood.',
   },
   { // 6 — A 1:1 journey, built by an agent (complete)
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · 1:1', opsRun:'Composed · 1:1',
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
-    msgsTo:9, kicker:'1:1 journey', caption:'An agent composes her celebration — 1:1, for Elena, not a segment.',
+    msgsTo:6, kicker:'1:1 journey', caption:'An agent composes her celebration — 1:1, for Elena, not a segment.',
   },
 ];
 
@@ -420,6 +458,19 @@ function renderBeat(index, direction) {
   $('loyaltyBanner').classList.toggle('is-on', !!b.loyalty);
   $('forYou').classList.toggle('is-on', !!b.foryou);
 
+  // ── On-site chat widget (customer-facing concierge thread) ──
+  $('siteChat').classList.toggle('is-open', !!b.chat);
+  const sb = $('schatBody');
+  sb.innerHTML = '';
+  const thread = (b.chat && CHAT[i]) ? CHAT[i] : [];
+  thread.forEach((line) => {
+    const bub = document.createElement('div');
+    bub.className = 'sbub sbub--' + line.who;
+    bub.innerHTML = line.html;
+    sb.appendChild(bub);
+  });
+  requestAnimationFrame(() => { sb.scrollTop = sb.scrollHeight; });
+
   const hero = b.heroComposed ? HERO.composed : HERO.plain;
   $('heroKicker').textContent = hero.kicker;
   $('heroTitle').textContent = hero.title;
@@ -446,19 +497,17 @@ function renderBeat(index, direction) {
     $(id).classList.toggle('is-on', filled.has(id));
   });
 
-  // ── Concierge transcript (rebuilt cumulative every call) ──
+  // ── Agentic context (rebuilt cumulative every call) — AI reasoning only ──
   const t = $('transcript');
   t.innerHTML = '';
   for (let k = 0; k <= b.msgsTo && k < LINE.length; k++) {
     const line = LINE[k];
     const row = document.createElement('div');
     row.className = 'msg msg--' + line.who + (k === b.msgsTo ? ' is-latest' : '');
-    if (line.who === 'ai') {
-      const orb = document.createElement('div');
-      orb.className = 'msg__orb';
-      orb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>';
-      row.appendChild(orb);
-    }
+    const orb = document.createElement('div');
+    orb.className = 'msg__orb';
+    orb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>';
+    row.appendChild(orb);
     const bub = document.createElement('div');
     bub.className = 'msg__bub';
     bub.innerHTML = line.html;
