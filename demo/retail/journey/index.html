@@ -20,7 +20,7 @@
           <div class="chrome__dots"><i></i><i></i><i></i></div>
           <div class="chrome__bar">
             <svg class="chrome__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span class="chrome__url"><b id="urlHost">nordhem-clienteling.app</b><span id="urlPath"></span></span>
+            <span class="chrome__url"><b id="urlHost">social</b><span id="urlPath"></span></span>
           </div>
           <div class="chrome__tools">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
@@ -30,7 +30,42 @@
         <!-- Viewport hosts every surface; one is active at a time -->
         <div class="viewport">
 
-          <!-- ═════════ SURFACE A: in-store clienteling app ═════════ -->
+          <!-- ═════════ SURFACE A: social feed (new-mover ad) ═════════ -->
+          <div id="appSocial" class="app app--social">
+            <div class="sof">
+              <div class="sof__top">
+                <span class="sof__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></span>
+                <span class="sof__tabs"><i class="is-on"></i><i></i><i></i></span>
+                <span class="sof__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>
+              </div>
+              <div class="sof__feed">
+                <article class="post">
+                  <div class="post__head">
+                    <span class="post__ava"><span class="post__crest">N</span></span>
+                    <div class="post__id"><span class="post__user">Nordhem</span><span class="post__spon">Sponsored · New York</span></div>
+                    <span class="post__dots">···</span>
+                  </div>
+                  <div class="post__media">
+                    <img class="post__img" src="../../../assets/photos/nordhem/living.jpg" alt="Styled living room" />
+                    <span class="post__ad">Ad</span>
+                  </div>
+                  <div class="post__actions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+                    <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="post__cap"><b>Nordhem</b> New place, empty rooms? Start with the sofa — visit our Brooklyn showroom and we'll help you build the whole room. <span class="post__tag">#newhome #brooklyn</span></div>
+                  <div class="post__cta">
+                    <span class="post__shop">Find the Brooklyn showroom</span>
+                    <span class="post__tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Directions</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═════════ SURFACE B: in-store clienteling app ═════════ -->
           <div id="appClient" class="app app--client">
             <div class="cl">
               <!-- top bar -->
@@ -77,7 +112,7 @@
                       <span class="notechip" id="attrApt">Furnishing a new apartment</span>
                       <span class="notechip" id="attrBk">New to Brooklyn</span>
                     </div>
-                    <p class="notebody">Came in overwhelmed by the choices — wants help making an empty apartment feel like home.</p>
+                    <p class="notebody">Came in from a Nordhem ad — just moved, the place is empty. Wants help making it feel like home.</p>
                   </div>
 
                   <!-- in-store order -->
@@ -92,9 +127,8 @@
                       <span class="orderrow__amt">$1,490</span>
                     </div>
                     <div class="orderopts">
-                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email + SMS opt-in</span>
-                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>App download · track shipping</span>
-                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Nordhem Members · 149 pts</span>
+                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email + app opt-in</span>
+                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Joined Nordhem Members · 149 pts</span>
                     </div>
                   </div>
                 </div>
@@ -102,8 +136,8 @@
                 <!-- RIGHT: associate next-best rail -->
                 <div class="cl__rail">
                   <div class="railcard">
-                    <div class="railcard__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>For the associate</div>
-                    <p id="railTip" class="railcard__tip">New face on the floor — no record yet. Greet, help her get oriented, and capture what matters if she's open to it.</p>
+                    <div class="railcard__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
+                    <p id="railTip" class="railcard__tip">New face on the floor — came in off the ad, no record yet. Greet her, help her get oriented, capture what matters if she's open to it.</p>
                   </div>
                   <div id="railAttr" class="railcard railcard--soft">
                     <div class="railcard__h2">Meaningful attributes</div>
@@ -117,56 +151,64 @@
             </div>
           </div>
 
-          <!-- ═════════ SURFACE B: delivered confirmation (time marker) ═════════ -->
-          <div id="appDelivered" class="app app--marker">
-            <div class="marker">
-              <img class="marker__img" src="../../../assets/photos/nordhem/living2.jpg" alt="Living room with sofa" />
-              <div class="marker__scrim"></div>
-              <div class="marker__body">
-                <span class="marker__chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Delivered</span>
-                <h1 class="marker__title">A few weeks later</h1>
-                <p class="marker__sub">The Fjäll sofa arrived. Emma loves it — but the apartment around it still feels bare.</p>
-                <span class="marker__time">Order #NH-40912 · delivered to Brooklyn</span>
+          <!-- ═════════ SURFACE C: email client (finish the room) ═════════ -->
+          <div id="appEmail" class="app app--email">
+            <div class="mailc">
+              <div class="mailc__top">
+                <span class="mailc__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
+                <span class="mailc__tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                <span class="mailc__tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></span>
+              </div>
+              <div class="mailc__scroll">
+                <div class="mailmsg">
+                  <h1 class="mailmsg__subj">Finish the room — picks that go with your new sofa</h1>
+                  <div class="mailmsg__from">
+                    <span class="mailmsg__ava"><span class="mailmsg__crest">N</span></span>
+                    <div class="mailmsg__who">
+                      <span class="mailmsg__name">Nordhem <span class="mailmsg__addr">&lt;hello@nordhem.com&gt;</span></span>
+                      <span class="mailmsg__to">to Emma · delivery in progress</span>
+                    </div>
+                    <span class="mailmsg__time">now</span>
+                  </div>
+
+                  <div class="mailbody">
+                    <div class="mailhero">
+                      <img class="mailhero__img" src="../../../assets/photos/nordhem/living2.jpg" alt="Styled living room" />
+                      <div class="mailhero__scrim"></div>
+                      <div class="mailhero__copy">
+                        <span class="mailhero__k">While your sofa's on the way</span>
+                        <h2 class="mailhero__t">Two pieces to finish the room</h2>
+                      </div>
+                    </div>
+                    <p class="mailcopy">Hi Emma — your Fjäll sofa is on its way. Here are two picks chosen to sit right beside it.</p>
+                    <div class="mailrecs">
+                      <article class="mailrec" id="mailRec1">
+                        <img class="mailrec__img" src="../../../assets/photos/nordhem/living.jpg" alt="End tables" />
+                        <div class="mailrec__b">
+                          <span class="mailrec__tag">Matches your sofa</span>
+                          <h3 class="mailrec__name">Birk End Tables</h3>
+                          <p class="mailrec__meta">Solid ash · pair · $240</p>
+                        </div>
+                        <span class="mailrec__tap">View ›</span>
+                      </article>
+                      <article class="mailrec">
+                        <img class="mailrec__img" src="../../../assets/photos/nordhem/bedroom.jpg" alt="Floor lamp" />
+                        <div class="mailrec__b">
+                          <span class="mailrec__tag">Warm it up</span>
+                          <h3 class="mailrec__name">Sol Floor &amp; Table Lights</h3>
+                          <p class="mailrec__meta">Linen shade · from $180</p>
+                        </div>
+                        <span class="mailrec__tap">View ›</span>
+                      </article>
+                    </div>
+                    <span class="mailcta">Shop the room</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- ═════════ SURFACE C: social feed (influencer ad) ═════════ -->
-          <div id="appSocial" class="app app--social">
-            <div class="sof">
-              <div class="sof__top">
-                <span class="sof__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></span>
-                <span class="sof__tabs"><i class="is-on"></i><i></i><i></i></span>
-                <span class="sof__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>
-              </div>
-              <div class="sof__feed">
-                <article class="post">
-                  <div class="post__head">
-                    <span class="post__ava">@</span>
-                    <div class="post__id"><span class="post__user">studio.aveline</span><span class="post__spon">Sponsored · Paid partnership with Nordhem</span></div>
-                    <span class="post__dots">···</span>
-                  </div>
-                  <div class="post__media">
-                    <img class="post__img" src="../../../assets/photos/nordhem/living.jpg" alt="Styled living room" />
-                    <span class="post__ad">Ad</span>
-                  </div>
-                  <div class="post__actions">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
-                    <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                  </div>
-                  <div class="post__cap"><b>studio.aveline</b> One sofa, a whole room. How I finished my tiny Brooklyn living room with @nordhem — end tables, lamps, the lot. <span class="post__tag">#newapartment #nordhempartner</span></div>
-                  <div class="post__cta">
-                    <span class="post__shop">Shop this room at nordhem.com</span>
-                    <span class="post__tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 11V8a2 2 0 0 1 4 0v3"/><path d="M17 11a2 2 0 0 1 4 0v3a7 7 0 0 1-7 7h-1.5a5 5 0 0 1-3.6-1.5L5 16a2 2 0 0 1 3-2.6l1 .9V6a2 2 0 0 1 4 0"/></svg>Tap</span>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-
-          <!-- ═════════ SURFACE D: nordhem.com (recognized home) ═════════ -->
+          <!-- ═════════ SURFACE D: nordhem.com (recognized + on-site chat) ═════════ -->
           <div id="appSite" class="app app--site">
             <nav class="snav">
               <span class="snav__brand">NORDHEM</span>
@@ -180,33 +222,32 @@
             <!-- recognition strip -->
             <div id="recog" class="recog">
               <span class="recog__dot"></span>
-              <span class="recog__txt"><b>Welcome, Emma.</b> Recognized from your visit — no login needed.</span>
-              <span class="recog__src">via Merkury · from studio.aveline</span>
+              <span class="recog__txt"><b>Welcome, Emma.</b> Recognized from your email — no login needed.</span>
+              <span class="recog__src">via Merkury</span>
             </div>
 
             <div id="siteBody" class="site-body">
-              <!-- PAGE: personalized home -->
-              <section id="pgHome" class="page">
+              <section class="page is-on">
                 <div class="shero">
-                  <img class="shero__img" id="heroImg" src="../../../assets/photos/nordhem/living.jpg" alt="Nordhem living room" />
+                  <img class="shero__img" src="../../../assets/photos/nordhem/living.jpg" alt="Nordhem living room" />
                   <div class="shero__scrim"></div>
                   <div class="shero__copy">
-                    <span class="shero__kicker" id="heroKicker">The look you saved</span>
-                    <h1 class="shero__title" id="heroTitle">Finish the room from @studio.aveline</h1>
-                    <p class="shero__sub" id="heroSub">The exact pieces that completed her Brooklyn living room — styled around a sofa just like yours.</p>
-                    <span class="shero__cta" id="heroCta">Shop the room</span>
+                    <span class="shero__kicker">The room you're building</span>
+                    <h1 class="shero__title">Finish around your new sofa</h1>
+                    <p class="shero__sub">The exact pieces that complete a small Brooklyn living room — styled around a sofa just like yours.</p>
+                    <span class="shero__cta">Shop the room</span>
                   </div>
                 </div>
 
                 <!-- loyalty banner -->
-                <div id="loyaltyBanner" class="loyb">
+                <div class="loyb">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.2 1.2 6L12 16.8 6.3 19l1.2-6L3 8.8 9 8z"/></svg>
-                  <span class="loyb__txt"><b>Rewards waiting</b> to help furnish your apartment.</span>
+                  <span class="loyb__txt"><b>149 points waiting</b> to help furnish your apartment.</span>
                   <span class="loyb__cta">Log in to see</span>
                 </div>
 
                 <!-- complete-the-room rail -->
-                <div id="forYou" class="foryou">
+                <div class="foryou">
                   <div class="foryou__head">
                     <span class="foryou__title">Complete the room</span>
                     <span class="foryou__note">End tables &amp; lighting to match the sofa you already own</span>
@@ -231,43 +272,33 @@
                   </div>
                 </div>
               </section>
+            </div>
 
-              <!-- PAGE: advisor (chat happens in right pane) -->
-              <section id="pgAdvisor" class="page">
-                <div class="advstage">
-                  <img class="advstage__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="Nordhem kitchen" />
-                  <div class="advstage__scrim"></div>
-                  <div class="advstage__copy">
-                    <span class="advstage__kicker">Nordhem Advisor</span>
-                    <h2 class="advstage__title">Kitchen, sorted</h2>
-                    <p class="advstage__sub">Ask about pieces, delivery, and install — answers in the panel on the right.</p>
-                  </div>
+            <!-- ON-SITE CHAT WIDGET (customer-facing, anchored bottom-right) -->
+            <div id="siteChat" class="schat">
+              <div class="schat__head">
+                <span class="schat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></span>
+                <div class="schat__id">
+                  <span class="schat__name">Nordhem Advisor</span>
+                  <span class="schat__status"><i></i>Online</span>
                 </div>
-                <div class="advgrid">
-                  <article class="scard">
-                    <img class="scard__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="" />
-                    <div class="scard__body">
-                      <span class="scard__tag">Small-space pick</span>
-                      <h3 class="scard__name">Skär Kitchen Island</h3>
-                      <p class="scard__meta">Oak top · storage both sides</p>
-                      <span class="scard__price">$640</span>
-                    </div>
-                  </article>
-                  <article class="scard">
-                    <img class="scard__img" src="../../../assets/photos/nordhem/dining.jpg" alt="" />
-                    <div class="scard__body">
-                      <span class="scard__tag">Seats four</span>
-                      <h3 class="scard__name">Fjord Dining Set</h3>
-                      <p class="scard__meta">Ash table + 2 benches</p>
-                      <span class="scard__price">$720</span>
-                    </div>
-                  </article>
-                </div>
-              </section>
+                <span class="schat__min">—</span>
+              </div>
+              <div class="schat__body">
+                <div class="sbub sbub--ai">Hi Emma — anything I can help you find?</div>
+                <div class="sbub sbub--user">Now that I've got the living room sorted, I want to do something with my kitchen. It's pretty small though.</div>
+                <div class="sbub sbub--ai">Small kitchens are our favourite. The <b>Skär Island</b> is built for tight floor plans — storage on both sides, oak top. Want a couple of layouts that fit a Brooklyn galley?</div>
+                <div class="sbub sbub--user">Yes please — and something to eat at without taking up much room.</div>
+                <div class="sbub sbub--ai">The <b>Fjord</b> bench set tucks right under a table. I'll pull both up for you.</div>
+              </div>
+              <div class="schat__compose">
+                <span class="schat__inp">Message Nordhem…</span>
+                <span class="schat__send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>
+              </div>
             </div>
           </div>
 
-          <!-- ═════════ SURFACE E: backend ops (profile + journey) ═════════ -->
+          <!-- ═════════ SURFACE E: backend ops ═════════ -->
           <div id="appOps" class="app app--ops">
             <div class="ops">
               <aside class="ops__side">
@@ -294,83 +325,137 @@
 
                 <div class="ops__work">
 
-                  <!-- VIEW: complete profile -->
+                  <!-- VIEW: rich context handed to an agent -->
                   <div id="vProfile" class="opsview">
                     <div class="prof">
                       <div class="prof__head">
                         <div class="prof__avatar">E</div>
                         <div>
                           <div class="prof__name">Emma Lindqvist</div>
-                          <div class="prof__sub">One unified profile · in-store + online + social · ID 0.97 confidence</div>
+                          <div class="prof__sub">One unified profile · social + in-store + email + site · ID 0.97 confidence</div>
                         </div>
-                        <span class="prof__chip">Consent: Email · SMS · App</span>
+                        <span class="prof__chip">High value · consented</span>
                       </div>
                       <div class="prof__grid">
-                        <div class="pfield"><span class="pfield__k">Life stage</span><span class="pfield__v">New apartment · furnishing a first home</span></div>
+                        <div class="pfield"><span class="pfield__k">Life stage</span><span class="pfield__v">Recent mover · furnishing a new apartment</span></div>
                         <div class="pfield"><span class="pfield__k">Location</span><span class="pfield__v">New to Brooklyn, NY</span></div>
                         <div class="pfield"><span class="pfield__k">Purchase</span><span class="pfield__v">Fjäll 3-Seat Sofa · $1,490 · in store</span></div>
                         <div class="pfield"><span class="pfield__k">Loyalty</span><span class="pfield__v">Nordhem Members · 149 pts</span></div>
-                        <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · Social</span></div>
-                        <div class="pfield"><span class="pfield__k">Inbound media</span><span class="pfield__v">Merkury · paid social @studio.aveline</span></div>
-                        <div class="pfield"><span class="pfield__k">Browse + chat</span><span class="pfield__v">Complete-the-room · kitchen inquiry</span></div>
-                        <div class="pfield pfield--flag"><span class="pfield__k">Delivery constraint</span><span class="pfield__v">3rd floor · no elevator · stair-carry + install</span></div>
+                        <div class="pfield"><span class="pfield__k">Interest signal</span><span class="pfield__v">Kitchen — small-space, from on-site chat</span></div>
+                        <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · Media</span></div>
+                        <div class="pfield pfield--flag"><span class="pfield__k">Value tier</span><span class="pfield__v">High value · actionable context → media in play</span></div>
+                        <div class="pfield"><span class="pfield__k">Acquisition</span><span class="pfield__v">Paid social → in store (Merkury)</span></div>
                       </div>
                       <div class="prov-row">
+                        <span class="provb provb--mer">paid media</span>
                         <span class="provb provb--store">in store</span>
-                        <span class="provb provb--mer">Merkury</span>
-                        <span class="provb provb--web">site + chat</span>
-                        <span class="provb provb--agent">agent · unified</span>
+                        <span class="provb provb--web">email + site + chat</span>
+                        <span class="provb provb--agent">handed to agent</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- VIEW: agent-built 1:1 journey -->
+                  <!-- VIEW: agent-designed 6-week multichannel journey -->
                   <div id="vJourney" class="opsview">
                     <div class="runhead">
                       <div class="runhead__orb"><span></span></div>
                       <div>
-                        <div class="runhead__title">Agent built a journey for Emma</div>
-                        <div class="runhead__sub">Decided 1:1 from her complete profile — not a segment, not 1:many</div>
+                        <div class="runhead__title">Agent designed a 6-week journey for Emma</div>
+                        <div class="runhead__sub">Multi-touch · email · SMS · push · media — composed 1:1 from her profile</div>
                       </div>
-                      <span class="runhead__live">1:1 · for Emma</span>
+                      <span class="runhead__live">1:1 · 6 weeks</span>
                     </div>
 
-                    <div class="jtheme">“Build out your new apartment.”</div>
-
-                    <div class="jflow">
-                      <div class="jnode email">
-                        <span class="jnode__tag">Email</span>
-                        <span class="jnode__name">Complete the room</span>
-                        <span class="jnode__meta">End tables + lights to match her sofa</span>
+                    <div class="jtl">
+                      <div class="jweek">
+                        <div class="jweek__lab"><span class="jweek__n">Wk 1</span></div>
+                        <div class="jmsg jmsg--email">
+                          <span class="jmsg__chan">Email</span>
+                          <span class="jmsg__t">Apartment kitchens that wow</span>
+                          <span class="jmsg__p">Small-space layouts built around the Skär Island.</span>
+                        </div>
                       </div>
-                      <span class="jarrow">→</span>
-                      <div class="jnode app">
-                        <span class="jnode__tag">App</span>
-                        <span class="jnode__name">Kitchen design pros</span>
-                        <span class="jnode__meta">Matched to her · book a free plan</span>
+                      <div class="jweek">
+                        <div class="jweek__lab"><span class="jweek__n">Wk 2</span></div>
+                        <div class="jmsg jmsg--push">
+                          <span class="jmsg__chan">Push</span>
+                          <span class="jmsg__t">End tables that match your sofa</span>
+                          <span class="jmsg__p">The Birk pair, back in oatmeal. Tap to see in your room.</span>
+                        </div>
                       </div>
-                      <span class="jarrow">→</span>
-                      <div class="jnode sms">
-                        <span class="jnode__tag">SMS</span>
-                        <span class="jnode__name">Delivery + install</span>
-                        <span class="jnode__meta">3rd floor, no elevator — handled</span>
+                      <div class="jweek">
+                        <div class="jweek__lab"><span class="jweek__n">Wk 3</span></div>
+                        <div class="jmsg jmsg--media">
+                          <span class="jmsg__chan">Media</span>
+                          <span class="jmsg__t">Paid social · kitchen ideas</span>
+                          <span class="jmsg__p">Retarget on social — she's high value with live intent.</span>
+                        </div>
                       </div>
-                      <span class="jarrow">→</span>
-                      <div class="jnode media">
-                        <span class="jnode__tag">Media</span>
-                        <span class="jnode__name">Suppress acquisition</span>
-                        <span class="jnode__meta">She's a customer — retarget the room, not the brand</span>
+                      <div class="jweek">
+                        <div class="jweek__lab"><span class="jweek__n">Wk 4</span></div>
+                        <div class="jmsg jmsg--sms">
+                          <span class="jmsg__chan">SMS</span>
+                          <span class="jmsg__t">Your 149 points + free kitchen plan</span>
+                          <span class="jmsg__p">Book a 20-min plan with a Nordhem designer.</span>
+                        </div>
+                      </div>
+                      <div class="jweek">
+                        <div class="jweek__lab"><span class="jweek__n">Wk 5</span></div>
+                        <div class="jmsg jmsg--email">
+                          <span class="jmsg__chan">Email</span>
+                          <span class="jmsg__t">Seats four, fits a galley</span>
+                          <span class="jmsg__p">The Fjord bench set — styled for a small Brooklyn kitchen.</span>
+                        </div>
+                      </div>
+                      <div class="jweek">
+                        <div class="jweek__lab"><span class="jweek__n">Wk 6</span></div>
+                        <div class="jmsg jmsg--push">
+                          <span class="jmsg__chan">Push</span>
+                          <span class="jmsg__t">Members-only: 2x points this week</span>
+                          <span class="jmsg__p">Finish the kitchen and double your points.</span>
+                        </div>
                       </div>
                     </div>
 
                     <div class="jwhy">
-                      <div class="jwhy__h">Why these, for Emma</div>
-                      <ul class="jwhy__list">
-                        <li><b>New apartment, new to Brooklyn</b> → whole-home build-out, not one product</li>
-                        <li><b>Owns the sofa</b> → end tables + lights that match, from the look she saved</li>
-                        <li><b>Asked about the kitchen</b> → real design pros, matched and booked</li>
-                        <li><b>3rd floor, no elevator</b> → install promised up front, by SMS</li>
-                      </ul>
+                      <div class="jwhy__h">Why media is in the mix — the agent's call</div>
+                      <p class="jwhy__p"><b>She's high value with actionable context</b> — recent mover, couch buyer, live kitchen intent, fully consented. That's why the agent <b>included paid media</b> alongside owned channels. No transactional delivery or shipping messages — this journey builds the relationship.</p>
+                    </div>
+                  </div>
+
+                  <!-- VIEW: branch — what's next -->
+                  <div id="vBranch" class="opsview">
+                    <div class="runhead">
+                      <div class="runhead__orb"><span></span></div>
+                      <div>
+                        <div class="runhead__title">Then the agent decides what's next</div>
+                        <div class="runhead__sub">At the end of the 6 weeks, the journey forks on Emma's behaviour</div>
+                      </div>
+                      <span class="runhead__live">Branch · agentic</span>
+                    </div>
+
+                    <div class="brfork">
+                      <div class="brstem">After 6 weeks</div>
+                      <div class="brcols">
+                        <div class="brcol brcol--buy">
+                          <div class="brcol__h"><span class="brcol__cond">If she buys</span><span class="brcol__arrow">→ Loyalty journey</span></div>
+                          <ul class="brlist">
+                            <li><b>Welcome to Members</b> — points balance, what they unlock</li>
+                            <li><b>Next-best for a loyal customer</b> — bedroom, lighting to match</li>
+                            <li><b>Early access</b> — new arrivals, members-only drops</li>
+                            <li><b>Points nudges</b> — keep her active and rewarded</li>
+                          </ul>
+                        </div>
+                        <div class="brcol brcol--re">
+                          <div class="brcol__h"><span class="brcol__cond">If she doesn't</span><span class="brcol__arrow">→ Next-best journey</span></div>
+                          <ul class="brlist">
+                            <li><b>Re-engage</b> — new angle: budget-friendly kitchen starters</li>
+                            <li><b>Fresh inspiration</b> — small-space rooms she hasn't seen</li>
+                            <li><b>Free design consult</b> — lower the barrier, get her back</li>
+                            <li><b>Win-back media</b> — one more relevant touch on social</li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -383,7 +468,7 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ RIGHT: profile + advisor ═══════════════════ -->
+    <!-- ═══════════════════ RIGHT: profile + agentic narration ═══════════════════ -->
     <aside class="agent">
 
       <!-- profile card -->
@@ -397,19 +482,19 @@
         </div>
         <div class="profile__facts">
           <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">Emma Lindqvist · captured in store</span></div>
-          <div id="fLife" class="fact"><span class="fact__k">Life stage</span><span class="fact__v">New apartment · new to Brooklyn</span></div>
+          <div id="fLife" class="fact"><span class="fact__k">Life stage</span><span class="fact__v">Recent mover · new to Brooklyn</span></div>
           <div id="fConsent" class="fact"><span class="fact__k">Consent</span><span class="fact__v">Email · SMS · App · opted in</span></div>
           <div id="fPurchase" class="fact"><span class="fact__k">Purchase</span><span class="fact__v">Fjäll Sofa · $1,490 · Members 149 pts</span></div>
-          <div id="fMerkury" class="fact"><span class="fact__k">Merkury</span><span class="fact__v">Recognized online · inbound @studio.aveline</span></div>
-          <div id="fChat" class="fact"><span class="fact__k">Signals</span><span class="fact__v">Kitchen · delivery · 3rd floor, no elevator</span></div>
+          <div id="fMerkury" class="fact"><span class="fact__k">Merkury</span><span class="fact__v">Recognized on site · no login</span></div>
+          <div id="fChat" class="fact"><span class="fact__k">Intent</span><span class="fact__v">Kitchen · small-space · captured from chat</span></div>
         </div>
       </div>
 
-      <!-- advisor transcript -->
+      <!-- agentic narration (NO customer dialogue) -->
       <div class="chat">
         <div class="chat__head">
           <div class="chat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
-          <div class="chat__id"><span class="chat__name">Nordhem Advisor</span><span class="chat__status"><i></i>Online · store, site &amp; app</span></div>
+          <div class="chat__id"><span class="chat__name">Agentic context</span><span class="chat__status"><i></i>Reasoning across signals</span></div>
         </div>
         <div id="transcript" class="transcript"></div>
       </div>
@@ -418,8 +503,8 @@
       <div class="agent__foot">
         <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
-          <span id="capKicker" class="cap__kicker">In store</span>
-          <span id="capText" class="cap__text">A new walk-in, no record yet.</span>
+          <span id="capKicker" class="cap__kicker">Social · paid media</span>
+          <span id="capText" class="cap__text">Targeted as a recent mover — an ad that drives her in store.</span>
         </div>
       </div>
 
@@ -438,98 +523,99 @@ const $ = (id) => document.getElementById(id);
    from the BEATS table each call — fully reversible, no element
    depends on prior-beat DOM. Every visual is toggled on AND off.
 
-   Surfaces:  client | delivered | social | site | ops
-   Right pane: profile facts (cumulative) + advisor transcript
-   (cumulative) + progress dots + caption.
+   Surfaces:   social | client | email | site | ops
+   On-site chat: lives INSIDE the site surface (customer-facing).
+   Right rail:  profile facts (cumulative) + AGENTIC narration only
+                (no customer dialogue) + progress dots + caption.
    ───────────────────────────────────────────────────────────────── */
 
-// Cumulative advisor transcript — beat N shows lines [0..msgsTo].
+// Cumulative agentic-narration log — beat N shows lines [0..msgsTo].
+// These are the AI's INTERNAL reasoning/flags, never Emma's words.
 const LINE = [
-  // 0
-  { who:'sys', html:'In store · Brooklyn showroom — a new walk-in, nothing on file.' },
-  // 1
-  { who:'ai',  html:'From the associate\'s notes I\'m flagging two meaningful attributes: <b>furnishing a new apartment</b> and <b>new to Brooklyn</b>. Profile resolves to <b>Emma</b>.' },
-  // 2
-  { who:'ai',  html:'Couch ordered in store. <b>Email, SMS, app, and loyalty</b> all opted in — Emma is now one connected profile across every channel.' },
-  // 3
-  { who:'ai',  html:'A few weeks on — sofa delivered, she loves it. The room around it is still empty, so there\'s a clear reason to come back.' },
-  // 4
-  { who:'ai',  html:'First touch back is on <b>social</b> — an influencer\'s post, a Nordhem paid partnership. Owned and paid are one inbound signal here.' },
-  // 5
-  { who:'ai',  html:'She lands on nordhem.com and we recognize her instantly via <b>Merkury — no login</b>. We know the <b>inbound media</b>, so the homepage flips to the room she saw.' },
-  // 6 — active exchange
-  { who:'user', html:'Can you help me with kitchen stuff? And do you deliver and install — I\'m on the 3rd floor with no elevator.' },
-  { who:'ai',  html:'Absolutely. The <b>Skär Island</b> fits a small kitchen and ships flat-pack. Delivery includes <b>stair carry and in-home install</b> — I\'ve noted <b>3rd floor, no elevator</b> so the crew comes prepared. Want a free kitchen plan?' },
-  // 7
-  { who:'ai',  html:'Everything we\'ve learned is now <b>one complete profile</b> — in-store attributes, the couch, channels, loyalty, the Merkury inbound media, her browse + chat, and the 3rd-floor delivery constraint.' },
-  // 8
-  { who:'ai',  html:'An agent just built her a journey — <b>“build out your new apartment,”</b> sequenced across email, app, SMS and media. Decided <b>1:1 for Emma</b>, not a segment.' },
+  // 0 — social ad
+  { who:'ai', html:'Targeting a <b>recent-mover, social-forward audience</b>. Paid media opens the relationship — the goal is to drive her into the Brooklyn showroom.' },
+  // 1 — in store, captured
+  { who:'ai', html:'Captured in store. Flagging two meaningful attributes — <b>furnishing a new apartment</b> and <b>new to Brooklyn</b>. Identity + consent on file; resolves to <b>Emma</b>.' },
+  // 2 — orders a couch
+  { who:'ai', html:'Couch ordered. Email + app opt-in, and she <b>joined loyalty</b> — Nordhem Members, 149 pts. One connected profile now spans social and in store.' },
+  // 3 — email, finish the room
+  { who:'ai', html:'Owned email re-engages <b>while delivery is in progress</b> — a finish-the-room recommendation. She <b>taps a pick</b>; engagement logged.' },
+  // 4 — personalized site
+  { who:'ai', html:'She lands on nordhem.com and we recognize her via <b>Merkury — no login</b>. Homepage flips to the room she\'s building; loyalty points surfaced.' },
+  // 5 — on-site chat (intent, not a ticket)
+  { who:'ai', html:'Captured a new signal from the on-site chat: <b>kitchen interest, small-space</b>. No transactional thread — this is <b>intent</b>, not a support ticket.' },
+  // 6 — rich context to agent
+  { who:'ai', html:'Everything assembled into <b>one rich context</b> — recent mover, couch buyer, kitchen intent, high value, consented channels — and handed to an agent.' },
+  // 7 — agent designs journey
+  { who:'ai', html:'Agent composed a <b>6-week, multi-touch journey</b> across email, SMS, push and media. <b>Media is included</b> because she\'s high value with actionable context — the agent\'s call. No delivery/shipping messages.' },
+  // 8 — branch
+  { who:'ai', html:'At the end, the journey <b>forks on her behaviour</b>: buys → an <b>agentic loyalty journey</b>; doesn\'t → an <b>agentic next-best journey</b> that re-engages with new angles.' },
 ];
 
 const BEATS = [
-  { // 0 — Walk-in
-    surface:'client', host:'nordhem-clienteling.app', url:' · In store',
-    clRecognized:false, clCapture:false, clNotes:false, clOrder:false, clAttrRail:false,
+  { // 0 — Social ad: new-mover targeting
+    surface:'social', host:'social', url:' · paid media',
     known:false, facts:[],
-    msgsTo:0, kicker:'In store', caption:'New to Brooklyn, overwhelmed by the choices.',
+    msgsTo:0, kicker:'Social · paid media', caption:'Targeted as a recent mover — an ad that drives her in store.',
   },
-  { // 1 — Associate captures the moment
+  { // 1 — In store: captured
     surface:'client', host:'nordhem-clienteling.app', url:' · In store',
     clRecognized:true, clCapture:true, clNotes:true, clOrder:false, clAttrRail:true,
-    known:true, facts:['fId','fLife'],
-    msgsTo:1, kicker:'Capture', caption:'The associate captures it — ID, consent, the moment that matters.',
+    known:true, facts:['fId','fLife','fConsent'],
+    msgsTo:1, kicker:'In store', caption:'In store — captured as a customer.',
   },
-  { // 2 — Orders a couch, opts in
+  { // 2 — Orders a couch, joins loyalty
     surface:'client', host:'nordhem-clienteling.app', url:' · In store · order',
     clRecognized:true, clCapture:true, clNotes:true, clOrder:true, clAttrRail:true,
     known:true, facts:['fId','fLife','fConsent','fPurchase'],
-    msgsTo:2, kicker:'Order', caption:'Couch ordered. Email, SMS, app, loyalty — all opted in.',
+    msgsTo:2, kicker:'Order + loyalty', caption:'She needs a couch — ordered, and into loyalty.',
   },
-  { // 3 — A few weeks later (delivered)
-    surface:'delivered', host:'nordhem.com', url:'/orders/NH-40912',
+  { // 3 — Email: finish the room
+    surface:'email', host:'mail', url:' · nordhem.com',
+    mailTapped:true,
     known:true, facts:['fId','fLife','fConsent','fPurchase'],
-    msgsTo:3, kicker:'Weeks later', caption:'A few weeks later…',
+    msgsTo:3, kicker:'Email', caption:'An email to finish the room — she taps a pick.',
   },
-  { // 4 — Social first touch
-    surface:'social', host:'social', url:' · influencer ad',
-    known:true, facts:['fId','fLife','fConsent','fPurchase'],
-    msgsTo:4, kicker:'Social', caption:'Inspiration on social — she taps an influencer\'s post.',
-  },
-  { // 5 — The site knows her (Merkury)
-    surface:'site', host:'nordhem.com', url:'', page:'home',
-    recog:true, loyalty:true, foryou:true,
+  { // 4 — Personalized site (Merkury)
+    surface:'site', host:'nordhem.com', url:'',
+    recog:true, chat:false,
     known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury'],
-    msgsTo:5, kicker:'Merkury', caption:'Never logged in — the site knows her. Merkury, and the media that brought her.',
+    msgsTo:4, kicker:'Personalized', caption:'The site knows her — Merkury, and the room she\'s building.',
   },
-  { // 6 — She asks the advisor
-    surface:'site', host:'nordhem.com', url:'/advisor', page:'advisor',
-    recog:true,
+  { // 5 — On-site chat: kitchen intent
+    surface:'site', host:'nordhem.com', url:'/?chat=advisor',
+    recog:true, chat:true,
     known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
-    msgsTo:7, kicker:'Advisor', caption:'She asks about the kitchen — delivery, install, 3rd floor, no elevator.',
+    msgsTo:5, kicker:'On-site chat', caption:'She asks about kitchens — captured as intent, not a ticket.',
   },
-  { // 7 — One complete profile
+  { // 6 — Rich context handed to an agent
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/profiles/emma',
-    opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Emma Lindqvist', opsRun:'Resolved',
+    opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Emma Lindqvist', opsRun:'Handed to agent',
     known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
-    msgsTo:8, kicker:'Profile', caption:'One complete profile — everything we\'ve learned about Emma.',
+    msgsTo:6, kicker:'Rich context', caption:'Everything we know — handed to an agent.',
   },
-  { // 8 — A 1:1 journey, built by an agent (complete)
+  { // 7 — Agent designs the 6-week journey
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma',
-    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · 1:1', opsRun:'Built · 1:1',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · 6-week', opsRun:'Designed · 1:1',
     known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
-    msgsTo:9, kicker:'1:1 journey', caption:'An agent builds her a journey — 1:1, decided for Emma, not a segment.',
+    msgsTo:7, kicker:'Journey design', caption:'An agent designs the journey — 6 weeks, email, SMS, push, and media.',
+  },
+  { // 8 — Branch: what's next (complete)
+    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/branch',
+    opsView:'branch', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · branch', opsRun:'Branch · agentic',
+    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
+    msgsTo:8, kicker:'What\'s next', caption:'Then the agent decides what\'s next — buy into loyalty, or re-engage.',
   },
 ];
 
-const SURFACES = { client:'appClient', delivered:'appDelivered', social:'appSocial', site:'appSite', ops:'appOps' };
+const SURFACES = { social:'appSocial', client:'appClient', email:'appEmail', site:'appSite', ops:'appOps' };
 const FACTS = ['fId','fLife','fConsent','fPurchase','fMerkury','fChat'];
-const PAGES = { home:'pgHome', advisor:'pgAdvisor' };
-const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
-const OPSNAV = { profile:'profiles', journey:'journeys' };
+const OPSVIEWS = { profile:'vProfile', journey:'vJourney', branch:'vBranch' };
+const OPSNAV = { profile:'profiles', journey:'journeys', branch:'journeys' };
 
 const RAIL_TIP = {
-  base: 'New face on the floor — no record yet. Greet, help her get oriented, and capture what matters if she\'s open to it.',
-  captured: 'Identity and consent captured. She\'s furnishing a whole apartment — think rooms, not one piece. Set her up on email, SMS and the app.',
+  base: 'New face on the floor — came in off the ad, no record yet. Greet her, help her get oriented, capture what matters if she\'s open to it.',
+  captured: 'Identity and consent captured. She\'s furnishing a whole apartment — think rooms, not one piece. Set her up on email and the app.',
 };
 
 function renderBeat(index, direction) {
@@ -542,7 +628,7 @@ function renderBeat(index, direction) {
   });
 
   // ── Chrome URL/label ──
-  $('urlHost').textContent = b.host === 'social' ? 'social' : b.host;
+  $('urlHost').textContent = b.host;
   $('urlPath').textContent = b.url || '';
 
   // ── Clienteling surface state ──
@@ -557,13 +643,12 @@ function renderBeat(index, direction) {
     : 'Unidentified · no record yet';
   $('railTip').textContent = b.clCapture ? RAIL_TIP.captured : RAIL_TIP.base;
 
-  // ── Consumer site: page + recognition + rails ──
-  Object.entries(PAGES).forEach(([key, id]) => {
-    $(id).classList.toggle('is-on', b.surface === 'site' && b.page === key);
-  });
+  // ── Email surface: tapped-rec highlight ──
+  $('mailRec1').classList.toggle('is-tapped', !!b.mailTapped);
+
+  // ── Consumer site: recognition strip + on-site chat widget ──
   $('recog').classList.toggle('is-on', !!b.recog);
-  $('loyaltyBanner').classList.toggle('is-on', !!b.loyalty);
-  $('forYou').classList.toggle('is-on', !!b.foryou);
+  $('siteChat').classList.toggle('is-open', !!b.chat);
 
   // ── Backend ops: view + toolbar + sidebar highlight ──
   Object.entries(OPSVIEWS).forEach(([key, id]) => {
@@ -585,19 +670,17 @@ function renderBeat(index, direction) {
     $(id).classList.toggle('is-on', filled.has(id));
   });
 
-  // ── Advisor transcript (rebuilt cumulative every call) ──
+  // ── Agentic narration (rebuilt cumulative every call) ──
   const t = $('transcript');
   t.innerHTML = '';
   for (let k = 0; k <= b.msgsTo && k < LINE.length; k++) {
     const line = LINE[k];
     const row = document.createElement('div');
     row.className = 'msg msg--' + line.who + (k === b.msgsTo ? ' is-latest' : '');
-    if (line.who === 'ai') {
-      const orb = document.createElement('div');
-      orb.className = 'msg__orb';
-      orb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>';
-      row.appendChild(orb);
-    }
+    const orb = document.createElement('div');
+    orb.className = 'msg__orb';
+    orb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>';
+    row.appendChild(orb);
     const bub = document.createElement('div');
     bub.className = 'msg__bub';
     bub.innerHTML = line.html;
