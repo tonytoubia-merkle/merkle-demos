@@ -11,11 +11,11 @@
 <div class="stage">
   <main class="canvas">
 
-    <!-- ═══════════════════ LEFT: the browser ═══════════════════ -->
+    <!-- ═══════════════════ LEFT: the surface ═══════════════════ -->
     <section class="web-col">
       <div class="browser">
 
-        <!-- Browser chrome: traffic lights + dynamic URL -->
+        <!-- Chrome: traffic lights + dynamic URL/label -->
         <div class="chrome">
           <div class="chrome__dots"><i></i><i></i><i></i></div>
           <div class="chrome__bar">
@@ -27,290 +27,218 @@
           </div>
         </div>
 
-        <!-- Viewport hosts both "apps"; one is active at a time -->
+        <!-- Viewport hosts every surface; one is active at a time -->
         <div class="viewport">
 
-          <!-- ─────────────── APP A: consumer site rivage.com ─────────────── -->
-          <div id="appSite" class="app app--site">
+          <!-- ═════════ SURFACE A: social feed (influencer Reel) ═════════ -->
+          <div id="appSocial" class="app app--social">
+            <div class="sof">
+              <div class="sof__top">
+                <span class="sof__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></span>
+                <span class="sof__tabs"><i class="is-on"></i><i></i><i></i></span>
+                <span class="sof__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>
+              </div>
+              <div class="sof__feed">
+                <article class="post">
+                  <div class="post__head">
+                    <span class="post__ava">@</span>
+                    <div class="post__id"><span class="post__user">cami.travels</span><span class="post__spon">Sponsored · Paid partnership with Rivage</span></div>
+                    <span class="post__dots">···</span>
+                  </div>
+                  <div class="post__media">
+                    <img class="post__img" src="../../../assets/photos/rivage/suite-hero.jpg" alt="Anniversary suite at sunset" />
+                    <span class="post__ad">Ad</span>
+                    <span class="post__reel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/></svg>Reel</span>
+                  </div>
+                  <div class="post__actions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+                    <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="post__cap"><b>cami.travels</b> Sunset from the anniversary suite at @rivage — the view, the quiet, the light. Saving this one for someday. <span class="post__tag">#rivage #anniversarytrip #rivagepartner</span></div>
+                  <div class="post__cta">
+                    <span class="post__shop">Plan your stay at rivage.com</span>
+                    <span class="post__tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 11V8a2 2 0 0 1 4 0v3"/><path d="M17 11a2 2 0 0 1 4 0v3a7 7 0 0 1-7 7h-1.5a5 5 0 0 1-3.6-1.5L5 16a2 2 0 0 1 3-2.6l1 .9V6a2 2 0 0 1 4 0"/></svg>Tap</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
 
-            <!-- top nav -->
+          <!-- ═════════ SURFACE B: rivage.com (concierge + personalization) ═════════ -->
+          <div id="appSite" class="app app--site">
             <nav class="snav">
               <span class="snav__brand">RIVAGE</span>
-              <span class="snav__links">
-                <span>Suites</span><span>Dining</span><span>Spa</span><span>Offers</span>
-              </span>
+              <span class="snav__links"><span>Suites</span><span>Dining</span><span>Spa</span><span>The Resort</span><span>Offers</span></span>
               <span class="snav__right">
                 <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                <span class="snav__signin">Sign in to see everything</span>
               </span>
             </nav>
 
-            <!-- recognition greeting banner -->
-            <div id="greet" class="greet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <div class="greet__txt"><b>Welcome back, Elena.</b> Recognized across our site, app, and front desk — privacy-safe.</div>
-              <span class="greet__pill">Recognized</span>
+            <!-- recognition strip -->
+            <div id="recog" class="recog">
+              <span class="recog__dot"></span>
+              <span class="recog__txt"><b>Welcome, Elena.</b> Picking up where the Reel left off — no login needed.</span>
+              <span class="recog__src">via Merkury · from cami.travels</span>
             </div>
 
-            <!-- scrollable site body -->
             <div id="siteBody" class="site-body">
-
-              <!-- PAGE: home / for-you hero -->
+              <!-- PAGE: home (composes around her over the beats) -->
               <section id="pgHome" class="page">
                 <div class="shero">
-                  <img class="shero__img" src="../../../assets/photos/rivage/lobby.jpg" alt="Rivage resort" />
+                  <img class="shero__img" id="heroImg" src="../../../assets/photos/rivage/suite-hero.jpg" alt="Rivage anniversary suite at sunset" />
                   <div class="shero__scrim"></div>
                   <div class="shero__copy">
-                    <span class="shero__kicker" id="heroKicker">The Riviera, reimagined</span>
-                    <h1 class="shero__title" id="heroTitle">Escape to the Côte d'Azur</h1>
-                    <p class="shero__sub" id="heroSub">Sea-view suites, signature dining, and a spa carved into the cliffside.</p>
-                    <span class="shero__cta" id="heroCta">Explore suites</span>
+                    <span class="shero__kicker" id="heroKicker">The suite from the Reel</span>
+                    <h1 class="shero__title" id="heroTitle">The Riviera, at sunset</h1>
+                    <p class="shero__sub" id="heroSub">Plan your stay with our concierge — suites, dining and the view you saw, arranged around you.</p>
+                    <span class="shero__cta" id="heroCta">Plan with the concierge</span>
                   </div>
                 </div>
 
-                <!-- "For you" recommendation rail (personalized) -->
+                <!-- loyalty banner -->
+                <div id="loyaltyBanner" class="loyb">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.2 1.2 6L12 16.8 6.3 19l1.2-6L3 8.8 9 8z"/></svg>
+                  <span class="loyb__txt"><b>Perks waiting for your celebration</b> — sign in to see.</span>
+                  <span class="loyb__cta">Sign in to see</span>
+                </div>
+
+                <!-- composed-for-her rail -->
                 <div id="forYou" class="foryou">
                   <div class="foryou__head">
-                    <span class="foryou__title">Chosen for you, Elena</span>
-                    <span class="foryou__note">Based on your plans for a milestone stay</span>
+                    <span class="foryou__title">For your celebration</span>
+                    <span class="foryou__note">Composed around your anniversary — suite, dining &amp; a sunset moment</span>
                   </div>
                   <div class="foryou__grid">
-                    <article class="pcard">
-                      <img class="pcard__img" src="../../../assets/photos/rivage/suite-hero.jpg" alt="Anniversary suite" />
-                      <div class="pcard__body">
-                        <span class="pcard__tag">For your anniversary</span>
-                        <h3 class="pcard__name">Sunset Anniversary Suite</h3>
-                        <p class="pcard__meta">Private terrace · west-facing sea view · €1,180/night</p>
-                      </div>
-                    </article>
                     <article class="pcard">
                       <img class="pcard__img" src="../../../assets/photos/rivage/dining.jpg" alt="Signature dining" />
                       <div class="pcard__body">
                         <span class="pcard__tag">Signature dining</span>
-                        <h3 class="pcard__name">L'Horizon · chef's table</h3>
-                        <p class="pcard__meta">Cliffside · 8-course tasting at golden hour</p>
+                        <h3 class="pcard__name">Le Rivage · Tasting Menu</h3>
+                        <p class="pcard__meta">Chef's table · sunset seating for two</p>
+                      </div>
+                    </article>
+                    <article class="pcard">
+                      <img class="pcard__img" src="../../../assets/photos/rivage/pool.jpg" alt="Sunset view moment" />
+                      <div class="pcard__body">
+                        <span class="pcard__tag">A sunset moment</span>
+                        <h3 class="pcard__name">Golden-Hour Terrace</h3>
+                        <p class="pcard__meta">Champagne &amp; the view from the Reel</p>
                       </div>
                     </article>
                   </div>
                 </div>
               </section>
-
-              <!-- PAGE: suite listing -->
-              <section id="pgSuites" class="page">
-                <div class="page__head">
-                  <h2 class="page__h">Suites &amp; Residences</h2>
-                  <span class="page__hint">4 of 18 match your dates</span>
-                </div>
-                <div class="suite-grid">
-                  <article class="scard scard--lead">
-                    <img class="scard__img" src="../../../assets/photos/rivage/suite-hero.jpg" alt="" />
-                    <div class="scard__body">
-                      <span class="scard__tag">Recommended</span>
-                      <h3 class="scard__name">Sunset Anniversary Suite</h3>
-                      <p class="scard__meta">Terrace · sea view · King · 68m²</p>
-                      <span class="scard__price">€1,180 <small>/ night</small></span>
-                    </div>
-                  </article>
-                  <article class="scard">
-                    <img class="scard__img" src="../../../assets/photos/rivage/suite.jpg" alt="" />
-                    <div class="scard__body">
-                      <h3 class="scard__name">Garden Junior Suite</h3>
-                      <p class="scard__meta">Balcony · garden view · King</p>
-                      <span class="scard__price">€720 <small>/ night</small></span>
-                    </div>
-                  </article>
-                  <article class="scard">
-                    <img class="scard__img" src="../../../assets/photos/rivage/pool.jpg" alt="" />
-                    <div class="scard__body">
-                      <h3 class="scard__name">Pool Pavilion</h3>
-                      <p class="scard__meta">Infinity-pool access · day bed</p>
-                      <span class="scard__price">€940 <small>/ night</small></span>
-                    </div>
-                  </article>
-                </div>
-              </section>
-
-              <!-- PAGE: suite detail / gallery -->
-              <section id="pgDetail" class="page">
-                <div class="detail">
-                  <div class="detail__gallery">
-                    <img class="detail__main" src="../../../assets/photos/rivage/suite-hero.jpg" alt="Anniversary suite" />
-                    <div class="detail__thumbs">
-                      <img src="../../../assets/photos/rivage/suite.jpg" alt="" />
-                      <img src="../../../assets/photos/rivage/pool.jpg" alt="" />
-                      <img src="../../../assets/photos/rivage/dining.jpg" alt="" />
-                    </div>
-                  </div>
-                  <div class="detail__info">
-                    <h2 class="detail__name">Sunset Anniversary Suite</h2>
-                    <p class="detail__loc">West-facing terrace · sea view · King · 68m²</p>
-                    <div class="detail__price">€1,180 <small>/ night</small></div>
-                    <div class="detail__chips">
-                      <span>Private terrace</span><span>Champagne on arrival</span><span>Late checkout</span>
-                    </div>
-
-                    <div id="anniv" class="anniv">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7s0-5-3.5-5S6.5 5 8.5 5 12 7 12 7z"/><path d="M12 7s0-5 3.5-5S17.5 5 15.5 5 12 7 12 7z"/></svg>
-                      On-arrival recognition logged the <b>10th-anniversary</b> milestone — a quiet surprise amenity is composed.
-                    </div>
-
-                    <div class="resv">
-                      <div class="resv__txt">
-                        <span class="resv__name">L'Horizon · chef's table</span>
-                        <span class="resv__meta">Golden hour · table for two</span>
-                      </div>
-                      <span class="resv__btn">
-                        <span class="resv__save"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>Reserve table</span>
-                        <span class="resv__saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Reservation saved</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              <!-- PAGE: booking summary -->
-              <section id="pgBook" class="page">
-                <div class="book">
-                  <div class="book__head">
-                    <div>
-                      <h2 class="book__title">Your anniversary stay</h2>
-                      <p class="book__sub">Côte d'Azur · 3 nights · for two · arriving Sat</p>
-                    </div>
-                    <span class="book__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Composed for you</span>
-                  </div>
-                  <div class="book__list">
-                    <div class="brow">
-                      <div class="brow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg></div>
-                      <div class="brow__txt"><span class="brow__name">Sunset Anniversary Suite</span><span class="brow__meta">3 nights · west-facing terrace</span></div>
-                      <span class="brow__amt">€3,540</span>
-                    </div>
-                    <div class="brow">
-                      <div class="brow__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2a2 2 0 0 0 2-2V2"/><path d="M5 2v20"/><path d="M19 2v20"/><path d="M19 2c-1.7 0-3 2.7-3 6 0 2.4 1.2 3.5 3 3.5"/></svg></div>
-                      <div class="brow__txt"><span class="brow__name">Dinner at L'Horizon</span><span class="brow__meta">Golden hour · chef's table for two</span></div>
-                      <span class="brow__amt">Reserved</span>
-                    </div>
-                    <div class="brow brow--offer">
-                      <div class="brow__ic is-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 16.8 5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
-                      <div class="brow__txt"><span class="brow__name">Next best: complimentary suite upgrade</span><span class="brow__meta">Cliffside corner suite · one tap · never re-asked</span></div>
-                      <span class="brow__amt is-offer">+€0</span>
-                    </div>
-                  </div>
-                  <div class="book__foot">
-                    <span class="book__total">Total <b>€3,540</b></span>
-                    <span class="book__confirm">Confirm stay</span>
-                  </div>
-                </div>
-              </section>
-
             </div>
           </div>
 
-          <!-- ─────────── APP B: backend console rivage-marketing-ops.cloud ─────────── -->
+          <!-- ═════════ SURFACE C: backend ops (profile + journey) ═════════ -->
           <div id="appOps" class="app app--ops">
             <div class="ops">
-              <!-- sidebar -->
               <aside class="ops__side">
                 <div class="ops__logo">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
                   Marketing Ops
                 </div>
                 <nav class="ops__nav">
+                  <span class="ops__navitem" data-nav="profiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profiles</span>
                   <span class="ops__navitem" data-nav="journeys"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Journeys</span>
                   <span class="ops__navitem" data-nav="audiences"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 21c0-4 3.5-6 7-6s7 2 7 6"/><circle cx="18" cy="8" r="2.5"/></svg>Audiences</span>
                   <span class="ops__navitem" data-nav="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Messages</span>
-                  <span class="ops__navitem" data-nav="governance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Suppression</span>
-                  <span class="ops__navitem" data-nav="measurement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>Measurement</span>
                 </nav>
-                <div class="ops__env">
-                  <span class="ops__envdot"></span> Production workspace
-                </div>
+                <div class="ops__env"><span class="ops__envdot"></span> Production workspace</div>
               </aside>
 
-              <!-- work area -->
               <div class="ops__main">
                 <div class="ops__toolbar">
-                  <span id="opsTitle" class="ops__h">Journeys</span>
-                  <span class="ops__crumb" id="opsCrumb">Guest journeys / Anniversary play</span>
+                  <span id="opsTitle" class="ops__h">Profiles</span>
+                  <span class="ops__crumb" id="opsCrumb">Profiles / Elena Rossi</span>
                   <span class="ops__spacer"></span>
-                  <span id="opsRun" class="ops__runchip"><span class="ops__rundot"></span><span id="opsRunTxt">Active</span></span>
+                  <span id="opsRun" class="ops__runchip"><span class="ops__rundot"></span><span id="opsRunTxt">Resolved</span></span>
                 </div>
 
                 <div class="ops__work">
 
-                  <!-- VIEW: journeys orchestration -->
-                  <div id="vJourneys" class="opsview">
-                    <div class="jflow">
-                      <div class="jnode owned">
-                        <span class="jnode__tag">Owned · Email</span>
-                        <span class="jnode__name">Pre-arrival note</span>
-                        <span class="jnode__meta">Terrace confirmed · dinner held</span>
+                  <!-- VIEW: complete profile -->
+                  <div id="vProfile" class="opsview">
+                    <div class="prof">
+                      <div class="prof__head">
+                        <div class="prof__avatar">E</div>
+                        <div>
+                          <div class="prof__name">Elena Rossi</div>
+                          <div class="prof__sub">One unified profile · social + site + concierge · ID 0.96 confidence</div>
+                        </div>
+                        <span class="prof__chip">Consent: Email · SMS · App</span>
                       </div>
-                      <span class="jarrow">→</span>
-                      <div class="jnode owned">
-                        <span class="jnode__tag">Owned · App</span>
-                        <span class="jnode__name">In-stay nudge</span>
-                        <span class="jnode__meta">Table at golden hour</span>
+                      <div class="prof__grid">
+                        <div class="pfield"><span class="pfield__k">Occasion</span><span class="pfield__v">Milestone 10th anniversary · special occasion</span></div>
+                        <div class="pfield"><span class="pfield__k">Party</span><span class="pfield__v">Trip for two</span></div>
+                        <div class="pfield"><span class="pfield__k">Preferences</span><span class="pfield__v">Anniversary suite with a view · signature dining</span></div>
+                        <div class="pfield"><span class="pfield__k">Dates</span><span class="pfield__v">Late September · 3 nights (flexible)</span></div>
+                        <div class="pfield"><span class="pfield__k">Loyalty</span><span class="pfield__v">Rivage Cercle · enrolled</span></div>
+                        <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · Social</span></div>
+                        <div class="pfield"><span class="pfield__k">Inbound media</span><span class="pfield__v">Merkury · paid social Reel @cami.travels</span></div>
+                        <div class="pfield pfield--flag"><span class="pfield__k">Specific request</span><span class="pfield__v">Surprise for her partner at the sunset dinner</span></div>
                       </div>
-                      <span class="jarrow">→</span>
-                      <div class="jnode owned">
-                        <span class="jnode__tag">Owned · Email</span>
-                        <span class="jnode__name">Post-stay thank-you</span>
-                        <span class="jnode__meta">Review + next reason to return</span>
-                      </div>
-                    </div>
-                    <div class="jpaid">
-                      <div class="jpaid__row">
-                        <span class="jbadge paid">Paid</span>
-                        <span class="jpaid__txt">Social reminder — only where owned can't reach</span>
-                        <span class="jpaid__state extend">Extend reach</span>
-                      </div>
-                      <div class="jpaid__row">
-                        <span class="jbadge paid">Paid</span>
-                        <span class="jpaid__txt">Converters &amp; on-property guests</span>
-                        <span class="jpaid__state suppress">Suppressed</span>
+                      <div class="prov-row">
+                        <span class="provb provb--store">social</span>
+                        <span class="provb provb--mer">Merkury</span>
+                        <span class="provb provb--web">site + concierge</span>
+                        <span class="provb provb--agent">agent · unified</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- VIEW: agentic execution -->
-                  <div id="vAgent" class="opsview">
+                  <!-- VIEW: agent-built 1:1 journey -->
+                  <div id="vJourney" class="opsview">
                     <div class="runhead">
                       <div class="runhead__orb"><span></span></div>
                       <div>
-                        <div class="runhead__title">Agent running the play autonomously</div>
-                        <div class="runhead__sub">Plans next best action, content, channel &amp; offer — escalates to a human only on judgment calls</div>
+                        <div class="runhead__title">Agent composed a journey for Elena</div>
+                        <div class="runhead__sub">Decided 1:1 from her complete profile — not a segment, not 1:many</div>
                       </div>
-                      <span class="runhead__live">Running</span>
+                      <span class="runhead__live">1:1 · for Elena</span>
                     </div>
-                    <div class="runlog">
-                      <div class="logrow"><span class="logrow__t">09:02</span><span class="logrow__d ok"></span><span class="logrow__m">Pre-arrival email sent · personalized to Elena</span></div>
-                      <div class="logrow"><span class="logrow__t">11:18</span><span class="logrow__d ok"></span><span class="logrow__m">In-stay nudge timed to golden hour · app push</span></div>
-                      <div class="logrow"><span class="logrow__t">14:40</span><span class="logrow__d ok"></span><span class="logrow__m">Paid social suppressed — guest is on-property</span></div>
-                      <div class="logrow"><span class="logrow__t">—</span><span class="logrow__d wait"></span><span class="logrow__m">Suite upgrade offer queued · awaiting human sign-off</span><span class="logrow__esc">Escalated</span></div>
-                    </div>
-                  </div>
 
-                  <!-- VIEW: governance -->
-                  <div id="vGov" class="opsview">
-                    <div class="gov__intro">Every action the agent takes is checked against policy before it ships.</div>
-                    <div class="gov__grid">
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="govcard__txt"><span class="govcard__name">Privacy-safe</span><span class="govcard__sub">Consent &amp; purpose enforced</span></div><span class="toggle on"></span></div>
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div><div class="govcard__txt"><span class="govcard__name">Brand-safe</span><span class="govcard__sub">Placements vetted</span></div><span class="toggle on"></span></div>
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="govcard__txt"><span class="govcard__name">On-brand</span><span class="govcard__sub">Tone &amp; assets approved</span></div><span class="toggle on"></span></div>
-                      <div class="govcard"><div class="govcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="govcard__txt"><span class="govcard__name">Within permissions</span><span class="govcard__sub">Channel rights honored</span></div><span class="toggle on"></span></div>
-                    </div>
-                  </div>
+                    <div class="jtheme">“A milestone anniversary, made effortless.”</div>
 
-                  <!-- VIEW: measurement -->
-                  <div id="vMeasure" class="opsview">
-                    <div class="meas__intro">Incremental impact, proven against holdout — not assumed.</div>
-                    <div class="meas__grid">
-                      <div class="statcard"><span class="statcard__label">Repeat-booking lift</span><span class="statcard__val">+21%</span><span class="statcard__sub">vs. holdout · 90 days</span></div>
-                      <div class="statcard"><span class="statcard__label">Media efficiency</span><span class="statcard__val">4.7×</span><span class="statcard__sub">ROAS · owned + paid</span></div>
-                      <div class="statcard"><span class="statcard__label">Incremental stays</span><span class="statcard__val">+9,400</span><span class="statcard__sub">attributable</span></div>
-                      <div class="statcard"><span class="statcard__label">Paid waste cut</span><span class="statcard__val">−38%</span><span class="statcard__sub">suppression in real time</span></div>
+                    <div class="jflow">
+                      <div class="jnode email">
+                        <span class="jnode__tag">Email</span>
+                        <span class="jnode__name">Pre-arrival note</span>
+                        <span class="jnode__meta">Suite confirmed · the surprise is arranged</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode app">
+                        <span class="jnode__tag">App</span>
+                        <span class="jnode__name">Sunset dinner + spa</span>
+                        <span class="jnode__meta">Signature dining for two · spa for the occasion</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode sms">
+                        <span class="jnode__tag">SMS</span>
+                        <span class="jnode__name">In-stay touches</span>
+                        <span class="jnode__meta">Golden-hour terrace, on the night</span>
+                      </div>
+                      <span class="jarrow">→</span>
+                      <div class="jnode media">
+                        <span class="jnode__tag">Media</span>
+                        <span class="jnode__name">Hold the celebration</span>
+                        <span class="jnode__meta">She's booked — retarget the stay, not the brand</span>
+                      </div>
                     </div>
-                    <div class="meas__note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg>Results feed back into the next play — the loop is closed.</div>
+
+                    <div class="jwhy">
+                      <div class="jwhy__h">Why these, for Elena</div>
+                      <ul class="jwhy__list">
+                        <li><b>10th anniversary, trip for two</b> → the whole stay built around the occasion</li>
+                        <li><b>Anniversary suite with a view</b> → the suite from the Reel, confirmed up front</li>
+                        <li><b>Signature dining + the surprise</b> → sunset dinner with her request handled by SMS</li>
+                        <li><b>Rivage Cercle, opted in</b> → spa &amp; golden-hour terrace as celebration perks</li>
+                      </ul>
+                    </div>
                   </div>
 
                 </div>
@@ -322,43 +250,43 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ RIGHT: AI concierge ═══════════════════ -->
+    <!-- ═══════════════════ RIGHT: profile + concierge ═══════════════════ -->
     <aside class="agent">
 
-      <!-- profile chip -->
+      <!-- profile card -->
       <div id="profile" class="profile">
         <div class="profile__top">
           <div id="avatar" class="profile__avatar">?</div>
           <div class="profile__who">
             <span class="profile__kicker">What we know</span>
-            <span class="profile__name"><span class="anon">Anonymous visitor</span><span class="known">Elena</span></span>
+            <span class="profile__name"><span class="anon">Nobody yet</span><span class="known">Elena</span></span>
           </div>
         </div>
         <div class="profile__facts">
-          <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">One privacy-safe profile · owned + paid</span></div>
-          <div id="fLife" class="fact"><span class="fact__k">Life moment</span><span class="fact__v">Milestone 10th anniversary</span></div>
-          <div id="fInterest" class="fact"><span class="fact__k">Interests</span><span class="fact__v">Anniversary suites · signature dining</span></div>
-          <div id="fIntent" class="fact"><span class="fact__k">Intent</span><span class="fact__v">Comparing dates &amp; suites · high intent</span></div>
+          <div id="fMerkury" class="fact"><span class="fact__k">Merkury</span><span class="fact__v">Inbound media · Reel @cami.travels</span></div>
+          <div id="fOccasion" class="fact"><span class="fact__k">Occasion</span><span class="fact__v">10th anniversary · trip for two</span></div>
+          <div id="fPrefs" class="fact"><span class="fact__k">Preferences</span><span class="fact__v">Suite with a view · signature dining</span></div>
+          <div id="fDates" class="fact"><span class="fact__k">Dates</span><span class="fact__v">Late September · 3 nights</span></div>
+          <div id="fConsent" class="fact"><span class="fact__k">Consent</span><span class="fact__v">Email · SMS · App · Cercle loyalty</span></div>
+          <div id="fRequest" class="fact"><span class="fact__k">Request</span><span class="fact__v">A surprise at the sunset dinner</span></div>
         </div>
       </div>
 
-      <!-- chat transcript -->
+      <!-- concierge transcript -->
       <div class="chat">
         <div class="chat__head">
           <div class="chat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
-          <div class="chat__id"><span class="chat__name">Rivage Concierge</span><span class="chat__status"><i></i>Online · site, app &amp; front desk</span></div>
+          <div class="chat__id"><span class="chat__name">Rivage Concierge</span><span class="chat__status"><i></i>Online · plans across web &amp; app</span></div>
         </div>
         <div id="transcript" class="transcript"></div>
       </div>
 
       <!-- progress + caption -->
       <div class="agent__foot">
-        <div id="dots" class="dots">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
+        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
-          <span id="capKicker" class="cap__kicker">Arrival</span>
-          <span id="capText" class="cap__text">An anonymous first touch.</span>
+          <span id="capKicker" class="cap__kicker">Social</span>
+          <span id="capText" class="cap__text">It starts on social — a creator's Reel.</span>
         </div>
       </div>
 
@@ -373,166 +301,152 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 const $ = (id) => document.getElementById(id);
 
 /* ─────────────────────────────────────────────────────────────────
-   Per-beat data table, index 0..9 (total = 9; index 9 = complete).
-   renderBeat() recomputes EVERYTHING from this table on every call —
-   fully reversible, no element depends on prior-beat DOM.
+   7 beats (total: 6, indices 0–6). renderBeat recomputes EVERYTHING
+   from the BEATS table each call — fully reversible, no element
+   depends on prior-beat DOM. Every visual is toggled on AND off.
 
-   Fields per beat:
-     app      'site' | 'ops'                which app shows
-     url      string                        path appended after host
-     host     'rivage.com' | 'rivage-marketing-ops.cloud'
-     page     site page id (home|suites|detail|book)  [site only]
-     opsView  ops view (journeys|agent|gov|measure)   [ops only]
-     opsTitle/opsCrumb/opsRun  ops toolbar text
-     greet    bool   recognition banner visible
-     foryou   bool   personalized "for you" rail visible (home page)
-     anniv    bool   detail anniversary banner
-     saved    bool   detail dining reservation saved state
-     offer    bool   booking next-best offer row visible
-     known    bool   profile resolved (Elena) vs anonymous
-     facts[]  which profile facts filled (ids)
-     msgs[]   cumulative chat messages up to this beat: {who:'ai'|'sys', html}
-     kicker/caption  footer
+   Hospitality is social-first: the rich capture happens through the
+   concierge trip-planning conversation, not an in-store associate.
+
+   Surfaces:  social | site | ops
+   Right pane: profile facts (cumulative) + concierge transcript
+   (cumulative) + progress dots + caption.
    ───────────────────────────────────────────────────────────────── */
 
-// Cumulative chat lines — beat N shows lines [0..N].
+// Cumulative concierge transcript — beat N shows lines [0..msgsTo].
 const LINE = [
-  { who:'sys', html:'Anonymous first touch — owned and paid handled as one from here.' },
-  { who:'ai',  html:'Recognized from a creator\'s Reel — resolved to <b>one privacy-safe profile</b> across owned and paid.' },
-  { who:'ai',  html:'I can see this is a <b>milestone 10th anniversary</b> with high booking intent — surfacing the suite and signature dining you\'d want.' },
-  { who:'ai',  html:'I\'m your concierge across the front desk, this site, and your inbox. Want me to <b>compose the whole stay</b>?' },
-  { who:'ai',  html:'Logged your signals — dinner saved, anniversary noted on arrival. Composing: the right room &amp; view, dinner at golden hour, and a quiet surprise amenity.' },
-  { who:'ai',  html:'Next best move: a frictionless <b>suite upgrade + dining</b> — at the right moment, never re-asking what you\'ve already told us.' },
-  { who:'ai',  html:'Switching to orchestration. <b>Owned first</b> — pre-arrival, in-stay, post-stay — with paid only to extend reach or suppress waste.' },
-  { who:'ai',  html:'I\'m running the play autonomously now — choosing action, content, channel and offer — and escalating to a human only on judgment calls.' },
-  { who:'ai',  html:'Every action stays inside the guardrails: <b>privacy-safe, brand-safe, on-brand, within permissions</b>.' },
-  { who:'ai',  html:'Results feed back: incremental impact <b>proven, not assumed</b> — and the loop closes into the next play.' },
+  // 0 — social first touch
+  { who:'sys', html:'On social · a creator\'s Reel of the anniversary suite at sunset — a Rivage paid partnership. Owned and paid, one inbound signal.' },
+  // 1 — arrives, meets the concierge
+  { who:'ai',  html:'Welcome to Rivage. I\'m your concierge — I can help you plan the whole trip. What\'s the occasion?' },
+  // 2 — the trip-planning capture exchange
+  { who:'user', html:'It\'s our <b>10th anniversary</b> — a trip for just the two of us. I\'d love an <b>anniversary suite with a view</b>, and somewhere special for dinner. Late September, if that works.' },
+  { who:'ai',  html:'A milestone — congratulations. I\'ve noted a <b>suite with a view</b> and our <b>signature dining</b> for two, around <b>late September</b>. Shall I send confirmations by <b>email and SMS</b>, set you up in the <b>app</b>, and add <b>Rivage Cercle</b> for celebration perks?' },
+  { who:'user', html:'Yes to all of it.' },
+  // 3 — the site composes around her celebration
+  { who:'ai',  html:'Done — you\'re opted into <b>email, SMS, the app and Cercle</b>. I\'ve composed rivage.com around your celebration: the suite from the Reel, signature dining, a sunset moment. Sign in any time to see your held perks.' },
+  // 4 — one more ask
+  { who:'user', html:'One more thing — can you arrange a small <b>surprise for my partner at the sunset dinner</b>?' },
+  { who:'ai',  html:'A lovely idea. I\'ll arrange a champagne toast and a handwritten note timed to golden hour at Le Rivage, and brief the team so it\'s seamless. It\'s on your plan — nothing more to do.' },
+  // 5 — one complete profile
+  { who:'ai',  html:'Everything is now <b>one complete profile</b> — the occasion, the preferences, party of two, dates, channels, Cercle loyalty, the Merkury inbound media, and the sunset-dinner surprise.' },
+  // 6 — 1:1 journey, built by an agent
+  { who:'ai',  html:'An agent just composed her celebration — <b>pre-arrival note, sunset dinner with the surprise, spa, in-stay touches</b> — sequenced across email, app, SMS and media. Decided <b>1:1 for Elena</b>, not a segment.' },
 ];
 
 const BEATS = [
-  { // 0 — Anonymous arrival
-    app:'site', host:'rivage.com', url:'', page:'home',
-    greet:false, foryou:false,
+  { // 0 — Social first touch
+    surface:'social', host:'social', url:' · influencer reel',
     known:false, facts:[],
-    msgsTo:0,
-    kicker:'Arrival', caption:'An anonymous first touch.',
+    msgsTo:0, kicker:'Social', caption:'It starts on social — a creator\'s Reel of the suite at sunset.',
   },
-  { // 1 — Recognized
-    app:'site', host:'rivage.com', url:'', page:'home',
-    greet:true, foryou:false,
-    known:true, facts:['fId'],
-    msgsTo:1,
-    kicker:'Recognized', caption:'One privacy-safe profile across owned + paid.',
+  { // 1 — Arrives + meets the concierge
+    surface:'site', host:'rivage.com', url:'', page:'home',
+    recog:true, loyalty:false, foryou:false, heroComposed:false,
+    known:false, facts:['fMerkury'],
+    msgsTo:1, kicker:'Concierge', caption:'She comes to plan — and meets the concierge.',
   },
-  { // 2 — Profile enriches
-    app:'site', host:'rivage.com', url:'/for-you', page:'home',
-    greet:true, foryou:true,
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:2,
-    kicker:'Profile', caption:'Milestone moment, high intent — known.',
+  { // 2 — Trip-planning conversation captures occasion + preferences
+    surface:'site', host:'rivage.com', url:'/concierge', page:'home',
+    recog:true, loyalty:false, foryou:false, heroComposed:false,
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent'],
+    msgsTo:4, kicker:'Trip planning', caption:'Trip planning — the occasion and the preferences, captured in conversation.',
   },
-  { // 3 — Meet the advisor
-    app:'site', host:'rivage.com', url:'/suites', page:'suites',
-    greet:true, foryou:false,
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:3,
-    kicker:'Advisor', caption:'One concierge — site, inbox, front desk.',
+  { // 3 — The site composes around her celebration
+    surface:'site', host:'rivage.com', url:'', page:'home',
+    recog:true, loyalty:true, foryou:true, heroComposed:true,
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent'],
+    msgsTo:5, kicker:'Personalized', caption:'The experience composes around her celebration.',
   },
-  { // 4 — Signals: she acts
-    app:'site', host:'rivage.com', url:'/suites/anniversary', page:'detail',
-    greet:true, anniv:true, saved:true,
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:4,
-    kicker:'Signals', caption:'She acts — the stay composes itself.',
+  { // 4 — One more ask
+    surface:'site', host:'rivage.com', url:'/concierge', page:'home',
+    recog:true, loyalty:true, foryou:true, heroComposed:true,
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    msgsTo:7, kicker:'One more ask', caption:'One more ask — a surprise for the occasion.',
   },
-  { // 5 — Decisions: next best
-    app:'site', host:'rivage.com', url:'/book', page:'book',
-    greet:true, offer:true,
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:5,
-    kicker:'Decisions', caption:'The next best move — never re-asked.',
+  { // 5 — One complete profile
+    surface:'ops', host:'rivage-marketing-ops.cloud', url:'/profiles/elena',
+    opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Elena Rossi', opsRun:'Resolved',
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    msgsTo:8, kicker:'Profile', caption:'One complete profile — Elena\'s celebration, understood.',
   },
-  { // 6 — Orchestration
-    app:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys',
-    opsView:'journeys', opsTitle:'Journeys', opsCrumb:'Guest journeys / Anniversary play', opsRun:'Active',
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:6,
-    kicker:'Orchestration', caption:'Owned + paid, sequenced as one.',
-  },
-  { // 7 — Agentic execution
-    app:'ops', host:'rivage-marketing-ops.cloud', url:'/agent',
-    opsView:'agent', opsTitle:'Agent', opsCrumb:'Automation / Autonomous run', opsRun:'Running',
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:7,
-    kicker:'Execution', caption:'The engine runs it — autonomously.',
-  },
-  { // 8 — Governed by design
-    app:'ops', host:'rivage-marketing-ops.cloud', url:'/governance',
-    opsView:'gov', opsTitle:'Governance', opsCrumb:'Policy / Guardrails', opsRun:'Enforced',
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:8,
-    kicker:'Governance', caption:'Personal — and inside the guardrails.',
-  },
-  { // 9 — Measurement (complete)
-    app:'ops', host:'rivage-marketing-ops.cloud', url:'/measurement',
-    opsView:'measure', opsTitle:'Measurement', opsCrumb:'Impact / Incrementality', opsRun:'Proven',
-    known:true, facts:['fId','fLife','fInterest','fIntent'],
-    msgsTo:9,
-    kicker:'Measurement', caption:'Results feed back. Impact proven.',
+  { // 6 — A 1:1 journey, built by an agent (complete)
+    surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · 1:1', opsRun:'Composed · 1:1',
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    msgsTo:9, kicker:'1:1 journey', caption:'An agent composes her celebration — 1:1, for Elena, not a segment.',
   },
 ];
 
-const FACTS = ['fId','fLife','fInterest','fIntent'];
-const PAGES = { home:'pgHome', suites:'pgSuites', detail:'pgDetail', book:'pgBook' };
-const OPSVIEWS = { journeys:'vJourneys', agent:'vAgent', gov:'vGov', measure:'vMeasure' };
-const OPSNAV = { journeys:'journeys', agent:'messages', gov:'governance', measure:'measurement' };
+const SURFACES = { social:'appSocial', site:'appSite', ops:'appOps' };
+const FACTS = ['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'];
+const PAGES = { home:'pgHome' };
+const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
+const OPSNAV = { profile:'profiles', journey:'journeys' };
+
+const HERO = {
+  plain: {
+    kicker:'The suite from the Reel',
+    title:'The Riviera, at sunset',
+    sub:'Plan your stay with our concierge — suites, dining and the view you saw, arranged around you.',
+    cta:'Plan with the concierge',
+  },
+  composed: {
+    kicker:'For your anniversary',
+    title:'Your anniversary, at sunset',
+    sub:'The Riviera Anniversary Suite — the view you saved, the celebration you\'re planning. Composed around everything we know about your trip.',
+    cta:'Continue planning',
+  },
+};
 
 function renderBeat(index, direction) {
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
 
-  // ── App switch (both toggled every call) ──
-  $('appSite').classList.toggle('is-on', b.app === 'site');
-  $('appOps').classList.toggle('is-on', b.app === 'ops');
+  // ── Surface switch (every surface toggled on/off each call) ──
+  Object.entries(SURFACES).forEach(([key, id]) => {
+    $(id).classList.toggle('is-on', b.surface === key);
+  });
 
-  // ── Browser URL ──
-  $('urlHost').textContent = b.host;
+  // ── Chrome URL/label ──
+  $('urlHost').textContent = b.host === 'social' ? 'social' : b.host;
   $('urlPath').textContent = b.url || '';
 
-  // ── Consumer site: active page, banner, rails ──
+  // ── Consumer site: page + recognition + hero + rails ──
   Object.entries(PAGES).forEach(([key, id]) => {
-    const el = $(id);
-    if (el) el.classList.toggle('is-on', b.app === 'site' && b.page === key);
+    $(id).classList.toggle('is-on', b.surface === 'site' && b.page === key);
   });
-  $('greet').classList.toggle('is-on', !!b.greet);
+  $('recog').classList.toggle('is-on', !!b.recog);
+  $('loyaltyBanner').classList.toggle('is-on', !!b.loyalty);
   $('forYou').classList.toggle('is-on', !!b.foryou);
-  $('anniv').classList.toggle('is-on', !!b.anniv);
-  $('pgDetail').classList.toggle('is-saved', !!b.saved);
-  $('pgBook').classList.toggle('is-offer', !!b.offer);
 
-  // ── Backend console: active view, toolbar, sidebar highlight ──
+  const hero = b.heroComposed ? HERO.composed : HERO.plain;
+  $('heroKicker').textContent = hero.kicker;
+  $('heroTitle').textContent = hero.title;
+  $('heroSub').textContent = hero.sub;
+  $('heroCta').textContent = hero.cta;
+
+  // ── Backend ops: view + toolbar + sidebar highlight ──
   Object.entries(OPSVIEWS).forEach(([key, id]) => {
-    const el = $(id);
-    if (el) el.classList.toggle('is-on', b.app === 'ops' && b.opsView === key);
+    $(id).classList.toggle('is-on', b.surface === 'ops' && b.opsView === key);
   });
   $('opsTitle').textContent = b.opsTitle || '';
   $('opsCrumb').textContent = b.opsCrumb || '';
   $('opsRunTxt').textContent = b.opsRun || '';
-  const activeNav = b.app === 'ops' ? OPSNAV[b.opsView] : null;
+  const activeNav = b.surface === 'ops' ? OPSNAV[b.opsView] : null;
   document.querySelectorAll('.ops__navitem').forEach((el) => {
     el.classList.toggle('is-active', el.dataset.nav === activeNav);
   });
 
-  // ── Profile chip ──
+  // ── Profile card ──
   $('profile').classList.toggle('is-known', !!b.known);
   $('avatar').textContent = b.known ? 'E' : '?';
   const filled = new Set(b.facts || []);
   FACTS.forEach((id) => {
-    const el = $(id);
-    if (el) el.classList.toggle('is-on', filled.has(id));
+    $(id).classList.toggle('is-on', filled.has(id));
   });
 
-  // ── Chat transcript (rebuilt cumulative every call) ──
+  // ── Concierge transcript (rebuilt cumulative every call) ──
   const t = $('transcript');
   t.innerHTML = '';
   for (let k = 0; k <= b.msgsTo && k < LINE.length; k++) {
@@ -563,7 +477,7 @@ function renderBeat(index, direction) {
   }
 }
 
-startSceneRuntime({ total: 9, renderBeat });
+startSceneRuntime({ total: 6, renderBeat });
 </script>
 </body>
 </html>
