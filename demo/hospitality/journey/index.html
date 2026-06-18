@@ -529,7 +529,7 @@ function renderBeat(index, direction) {
 startSceneRuntime({ total: 6, renderBeat });
 
 const __root = document.querySelector('.stage');
-const __fit = () => { const s = Math.min(window.innerWidth/1920, window.innerHeight/1080); __root.style.transform = `scale(${s})`; };
+const __fit = () => { const s = Math.min(window.innerWidth/1920, window.innerHeight/1080); __root.style.transform = `translate(-50%, -50%) scale(${s})`; };
 window.addEventListener('resize', __fit); __fit();
 </script>
 </body>
