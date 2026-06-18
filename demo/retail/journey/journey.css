@@ -216,7 +216,7 @@ html, body {
 .post__spon { font-size: 11.5px; color: var(--muted); }
 .post__dots { color: #9aa3b2; font-size: 18px; letter-spacing: 1px; }
 .post__media { position: relative; }
-.post__img { width: 100%; height: 380px; object-fit: cover; display: block; }
+.post__img { width: 100%; height: 300px; object-fit: cover; display: block; }
 .post__ad { position: absolute; top: 12px; left: 14px; font-size: 11px; font-weight: 800; letter-spacing: .6px;
   color: #fff; background: rgba(8,14,28,.6); padding: 4px 10px; border-radius: 6px; }
 .post__actions { display: flex; align-items: center; gap: 18px; padding: 12px 18px 6px; color: var(--ink); }
