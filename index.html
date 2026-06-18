@@ -19,40 +19,36 @@
     --font: 'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --mono: 'Geist Mono', 'SF Mono', 'Consolas', ui-monospace, monospace;
     --nav-h: 96px;
-    --ink: #0c1020;
-    --red: #E4002B;            /* Merkle triangle */
     --radius: 18px;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; }
   body {
-    font-family: var(--font); color: #fff; background: #04081c;
+    font-family: var(--font); color: #fff; background: #02040a;
     overflow: hidden;
   }
 
-  /* ============ Vivid blue gradient field (the hero background) ============ */
+  /* ============ Background: black by default, cobalt gradient accents ============ */
   .bg {
     position: fixed; inset: 0; z-index: 0; overflow: hidden;
     background:
-      radial-gradient(135% 120% at -5% 65%, #16a6ff 0%, rgba(22,166,255,0) 42%),
-      radial-gradient(120% 120% at 105% 38%, #1d63ff 0%, rgba(29,99,255,0) 48%),
-      radial-gradient(110% 120% at 92% 100%, #00d8ff 0%, rgba(0,216,255,0) 42%),
-      linear-gradient(125deg, #0a1c70 0%, #06133f 52%, #0c34a0 100%);
-    background-color: #07153f;
+      radial-gradient(95% 85% at 88% -12%, rgba(30,86,250,0.34) 0%, rgba(30,86,250,0) 52%),
+      radial-gradient(85% 90% at 6% 112%, rgba(3,40,209,0.30) 0%, rgba(3,40,209,0) 55%),
+      linear-gradient(135deg, #02040c 0%, #04081a 52%, #081230 100%);
+    background-color: #02040a;
   }
-  /* vertical light streaks toward the right */
+  /* faint vertical light streaks toward the right */
   .bg::before {
     content: ''; position: absolute; inset: 0;
     background: repeating-linear-gradient(90deg,
-      rgba(255,255,255,0) 0px, rgba(255,255,255,0) 26px,
-      rgba(255,255,255,.05) 27px, rgba(255,255,255,0) 30px);
-    -webkit-mask-image: linear-gradient(90deg, transparent 55%, #000 100%);
-            mask-image: linear-gradient(90deg, transparent 55%, #000 100%);
-    opacity: .9;
+      rgba(255,255,255,0) 0px, rgba(255,255,255,0) 28px,
+      rgba(120,160,255,.045) 29px, rgba(255,255,255,0) 32px);
+    -webkit-mask-image: linear-gradient(90deg, transparent 60%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 60%, #000 100%);
   }
   /* film grain */
   .bg::after {
-    content: ''; position: absolute; inset: 0; opacity: .12; pointer-events: none;
+    content: ''; position: absolute; inset: 0; opacity: .10; pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
@@ -95,15 +91,15 @@
   .cards--three { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1480px; }
 
   .card {
+    appearance: none; font: inherit; text-align: left; width: 100%; cursor: pointer;
     position: relative; display: flex; flex-direction: column; text-decoration: none; color: #fff;
     min-height: 300px; border-radius: var(--radius); overflow: hidden;
-    background:
-      linear-gradient(165deg, rgba(13,22,54,.72) 0%, rgba(3,7,22,.9) 100%);
+    background: linear-gradient(165deg, rgba(13,22,54,.66) 0%, rgba(3,7,22,.92) 100%);
     border: 1px solid rgba(255,255,255,.16);
-    box-shadow: 0 30px 60px rgba(0,0,0,.35);
+    box-shadow: 0 30px 60px rgba(0,0,0,.4);
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
-  .card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.4); box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+  .card:hover { transform: translateY(-4px); border-color: rgba(120,160,255,.55); box-shadow: 0 40px 80px rgba(0,0,0,.55); }
   .card__body { flex: 1; padding: 34px 34px 20px; display: flex; flex-direction: column; }
   .card__icon { width: 60px; height: 60px; color: #fff; margin-bottom: auto; }
   .card__icon svg { width: 100%; height: 100%; display: block; }
@@ -116,38 +112,43 @@
   }
   .card__cta svg { width: 22px; height: 22px; flex: 0 0 auto; }
 
-  /* ============ Player view ============ */
-  .player { padding: calc(var(--nav-h) + 28px) 56px 40px; justify-content: flex-start; }
-  .player__back {
-    display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
-    background: none; border: 0; cursor: pointer; color: rgba(255,255,255,.85);
-    font-family: var(--font); font-size: 15px; font-weight: 600; letter-spacing: .3px;
-    padding: 8px 0; margin-bottom: 16px; text-decoration: none;
+  /* ============ Video overlay (full-screen modal) ============ */
+  .vmodal {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(0,0,0,.95);
+    display: flex; align-items: center; justify-content: center;
+    padding: 6vh 6vw;
+    opacity: 0; visibility: hidden; transition: opacity .28s ease;
   }
-  .player__back:hover { color: #fff; }
-  .player__back svg { width: 18px; height: 18px; }
-  .player__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.6); margin: 0 0 8px; }
-  .player__title { font-size: 40px; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 22px; }
-  .player__frame {
-    position: relative; width: 100%; max-width: 1280px; aspect-ratio: 16 / 9;
-    background: #000; border-radius: 16px; overflow: hidden;
-    border: 1px solid rgba(255,255,255,.14); box-shadow: 0 30px 70px rgba(0,0,0,.5);
+  .vmodal.is-open { opacity: 1; visibility: visible; }
+  .vmodal__close {
+    position: absolute; top: 26px; right: 40px; z-index: 2;
+    appearance: none; background: none; border: 0; cursor: pointer;
+    color: #fff; font-size: 40px; line-height: 1; opacity: .82;
+    width: 52px; height: 52px; border-radius: 50%;
+    transition: opacity .15s ease, background .15s ease;
   }
-  .player__frame video { width: 100%; height: 100%; display: block; object-fit: contain; background:#000; }
-  .player__missing {
+  .vmodal__close:hover { opacity: 1; background: rgba(255,255,255,.1); }
+  .vmodal__frame {
+    position: relative; width: 100%; max-width: 1320px; aspect-ratio: 16 / 9;
+    background: #000; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 40px 120px rgba(0,0,0,.7);
+  }
+  .vmodal__frame video { width: 100%; height: 100%; display: block; object-fit: contain; background: #000; }
+  .vmodal__missing {
     position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
     text-align: center; padding: 40px; gap: 12px;
-    background: linear-gradient(165deg, rgba(13,22,54,.9), rgba(3,7,22,.96));
+    background: linear-gradient(165deg, rgba(13,22,54,.92), rgba(3,7,22,.97));
   }
-  .player__frame.is-missing .player__missing { display: flex; }
-  .player__frame.is-missing video { visibility: hidden; }
-  .player__missing-title { font-size: 22px; font-weight: 700; }
-  .player__missing-sub { font-size: 15px; color: rgba(255,255,255,.7); max-width: 46ch; line-height: 1.5; }
-  .player__missing code { font-family: var(--mono); background: rgba(255,255,255,.1); padding: 2px 8px; border-radius: 6px; }
+  .vmodal__frame.is-missing .vmodal__missing { display: flex; }
+  .vmodal__frame.is-missing video { visibility: hidden; }
+  .vmodal__missing-title { font-size: 22px; font-weight: 700; }
+  .vmodal__missing-sub { font-size: 15px; color: rgba(255,255,255,.7); max-width: 48ch; line-height: 1.5; }
+  .vmodal__missing code { font-family: var(--mono); background: rgba(255,255,255,.1); padding: 2px 8px; border-radius: 6px; }
 
   /* ============ Menu overlay (record mode) ============ */
   .menu {
-    position: fixed; inset: 0; z-index: 40; background: rgba(2,5,16,.86); backdrop-filter: blur(6px);
+    position: fixed; inset: 0; z-index: 40; background: rgba(2,5,16,.88); backdrop-filter: blur(6px);
     opacity: 0; visibility: hidden; transition: opacity .3s ease;
     display: flex; align-items: center; justify-content: center;
   }
@@ -166,6 +167,7 @@
   .menu a:hover { border-color: #fff; background: rgba(255,255,255,.06); }
   .menu a .mono { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.55); }
   .menu__note { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 8px; line-height: 1.5; }
+  .menu__note code { font-family: var(--mono); }
 </style>
 </head>
 <body>
@@ -222,24 +224,19 @@
     <div class="cards cards--three" id="demosCards"></div>
   </section>
 
-  <!-- ════════════ PLAYER ════════════ -->
-  <section class="view player" data-view="player">
-    <a class="player__back" id="playerBack" href="#/">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-      <span id="playerBackLabel">Back</span>
-    </a>
-    <p class="player__eyebrow" id="playerEyebrow"></p>
-    <h2 class="player__title" id="playerTitle"></h2>
-    <div class="player__frame" id="playerFrame">
-      <video id="playerVideo" controls playsinline preload="metadata"></video>
-      <div class="player__missing">
-        <div class="player__missing-title">Recording coming soon</div>
-        <div class="player__missing-sub">Drop the file at <code id="playerPath"></code> to play it here. Capture it from the live demo via the menu → <strong>Record mode</strong>.</div>
-      </div>
-    </div>
-  </section>
-
 </main>
+
+<!-- ════════════ Video overlay ════════════ -->
+<div class="vmodal" id="vmodal" role="dialog" aria-modal="true" aria-label="Demo video">
+  <button class="vmodal__close" id="vmodalClose" aria-label="Close video">&times;</button>
+  <div class="vmodal__frame" id="vmodalFrame">
+    <video id="vmodalVideo" controls playsinline preload="metadata"></video>
+    <div class="vmodal__missing">
+      <div class="vmodal__missing-title">Recording coming soon</div>
+      <div class="vmodal__missing-sub">Drop the file at <code id="vmodalPath"></code> to play it here. Capture it from the live demo via the menu → <strong>Record mode</strong>.</div>
+    </div>
+  </div>
+</div>
 
 <!-- ════════════ Menu (record mode) ════════════ -->
 <div class="menu" id="menu" role="dialog" aria-label="Menu">
@@ -264,7 +261,7 @@
         <a href="demo/retail/copilot/index.html" target="_blank" rel="noopener">Retail · copilot <span class="mono">scene</span></a>
         <a href="demo/marketing-ops/index.html" target="_blank" rel="noopener">Marketing ops <span class="mono">scene</span></a>
       </div>
-      <p class="menu__note">The live demos are the recording rigs — record each vignette, save it to <code>vignettes/</code>, and it plays in the video screens above. See RUN-LOCALLY.md.</p>
+      <p class="menu__note">The live demos are the recording rigs — record each vignette, save it to <code>vignettes/</code>, and it plays in the video overlays above. See RUN-LOCALLY.md.</p>
     </div>
   </div>
 </div>
@@ -296,55 +293,64 @@ const chevron = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 function renderDemos(vertical) {
   $('#demosTitle').textContent = `${VERTICALS[vertical].label} Demos`;
   $('#demosCards').innerHTML = DEMOS.map((d) => `
-    <a class="card" href="#/${vertical}/${d.key}">
+    <button type="button" class="card" data-vertical="${vertical}" data-key="${d.key}">
       <div class="card__body"><h3 class="card__title">${d.title}</h3></div>
       <div class="card__cta">Play video ${chevron}</div>
-    </a>`).join('');
+    </button>`).join('');
 }
 
-function renderPlayer(vertical, key) {
-  const demo = DEMOS.find((d) => d.key === key);
+/* ─── Video overlay ─── */
+const vmodal = $('#vmodal');
+const vvideo = $('#vmodalVideo');
+const vframe = $('#vmodalFrame');
+
+function openVideo(vertical, key) {
   const src = (VIDEO[vertical] || {})[key];
-  $('#playerEyebrow').textContent = `${VERTICALS[vertical].label} · Modern CRM`;
-  $('#playerTitle').textContent = demo ? demo.title : 'Demo';
-  $('#playerBack').setAttribute('href', `#/${vertical}`);
-  $('#playerBackLabel').textContent = `All ${VERTICALS[vertical].label.toLowerCase()} demos`;
-  const frame = $('#playerFrame');
-  const video = $('#playerVideo');
-  $('#playerPath').textContent = src || '';
-  frame.classList.remove('is-missing');
-  video.onerror = () => frame.classList.add('is-missing');
-  video.src = src || '';
-  const p = video.play && video.play();
+  $('#vmodalPath').textContent = src || '';
+  vframe.classList.remove('is-missing');
+  vvideo.onerror = () => vframe.classList.add('is-missing');
+  vvideo.src = src || '';
+  vmodal.classList.add('is-open');
+  const p = vvideo.play && vvideo.play();
   if (p && p.catch) p.catch(() => {});
 }
+function closeVideo() {
+  vmodal.classList.remove('is-open');
+  try { vvideo.pause(); } catch (_) {}
+  vvideo.removeAttribute('src');
+  vvideo.load();
+}
+$('#vmodalClose').addEventListener('click', closeVideo);
+vmodal.addEventListener('click', (e) => { if (e.target === vmodal) closeVideo(); });
+// Card click → open the overlay (demos stay rendered underneath)
+$('#demosCards').addEventListener('click', (e) => {
+  const card = e.target.closest('[data-key]');
+  if (!card) return;
+  openVideo(card.dataset.vertical, card.dataset.key);
+});
 
+/* ─── Routing (start / demos only; video is a modal) ─── */
 function route() {
-  const parts = (location.hash.replace(/^#\/?/, '').split('/').filter(Boolean));
-  const video = $('#playerVideo');
-  // Stop any playing video when leaving the player.
-  if (parts[0] !== 'retail' && parts[0] !== 'hospitality') { video.pause(); video.removeAttribute('src'); video.load(); }
-
+  closeVideo(); // any nav closes an open video
+  const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   if (parts.length === 0) { showView('start'); return; }
   const vertical = parts[0];
   if (!VERTICALS[vertical]) { location.hash = '#/'; return; }
-  if (parts.length === 1) { renderDemos(vertical); showView('demos'); video.pause(); return; }
-  const key = parts[1];
-  if (!DEMOS.some((d) => d.key === key)) { location.hash = `#/${vertical}`; return; }
-  renderPlayer(vertical, key);
-  showView('player');
+  renderDemos(vertical);
+  showView('demos');
 }
-
 window.addEventListener('hashchange', route);
 route();
 
-// Menu (record mode)
+/* ─── Menu (record mode) ─── */
 const menu = $('#menu');
 $('#menuBtn').addEventListener('click', () => menu.classList.add('is-open'));
 $('#menuClose').addEventListener('click', () => menu.classList.remove('is-open'));
 menu.addEventListener('click', (e) => { if (e.target === menu) menu.classList.remove('is-open'); });
 menu.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', () => menu.classList.remove('is-open')));
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') menu.classList.remove('is-open'); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeVideo(); menu.classList.remove('is-open'); }
+});
 </script>
 </body>
 </html>
