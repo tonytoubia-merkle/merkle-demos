@@ -85,6 +85,18 @@
   .lede { font-size: 22px; line-height: 1.5; max-width: 60ch; margin: 0 0 48px; color: rgba(255,255,255,.92); font-weight: 400; }
   @media (max-width: 1100px) { .h1 { font-size: 56px; } }
 
+  /* Intro setup statement + continue button */
+  .statement { font-size: 48px; font-weight: 700; line-height: 1.28; letter-spacing: -0.6px; max-width: 22ch; margin: 0 0 48px; color: #fff; }
+  @media (max-width: 1100px) { .statement { font-size: 34px; } }
+  .btn {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 12px;
+    background: #fff; color: #000; text-decoration: none;
+    font-size: 18px; font-weight: 700; padding: 16px 26px; border-radius: 999px;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+  .btn svg { width: 20px; height: 20px; }
+
   /* ============ Cards ============ */
   .cards { display: grid; gap: 26px; }
   .cards--two   { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 1120px; }
@@ -218,6 +230,15 @@
     </div>
   </section>
 
+  <!-- ════════════ INTRO (per vertical — on-screen setup line; VO covers the rest) ════════════ -->
+  <section class="view view--intro" data-view="intro">
+    <p class="eyebrow" id="introEyebrow"></p>
+    <p class="statement" id="introText"></p>
+    <a class="btn" id="introNext" href="#/">See the demos
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
   <!-- ════════════ DEMOS (rendered per vertical) ════════════ -->
   <section class="view" data-view="demos">
     <h1 class="h1" id="demosTitle">Demos</h1>
@@ -284,11 +305,23 @@ const VIDEO = {
   retail:      { customer: 'vignettes/retail-customer.mp4',      copilot: 'vignettes/retail-copilot.mp4',      ops: 'vignettes/marketing-ops.mp4' },
   hospitality: { customer: 'vignettes/hospitality-customer.mp4', copilot: 'vignettes/hospitality-copilot.mp4', ops: 'vignettes/marketing-ops.mp4' },
 };
+// Per-vertical on-screen setup line shown before the videos. (The "What if your
+// engagement ecosystem could…" line is VO-only and intentionally not shown.)
+const INTRO = {
+  retail:      'Most retailers still run CRM as a campaign factory and media as a separate acquisition engine — but customers experience one relationship with the brand.',
+  hospitality: 'Most hospitality brands still run CRM as a campaign factory and media as a separate acquisition engine — but guests experience one relationship with the brand.',
+};
 
 const views = document.querySelectorAll('.view');
 const showView = (name) => views.forEach((v) => v.classList.toggle('is-active', v.dataset.view === name));
 
 const chevron = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+
+function renderIntro(vertical) {
+  $('#introEyebrow').textContent = `${VERTICALS[vertical].label} · Modern CRM`;
+  $('#introText').textContent = INTRO[vertical];
+  $('#introNext').setAttribute('href', `#/${vertical}/demos`);
+}
 
 function renderDemos(vertical) {
   $('#demosTitle').textContent = `${VERTICALS[vertical].label} Demos`;
@@ -336,8 +369,9 @@ function route() {
   if (parts.length === 0) { showView('start'); return; }
   const vertical = parts[0];
   if (!VERTICALS[vertical]) { location.hash = '#/'; return; }
-  renderDemos(vertical);
-  showView('demos');
+  if (parts[1] === 'demos') { renderDemos(vertical); showView('demos'); return; }
+  renderIntro(vertical);
+  showView('intro');
 }
 window.addEventListener('hashchange', route);
 route();
