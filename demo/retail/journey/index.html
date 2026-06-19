@@ -30,7 +30,7 @@
         <!-- Viewport hosts every surface; one is active at a time -->
         <div class="viewport">
 
-          <!-- ═════════ SURFACE A: social feed (new-mover ad) ═════════ -->
+          <!-- ═════════ SURFACE A: social feed (influencer + friend) ═════════ -->
           <div id="appSocial" class="app app--social">
             <div class="sof">
               <div class="sof__top">
@@ -39,15 +39,20 @@
                 <span class="sof__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span>
               </div>
               <div class="sof__feed">
+
+                <!-- INFLUENCER post — paid partnership with Nordhem (sponsored) -->
                 <article class="post">
                   <div class="post__head">
-                    <span class="post__ava"><span class="post__crest">N</span></span>
-                    <div class="post__id"><span class="post__user">Nordhem</span><span class="post__spon">Sponsored · New York</span></div>
+                    <span class="post__ava"><span class="post__crest post__crest--inf">A</span></span>
+                    <div class="post__id">
+                      <span class="post__user">studio.aveline</span>
+                      <span class="post__spon">Paid partnership with Nordhem</span>
+                    </div>
                     <span class="post__dots">···</span>
                   </div>
                   <div class="post__media">
                     <img class="post__img" src="../../../assets/photos/nordhem/living.jpg" alt="Styled living room" />
-                    <span class="post__ad">Ad</span>
+                    <span class="post__ad">Sponsored</span>
                   </div>
                   <div class="post__actions">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
@@ -55,12 +60,35 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
                     <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
                   </div>
-                  <div class="post__cap"><b>Nordhem</b> New place, empty rooms? Start with the sofa — visit our Brooklyn showroom and we'll help you build the whole room. <span class="post__tag">#newhome #brooklyn</span></div>
+                  <div class="post__cap"><b>studio.aveline</b> Six months into the new place and the living room finally feels like mine — every piece is @nordhem. Swipe for sources. <span class="post__tag">#nordhempartner #newhome</span></div>
                   <div class="post__cta">
-                    <span class="post__shop">Find the Brooklyn showroom</span>
-                    <span class="post__tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Directions</span>
+                    <span class="post__shop">Shop this room at Nordhem</span>
+                    <span class="post__tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>Learn more</span>
                   </div>
                 </article>
+
+                <!-- ORGANIC friend post — normal, not sponsored -->
+                <article class="post post--friend">
+                  <div class="post__head">
+                    <span class="post__ava"><span class="post__crest post__crest--friend">J</span></span>
+                    <div class="post__id">
+                      <span class="post__user">jules.kim</span>
+                      <span class="post__spon post__spon--plain">Brooklyn, NY</span>
+                    </div>
+                    <span class="post__dots">···</span>
+                  </div>
+                  <div class="post__media">
+                    <img class="post__img" src="../../../assets/photos/nordhem/bedroom.jpg" alt="Friend's bedroom" />
+                  </div>
+                  <div class="post__actions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+                    <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="post__cap"><b>jules.kim</b> finally unpacked the last box 🎉 weekend project: making the corner cozy. <span class="post__tag">#movingday</span></div>
+                </article>
+
               </div>
             </div>
           </div>
@@ -78,6 +106,21 @@
               <div class="cl__body">
                 <!-- LEFT: customer record -->
                 <div class="cl__record">
+
+                  <!-- LOOKUP — search field + result -->
+                  <div id="recLookup" class="reccard reccard--lookup is-on">
+                    <div class="reccard__h">Customer lookup</div>
+                    <div class="lookrow">
+                      <svg class="lookrow__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                      <span class="lookrow__inp">emma.lindqvist@email.com</span>
+                      <span class="lookrow__btn">Search</span>
+                    </div>
+                    <div id="lookResult" class="lookresult">
+                      <span class="lookresult__none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>No record found.</span>
+                      <span class="lookresult__hit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Profile created · enriched via Merkury</span>
+                    </div>
+                  </div>
+
                   <div class="rec__head">
                     <div id="recAvatar" class="rec__avatar">?</div>
                     <div class="rec__who">
@@ -87,35 +130,63 @@
                     <span id="recFlag" class="rec__flag">Walk-in · Now</span>
                   </div>
 
-                  <!-- identity + consent capture -->
-                  <div id="recCapture" class="reccard">
-                    <div class="reccard__h">Capture</div>
+                  <!-- MERKURY enrichment card -->
+                  <div id="recEnrich" class="reccard reccard--enrich">
+                    <div class="reccard__h">Profile · enriched via Merkury</div>
                     <div class="capgrid">
-                      <div class="caprow" id="capId">
+                      <div class="caprow">
                         <span class="caprow__k">Identity</span>
-                        <span class="caprow__v"><span class="caprow__empty">— not captured —</span><span class="caprow__set">Emma Lindqvist · emma.lindqvist@email.com</span></span>
+                        <span class="caprow__v">Emma Lindqvist · emma.lindqvist@email.com</span>
                       </div>
-                      <div class="caprow" id="capConsent">
-                        <span class="caprow__k">Consent</span>
-                        <span class="caprow__v consent">
-                          <span class="optline"><span class="opt">Email</span><span class="sw"></span></span>
-                          <span class="optline"><span class="opt">SMS</span><span class="sw"></span></span>
-                        </span>
+                      <div class="caprow">
+                        <span class="caprow__k">Household</span>
+                        <span class="caprow__v">Single · est. income tier 4 · Brooklyn, NY 11211</span>
+                      </div>
+                      <div class="caprow">
+                        <span class="caprow__k">3P attribute</span>
+                        <span class="caprow__v"><span class="ench">New Mover</span><span class="ench">Home &amp; décor intent</span></span>
                       </div>
                     </div>
+                    <p class="enrichnote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CRM record created · identity resolved (0.96)</p>
                   </div>
 
-                  <!-- consult notes / attributes -->
-                  <div id="recNotes" class="reccard">
+                  <!-- CONSULT notes — typed by associate -->
+                  <div id="recNotes" class="reccard reccard--notes">
                     <div class="reccard__h">Consult notes</div>
-                    <div class="notechips">
-                      <span class="notechip" id="attrApt">Furnishing a new apartment</span>
-                      <span class="notechip" id="attrBk">New to Brooklyn</span>
+                    <div class="noteinput">
+                      <span class="noteinput__txt">New in town — just moved to Brooklyn, furnishing a new apartment from scratch. Starting with the living room.</span>
+                      <span class="noteinput__cur"></span>
                     </div>
-                    <p class="notebody">Came in from a Nordhem ad — just moved, the place is empty. Wants help making it feel like home.</p>
+                    <div class="notechips">
+                      <span class="notechip">Furnishing a new apartment</span>
+                      <span class="notechip">New to Brooklyn</span>
+                    </div>
                   </div>
 
-                  <!-- in-store order -->
+                  <!-- RECO — agent recommends sofas, Emma picks one -->
+                  <div id="recReco" class="reccard reccard--reco">
+                    <div class="reccard__h"><svg class="reccard__agentic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>Clienteling agent · recommended sofas</div>
+                    <p class="reco__why">Reasoned from the notes — small Brooklyn apartment, fresh start. Two sofas that anchor a compact living room.</p>
+                    <div class="recogrid">
+                      <article class="scard is-picked">
+                        <img class="scard__img" src="../../../assets/photos/nordhem/living.jpg" alt="Fjäll sofa" />
+                        <div class="scard__b">
+                          <span class="scard__name">Fjäll 3-Seat Sofa</span>
+                          <span class="scard__meta">Oatmeal bouclé · $1,490</span>
+                        </div>
+                        <span class="scard__pick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Emma's pick</span>
+                      </article>
+                      <article class="scard">
+                        <img class="scard__img" src="../../../assets/photos/nordhem/living2.jpg" alt="Vik loveseat" />
+                        <div class="scard__b">
+                          <span class="scard__name">Vik Compact Loveseat</span>
+                          <span class="scard__meta">Slate weave · $1,090</span>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <!-- ORDER — purchase + opt-ins + loyalty -->
                   <div id="recOrder" class="reccard reccard--order">
                     <div class="reccard__h">In-store order</div>
                     <div class="orderrow">
@@ -127,8 +198,11 @@
                       <span class="orderrow__amt">$1,490</span>
                     </div>
                     <div class="orderopts">
-                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Email + app opt-in</span>
-                      <span class="oopt is-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Joined Nordhem Members · 149 pts</span>
+                      <span class="oopt"><span class="oopt__lab">Email opt-in</span><span class="sw"></span></span>
+                      <span class="oopt"><span class="oopt__lab">SMS opt-in</span><span class="sw"></span></span>
+                    </div>
+                    <div class="orderbadges">
+                      <span class="obadge obadge--loy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Joined Nordhem Members · 149 pts</span>
                     </div>
                   </div>
                 </div>
@@ -136,72 +210,108 @@
                 <!-- RIGHT: associate next-best rail -->
                 <div class="cl__rail">
                   <div class="railcard">
-                    <div class="railcard__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
-                    <p id="railTip" class="railcard__tip">New face on the floor — came in off the ad, no record yet. Greet her, help her get oriented, capture what matters if she's open to it.</p>
+                    <div class="railcard__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>Associate assist</div>
+                    <p id="railTip" class="railcard__tip">New face on the floor — search for her first. If there's no record, create one and let Merkury fill in the gaps.</p>
                   </div>
-                  <div id="railAttr" class="railcard railcard--soft">
-                    <div class="railcard__h2">Meaningful attributes</div>
-                    <ul class="railattr">
-                      <li><b>New apartment</b> — whole-home furnishing, not one piece</li>
-                      <li><b>New to Brooklyn</b> — local life stage, delivery matters</li>
-                    </ul>
+                  <div id="railNudge" class="railcard railcard--nudge">
+                    <div class="railcard__h2">Agent nudge</div>
+                    <p class="railnudge"><b>Tell Emma to download the app</b> to track her order — and her 149 points are ready in Members.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- ═════════ SURFACE C: email client (finish the room) ═════════ -->
+          <!-- ═════════ SURFACE C: email client — inbox framed ═════════ -->
           <div id="appEmail" class="app app--email">
-            <div class="mailc">
-              <div class="mailc__top">
-                <span class="mailc__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
-                <span class="mailc__tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
-                <span class="mailc__tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg></span>
-              </div>
-              <div class="mailc__scroll">
-                <div class="mailmsg">
-                  <h1 class="mailmsg__subj">Finish the room — picks that go with your new sofa</h1>
-                  <div class="mailmsg__from">
-                    <span class="mailmsg__ava"><span class="mailmsg__crest">N</span></span>
-                    <div class="mailmsg__who">
-                      <span class="mailmsg__name">Nordhem <span class="mailmsg__addr">&lt;hello@nordhem.com&gt;</span></span>
-                      <span class="mailmsg__to">to Emma · delivery in progress</span>
+            <div class="mail">
+              <!-- inbox list rail -->
+              <aside class="inbox">
+                <div class="inbox__top">
+                  <span class="inbox__brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Inbox</span>
+                  <span class="inbox__count">3</span>
+                </div>
+                <div class="inbox__list">
+                  <div class="inrow is-open">
+                    <span class="inrow__ava">N</span>
+                    <div class="inrow__b">
+                      <span class="inrow__from">Nordhem</span>
+                      <span class="inrow__subj">Finish the living room — picks that go…</span>
+                      <span class="inrow__prev">Delivery in progress · while your sofa ships</span>
                     </div>
-                    <span class="mailmsg__time">now</span>
+                    <span class="inrow__dot"></span>
                   </div>
+                  <div class="inrow">
+                    <span class="inrow__ava inrow__ava--gray">B</span>
+                    <div class="inrow__b">
+                      <span class="inrow__from">Brooklyn Edison</span>
+                      <span class="inrow__subj">Set up your new account</span>
+                      <span class="inrow__prev">Welcome to your new address.</span>
+                    </div>
+                  </div>
+                  <div class="inrow">
+                    <span class="inrow__ava inrow__ava--gray">J</span>
+                    <div class="inrow__b">
+                      <span class="inrow__from">Jules Kim</span>
+                      <span class="inrow__subj">housewarming??</span>
+                      <span class="inrow__prev">ok now that you're unpacked…</span>
+                    </div>
+                  </div>
+                </div>
+              </aside>
 
-                  <div class="mailbody">
-                    <div class="mailhero">
-                      <img class="mailhero__img" src="../../../assets/photos/nordhem/living2.jpg" alt="Styled living room" />
-                      <div class="mailhero__scrim"></div>
-                      <div class="mailhero__copy">
-                        <span class="mailhero__k">While your sofa's on the way</span>
-                        <h2 class="mailhero__t">Two pieces to finish the room</h2>
+              <!-- reading pane -->
+              <div class="reader">
+                <div class="reader__top">
+                  <span class="reader__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
+                  <span class="reader__tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h9l5 5v5a2 2 0 0 1-2 2h-4"/><path d="M9 17v4h6v-4"/></svg></span>
+                  <span class="reader__tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                </div>
+                <div class="reader__scroll">
+                  <div class="mailmsg">
+                    <h1 class="mailmsg__subj">Finish the living room — picks that go with your new sofa</h1>
+                    <p class="mailmsg__pre">Delivery in progress · while your sofa ships</p>
+                    <div class="mailmsg__from">
+                      <span class="mailmsg__ava"><span class="mailmsg__crest">N</span></span>
+                      <div class="mailmsg__who">
+                        <span class="mailmsg__name">Nordhem <span class="mailmsg__addr">&lt;hello@nordhem.com&gt;</span></span>
+                        <span class="mailmsg__to">to Emma</span>
                       </div>
+                      <span class="mailmsg__time">now</span>
                     </div>
-                    <p class="mailcopy">Hi Emma — your Fjäll sofa is on its way. Here are two picks chosen to sit right beside it.</p>
-                    <div class="mailrecs">
-                      <article class="mailrec" id="mailRec1">
-                        <img class="mailrec__img" src="../../../assets/photos/nordhem/living.jpg" alt="End tables" />
-                        <div class="mailrec__b">
-                          <span class="mailrec__tag">Matches your sofa</span>
-                          <h3 class="mailrec__name">Birk End Tables</h3>
-                          <p class="mailrec__meta">Solid ash · pair · $240</p>
+
+                    <div class="mailbody">
+                      <div class="mailhero">
+                        <img class="mailhero__img" src="../../../assets/photos/nordhem/living2.jpg" alt="Styled living room" />
+                        <div class="mailhero__scrim"></div>
+                        <div class="mailhero__copy">
+                          <span class="mailhero__k">While your sofa's on the way</span>
+                          <h2 class="mailhero__t">Two pieces to finish the room</h2>
                         </div>
-                        <span class="mailrec__tap">View ›</span>
-                      </article>
-                      <article class="mailrec">
-                        <img class="mailrec__img" src="../../../assets/photos/nordhem/bedroom.jpg" alt="Floor lamp" />
-                        <div class="mailrec__b">
-                          <span class="mailrec__tag">Warm it up</span>
-                          <h3 class="mailrec__name">Sol Floor &amp; Table Lights</h3>
-                          <p class="mailrec__meta">Linen shade · from $180</p>
-                        </div>
-                        <span class="mailrec__tap">View ›</span>
-                      </article>
+                      </div>
+                      <p class="mailcopy">Hi Emma — your Fjäll sofa is on its way. Here are two picks chosen to sit right beside it.</p>
+                      <div class="mailrecs">
+                        <article class="mailrec" id="mailRec1">
+                          <img class="mailrec__img" src="../../../assets/photos/nordhem/living.jpg" alt="End tables" />
+                          <div class="mailrec__b">
+                            <span class="mailrec__tag">Matches your sofa</span>
+                            <h3 class="mailrec__name">Birk End Tables</h3>
+                            <p class="mailrec__meta">Solid ash · pair · $240</p>
+                          </div>
+                          <span class="mailrec__tap">View ›</span>
+                        </article>
+                        <article class="mailrec">
+                          <img class="mailrec__img" src="../../../assets/photos/nordhem/bedroom.jpg" alt="Floor lamp" />
+                          <div class="mailrec__b">
+                            <span class="mailrec__tag">Warm it up</span>
+                            <h3 class="mailrec__name">Sol Floor &amp; Table Lights</h3>
+                            <p class="mailrec__meta">Linen shade · from $180</p>
+                          </div>
+                          <span class="mailrec__tap">View ›</span>
+                        </article>
+                      </div>
+                      <span class="mailcta">Shop the living room</span>
                     </div>
-                    <span class="mailcta">Shop the room</span>
                   </div>
                 </div>
               </div>
@@ -215,15 +325,16 @@
               <span class="snav__links"><span>Living</span><span>Kitchen</span><span>Dining</span><span>Bedroom</span><span>Lighting</span></span>
               <span class="snav__right">
                 <svg class="snav__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                <span class="snav__signin">Sign in to see everything</span>
+                <span class="snav__cartic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></span>
               </span>
             </nav>
 
-            <!-- recognition strip -->
-            <div id="recog" class="recog">
-              <span class="recog__dot"></span>
-              <span class="recog__txt"><b>Welcome, Emma.</b> Recognized from your email — no login needed.</span>
-              <span class="recog__src">via Merkury</span>
+            <!-- WELCOME banner: Welcome, Emma + Sign in + Not you? -->
+            <div id="welcomeBar" class="welcomebar">
+              <span class="welcomebar__dot"></span>
+              <span class="welcomebar__txt"><b>Welcome, Emma.</b></span>
+              <span class="welcomebar__signin">Sign in</span>
+              <span class="welcomebar__not">Not you?</span>
             </div>
 
             <div id="siteBody" class="site-body">
@@ -243,7 +354,7 @@
                 <div class="loyb">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.2 1.2 6L12 16.8 6.3 19l1.2-6L3 8.8 9 8z"/></svg>
                   <span class="loyb__txt"><b>149 points waiting</b> to help furnish your apartment.</span>
-                  <span class="loyb__cta">Log in to see</span>
+                  <span class="loyb__cta">Sign in to see</span>
                 </div>
 
                 <!-- complete-the-room rail -->
@@ -274,6 +385,12 @@
               </section>
             </div>
 
+            <!-- MERKURY recognition toast — top right -->
+            <div id="merkToast" class="merktoast">
+              <span class="merktoast__dot"></span>
+              <span class="merktoast__txt">Recognized via Merkury</span>
+            </div>
+
             <!-- ON-SITE CHAT WIDGET (customer-facing, anchored bottom-right) -->
             <div id="siteChat" class="schat">
               <div class="schat__head">
@@ -286,10 +403,10 @@
               </div>
               <div class="schat__body">
                 <div class="sbub sbub--ai">Hi Emma — anything I can help you find?</div>
-                <div class="sbub sbub--user">Now that I've got the living room sorted, I want to do something with my kitchen. It's pretty small though.</div>
-                <div class="sbub sbub--ai">Small kitchens are our favourite. The <b>Skär Island</b> is built for tight floor plans — storage on both sides, oak top. Want a couple of layouts that fit a Brooklyn galley?</div>
-                <div class="sbub sbub--user">Yes please — and something to eat at without taking up much room.</div>
-                <div class="sbub sbub--ai">The <b>Fjord</b> bench set tucks right under a table. I'll pull both up for you.</div>
+                <div class="sbub sbub--user">Loving the living room. Next I want to do something with my kitchen — it's pretty small.</div>
+                <div class="sbub sbub--ai">Small kitchens are our favourite. The <b>Skär Island</b> is built for tight floor plans — storage both sides, oak top. Want a few galley layouts?</div>
+                <div class="sbub sbub--user">Yes please. One thing — I'm on the 3rd floor and there's no elevator, so keep that in mind for anything bulky.</div>
+                <div class="sbub sbub--ai">Noted — <b>3rd floor, no elevator</b>. I'll flag white-glove walk-up delivery and favour pieces that come in carry-up sections.</div>
               </div>
               <div class="schat__compose">
                 <span class="schat__inp">Message Nordhem…</span>
@@ -325,26 +442,26 @@
 
                 <div class="ops__work">
 
-                  <!-- VIEW: rich context handed to an agent -->
+                  <!-- VIEW: built-out profile -->
                   <div id="vProfile" class="opsview">
                     <div class="prof">
                       <div class="prof__head">
                         <div class="prof__avatar">E</div>
                         <div>
                           <div class="prof__name">Emma Lindqvist</div>
-                          <div class="prof__sub">One unified profile · social + in-store + email + site · ID 0.97 confidence</div>
+                          <div class="prof__sub">One complete profile · social + in-store + email + site + chat · ID 0.97 confidence</div>
                         </div>
                         <span class="prof__chip">High value · consented</span>
                       </div>
                       <div class="prof__grid">
-                        <div class="pfield"><span class="pfield__k">Life stage</span><span class="pfield__v">Recent mover · furnishing a new apartment</span></div>
-                        <div class="pfield"><span class="pfield__k">Location</span><span class="pfield__v">New to Brooklyn, NY</span></div>
+                        <div class="pfield"><span class="pfield__k">Identity</span><span class="pfield__v">Emma Lindqvist · emma.lindqvist@email.com</span></div>
+                        <div class="pfield"><span class="pfield__k">Merkury 3P</span><span class="pfield__v">New Mover · Brooklyn, NY · home &amp; décor intent</span></div>
                         <div class="pfield"><span class="pfield__k">Purchase</span><span class="pfield__v">Fjäll 3-Seat Sofa · $1,490 · in store</span></div>
                         <div class="pfield"><span class="pfield__k">Loyalty</span><span class="pfield__v">Nordhem Members · 149 pts</span></div>
-                        <div class="pfield"><span class="pfield__k">Interest signal</span><span class="pfield__v">Kitchen — small-space, from on-site chat</span></div>
-                        <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · Media</span></div>
-                        <div class="pfield pfield--flag"><span class="pfield__k">Value tier</span><span class="pfield__v">High value · actionable context → media in play</span></div>
-                        <div class="pfield"><span class="pfield__k">Acquisition</span><span class="pfield__v">Paid social → in store (Merkury)</span></div>
+                        <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · opted in</span></div>
+                        <div class="pfield"><span class="pfield__k">Kitchen intent</span><span class="pfield__v">Small-space — from on-site chat</span></div>
+                        <div class="pfield pfield--flag"><span class="pfield__k">Delivery constraint</span><span class="pfield__v">3rd floor · no elevator (white-glove / carry-up)</span></div>
+                        <div class="pfield"><span class="pfield__k">Signals</span><span class="pfield__v">Email tap · site browse · chat — high value</span></div>
                       </div>
                       <div class="prov-row">
                         <span class="provb provb--mer">paid media</span>
@@ -355,108 +472,87 @@
                     </div>
                   </div>
 
-                  <!-- VIEW: agent-designed 6-week multichannel journey -->
+                  <!-- VIEW: 1:1 journey + decision (single view) -->
                   <div id="vJourney" class="opsview">
                     <div class="runhead">
                       <div class="runhead__orb"><span></span></div>
                       <div>
-                        <div class="runhead__title">Agent designed a 6-week journey for Emma</div>
-                        <div class="runhead__sub">Multi-touch · email · SMS · push · media — composed 1:1 from her profile</div>
+                        <div class="runhead__title">Agent designed a 6-week 1:1 journey for Emma</div>
+                        <div class="runhead__sub">Email · SMS · push — composed from her profile, walk-up delivery in mind</div>
                       </div>
                       <span class="runhead__live">1:1 · 6 weeks</span>
                     </div>
 
-                    <div class="jtl">
-                      <div class="jweek">
-                        <div class="jweek__lab"><span class="jweek__n">Wk 1</span></div>
-                        <div class="jmsg jmsg--email">
-                          <span class="jmsg__chan">Email</span>
-                          <span class="jmsg__t">Apartment kitchens that wow</span>
-                          <span class="jmsg__p">Small-space layouts built around the Skär Island.</span>
+                    <!-- channel mockups: email / SMS / push -->
+                    <div class="mockrow">
+
+                      <!-- EMAIL mock -->
+                      <div class="mock mock--email">
+                        <span class="mock__chan">Wk 1 · Email</span>
+                        <div class="mockmail">
+                          <div class="mockmail__bar"><span class="mockmail__crest">N</span><span class="mockmail__from">Nordhem</span></div>
+                          <div class="mockmail__hero"><img src="../../../assets/photos/nordhem/kitchen.jpg" alt="Kitchen" /></div>
+                          <div class="mockmail__b">
+                            <span class="mockmail__subj">Apartment kitchens that wow</span>
+                            <span class="mockmail__pre">Small-space layouts built around the Skär Island.</span>
+                          </div>
                         </div>
                       </div>
-                      <div class="jweek">
-                        <div class="jweek__lab"><span class="jweek__n">Wk 2</span></div>
-                        <div class="jmsg jmsg--push">
-                          <span class="jmsg__chan">Push</span>
-                          <span class="jmsg__t">End tables that match your sofa</span>
-                          <span class="jmsg__p">The Birk pair, back in oatmeal. Tap to see in your room.</span>
+
+                      <!-- SMS mock -->
+                      <div class="mock mock--sms">
+                        <span class="mock__chan">Wk 3 · SMS</span>
+                        <div class="mocksms">
+                          <div class="mocksms__phone">
+                            <div class="mocksms__from">Nordhem</div>
+                            <div class="smsbub">Your <b>149 pts</b> + a free kitchen plan are ready, Emma. Book a 20-min walk-up-friendly design consult → nordhem.co/plan</div>
+                            <div class="mocksms__time">now</div>
+                          </div>
                         </div>
                       </div>
-                      <div class="jweek">
-                        <div class="jweek__lab"><span class="jweek__n">Wk 3</span></div>
-                        <div class="jmsg jmsg--media">
-                          <span class="jmsg__chan">Media</span>
-                          <span class="jmsg__t">Paid social · kitchen ideas</span>
-                          <span class="jmsg__p">Retarget on social — she's high value with live intent.</span>
+
+                      <!-- PUSH mock -->
+                      <div class="mock mock--push">
+                        <span class="mock__chan">Wk 5 · Push</span>
+                        <div class="mockpush">
+                          <div class="pushcard">
+                            <span class="pushcard__app"><span class="pushcard__ic">N</span>NORDHEM · now</span>
+                            <span class="pushcard__t">End tables that match your sofa</span>
+                            <span class="pushcard__b">The Birk pair — flat-packed, carries up easy. Tap to see in your room.</span>
+                          </div>
                         </div>
                       </div>
-                      <div class="jweek">
-                        <div class="jweek__lab"><span class="jweek__n">Wk 4</span></div>
-                        <div class="jmsg jmsg--sms">
-                          <span class="jmsg__chan">SMS</span>
-                          <span class="jmsg__t">Your 149 points + free kitchen plan</span>
-                          <span class="jmsg__p">Book a 20-min plan with a Nordhem designer.</span>
-                        </div>
-                      </div>
-                      <div class="jweek">
-                        <div class="jweek__lab"><span class="jweek__n">Wk 5</span></div>
-                        <div class="jmsg jmsg--email">
-                          <span class="jmsg__chan">Email</span>
-                          <span class="jmsg__t">Seats four, fits a galley</span>
-                          <span class="jmsg__p">The Fjord bench set — styled for a small Brooklyn kitchen.</span>
-                        </div>
-                      </div>
-                      <div class="jweek">
-                        <div class="jweek__lab"><span class="jweek__n">Wk 6</span></div>
-                        <div class="jmsg jmsg--push">
-                          <span class="jmsg__chan">Push</span>
-                          <span class="jmsg__t">Members-only: 2x points this week</span>
-                          <span class="jmsg__p">Finish the kitchen and double your points.</span>
-                        </div>
-                      </div>
+
                     </div>
 
                     <div class="jwhy">
-                      <div class="jwhy__h">Why media is in the mix — the agent's call</div>
-                      <p class="jwhy__p"><b>She's high value with actionable context</b> — recent mover, couch buyer, live kitchen intent, fully consented. That's why the agent <b>included paid media</b> alongside owned channels. No transactional delivery or shipping messages — this journey builds the relationship.</p>
-                    </div>
-                  </div>
-
-                  <!-- VIEW: branch — what's next -->
-                  <div id="vBranch" class="opsview">
-                    <div class="runhead">
-                      <div class="runhead__orb"><span></span></div>
-                      <div>
-                        <div class="runhead__title">Then the agent decides what's next</div>
-                        <div class="runhead__sub">At the end of the 6 weeks, the journey forks on Emma's behaviour</div>
-                      </div>
-                      <span class="runhead__live">Branch · agentic</span>
+                      <div class="jwhy__h">The agent's reasoning</div>
+                      <p class="jwhy__p"><b>High value with live intent</b> — recent mover, sofa buyer, small-kitchen interest, fully consented. The journey builds the relationship (no shipping/transactional sends) and respects her <b>3rd-floor, no-elevator</b> constraint — white-glove walk-up delivery and carry-up-friendly picks throughout.</p>
                     </div>
 
+                    <!-- DECISION fork (inline, end of the same view) -->
                     <div class="brfork">
-                      <div class="brstem">After 6 weeks</div>
+                      <div class="brstem">Then the agent decides what's next</div>
                       <div class="brcols">
                         <div class="brcol brcol--buy">
-                          <div class="brcol__h"><span class="brcol__cond">If she buys</span><span class="brcol__arrow">→ Loyalty journey</span></div>
+                          <div class="brcol__h"><span class="brcol__cond">Purchase</span><span class="brcol__arrow">→ Loyalty journey</span></div>
                           <ul class="brlist">
-                            <li><b>Welcome to Members</b> — points balance, what they unlock</li>
-                            <li><b>Next-best for a loyal customer</b> — bedroom, lighting to match</li>
-                            <li><b>Early access</b> — new arrivals, members-only drops</li>
-                            <li><b>Points nudges</b> — keep her active and rewarded</li>
+                            <li><b>Welcome to Members</b> — points balance &amp; what they unlock</li>
+                            <li><b>Next-best</b> — bedroom &amp; lighting to match her sofa</li>
+                            <li><b>Early access</b> — members-only drops &amp; point nudges</li>
                           </ul>
                         </div>
                         <div class="brcol brcol--re">
-                          <div class="brcol__h"><span class="brcol__cond">If she doesn't</span><span class="brcol__arrow">→ Next-best journey</span></div>
+                          <div class="brcol__h"><span class="brcol__cond">No purchase</span><span class="brcol__arrow">→ Next-best journey</span></div>
                           <ul class="brlist">
-                            <li><b>Re-engage</b> — new angle: budget-friendly kitchen starters</li>
+                            <li><b>Re-engage</b> — budget-friendly kitchen starters</li>
                             <li><b>Fresh inspiration</b> — small-space rooms she hasn't seen</li>
-                            <li><b>Free design consult</b> — lower the barrier, get her back</li>
-                            <li><b>Win-back media</b> — one more relevant touch on social</li>
+                            <li><b>Free design consult</b> — lower the barrier, win her back</li>
                           </ul>
                         </div>
                       </div>
                     </div>
+
                   </div>
 
                 </div>
@@ -468,7 +564,7 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ RIGHT: profile + agentic narration ═══════════════════ -->
+    <!-- ═══════════════════ RIGHT: profile + explainability feed ═══════════════════ -->
     <aside class="agent">
 
       <!-- profile card -->
@@ -481,30 +577,32 @@
           </div>
         </div>
         <div class="profile__facts">
-          <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">Emma Lindqvist · captured in store</span></div>
-          <div id="fLife" class="fact"><span class="fact__k">Life stage</span><span class="fact__v">Recent mover · new to Brooklyn</span></div>
-          <div id="fConsent" class="fact"><span class="fact__k">Consent</span><span class="fact__v">Email · SMS · App · opted in</span></div>
+          <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">Emma Lindqvist · created in store</span></div>
+          <div id="fMover" class="fact"><span class="fact__k">Merkury 3P</span><span class="fact__v">New Mover · Brooklyn, NY</span></div>
+          <div id="fNotes" class="fact"><span class="fact__k">Consult</span><span class="fact__v">Furnishing a new apartment</span></div>
           <div id="fPurchase" class="fact"><span class="fact__k">Purchase</span><span class="fact__v">Fjäll Sofa · $1,490 · Members 149 pts</span></div>
-          <div id="fMerkury" class="fact"><span class="fact__k">Merkury</span><span class="fact__v">Recognized on site · no login</span></div>
-          <div id="fChat" class="fact"><span class="fact__k">Intent</span><span class="fact__v">Kitchen · small-space · captured from chat</span></div>
+          <div id="fConsent" class="fact"><span class="fact__k">Channels</span><span class="fact__v">Email · SMS · App · opted in</span></div>
+          <div id="fMerkury" class="fact"><span class="fact__k">Recognized</span><span class="fact__v">On site via Merkury · no login</span></div>
+          <div id="fChat" class="fact"><span class="fact__k">Kitchen</span><span class="fact__v">Small-space intent · from chat</span></div>
+          <div id="fConstraint" class="fact"><span class="fact__k">Delivery</span><span class="fact__v">3rd floor · no elevator</span></div>
         </div>
       </div>
 
-      <!-- agentic narration (NO customer dialogue) -->
-      <div class="chat">
-        <div class="chat__head">
-          <div class="chat__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
-          <div class="chat__id"><span class="chat__name">Agentic context</span><span class="chat__status"><i></i>Reasoning across signals</span></div>
+      <!-- explainability / profile-building feed (NOT a chat) -->
+      <div class="signals">
+        <div class="signals__head">
+          <div class="signals__orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg></div>
+          <div class="signals__id"><span class="signals__name">Signals &amp; reasoning</span><span class="signals__status"><i></i>Enriching the profile</span></div>
         </div>
-        <div id="transcript" class="transcript"></div>
+        <div id="feed" class="feed"></div>
       </div>
 
       <!-- progress + caption -->
       <div class="agent__foot">
-        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
-          <span id="capKicker" class="cap__kicker">Social · paid media</span>
-          <span id="capText" class="cap__text">Targeted as a recent mover — an ad that drives her in store.</span>
+          <span id="capKicker" class="cap__kicker">Social · influencer</span>
+          <span id="capText" class="cap__text">An influencer she follows — a paid partnership with Nordhem.</span>
         </div>
       </div>
 
@@ -519,103 +617,155 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 const $ = (id) => document.getElementById(id);
 
 /* ─────────────────────────────────────────────────────────────────
-   9 beats (total: 8, indices 0–8). renderBeat recomputes EVERYTHING
-   from the BEATS table each call — fully reversible, no element
-   depends on prior-beat DOM. Every visual is toggled on AND off.
+   11 beats (total: 10, indices 0–10). renderBeat recomputes EVERYTHING
+   from the BEATS table each call — fully reversible, no element depends
+   on prior-beat DOM. Every visual is toggled on AND off.
 
    Surfaces:   social | client | email | site | ops
    On-site chat: lives INSIDE the site surface (customer-facing).
-   Right rail:  profile facts (cumulative) + AGENTIC narration only
-                (no customer dialogue) + progress dots + caption.
+   Right rail:  profile facts (cumulative) + EXPLAINABILITY feed
+                (icon + reasoning line + signal/source tag — NOT chat
+                bubbles) + progress dots + caption.
    ───────────────────────────────────────────────────────────────── */
 
-// Cumulative agentic-narration log — beat N shows lines [0..msgsTo].
-// These are the AI's INTERNAL reasoning/flags, never Emma's words.
-const LINE = [
-  // 0 — social ad
-  { who:'ai', html:'Targeting a <b>recent-mover, social-forward audience</b>. Paid media opens the relationship — the goal is to drive her into the Brooklyn showroom.' },
-  // 1 — in store, captured
-  { who:'ai', html:'Captured in store. Flagging two meaningful attributes — <b>furnishing a new apartment</b> and <b>new to Brooklyn</b>. Identity + consent on file; resolves to <b>Emma</b>.' },
-  // 2 — orders a couch
-  { who:'ai', html:'Couch ordered. Email + app opt-in, and she <b>joined loyalty</b> — Nordhem Members, 149 pts. One connected profile now spans social and in store.' },
-  // 3 — email, finish the room
-  { who:'ai', html:'Owned email re-engages <b>while delivery is in progress</b> — a finish-the-room recommendation. She <b>taps a pick</b>; engagement logged.' },
-  // 4 — personalized site
-  { who:'ai', html:'She lands on nordhem.com and we recognize her via <b>Merkury — no login</b>. Homepage flips to the room she\'s building; loyalty points surfaced.' },
-  // 5 — on-site chat (intent, not a ticket)
-  { who:'ai', html:'Captured a new signal from the on-site chat: <b>kitchen interest, small-space</b>. No transactional thread — this is <b>intent</b>, not a support ticket.' },
-  // 6 — rich context to agent
-  { who:'ai', html:'Everything assembled into <b>one rich context</b> — recent mover, couch buyer, kitchen intent, high value, consented channels — and handed to an agent.' },
-  // 7 — agent designs journey
-  { who:'ai', html:'Agent composed a <b>6-week, multi-touch journey</b> across email, SMS, push and media. <b>Media is included</b> because she\'s high value with actionable context — the agent\'s call. No delivery/shipping messages.' },
-  // 8 — branch
-  { who:'ai', html:'At the end, the journey <b>forks on her behaviour</b>: buys → an <b>agentic loyalty journey</b>; doesn\'t → an <b>agentic next-best journey</b> that re-engages with new angles.' },
+// Cumulative explainability feed — beat N shows entries [0..feedTo].
+// Each entry: a signal type, the reasoning line, and a source tag.
+// These are the SYSTEM thinking/enriching — never a conversation.
+const SIGNAL = [
+  // 0 — influencer feed
+  { type:'audience', icon:'target',
+    text:'Served to a <b>recent-mover, social-forward</b> audience — paid media opens the relationship.',
+    tag:'Paid social · audience' },
+  // 1 — lookup
+  { type:'identity', icon:'search',
+    text:'Searching identity by email — <b>no first-party record</b> yet.',
+    tag:'Lookup · clienteling' },
+  // 2 — create + Merkury
+  { type:'enrich', icon:'spark',
+    text:'Identity resolved. Appending <b>3P attributes via Merkury</b> — New Mover, household, geo. <b>CRM record created.</b>',
+    tag:'Merkury · 3rd-party' },
+  // 3 — consult notes
+  { type:'note', icon:'note',
+    text:'Captured from the conversation — <b>furnishing a new apartment</b>, new to Brooklyn.',
+    tag:'Consult note · store' },
+  // 4 — reco
+  { type:'reco', icon:'spark',
+    text:'Clienteling agent <b>recommends sofas</b> — reasoned from the notes. Emma picks the Fjäll.',
+    tag:'Agent · recommendation' },
+  // 5 — buy + opt-ins + app + loyalty
+  { type:'order', icon:'check',
+    text:'Sofa purchased. <b>Email + SMS opt-in</b>, app nudge to track the order, enrolled in <b>loyalty (149 pts).</b>',
+    tag:'Order · channels · loyalty' },
+  // 6 — email
+  { type:'engage', icon:'mail',
+    text:'Owned email <b>re-engages during delivery</b> — finish-the-room recs. She <b>taps a pick.</b>',
+    tag:'Email · engagement' },
+  // 7 — personalized site
+  { type:'recognize', icon:'spark',
+    text:'On nordhem.com, <b>recognized via Merkury — no login.</b> Site flips to the room she\'s building.',
+    tag:'Merkury · site' },
+  // 8 — on-site chat
+  { type:'signal', icon:'chat',
+    text:'New signals from chat — <b>kitchen interest</b>, plus <b>3rd floor, no elevator</b> (delivery + install constraint).',
+    tag:'On-site chat · intent' },
+  // 9 — complete profile
+  { type:'profile', icon:'profile',
+    text:'All signals assembled into <b>one complete profile</b> — identity, 3P, purchase, channels, intent, constraint.',
+    tag:'Profile · unified' },
+  // 10 — journey + decision
+  { type:'journey', icon:'route',
+    text:'Agent composes a <b>6-week 1:1 journey</b> (email · SMS · push) and <b>decides the branch</b>: purchase → loyalty, no purchase → next-best.',
+    tag:'Agent · 1:1 + decision' },
 ];
 
+const ICONS = {
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+  spark:  '<path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/>',
+  note:   '<path d="M4 4h12l4 4v12a0 0 0 0 1 0 0H4z"/><path d="M8 11h8"/><path d="M8 15h6"/>',
+  check:  '<circle cx="12" cy="12" r="9"/><polyline points="8.5 12 11 14.5 16 9"/>',
+  mail:   '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  chat:   '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/>',
+  profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+  route:  '<circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8 6h6a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8h2"/>',
+};
+
 const BEATS = [
-  { // 0 — Social ad: new-mover targeting
-    surface:'social', host:'social', url:' · paid media',
+  { // 0 — Influencer feed
+    surface:'social', host:'social', url:' · instagram',
     known:false, facts:[],
-    msgsTo:0, kicker:'Social · paid media', caption:'Targeted as a recent mover — an ad that drives her in store.',
+    feedTo:0, kicker:'Social · influencer', caption:'An influencer she follows — a paid partnership with Nordhem.',
   },
-  { // 1 — In store: captured
-    surface:'client', host:'nordhem-clienteling.app', url:' · In store',
-    clRecognized:true, clCapture:true, clNotes:true, clOrder:false, clAttrRail:true,
-    known:true, facts:['fId','fLife','fConsent'],
-    msgsTo:1, kicker:'In store', caption:'In store — captured as a customer.',
+  { // 1 — Look up customer (no record)
+    surface:'client', host:'nordhem-clienteling.app', url:' · Lookup',
+    clCreated:false, clLookup:true, clEnrich:false, clNotes:false, clReco:false, clOrder:false, clNudge:false,
+    known:false, facts:[],
+    feedTo:1, kicker:'In store · lookup', caption:'Searching identity — no first-party record yet.',
   },
-  { // 2 — Orders a couch, joins loyalty
-    surface:'client', host:'nordhem-clienteling.app', url:' · In store · order',
-    clRecognized:true, clCapture:true, clNotes:true, clOrder:true, clAttrRail:true,
-    known:true, facts:['fId','fLife','fConsent','fPurchase'],
-    msgsTo:2, kicker:'Order + loyalty', caption:'She needs a couch — ordered, and into loyalty.',
+  { // 2 — Create profile + Merkury enrichment
+    surface:'client', host:'nordhem-clienteling.app', url:' · New profile',
+    clCreated:true, clLookup:true, clEnrich:true, clNotes:false, clReco:false, clOrder:false, clNudge:false,
+    known:true, facts:['fId','fMover'],
+    feedTo:2, kicker:'Create + Merkury', caption:'New profile, enriched with Merkury 3P — New Mover, household, geo.',
   },
-  { // 3 — Email: finish the room
+  { // 3 — Consult notes
+    surface:'client', host:'nordhem-clienteling.app', url:' · Consult notes',
+    clCreated:true, clLookup:false, clEnrich:true, clNotes:true, clReco:false, clOrder:false, clNudge:false,
+    known:true, facts:['fId','fMover','fNotes'],
+    feedTo:3, kicker:'Consult notes', caption:'New in town, furnishing an apartment — the associate types it in.',
+  },
+  { // 4 — Agent recommends sofas
+    surface:'client', host:'nordhem-clienteling.app', url:' · Recommendations',
+    clCreated:true, clLookup:false, clEnrich:false, clNotes:false, clReco:true, clOrder:false, clNudge:false,
+    known:true, facts:['fId','fMover','fNotes'],
+    feedTo:4, kicker:'Agent reco', caption:'The clienteling agent recommends sofas — Emma picks one.',
+  },
+  { // 5 — Purchase + opt-ins + app + loyalty
+    surface:'client', host:'nordhem-clienteling.app', url:' · Order',
+    clCreated:true, clLookup:false, clEnrich:false, clNotes:false, clReco:false, clOrder:true, clNudge:true,
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent'],
+    feedTo:5, kicker:'Order + loyalty', caption:'She buys — opt-ins on, app nudge, loyalty points start.',
+  },
+  { // 6 — Email (inbox-framed)
     surface:'email', host:'mail', url:' · nordhem.com',
     mailTapped:true,
-    known:true, facts:['fId','fLife','fConsent','fPurchase'],
-    msgsTo:3, kicker:'Email', caption:'An email to finish the room — she taps a pick.',
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent'],
+    feedTo:6, kicker:'Email', caption:'An inbox email to finish the room — she taps a pick.',
   },
-  { // 4 — Personalized site (Merkury)
+  { // 7 — Personalized site (Merkury)
     surface:'site', host:'nordhem.com', url:'',
-    recog:true, chat:false,
-    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury'],
-    msgsTo:4, kicker:'Personalized', caption:'The site knows her — Merkury, and the room she\'s building.',
+    welcome:true, merk:true, chat:false,
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury'],
+    feedTo:7, kicker:'Personalized', caption:'Welcome, Emma — recognized via Merkury, and the room she\'s building.',
   },
-  { // 5 — On-site chat: kitchen intent
+  { // 8 — On-site chat (kitchen + 3rd floor)
     surface:'site', host:'nordhem.com', url:'/?chat=advisor',
-    recog:true, chat:true,
-    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
-    msgsTo:5, kicker:'On-site chat', caption:'She asks about kitchens — captured as intent, not a ticket.',
+    welcome:true, merk:false, chat:true,
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    feedTo:8, kicker:'On-site chat', caption:'Kitchen ideas — and she\'s on the 3rd floor with no elevator.',
   },
-  { // 6 — Rich context handed to an agent
+  { // 9 — Complete profile
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/profiles/emma',
-    opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Emma Lindqvist', opsRun:'Handed to agent',
-    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
-    msgsTo:6, kicker:'Rich context', caption:'Everything we know — handed to an agent.',
+    opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Emma Lindqvist', opsRun:'Complete',
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    feedTo:9, kicker:'Complete profile', caption:'One complete profile.',
   },
-  { // 7 — Agent designs the 6-week journey
+  { // 10 — 1:1 journey + decision (same view)
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma',
-    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · 6-week', opsRun:'Designed · 1:1',
-    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
-    msgsTo:7, kicker:'Journey design', caption:'An agent designs the journey — 6 weeks, email, SMS, push, and media.',
-  },
-  { // 8 — Branch: what's next (complete)
-    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/branch',
-    opsView:'branch', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · branch', opsRun:'Branch · agentic',
-    known:true, facts:['fId','fLife','fConsent','fPurchase','fMerkury','fChat'],
-    msgsTo:8, kicker:'What\'s next', caption:'Then the agent decides what\'s next — buy into loyalty, or re-engage.',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · 1:1', opsRun:'Designed · 1:1',
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    feedTo:10, kicker:'1:1 journey + decision', caption:'A 1:1 journey — and the agent decides what\'s next.',
   },
 ];
 
 const SURFACES = { social:'appSocial', client:'appClient', email:'appEmail', site:'appSite', ops:'appOps' };
-const FACTS = ['fId','fLife','fConsent','fPurchase','fMerkury','fChat'];
-const OPSVIEWS = { profile:'vProfile', journey:'vJourney', branch:'vBranch' };
-const OPSNAV = { profile:'profiles', journey:'journeys', branch:'journeys' };
+const FACTS = ['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'];
+const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
+const OPSNAV = { profile:'profiles', journey:'journeys' };
 
 const RAIL_TIP = {
-  base: 'New face on the floor — came in off the ad, no record yet. Greet her, help her get oriented, capture what matters if she\'s open to it.',
-  captured: 'Identity and consent captured. She\'s furnishing a whole apartment — think rooms, not one piece. Set her up on email and the app.',
+  base:    'New face on the floor — search for her first. If there\'s no record, create one and let Merkury fill in the gaps.',
+  created: 'Profile created and enriched. She\'s furnishing a whole apartment — think rooms, not one piece. Capture notes, then let the agent recommend.',
 };
 
 function renderBeat(index, direction) {
@@ -631,23 +781,28 @@ function renderBeat(index, direction) {
   $('urlHost').textContent = b.host;
   $('urlPath').textContent = b.url || '';
 
-  // ── Clienteling surface state ──
-  $('appClient').classList.toggle('is-recognized', !!b.clRecognized);
-  $('recCapture').classList.toggle('is-on', !!b.clCapture);
+  // ── Clienteling surface state (each card toggled on/off) ──
+  $('appClient').classList.toggle('is-created', !!b.clCreated);
+  $('recLookup').classList.toggle('is-on', !!b.clLookup);
+  $('recLookup').classList.toggle('is-found', !!b.clCreated && !!b.clLookup);
+  $('recEnrich').classList.toggle('is-on', !!b.clEnrich);
   $('recNotes').classList.toggle('is-on', !!b.clNotes);
+  $('recReco').classList.toggle('is-on', !!b.clReco);
   $('recOrder').classList.toggle('is-on', !!b.clOrder);
-  $('railAttr').classList.toggle('is-on', !!b.clAttrRail);
-  $('recAvatar').textContent = b.clRecognized ? 'E' : '?';
-  $('recStatus').textContent = b.clRecognized
-    ? (b.clOrder ? 'Emma Lindqvist · Member · new client' : 'Emma Lindqvist · identity + consent captured')
+  $('railNudge').classList.toggle('is-on', !!b.clNudge);
+  $('recAvatar').textContent = b.clCreated ? 'E' : '?';
+  $('recStatus').textContent = b.clCreated
+    ? (b.clOrder ? 'Emma Lindqvist · Member · new client'
+                 : 'Emma Lindqvist · profile created · Merkury-enriched')
     : 'Unidentified · no record yet';
-  $('railTip').textContent = b.clCapture ? RAIL_TIP.captured : RAIL_TIP.base;
+  $('railTip').textContent = b.clCreated ? RAIL_TIP.created : RAIL_TIP.base;
 
   // ── Email surface: tapped-rec highlight ──
   $('mailRec1').classList.toggle('is-tapped', !!b.mailTapped);
 
-  // ── Consumer site: recognition strip + on-site chat widget ──
-  $('recog').classList.toggle('is-on', !!b.recog);
+  // ── Consumer site: welcome banner + Merkury toast + on-site chat ──
+  $('welcomeBar').classList.toggle('is-on', !!b.welcome);
+  $('merkToast').classList.toggle('is-on', !!b.merk);
   $('siteChat').classList.toggle('is-open', !!b.chat);
 
   // ── Backend ops: view + toolbar + sidebar highlight ──
@@ -670,24 +825,31 @@ function renderBeat(index, direction) {
     $(id).classList.toggle('is-on', filled.has(id));
   });
 
-  // ── Agentic narration (rebuilt cumulative every call) ──
-  const t = $('transcript');
-  t.innerHTML = '';
-  for (let k = 0; k <= b.msgsTo && k < LINE.length; k++) {
-    const line = LINE[k];
+  // ── Explainability feed (rebuilt cumulative every call — NOT chat) ──
+  const feed = $('feed');
+  feed.innerHTML = '';
+  for (let k = 0; k <= b.feedTo && k < SIGNAL.length; k++) {
+    const s = SIGNAL[k];
     const row = document.createElement('div');
-    row.className = 'msg msg--' + line.who + (k === b.msgsTo ? ' is-latest' : '');
-    const orb = document.createElement('div');
-    orb.className = 'msg__orb';
-    orb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>';
-    row.appendChild(orb);
-    const bub = document.createElement('div');
-    bub.className = 'msg__bub';
-    bub.innerHTML = line.html;
-    row.appendChild(bub);
-    t.appendChild(row);
+    row.className = 'sig' + (k === b.feedTo ? ' is-latest' : '');
+    const ic = document.createElement('div');
+    ic.className = 'sig__ic sig__ic--' + s.type;
+    ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[s.icon] || ICONS.spark) + '</svg>';
+    row.appendChild(ic);
+    const body = document.createElement('div');
+    body.className = 'sig__b';
+    const line = document.createElement('div');
+    line.className = 'sig__line';
+    line.innerHTML = s.text;
+    const tag = document.createElement('div');
+    tag.className = 'sig__tag';
+    tag.textContent = s.tag;
+    body.appendChild(line);
+    body.appendChild(tag);
+    row.appendChild(body);
+    feed.appendChild(row);
   }
-  requestAnimationFrame(() => { t.scrollTop = t.scrollHeight; });
+  requestAnimationFrame(() => { feed.scrollTop = feed.scrollHeight; });
 
   // ── Footer: caption + dots ──
   $('capKicker').textContent = b.kicker;
@@ -699,7 +861,7 @@ function renderBeat(index, direction) {
   }
 }
 
-startSceneRuntime({ total: 8, renderBeat });
+startSceneRuntime({ total: 10, renderBeat });
 
 const __root = document.querySelector('.stage');
 const __fit = () => { const s = Math.min(window.innerWidth/1920, window.innerHeight/1080); __root.style.transform = `translate(-50%, -50%) scale(${s})`; };
