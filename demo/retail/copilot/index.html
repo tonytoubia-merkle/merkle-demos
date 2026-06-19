@@ -107,7 +107,7 @@
             </div>
             <div class="step__label">
               <span class="step__kicker">Step 2 · Plan</span>
-              <span class="step__title">Owned first — paid to extend reach &amp; acquire</span>
+              <span class="step__title">Owned first – paid to extend reach &amp; acquire</span>
             </div>
           </div>
           <div class="plan-rows">
@@ -115,7 +115,7 @@
               <span class="plan-row__badge owned">Owned</span>
               <div class="plan-row__body">
                 <span class="plan-row__channel">Email &amp; CRM · personalized browse sequences</span>
-                <span class="plan-row__desc">Triggered flows for high-intent signals and cart-abandoners — where Nordhem already has permission to reach</span>
+                <span class="plan-row__desc">Triggered flows for high-intent signals and cart-abandoners – where Nordhem already has permission to reach</span>
               </div>
             </div>
             <div class="plan-row">
@@ -136,7 +136,7 @@
               <span class="plan-row__badge paid">Paid</span>
               <div class="plan-row__body">
                 <span class="plan-row__channel">Programmatic &amp; search · new customer acquisition</span>
-                <span class="plan-row__desc">Lookalike expansion where owned has no reach — frequency-capped to protect efficiency</span>
+                <span class="plan-row__desc">Lookalike expansion where owned has no reach – frequency-capped to protect efficiency</span>
               </div>
             </div>
           </div>
@@ -187,7 +187,7 @@
             </div>
             <div class="step__label">
               <span class="step__kicker">Step 4 · Execution</span>
-              <span class="step__title">Play launched — optimizing across all channels</span>
+              <span class="step__title">Play launched – optimizing across all channels</span>
             </div>
           </div>
           <div class="exec-grid">
@@ -224,7 +224,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/>
             </svg>
-            Agent adapting — shifting budget from paid to owned as purchase signals strengthen
+            Agent adapting – shifting budget from paid to owned as purchase signals strengthen
           </div>
         </div>
 
@@ -239,7 +239,7 @@
             </div>
             <div class="step__label">
               <span class="step__kicker">Step 5 · Proof</span>
-              <span class="step__title">Estimate vs. actual — closed loop</span>
+              <span class="step__title">Estimate vs. actual – closed loop</span>
             </div>
           </div>
           <div class="loop-table">
@@ -281,7 +281,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/>
             </svg>
-            Results feed back — loop closed, impact proven
+            Results feed back – loop closed, impact proven
           </div>
         </div>
 
@@ -301,7 +301,7 @@
           </svg>
           Objective
         </div>
-        <div class="objective-card__goal">Increase visits and purchases among high-intent shoppers — while improving media efficiency</div>
+        <div class="objective-card__goal">Increase visits and purchases among high-intent shoppers – while improving media efficiency</div>
         <div class="objective-card__sub">Nordhem retail &nbsp;·&nbsp; high-intent segment &nbsp;·&nbsp; media efficiency constraint</div>
         <div id="objStats" class="obj-stats">
           <div class="obj-stat">
@@ -362,10 +362,10 @@ const $ = (id) => document.getElementById(id);
 
 /* ─────────────────────────────────────────────────────────────────
    Per-beat data table. Index 0..5. All state recomputed from scratch
-   on every renderBeat call — no element relies on prior-beat DOM.
+   on every renderBeat call – no element relies on prior-beat DOM.
    ───────────────────────────────────────────────────────────────── */
 const BEATS = [
-  { // 0 — Initial: question typed, awaiting response
+  { // 0 – Initial: question typed, awaiting response
     kicker: 'CMO',
     caption: 'The CMO asks.',
     cursor: true,
@@ -379,7 +379,7 @@ const BEATS = [
     loop: false,
     closedBadge: false,
   },
-  { // 1 — Identify & assemble audience
+  { // 1 – Identify & assemble audience
     kicker: 'Audience',
     caption: 'Identify the opportunity. Assemble the audience.',
     cursor: false,
@@ -389,11 +389,11 @@ const BEATS = [
     step1: true, step2: false, step3: false, step4: false, step5: false,
     objStats: true,
     agent: true,
-    agentMsg: 'Found the gap — 3.1% conversion rate with room to grow. I\'ve assembled <strong>309K addressable shoppers</strong>: existing customers, high-intent visitors, cart-abandoners, and modeled lookalike prospects.',
+    agentMsg: 'Found the gap – 3.1% conversion rate with room to grow. I\'ve assembled <strong>309K addressable shoppers</strong>: existing customers, high-intent visitors, cart-abandoners, and modeled lookalike prospects.',
     loop: false,
     closedBadge: false,
   },
-  { // 2 — Plan owned + paid
+  { // 2 – Plan owned + paid
     kicker: 'Plan',
     caption: 'Owned first. Paid to extend reach and acquire.',
     cursor: false,
@@ -403,11 +403,11 @@ const BEATS = [
     step1: true, step2: true, step3: false, step4: false, step5: false,
     objStats: true,
     agent: true,
-    agentMsg: 'Owned channels first — email flows and site nudges where Nordhem already has permission. <strong>Paid only to re-engage abandoners and reach net-new lookalike customers</strong>, not spray spend at the full list.',
+    agentMsg: 'Owned channels first – email flows and site nudges where Nordhem already has permission. <strong>Paid only to re-engage abandoners and reach net-new lookalike customers</strong>, not spray spend at the full list.',
     loop: false,
     closedBadge: false,
   },
-  { // 3 — Activate into destinations
+  { // 3 – Activate into destinations
     kicker: 'Activation',
     caption: 'Audiences activated into every destination.',
     cursor: false,
@@ -421,7 +421,7 @@ const BEATS = [
     loop: false,
     closedBadge: false,
   },
-  { // 4 — Agentic execution
+  { // 4 – Agentic execution
     kicker: 'Execution',
     caption: 'Agent launches the play. Adapts as results arrive.',
     cursor: false,
@@ -431,13 +431,13 @@ const BEATS = [
     step1: true, step2: true, step3: true, step4: true, step5: false,
     objStats: true,
     agent: true,
-    agentMsg: 'All channels live — media, CRM, ecommerce, store. I\'m watching signals in real time: <strong>shifting budget from paid to owned</strong> as email and site outperform. No manual tweaks needed.',
+    agentMsg: 'All channels live – media, CRM, ecommerce, store. I\'m watching signals in real time: <strong>shifting budget from paid to owned</strong> as email and site outperform. No manual tweaks needed.',
     loop: false,
     closedBadge: false,
   },
-  { // 5 — Measure & prove (complete)
+  { // 5 – Measure & prove (complete)
     kicker: 'Proof',
-    caption: 'Attribution & incrementality — proven in one loop.',
+    caption: 'Attribution & incrementality – proven in one loop.',
     cursor: false,
     send: true,
     think: false,
@@ -445,7 +445,7 @@ const BEATS = [
     step1: true, step2: true, step3: true, step4: true, step5: true,
     objStats: true,
     agent: true,
-    agentMsg: 'Actuals beat estimates: <strong>+26% purchase lift, 4.4× ROAS, €2.5M incremental revenue</strong>. Attribution and incrementality closed. Every result feeds back — the loop is proven.',
+    agentMsg: 'Actuals beat estimates: <strong>+26% purchase lift, 4.4× ROAS, €2.5M incremental revenue</strong>. Attribution and incrementality closed. Every result feeds back – the loop is proven.',
     loop: true,
     closedBadge: true,
   },

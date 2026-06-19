@@ -252,7 +252,7 @@ body { background: #0e1422; }
 .pkgs { max-height: 0; opacity: 0; overflow: hidden; padding: 0 44px;
   transition: max-height .6s cubic-bezier(.4,0,.2,1), opacity var(--t), padding var(--t); }
 .pkgs.is-on { max-height: 640px; opacity: 1; padding: 6px 44px 30px; }
-.pkgs__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.pkgs__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .pkgs .pcard__img { height: 108px; }
 .pkgs .pcard__name { font-size: 17px; }
 .pkgs .pcard__meta { font-size: 12.5px; }
