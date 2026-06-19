@@ -79,7 +79,7 @@
 
       </div>
 
-      <!-- Running AI summary — one column per phase, accumulates across stages.
+      <!-- Running AI summary – one column per phase, accumulates across stages.
            Columns are built from PHASES at load; renderBeat lights each up
            as its phase compresses (bullets accumulate, not replaced). -->
       <div id="aiRow" class="ai-row"></div>
@@ -121,7 +121,7 @@
     </div>
     <div class="caption">
       <span id="captionKicker" class="caption__kicker">Today</span>
-      <span id="captionText" class="caption__text">Plan to launch today — about 14 weeks.</span>
+      <span id="captionText" class="caption__text">Plan to launch today – about 14 weeks.</span>
     </div>
   </footer>
 
@@ -160,49 +160,49 @@ const wk = (n) => {
    - compare: show the before/after stacked view instead of the timeline
    ───────────────────────────────────────────────────────────────── */
 const BEATS = [
-  { // 0 — Today: full 14-week timeline, no AI
+  { // 0 – Today: full 14-week timeline, no AI
     kicker: 'Today',
-    caption: 'Plan to launch today — about 14 weeks.',
+    caption: 'Plan to launch today – about 14 weeks.',
     aiOn: false,
     compressed: [],
     compare: false,
   },
-  { // 1 — Strategy + AI
+  { // 1 – Strategy + AI
     kicker: 'Strategy + AI',
-    caption: 'Strategy: faster insights, sharper messaging — 3 wks → 1 wk.',
+    caption: 'Strategy: faster insights, sharper messaging – 3 wks → 1 wk.',
     aiOn: true,
     compressed: ['strategy'],
     compare: false,
   },
-  { // 2 — Creative + AI
+  { // 2 – Creative + AI
     kicker: 'Creative + AI',
-    caption: 'Creative: generative, on-brand variants — 4 wks → 1.5 wks.',
+    caption: 'Creative: generative, on-brand variants – 4 wks → 1.5 wks.',
     aiOn: true,
     compressed: ['strategy', 'creative'],
     compare: false,
   },
-  { // 3 — Review + AI
+  { // 3 – Review + AI
     kicker: 'Review + AI',
-    caption: 'Review: automated checks, fewer rounds — 2 wks → 0.5 wk.',
+    caption: 'Review: automated checks, fewer rounds – 2 wks → 0.5 wk.',
     aiOn: true,
     compressed: ['strategy', 'creative', 'review'],
     compare: false,
   },
-  { // 4 — Build + AI
+  { // 4 – Build + AI
     kicker: 'Build + AI',
-    caption: 'Build: audiences & journeys assembled — 3 wks → 1 wk.',
+    caption: 'Build: audiences & journeys assembled – 3 wks → 1 wk.',
     aiOn: true,
     compressed: ['strategy', 'creative', 'review', 'build'],
     compare: false,
   },
-  { // 5 — Launch + AI
+  { // 5 – Launch + AI
     kicker: 'Launch + AI',
-    caption: 'Launch: one trigger, every market — 2 wks → 1 wk.',
+    caption: 'Launch: one trigger, every market – 2 wks → 1 wk.',
     aiOn: true,
     compressed: ['strategy', 'creative', 'review', 'build', 'launch'],
     compare: false,
   },
-  { // 6 — Before vs after (complete)
+  { // 6 – Before vs after (complete)
     kicker: 'Compressed',
     caption: 'Plan to launch, compressed.',
     aiOn: true,
