@@ -126,11 +126,25 @@
                   </div>
                 </div>
 
+                <!-- trip-status countdown (return / know-before-you-go visit) -->
+                <div id="tripStatus" class="tripstat">
+                  <div class="tripstat__l">
+                    <span class="tripstat__k">Your anniversary trip</span>
+                    <span class="tripstat__v">3 weeks away · late September · 3 nights</span>
+                  </div>
+                  <div class="tripstat__steps">
+                    <span class="tstep is-done"><i></i>Booked</span>
+                    <span class="tstep is-done"><i></i>Suite confirmed</span>
+                    <span class="tstep is-now"><i></i>Know before you go</span>
+                    <span class="tstep"><i></i>Arrival</span>
+                  </div>
+                </div>
+
                 <!-- loyalty banner -->
                 <div id="loyaltyBanner" class="loyb">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .8-4.5 4.2 1.2 6L12 16.8 6.3 19l1.2-6L3 8.8 9 8z"/></svg>
-                  <span class="loyb__txt"><b>Perks waiting for your celebration</b> — sign in to see.</span>
-                  <span class="loyb__cta">Sign in to see</span>
+                  <span class="loyb__txt"><b>Rivage Cercle</b> — your celebration perks are ready.</span>
+                  <span class="loyb__cta">View perks</span>
                 </div>
 
                 <!-- composed-for-her rail -->
@@ -155,6 +169,32 @@
                         <h3 class="pcard__name">Golden-Hour Terrace</h3>
                         <p class="pcard__meta">Champagne &amp; the view from the Reel</p>
                       </div>
+                    </article>
+                  </div>
+                </div>
+
+                <!-- explore / merchandised packages (browse + return visit) -->
+                <div id="packages" class="pkgs">
+                  <div class="foryou__head">
+                    <span class="foryou__title" id="pkgsTitle">Stays &amp; experiences</span>
+                    <span class="foryou__note" id="pkgsNote">A few ways to make the trip yours</span>
+                  </div>
+                  <div class="pkgs__grid">
+                    <article class="pcard">
+                      <img class="pcard__img" src="../../../assets/photos/rivage/lobby.jpg" alt="Spa" />
+                      <div class="pcard__body"><span class="pcard__tag">Spa &amp; wellness</span><h3 class="pcard__name">Riviera Spa Ritual</h3><p class="pcard__meta">Couples' treatment · 90 min</p></div>
+                    </article>
+                    <article class="pcard">
+                      <img class="pcard__img" src="../../../assets/photos/rivage/dining.jpg" alt="Chef's table" />
+                      <div class="pcard__body"><span class="pcard__tag">Dining</span><h3 class="pcard__name">Chef's Table</h3><p class="pcard__meta">Seven courses · wine pairing</p></div>
+                    </article>
+                    <article class="pcard">
+                      <img class="pcard__img" src="../../../assets/photos/rivage/pool.jpg" alt="Sunset sail" />
+                      <div class="pcard__body"><span class="pcard__tag">Experience</span><h3 class="pcard__name">Sunset Sail</h3><p class="pcard__meta">Private · golden hour</p></div>
+                    </article>
+                    <article class="pcard">
+                      <img class="pcard__img" src="../../../assets/photos/rivage/suite.jpg" alt="Rivage Amalfi" />
+                      <div class="pcard__body"><span class="pcard__tag">Rivage Amalfi</span><h3 class="pcard__name">Our Amalfi house</h3><p class="pcard__meta">For a future escape</p></div>
                     </article>
                   </div>
                 </div>
@@ -243,87 +283,192 @@
                     </div>
                   </div>
 
-                  <!-- VIEW: 1:1 journey + decision (single view) -->
+                  <!-- VIEW: 1:1 journey — full timeline + expandable creatives + decision -->
                   <div id="vJourney" class="opsview">
                     <div class="runhead">
                       <div class="runhead__orb"><span></span></div>
                       <div>
-                        <div class="runhead__title">Agent designed a multi-week 1:1 journey for Elena</div>
-                        <div class="runhead__sub">Email · SMS · push — composed around her anniversary, the surprise in mind</div>
+                        <div class="runhead__title">Agent designed a 5-week 1:1 journey for Elena</div>
+                        <div class="runhead__sub">8 touchpoints across email · SMS · push · paid social — composed around her anniversary</div>
                       </div>
-                      <span class="runhead__live">1:1 · for Elena</span>
+                      <span class="runhead__live">1:1 · 5 weeks</span>
                     </div>
 
-                    <!-- channel mockups: email / SMS / push -->
-                    <div class="mockrow">
+                    <!-- TIMELINE: every touchpoint; multiple channels, some weeks with 2 -->
+                    <div class="jtl">
+                      <div class="jtl__head">
+                        <span class="jtl__lab">The journey</span>
+                        <span class="jtl__legend">
+                          <span class="lg lg--email">Email</span>
+                          <span class="lg lg--sms">SMS</span>
+                          <span class="lg lg--push">Push</span>
+                          <span class="lg lg--ad">Paid social</span>
+                          <span class="lg lg--app">In-app</span>
+                        </span>
+                      </div>
+                      <div class="jtl__track">
+                        <!-- WK 1 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 1</span>
+                          <div id="tpEmail" class="tp tp--email">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Email</span><span class="tp__title">At sunset</span></span>
+                          </div>
+                          <div class="tp tp--ad">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Paid social</span><span class="tp__title">Retarget</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 2 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 2</span>
+                          <div class="tp tp--sms">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">SMS</span><span class="tp__title">Concierge</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 3 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 3</span>
+                          <div id="tpSms" class="tp tp--sms">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">SMS</span><span class="tp__title">Dinner set</span></span>
+                          </div>
+                          <div class="tp tp--app">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">In-app</span><span class="tp__title">Itinerary</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 4 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 4</span>
+                          <div class="tp tp--email">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Email</span><span class="tp__title">Before you go</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 5 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 5</span>
+                          <div id="tpPush" class="tp tp--push">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Push</span><span class="tp__title">Surprise set</span></span>
+                          </div>
+                          <div class="tp tp--email">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Email</span><span class="tp__title">See you soon</span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-                      <!-- EMAIL mock -->
-                      <div class="mock mock--email">
-                        <span class="mock__chan">Wk 1 · Email</span>
-                        <div class="mockmail">
-                          <div class="mockmail__bar"><span class="mockmail__crest">R</span><span class="mockmail__from">Rivage</span></div>
-                          <div class="mockmail__hero"><img src="../../../assets/photos/rivage/suite-hero.jpg" alt="Anniversary suite at sunset" /></div>
-                          <div class="mockmail__b">
-                            <span class="mockmail__subj">Your anniversary suite, at sunset</span>
-                            <span class="mockmail__pre">The suite from the Reel — held for your celebration.</span>
+                    <!-- STAGE: swaps per beat (overview → expand email → SMS → push → decision) -->
+                    <div class="jstage">
+
+                      <!-- OVERVIEW -->
+                      <div id="jOverview" class="jpanel">
+                        <div class="jover">
+                          <div class="jover__stat"><b>8</b><span>touchpoints</span></div>
+                          <div class="jover__stat"><b>4</b><span>channels</span></div>
+                          <div class="jover__stat"><b>5</b><span>weeks</span></div>
+                          <div class="jover__stat"><b>1:1</b><span>personalized</span></div>
+                        </div>
+                        <div class="jwhy">
+                          <div class="jwhy__h">The agent's reasoning</div>
+                          <p class="jwhy__p"><b>A milestone anniversary, trip for two</b> — fully consented, high intent from the inbound Reel. The agent spreads the touchpoints across <b>email, SMS, push and paid social</b> — building the celebration (no generic promos): the <b>suite from the Reel</b> confirmed up front and her <b>sunset-dinner surprise</b> handled. Tap any touchpoint to see the creative.</p>
+                        </div>
+                      </div>
+
+                      <!-- EMAIL creative (expanded from Wk 1) -->
+                      <div id="jEmail" class="jpanel">
+                        <div class="creative">
+                          <span class="cretag cretag--email">Wk 1 · Email · expanded</span>
+                          <div class="creative__row">
+                            <div class="bigmail">
+                              <div class="bigmail__bar"><span class="bigmail__crest">R</span><span class="bigmail__from">Rivage <span>&lt;concierge@rivage.com&gt;</span></span></div>
+                              <div class="bigmail__hero"><img src="../../../assets/photos/rivage/suite-hero.jpg" alt="Anniversary suite at sunset" /><span class="bigmail__k">For your anniversary</span></div>
+                              <div class="bigmail__b">
+                                <h3 class="bigmail__subj">Your anniversary suite, at sunset</h3>
+                                <p class="bigmail__copy">The suite from the Reel — <b>held for your celebration</b>. Here's everything we're arranging, and your <b>Rivage Cercle</b> perks.</p>
+                                <span class="bigmail__cta">View your trip</span>
+                              </div>
+                            </div>
+                            <div class="cwhy">
+                              <div class="cwhy__h">Why this send</div>
+                              <p class="cwhy__p">Confirms the celebration up front — the exact <b>suite from the Reel</b>, her dates, her Cercle perks. Reassurance, not a promo.</p>
+                              <div class="cwhy__chips"><span class="cwhy__chip">Wk 1 · Owned</span><span class="cwhy__chip">Confirmation</span></div>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- SMS mock -->
-                      <div class="mock mock--sms">
-                        <span class="mock__chan">Wk 3 · SMS</span>
-                        <div class="mocksms">
-                          <div class="mocksms__phone">
-                            <div class="mocksms__from">Rivage</div>
-                            <div class="smsbub">Your <b>sunset dinner is set</b>, Elena — Le Rivage, golden hour. You'll earn <b>Cercle points</b> on this stay. Reply to adjust.</div>
-                            <div class="mocksms__time">now</div>
+                      <!-- SMS creative (expanded from Wk 3) -->
+                      <div id="jSms" class="jpanel">
+                        <div class="creative">
+                          <span class="cretag cretag--sms">Wk 3 · SMS · expanded</span>
+                          <div class="creative__row">
+                            <div class="bigsms">
+                              <div class="bigsms__from">Rivage</div>
+                              <div class="bigsms__bub">Your <b>sunset dinner is set</b>, Elena — Le Rivage, golden hour. You'll earn <b>Cercle points</b> on this stay. Reply to adjust → <span class="bigsms__link">rivage.co/trip</span></div>
+                              <div class="bigsms__time">Text message · now</div>
+                            </div>
+                            <div class="cwhy">
+                              <div class="cwhy__h">Why this send</div>
+                              <p class="cwhy__p">A timely, low-friction confirmation — the <b>sunset dinner</b> locked to golden hour, Cercle points noted. Short and reply-able.</p>
+                              <div class="cwhy__chips"><span class="cwhy__chip">Wk 3 · SMS</span><span class="cwhy__chip">Confirmation / nudge</span></div>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- PUSH mock -->
-                      <div class="mock mock--push">
-                        <span class="mock__chan">Wk 5 · Push</span>
-                        <div class="mockpush">
-                          <div class="pushcard">
-                            <span class="pushcard__app"><span class="pushcard__ic">R</span>RIVAGE · now</span>
-                            <span class="pushcard__t">A surprise is arranged for the table</span>
-                            <span class="pushcard__b">Champagne &amp; a handwritten note, timed to golden hour. Nothing more to do.</span>
+                      <!-- PUSH creative (expanded from Wk 5) -->
+                      <div id="jPush" class="jpanel">
+                        <div class="creative">
+                          <span class="cretag cretag--push">Wk 5 · Push · expanded</span>
+                          <div class="creative__row">
+                            <div class="bigpush">
+                              <div class="bigpush__card">
+                                <div class="bigpush__top"><span class="bigpush__ic">R</span><span class="bigpush__app">RIVAGE</span><span class="bigpush__now">now</span></div>
+                                <span class="bigpush__t">A surprise is arranged for the table</span>
+                                <span class="bigpush__bd">Champagne &amp; a handwritten note, timed to golden hour. Nothing more to do.</span>
+                                <img class="bigpush__thumb" src="../../../assets/photos/rivage/dining.jpg" alt="Sunset dinner" />
+                              </div>
+                            </div>
+                            <div class="cwhy">
+                              <div class="cwhy__h">Why this send</div>
+                              <p class="cwhy__p">The emotional payoff — her <b>surprise request</b>, handled. Timed to the trip, nothing left for her to do.</p>
+                              <div class="cwhy__chips"><span class="cwhy__chip">Wk 5 · Push</span><span class="cwhy__chip">Delight / in-stay</span></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- DECISION fork -->
+                      <div id="jDecision" class="jpanel">
+                        <div class="brfork">
+                          <div class="brstem">Then the agent plans for what's next</div>
+                          <div class="brcols">
+                            <div class="brcol brcol--buy">
+                              <div class="brcol__h"><span class="brcol__cond">Completes the trip</span><span class="brcol__arrow">→ Loyalty &amp; next-trip</span></div>
+                              <ul class="brlist">
+                                <li><b>In-stay touches</b> — the surprise readied, dining &amp; spa sequenced</li>
+                                <li><b>Cercle loyalty</b> — points on the stay &amp; member perks</li>
+                                <li><b>Next trip</b> — an anniversary invitation for next year</li>
+                              </ul>
+                            </div>
+                            <div class="brcol brcol--re">
+                              <div class="brcol__h"><span class="brcol__cond">Plans stall</span><span class="brcol__arrow">→ Re-engage / win-back</span></div>
+                              <ul class="brlist">
+                                <li><b>Gentle reminder</b> — her suite &amp; dates, still held</li>
+                                <li><b>Flexible options</b> — alternate dates &amp; a sweetened rate</li>
+                                <li><b>Concierge nudge</b> — one tap back to finish planning</li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
 
                     </div>
-
-                    <div class="jwhy">
-                      <div class="jwhy__h">The agent's reasoning</div>
-                      <p class="jwhy__p"><b>A milestone anniversary, trip for two</b> — fully consented, high intent from the inbound Reel. The journey builds the celebration (no generic promos): the <b>suite from the Reel</b> confirmed up front, <b>signature dining at sunset</b>, and her <b>surprise request</b> handled and timed to golden hour — composed <b>1:1 for Elena</b>, not a segment.</p>
-                    </div>
-
-                    <!-- DECISION fork (inline, end of the same view) -->
-                    <div class="brfork">
-                      <div class="brstem">Then the agent decides what's next</div>
-                      <div class="brcols">
-                        <div class="brcol brcol--buy">
-                          <div class="brcol__h"><span class="brcol__cond">Books the stay</span><span class="brcol__arrow">→ Pre-arrival &amp; loyalty journey</span></div>
-                          <ul class="brlist">
-                            <li><b>Pre-arrival</b> — suite confirmed, the surprise readied for golden hour</li>
-                            <li><b>In-stay touches</b> — sunset dinner &amp; spa, sequenced to the celebration</li>
-                            <li><b>Cercle loyalty</b> — points on the stay &amp; perks for next time</li>
-                          </ul>
-                        </div>
-                        <div class="brcol brcol--re">
-                          <div class="brcol__h"><span class="brcol__cond">Doesn't book</span><span class="brcol__arrow">→ Re-engage / next-best</span></div>
-                          <ul class="brlist">
-                            <li><b>Gentle reminder</b> — the suite &amp; dates she planned, still available</li>
-                            <li><b>Fresh inspiration</b> — anniversary offers &amp; sunset moments she hasn't seen</li>
-                            <li><b>Concierge nudge</b> — one tap back to finish planning the trip</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
 
                 </div>
@@ -368,7 +513,7 @@
 
       <!-- progress + caption -->
       <div class="agent__foot">
-        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
           <span id="capKicker" class="cap__kicker">Social · influencer</span>
           <span id="capText" class="cap__text">It starts on social — a creator's Reel.</span>
@@ -386,7 +531,7 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 const $ = (id) => document.getElementById(id);
 
 /* ─────────────────────────────────────────────────────────────────
-   7 beats (total: 6, indices 0–6). renderBeat recomputes EVERYTHING
+   12 beats (total: 11, indices 0–11). renderBeat recomputes EVERYTHING
    from the BEATS table each call — fully reversible, no element
    depends on prior-beat DOM. Every visual is toggled on AND off.
 
@@ -412,30 +557,50 @@ const SIGNAL = [
   { type:'audience', icon:'target',
     text:'Served to a <b>high-intent travel audience</b> — a creator\'s Reel, a Rivage paid partnership. Inbound creator signal opens the relationship.',
     tag:'Paid social · audience' },
-  // 1 — arrives + concierge
+  // 1 — arrives + browses
   { type:'recognize', icon:'spark',
-    text:'She lands on rivage.com and is <b>recognized via Merkury</b> — inbound paid media noted, carried from @cami.travels. Concierge opened to plan.',
+    text:'She lands on rivage.com and is <b>recognized via Merkury</b> — inbound paid media carried from @cami.travels. Browsing stays &amp; experiences.',
     tag:'Merkury · inbound media' },
-  // 2 — trip-planning chat capture
+  // 2 — concierge chat: occasion + preferences
   { type:'note', icon:'note',
-    text:'Captured from the trip-planning chat — <b>10th anniversary, trip for two</b>, <b>suite with a view + signature dining</b>, <b>late September</b>. Opted into email · SMS · app · <b>Cercle</b>.',
+    text:'Captured from the concierge chat — <b>10th anniversary, trip for two</b>, <b>suite with a view + signature dining</b>, <b>late September</b>.',
     tag:'Concierge chat · capture' },
-  // 3 — personalized site
-  { type:'recognize', icon:'spark',
-    text:'On rivage.com, <b>recognized via Merkury</b>. Site composes around the occasion — the suite from the Reel, dining, a sunset moment — and her held <b>Cercle perks</b>.',
-    tag:'Merkury · site' },
+  // 3 — books + opts in
+  { type:'order', icon:'check',
+    text:'She <b>confirms the stay</b> and opts into <b>email · SMS · app · Cercle</b>. Booking made — the relationship is owned now, not rented.',
+    tag:'Booking · consent · loyalty' },
   // 4 — the specific ask
   { type:'signal', icon:'chat',
     text:'New signal from the chat — a request for a <b>surprise at the sunset dinner</b>. Logged against the plan and routed to the on-property team — <b>intent</b>, not a ticket.',
     tag:'On-site chat · request' },
-  // 5 — complete profile
+  // 5 — return / know-before-you-go
+  { type:'recognize', icon:'spark',
+    text:'Weeks later she returns — <b>recognized via Merkury</b>. The site composes around the trip: a <b>countdown</b>, her suite, and curated add-ons. White-glove.',
+    tag:'Merkury · return visit' },
+  // 6 — complete profile
   { type:'profile', icon:'profile',
     text:'All signals assembled into <b>one complete profile</b> — occasion, preferences, party of two, dates, channels, Cercle loyalty, Merkury inbound media, and the sunset-dinner surprise.',
     tag:'Profile · unified' },
-  // 6 — journey + decision
+  // 7 — journey overview
   { type:'journey', icon:'route',
-    text:'Agent composes a <b>multi-week 1:1 journey</b> (email · SMS · push) and <b>decides the branch</b>: books → pre-arrival &amp; loyalty, doesn\'t book → re-engage / next-best.',
-    tag:'Agent · 1:1 + decision' },
+    text:'Agent composes a <b>5-week 1:1 journey</b> — 8 touchpoints across <b>email, SMS, push &amp; paid social</b>, spread around the celebration.',
+    tag:'Agent · 1:1 journey' },
+  // 8 — email creative
+  { type:'engage', icon:'mail',
+    text:'<b>Wk 1 · Email</b> — confirms the celebration: the suite from the Reel, her dates, her Cercle perks. Reassurance, not a promo.',
+    tag:'Creative · email' },
+  // 9 — sms creative
+  { type:'signal', icon:'chat',
+    text:'<b>Wk 3 · SMS</b> — the sunset dinner locked to golden hour, Cercle points noted. Short and reply-able.',
+    tag:'Creative · SMS' },
+  // 10 — push creative
+  { type:'order', icon:'bell',
+    text:'<b>Wk 5 · Push</b> — her surprise request, handled and timed to the trip. The emotional payoff.',
+    tag:'Creative · push' },
+  // 11 — decision
+  { type:'profile', icon:'route',
+    text:'The agent <b>plans the branch</b>: completes the trip → loyalty &amp; next-trip, plans stall → re-engage / win-back.',
+    tag:'Agent · decision' },
 ];
 
 const ICONS = {
@@ -448,25 +613,31 @@ const ICONS = {
   chat:   '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/>',
   profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
   route:  '<circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8 6h6a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8h2"/>',
+  bell:   '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>',
 };
 
 // On-site chat widget (rivage.com) — the customer-facing concierge thread.
-// Keyed by beat index; only beats where Elena is conversing have entries.
-// Each beat that opens the widget shows the cumulative thread up to that point.
+// Keyed by beat index. Each beat shows that beat's EXCHANGE as a window (not the
+// whole cumulative history) so the customer's own messages stay visible — you
+// watch the conversation happen, exchange by exchange.
 const CHAT = {
-  // beat 2 — trip-planning capture
+  // beat 2 — occasion + preferences
   2: [
-    { who:'ai',   html:'Welcome to Rivage. I\'m your concierge — I can help you plan the whole trip. What\'s the occasion?' },
-    { who:'user', html:'It\'s our <b>10th anniversary</b> — a trip for just the two of us. I\'d love an <b>anniversary suite with a view</b>, and somewhere special for dinner. Late September, if that works.' },
-    { who:'ai',   html:'A milestone — congratulations. I\'ve noted a <b>suite with a view</b> and our <b>signature dining</b> for two, around <b>late September</b>. Shall I send confirmations by <b>email and SMS</b>, set you up in the <b>app</b>, and add <b>Rivage Cercle</b> for celebration perks?' },
+    { who:'ai',   html:'Welcome to Rivage. I\'m your concierge — I can help plan the whole trip. What\'s the occasion?' },
+    { who:'user', html:'It\'s our <b>10th anniversary</b> — a trip for just the two of us. I\'d love an <b>anniversary suite with a view</b>, and somewhere special for dinner. <b>Late September</b>, if that works.' },
+    { who:'ai',   html:'A milestone — congratulations. I\'ve noted a <b>suite with a view</b> and our <b>signature dining</b> for two, around late September.' },
+  ],
+  // beat 3 — confirm + opt in + book
+  3: [
+    { who:'ai',   html:'Shall I <b>confirm the suite and dining</b>, send details by <b>email &amp; SMS</b>, set you up in the <b>app</b>, and add <b>Rivage Cercle</b> for celebration perks?' },
     { who:'user', html:'Yes to all of it.' },
-    { who:'ai',   html:'All set — you\'re confirmed and opted in. I\'ll have rivage.com ready around your celebration.' },
+    { who:'ai',   html:'All set — your anniversary stay is <b>confirmed</b> and you\'re opted in. I\'ll have rivage.com ready around your celebration.' },
   ],
   // beat 4 — the specific ask
   4: [
     { who:'ai',   html:'Anything else I can arrange for the trip?' },
     { who:'user', html:'One more thing — can you arrange a small <b>surprise for my partner at the sunset dinner</b>?' },
-    { who:'ai',   html:'A lovely idea. I\'ll arrange a champagne toast and a handwritten note timed to golden hour at Le Rivage, and brief the team so it\'s seamless. It\'s on your plan — nothing more to do.' },
+    { who:'ai',   html:'A lovely idea. I\'ll arrange a champagne toast and a handwritten note timed to golden hour at Le Rivage, and brief the team. It\'s on your plan — nothing more to do.' },
   ],
 };
 
@@ -476,41 +647,76 @@ const BEATS = [
     known:false, facts:[],
     feedTo:0, kicker:'Social · influencer', caption:'An influencer she follows — a paid partnership with Rivage, plus a friend\'s post below.',
   },
-  { // 1 — Arrives + recognized (concierge available, chat closed)
+  { // 1 — Arrives + recognized, browses stays & experiences (chat closed)
     surface:'site', host:'rivage.com', url:'', page:'home', chat:false,
-    welcome:true, merk:false, loyalty:false, foryou:false, heroComposed:false,
+    welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
     known:false, facts:['fMerkury'],
-    feedTo:1, kicker:'Concierge', caption:'She comes to plan — recognized, and she opens the concierge.',
+    feedTo:1, kicker:'Arrives', caption:'She comes to plan — recognized, and browsing stays & experiences.',
   },
-  { // 2 — Trip-planning conversation (on-site chat) captures occasion + preferences
+  { // 2 — Concierge chat: occasion + preferences
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
-    welcome:true, merk:false, loyalty:false, foryou:false, heroComposed:false,
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent'],
-    feedTo:2, kicker:'Trip planning', caption:'Trip planning — the occasion and the preferences, captured in the on-site chat.',
+    welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates'],
+    feedTo:2, kicker:'Trip planning', caption:'She tells the concierge the occasion and what she wants — captured live.',
   },
-  { // 3 — The site composes around her celebration (chat closed) + Merkury toast
-    surface:'site', host:'rivage.com', url:'', page:'home', chat:false,
-    welcome:true, merk:true, loyalty:true, foryou:true, heroComposed:true,
+  { // 3 — Confirms + opts in + books (on-site chat)
+    surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
+    welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent'],
-    feedTo:3, kicker:'Personalized', caption:'Welcome, Elena — recognized via Merkury, and the experience composes around her celebration.',
+    feedTo:3, kicker:'Books + opts in', caption:'She confirms the stay and opts in — the booking is made, in the chat.',
   },
   { // 4 — The specific ask (on-site chat)
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
-    welcome:true, merk:false, loyalty:true, foryou:true, heroComposed:true,
+    welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
-    feedTo:4, kicker:'One more ask', caption:'One more ask — a surprise for the occasion, in the on-site chat.',
+    feedTo:4, kicker:'One more ask', caption:'One more ask — a surprise for her partner at the sunset dinner.',
   },
-  { // 5 — One complete profile
+  { // 5 — A few weeks later: know-before-you-go return (personalized, white-glove)
+    surface:'site', host:'rivage.com', url:'/trip', page:'home', chat:false,
+    welcome:true, merk:true, loyalty:true, foryou:true, packages:true, pkgs:'curated', tripStatus:true, heroMode:'return',
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    feedTo:5, kicker:'A few weeks later', caption:'She returns — the site composes around the trip: countdown, her suite, curated add-ons.',
+  },
+  { // 6 — One complete profile
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/profiles/elena',
     opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Elena Rossi', opsRun:'Complete',
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
-    feedTo:5, kicker:'Complete profile', caption:'One complete profile — Elena\'s celebration, understood.',
+    feedTo:6, kicker:'Complete profile', caption:'One complete profile — Elena\'s celebration, understood.',
   },
-  { // 6 — 1:1 journey + decision (same view)
+  { // 7 — 1:1 journey overview (full timeline)
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · 1:1', opsRun:'Designed · 1:1',
+    jStage:'over', jActive:null,
     known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
-    feedTo:6, kicker:'1:1 journey + decision', caption:'A 1:1 journey — and the agent decides what\'s next.',
+    feedTo:7, kicker:'1:1 journey', caption:'A 5-week, multi-channel 1:1 journey — 8 touchpoints.',
+  },
+  { // 8 — expand the Wk 1 email creative
+    surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk1-email',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 1 · Email', opsRun:'Creative · email',
+    jStage:'email', jActive:'email',
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    feedTo:8, kicker:'Creative · email', caption:'Expand the Wk 1 email — the celebration, confirmed up front.',
+  },
+  { // 9 — expand the Wk 3 SMS creative
+    surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk3-sms',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 3 · SMS', opsRun:'Creative · SMS',
+    jStage:'sms', jActive:'sms',
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    feedTo:9, kicker:'Creative · SMS', caption:'Expand the Wk 3 SMS — the sunset dinner, locked to golden hour.',
+  },
+  { // 10 — expand the Wk 5 push creative
+    surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk5-push',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 5 · Push', opsRun:'Creative · push',
+    jStage:'push', jActive:'push',
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    feedTo:10, kicker:'Creative · push', caption:'Expand the Wk 5 push — her surprise, handled and timed.',
+  },
+  { // 11 — decision fork
+    surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/decision',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Decision', opsRun:'Decision',
+    jStage:'decision', jActive:null,
+    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    feedTo:11, kicker:'Agent decision', caption:'Then the agent plans for what\'s next.',
   },
 ];
 
@@ -519,6 +725,8 @@ const FACTS = ['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'];
 const PAGES = { home:'pgHome' };
 const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
 const OPSNAV = { profile:'profiles', journey:'journeys' };
+const JPANELS = { over:'jOverview', email:'jEmail', sms:'jSms', push:'jPush', decision:'jDecision' };
+const JTPS = { email:'tpEmail', sms:'tpSms', push:'tpPush' };
 
 const HERO = {
   plain: {
@@ -527,12 +735,17 @@ const HERO = {
     sub:'Plan your stay with our concierge — suites, dining and the view you saw, arranged around you.',
     cta:'Plan with the concierge',
   },
-  composed: {
-    kicker:'For your anniversary',
-    title:'Your anniversary, at sunset',
-    sub:'The Riviera Anniversary Suite — the view you saved, the celebration you\'re planning. Composed around everything we know about your trip.',
-    cta:'Continue planning',
+  return: {
+    kicker:'Your anniversary · 3 weeks away',
+    title:'Everything\'s ready for your celebration',
+    sub:'Your suite from the Reel is confirmed and the sunset surprise is arranged. A few curated touches to consider before you go.',
+    cta:'View your itinerary',
   },
+};
+
+const PKGS = {
+  explore: { title:'Stays & experiences', note:'A few ways to make the trip yours' },
+  curated: { title:'Recommended for your trip', note:'Curated for your celebration — spa, dining & sunset moments' },
 };
 
 function renderBeat(index, direction) {
@@ -556,6 +769,11 @@ function renderBeat(index, direction) {
   $('merkToast').classList.toggle('is-on', !!b.merk);
   $('loyaltyBanner').classList.toggle('is-on', !!b.loyalty);
   $('forYou').classList.toggle('is-on', !!b.foryou);
+  $('tripStatus').classList.toggle('is-on', !!b.tripStatus);
+  $('packages').classList.toggle('is-on', !!b.packages);
+  const pk = PKGS[b.pkgs] || PKGS.explore;
+  $('pkgsTitle').textContent = pk.title;
+  $('pkgsNote').textContent = pk.note;
 
   // ── On-site chat widget (customer-facing concierge thread) ──
   $('siteChat').classList.toggle('is-open', !!b.chat);
@@ -570,7 +788,7 @@ function renderBeat(index, direction) {
   });
   requestAnimationFrame(() => { sb.scrollTop = sb.scrollHeight; });
 
-  const hero = b.heroComposed ? HERO.composed : HERO.plain;
+  const hero = HERO[b.heroMode] || HERO.plain;
   $('heroKicker').textContent = hero.kicker;
   $('heroTitle').textContent = hero.title;
   $('heroSub').textContent = hero.sub;
@@ -586,6 +804,16 @@ function renderBeat(index, direction) {
   const activeNav = b.surface === 'ops' ? OPSNAV[b.opsView] : null;
   document.querySelectorAll('.ops__navitem').forEach((el) => {
     el.classList.toggle('is-active', el.dataset.nav === activeNav);
+  });
+
+  // ── Journey view: stage panel + active touchpoint on the timeline ──
+  const jStage = (b.surface === 'ops' && b.opsView === 'journey') ? b.jStage : null;
+  Object.entries(JPANELS).forEach(([key, id]) => {
+    $(id).classList.toggle('is-on', jStage === key);
+  });
+  const jActive = (b.surface === 'ops' && b.opsView === 'journey') ? b.jActive : null;
+  Object.entries(JTPS).forEach(([key, id]) => {
+    $(id).classList.toggle('is-active', jActive === key);
   });
 
   // ── Profile card ──
@@ -632,7 +860,7 @@ function renderBeat(index, direction) {
   }
 }
 
-startSceneRuntime({ total: 6, renderBeat });
+startSceneRuntime({ total: 11, renderBeat });
 
 const __root = document.querySelector('.stage');
 const __fit = () => { const s = Math.min(window.innerWidth/1920, window.innerHeight/1080); __root.style.transform = `translate(-50%, -50%) scale(${s})`; };

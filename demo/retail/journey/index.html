@@ -93,9 +93,18 @@
             </div>
           </div>
 
-          <!-- ═════════ SURFACE B: in-store clienteling app ═════════ -->
+          <!-- ═════════ SURFACE B: in-store clienteling — custom Nordhem tablet app ═════════ -->
           <div id="appClient" class="app app--client">
-            <div class="cl">
+            <div class="tablet">
+              <div class="tablet__status">
+                <span class="tablet__time">9:41</span>
+                <span class="tablet__home">Nordhem Clienteling</span>
+                <span class="tablet__sys">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="18" height="8" rx="2"/><path d="M22 11v2"/><rect x="4" y="10" width="12" height="4" rx="1" fill="currentColor" stroke="none"/></svg>
+                </span>
+              </div>
+              <div class="cl">
               <!-- top bar -->
               <div class="cl__top">
                 <span class="cl__brand"><span class="cl__crest">N</span>Nordhem · Clienteling</span>
@@ -218,6 +227,7 @@
                     <p class="railnudge"><b>Tell Emma to download the app</b> to track her order — and her 149 points are ready in Members.</p>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -472,87 +482,200 @@
                     </div>
                   </div>
 
-                  <!-- VIEW: 1:1 journey + decision (single view) -->
+                  <!-- VIEW: 1:1 journey — full timeline + expandable creatives + decision -->
                   <div id="vJourney" class="opsview">
                     <div class="runhead">
                       <div class="runhead__orb"><span></span></div>
                       <div>
                         <div class="runhead__title">Agent designed a 6-week 1:1 journey for Emma</div>
-                        <div class="runhead__sub">Email · SMS · push — composed from her profile, walk-up delivery in mind</div>
+                        <div class="runhead__sub">10 touchpoints across email · SMS · push · paid social — composed from her profile</div>
                       </div>
                       <span class="runhead__live">1:1 · 6 weeks</span>
                     </div>
 
-                    <!-- channel mockups: email / SMS / push -->
-                    <div class="mockrow">
+                    <!-- TIMELINE: every touchpoint; multiple channels, some weeks with 2 -->
+                    <div class="jtl">
+                      <div class="jtl__head">
+                        <span class="jtl__lab">The journey</span>
+                        <span class="jtl__legend">
+                          <span class="lg lg--email">Email</span>
+                          <span class="lg lg--sms">SMS</span>
+                          <span class="lg lg--push">Push</span>
+                          <span class="lg lg--ad">Paid social</span>
+                          <span class="lg lg--app">In-app</span>
+                        </span>
+                      </div>
+                      <div class="jtl__track">
+                        <!-- WK 1 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 1</span>
+                          <div id="tpEmail" class="tp tp--email">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Email</span><span class="tp__title">Welcome home</span></span>
+                          </div>
+                          <div class="tp tp--push">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Push</span><span class="tp__title">On its way</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 2 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 2</span>
+                          <div class="tp tp--ad">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Paid social</span><span class="tp__title">Finish the room</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 3 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 3</span>
+                          <div class="tp tp--email">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Email</span><span class="tp__title">Living-room recs</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 4 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 4</span>
+                          <div id="tpSms" class="tp tp--sms">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">SMS</span><span class="tp__title">Design consult</span></span>
+                          </div>
+                          <div class="tp tp--app">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">In-app</span><span class="tp__title">Saved room</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 5 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 5</span>
+                          <div class="tp tp--ad">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Paid social</span><span class="tp__title">New arrivals</span></span>
+                          </div>
+                        </div>
+                        <!-- WK 6 -->
+                        <div class="jwk">
+                          <span class="jwk__lab">Wk 6</span>
+                          <div id="tpPush" class="tp tp--push">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Push</span><span class="tp__title">End tables</span></span>
+                          </div>
+                          <div class="tp tp--email">
+                            <span class="tp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                            <span class="tp__b"><span class="tp__chan">Email</span><span class="tp__title">Members access</span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-                      <!-- EMAIL mock -->
-                      <div class="mock mock--email">
-                        <span class="mock__chan">Wk 1 · Email</span>
-                        <div class="mockmail">
-                          <div class="mockmail__bar"><span class="mockmail__crest">N</span><span class="mockmail__from">Nordhem</span></div>
-                          <div class="mockmail__hero"><img src="../../../assets/photos/nordhem/kitchen.jpg" alt="Kitchen" /></div>
-                          <div class="mockmail__b">
-                            <span class="mockmail__subj">Apartment kitchens that wow</span>
-                            <span class="mockmail__pre">Small-space layouts built around the Skär Island.</span>
+                    <!-- STAGE: swaps per beat (overview → expand email → SMS → push → decision) -->
+                    <div class="jstage">
+
+                      <!-- OVERVIEW -->
+                      <div id="jOverview" class="jpanel">
+                        <div class="jover">
+                          <div class="jover__stat"><b>10</b><span>touchpoints</span></div>
+                          <div class="jover__stat"><b>4</b><span>channels</span></div>
+                          <div class="jover__stat"><b>6</b><span>weeks</span></div>
+                          <div class="jover__stat"><b>1:1</b><span>personalized</span></div>
+                        </div>
+                        <div class="jwhy">
+                          <div class="jwhy__h">The agent's reasoning</div>
+                          <p class="jwhy__p"><b>High value with live intent</b> — recent mover, sofa buyer, small-kitchen interest, fully consented. The agent spreads the touchpoints across <b>email, SMS, push and paid social</b> — building the relationship (no transactional clutter) and respecting her <b>3rd-floor, no-elevator</b> constraint with carry-up-friendly picks throughout. Tap any touchpoint to see the creative.</p>
+                        </div>
+                      </div>
+
+                      <!-- EMAIL creative (expanded from Wk 1) -->
+                      <div id="jEmail" class="jpanel">
+                        <div class="creative">
+                          <span class="cretag cretag--email">Wk 1 · Email · expanded</span>
+                          <div class="creative__row">
+                            <div class="bigmail">
+                              <div class="bigmail__bar"><span class="bigmail__crest">N</span><span class="bigmail__from">Nordhem <span>&lt;hello@nordhem.com&gt;</span></span></div>
+                              <div class="bigmail__hero"><img src="../../../assets/photos/nordhem/living2.jpg" alt="Styled living room" /><span class="bigmail__k">Welcome to the family</span></div>
+                              <div class="bigmail__b">
+                                <h3 class="bigmail__subj">Welcome home, Emma</h3>
+                                <p class="bigmail__copy">Congratulations on the new place. Your members hub is ready — order status, your <b>149 points</b>, and a few pieces picked for a fresh Brooklyn apartment.</p>
+                                <span class="bigmail__cta">Explore your members hub</span>
+                              </div>
+                            </div>
+                            <div class="cwhy">
+                              <div class="cwhy__h">Why this send</div>
+                              <p class="cwhy__p">Onboards the <b>relationship</b>, not the receipt — welcomes her to Members, surfaces her points, sets the tone. No transactional clutter.</p>
+                              <div class="cwhy__chips"><span class="cwhy__chip">Wk 1 · Owned</span><span class="cwhy__chip">Welcome / onboarding</span></div>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- SMS mock -->
-                      <div class="mock mock--sms">
-                        <span class="mock__chan">Wk 3 · SMS</span>
-                        <div class="mocksms">
-                          <div class="mocksms__phone">
-                            <div class="mocksms__from">Nordhem</div>
-                            <div class="smsbub">Your <b>149 pts</b> + a free kitchen plan are ready, Emma. Book a 20-min walk-up-friendly design consult → nordhem.co/plan</div>
-                            <div class="mocksms__time">now</div>
+                      <!-- SMS creative (expanded from Wk 4) -->
+                      <div id="jSms" class="jpanel">
+                        <div class="creative">
+                          <span class="cretag cretag--sms">Wk 4 · SMS · expanded</span>
+                          <div class="creative__row">
+                            <div class="bigsms">
+                              <div class="bigsms__from">Nordhem</div>
+                              <div class="bigsms__bub">Your <b>149 pts</b> + a free design plan are ready, Emma. Book a 20-min, walk-up-friendly consult → <span class="bigsms__link">nordhem.co/plan</span></div>
+                              <div class="bigsms__time">Text message · now</div>
+                            </div>
+                            <div class="cwhy">
+                              <div class="cwhy__h">Why this send</div>
+                              <p class="cwhy__p">A high-intent nudge at the right moment — short, actionable, built around her <b>149 points</b>, with a <b>walk-up-friendly</b> consult that respects the 3rd-floor constraint.</p>
+                              <div class="cwhy__chips"><span class="cwhy__chip">Wk 4 · SMS</span><span class="cwhy__chip">Consult / conversion</span></div>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <!-- PUSH mock -->
-                      <div class="mock mock--push">
-                        <span class="mock__chan">Wk 5 · Push</span>
-                        <div class="mockpush">
-                          <div class="pushcard">
-                            <span class="pushcard__app"><span class="pushcard__ic">N</span>NORDHEM · now</span>
-                            <span class="pushcard__t">End tables that match your sofa</span>
-                            <span class="pushcard__b">The Birk pair — flat-packed, carries up easy. Tap to see in your room.</span>
+                      <!-- PUSH creative (expanded from Wk 6) -->
+                      <div id="jPush" class="jpanel">
+                        <div class="creative">
+                          <span class="cretag cretag--push">Wk 6 · Push · expanded</span>
+                          <div class="creative__row">
+                            <div class="bigpush">
+                              <div class="bigpush__card">
+                                <div class="bigpush__top"><span class="bigpush__ic">N</span><span class="bigpush__app">NORDHEM</span><span class="bigpush__now">now</span></div>
+                                <span class="bigpush__t">End tables that match your sofa</span>
+                                <span class="bigpush__bd">The Birk pair — flat-packed, carries up easy. Tap to see them in your room.</span>
+                                <img class="bigpush__thumb" src="../../../assets/photos/nordhem/living.jpg" alt="End tables" />
+                              </div>
+                            </div>
+                            <div class="cwhy">
+                              <div class="cwhy__h">Why this send</div>
+                              <p class="cwhy__p">A timely cross-sell once she's settled — reasoned from her <b>sofa purchase</b> and the <b>no-elevator</b> note, so only carry-up-friendly picks surface.</p>
+                              <div class="cwhy__chips"><span class="cwhy__chip">Wk 6 · Push</span><span class="cwhy__chip">Cross-sell / next-best</span></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- DECISION fork -->
+                      <div id="jDecision" class="jpanel">
+                        <div class="brfork">
+                          <div class="brstem">Then the agent decides what's next</div>
+                          <div class="brcols">
+                            <div class="brcol brcol--buy">
+                              <div class="brcol__h"><span class="brcol__cond">Purchase</span><span class="brcol__arrow">→ Loyalty journey</span></div>
+                              <ul class="brlist">
+                                <li><b>Welcome to Members</b> — points balance &amp; what they unlock</li>
+                                <li><b>Next-best</b> — bedroom &amp; lighting to match her sofa</li>
+                                <li><b>Early access</b> — members-only drops &amp; point nudges</li>
+                              </ul>
+                            </div>
+                            <div class="brcol brcol--re">
+                              <div class="brcol__h"><span class="brcol__cond">No purchase</span><span class="brcol__arrow">→ Next-best journey</span></div>
+                              <ul class="brlist">
+                                <li><b>Re-engage</b> — budget-friendly kitchen starters</li>
+                                <li><b>Fresh inspiration</b> — small-space rooms she hasn't seen</li>
+                                <li><b>Free design consult</b> — lower the barrier, win her back</li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
 
                     </div>
-
-                    <div class="jwhy">
-                      <div class="jwhy__h">The agent's reasoning</div>
-                      <p class="jwhy__p"><b>High value with live intent</b> — recent mover, sofa buyer, small-kitchen interest, fully consented. The journey builds the relationship (no shipping/transactional sends) and respects her <b>3rd-floor, no-elevator</b> constraint — white-glove walk-up delivery and carry-up-friendly picks throughout.</p>
-                    </div>
-
-                    <!-- DECISION fork (inline, end of the same view) -->
-                    <div class="brfork">
-                      <div class="brstem">Then the agent decides what's next</div>
-                      <div class="brcols">
-                        <div class="brcol brcol--buy">
-                          <div class="brcol__h"><span class="brcol__cond">Purchase</span><span class="brcol__arrow">→ Loyalty journey</span></div>
-                          <ul class="brlist">
-                            <li><b>Welcome to Members</b> — points balance &amp; what they unlock</li>
-                            <li><b>Next-best</b> — bedroom &amp; lighting to match her sofa</li>
-                            <li><b>Early access</b> — members-only drops &amp; point nudges</li>
-                          </ul>
-                        </div>
-                        <div class="brcol brcol--re">
-                          <div class="brcol__h"><span class="brcol__cond">No purchase</span><span class="brcol__arrow">→ Next-best journey</span></div>
-                          <ul class="brlist">
-                            <li><b>Re-engage</b> — budget-friendly kitchen starters</li>
-                            <li><b>Fresh inspiration</b> — small-space rooms she hasn't seen</li>
-                            <li><b>Free design consult</b> — lower the barrier, win her back</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
 
                 </div>
@@ -599,7 +722,7 @@
 
       <!-- progress + caption -->
       <div class="agent__foot">
-        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
           <span id="capKicker" class="cap__kicker">Social · influencer</span>
           <span id="capText" class="cap__text">An influencer she follows — a paid partnership with Nordhem.</span>
@@ -617,7 +740,7 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 const $ = (id) => document.getElementById(id);
 
 /* ─────────────────────────────────────────────────────────────────
-   11 beats (total: 10, indices 0–10). renderBeat recomputes EVERYTHING
+   15 beats (total: 14, indices 0–14). renderBeat recomputes EVERYTHING
    from the BEATS table each call — fully reversible, no element depends
    on prior-beat DOM. Every visual is toggled on AND off.
 
@@ -672,10 +795,26 @@ const SIGNAL = [
   { type:'profile', icon:'profile',
     text:'All signals assembled into <b>one complete profile</b> — identity, 3P, purchase, channels, intent, constraint.',
     tag:'Profile · unified' },
-  // 10 — journey + decision
+  // 10 — journey overview
   { type:'journey', icon:'route',
-    text:'Agent composes a <b>6-week 1:1 journey</b> (email · SMS · push) and <b>decides the branch</b>: purchase → loyalty, no purchase → next-best.',
-    tag:'Agent · 1:1 + decision' },
+    text:'Agent composes a <b>6-week 1:1 journey</b> — 10 touchpoints across <b>email, SMS, push &amp; paid social</b>, spread to build the relationship.',
+    tag:'Agent · 1:1 journey' },
+  // 11 — email creative
+  { type:'engage', icon:'mail',
+    text:'<b>Wk 1 · Email</b> — a welcome that onboards the relationship: members hub, her 149 points, no transactional clutter.',
+    tag:'Creative · email' },
+  // 12 — sms creative
+  { type:'signal', icon:'chat',
+    text:'<b>Wk 4 · SMS</b> — a short, high-intent nudge built on her points, with a <b>walk-up-friendly</b> consult.',
+    tag:'Creative · SMS' },
+  // 13 — push creative
+  { type:'order', icon:'bell',
+    text:'<b>Wk 6 · Push</b> — a timely cross-sell, carry-up-friendly picks only (the no-elevator note respected).',
+    tag:'Creative · push' },
+  // 14 — decision
+  { type:'profile', icon:'route',
+    text:'The agent <b>decides the branch</b>: purchase → loyalty journey, no purchase → next-best journey.',
+    tag:'Agent · decision' },
 ];
 
 const ICONS = {
@@ -688,6 +827,7 @@ const ICONS = {
   chat:   '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/>',
   profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
   route:  '<circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8 6h6a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8h2"/>',
+  bell:   '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>',
 };
 
 const BEATS = [
@@ -750,11 +890,40 @@ const BEATS = [
     known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
     feedTo:9, kicker:'Complete profile', caption:'One complete profile.',
   },
-  { // 10 — 1:1 journey + decision (same view)
+  { // 10 — 1:1 journey overview (full timeline)
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · 1:1', opsRun:'Designed · 1:1',
+    jStage:'over', jActive:null,
     known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
-    feedTo:10, kicker:'1:1 journey + decision', caption:'A 1:1 journey — and the agent decides what\'s next.',
+    feedTo:10, kicker:'1:1 journey', caption:'A 6-week, multi-channel 1:1 journey — 10 touchpoints.',
+  },
+  { // 11 — expand the Wk 1 email creative
+    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/wk1-email',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Wk 1 · Email', opsRun:'Creative · email',
+    jStage:'email', jActive:'email',
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    feedTo:11, kicker:'Creative · email', caption:'Expand the Wk 1 welcome email — onboarding, not a receipt.',
+  },
+  { // 12 — expand the Wk 4 SMS creative
+    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/wk4-sms',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Wk 4 · SMS', opsRun:'Creative · SMS',
+    jStage:'sms', jActive:'sms',
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    feedTo:12, kicker:'Creative · SMS', caption:'Expand the Wk 4 SMS — points + a walk-up-friendly consult.',
+  },
+  { // 13 — expand the Wk 6 push creative
+    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/wk6-push',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Wk 6 · Push', opsRun:'Creative · push',
+    jStage:'push', jActive:'push',
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    feedTo:13, kicker:'Creative · push', caption:'Expand the Wk 6 push — a carry-up-friendly cross-sell.',
+  },
+  { // 14 — decision fork
+    surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/decision',
+    opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Decision', opsRun:'Decision',
+    jStage:'decision', jActive:null,
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    feedTo:14, kicker:'Agent decision', caption:'Then the agent decides what\'s next.',
   },
 ];
 
@@ -762,6 +931,8 @@ const SURFACES = { social:'appSocial', client:'appClient', email:'appEmail', sit
 const FACTS = ['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'];
 const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
 const OPSNAV = { profile:'profiles', journey:'journeys' };
+const JPANELS = { over:'jOverview', email:'jEmail', sms:'jSms', push:'jPush', decision:'jDecision' };
+const JTPS = { email:'tpEmail', sms:'tpSms', push:'tpPush' };
 
 const RAIL_TIP = {
   base:    'New face on the floor — search for her first. If there\'s no record, create one and let Merkury fill in the gaps.',
@@ -777,14 +948,17 @@ function renderBeat(index, direction) {
     $(id).classList.toggle('is-on', b.surface === key);
   });
 
-  // ── Chrome URL/label ──
+  // ── Chrome URL/label (hidden on the clienteling tablet — it's an app, not a site) ──
+  document.querySelector('.chrome').classList.toggle('is-hidden', b.surface === 'client');
   $('urlHost').textContent = b.host;
   $('urlPath').textContent = b.url || '';
 
   // ── Clienteling surface state (each card toggled on/off) ──
   $('appClient').classList.toggle('is-created', !!b.clCreated);
   $('recLookup').classList.toggle('is-on', !!b.clLookup);
-  $('recLookup').classList.toggle('is-found', !!b.clCreated && !!b.clLookup);
+  // is-found tracks clCreated only (not clLookup) so the card keeps the "profile
+  // created" state while it collapses — no flash back to "no record found".
+  $('recLookup').classList.toggle('is-found', !!b.clCreated);
   $('recEnrich').classList.toggle('is-on', !!b.clEnrich);
   $('recNotes').classList.toggle('is-on', !!b.clNotes);
   $('recReco').classList.toggle('is-on', !!b.clReco);
@@ -815,6 +989,16 @@ function renderBeat(index, direction) {
   const activeNav = b.surface === 'ops' ? OPSNAV[b.opsView] : null;
   document.querySelectorAll('.ops__navitem').forEach((el) => {
     el.classList.toggle('is-active', el.dataset.nav === activeNav);
+  });
+
+  // ── Journey view: stage panel + active touchpoint on the timeline ──
+  const jStage = (b.surface === 'ops' && b.opsView === 'journey') ? b.jStage : null;
+  Object.entries(JPANELS).forEach(([key, id]) => {
+    $(id).classList.toggle('is-on', jStage === key);
+  });
+  const jActive = (b.surface === 'ops' && b.opsView === 'journey') ? b.jActive : null;
+  Object.entries(JTPS).forEach(([key, id]) => {
+    $(id).classList.toggle('is-active', jActive === key);
   });
 
   // ── Profile card ──
@@ -861,7 +1045,7 @@ function renderBeat(index, direction) {
   }
 }
 
-startSceneRuntime({ total: 10, renderBeat });
+startSceneRuntime({ total: 14, renderBeat });
 
 const __root = document.querySelector('.stage');
 const __fit = () => { const s = Math.min(window.innerWidth/1920, window.innerHeight/1080); __root.style.transform = `translate(-50%, -50%) scale(${s})`; };
