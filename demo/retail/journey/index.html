@@ -790,9 +790,9 @@ function __tween(el, to, dur, tok) {
   })(t0);
 }
 function __pop(el, cls, ms) { if (!el) return; el.classList.add(cls); setTimeout(() => el.classList.remove(cls), ms); }
-function __typingBubble() {
+function __typingBubble(ai) {
   const d = document.createElement('div');
-  d.className = 'sbub sbub--ai sbub--typing';
+  d.className = 'sbub ' + (ai ? 'sbub--ai' : 'sbub--user') + ' sbub--typing';
   d.innerHTML = '<span></span><span></span><span></span>';
   return d;
 }
@@ -804,16 +804,14 @@ async function __revealChat(body, tok) {
   bubs.forEach((b) => { b.style.display = 'none'; });
   for (const bub of bubs) {
     const ai = bub.classList.contains('sbub--ai');
-    if (ai) {
-      const dots = __typingBubble();
-      body.appendChild(dots); body.scrollTop = body.scrollHeight;
-      await __sleep(820);
-      dots.remove();
-      if (tok !== __anim) { showAll(); return; }
-    } else {
-      await __sleep(440);
-      if (tok !== __anim) { showAll(); return; }
-    }
+    // both sides "type": the agent ~fixed, the customer thinks a beat longer on
+    // longer replies — with their own (user-side) typing indicator.
+    const think = ai ? 820 : Math.min(1700, Math.max(800, (bub.textContent || '').length * 15));
+    const dots = __typingBubble(ai);
+    body.appendChild(dots); body.scrollTop = body.scrollHeight;
+    await __sleep(think);
+    dots.remove();
+    if (tok !== __anim) { showAll(); return; }
     bub.style.display = '';
     bub.style.animation = 'bubin .28s ease both';
     body.scrollTop = body.scrollHeight;
@@ -1150,12 +1148,14 @@ function renderBeat(index, direction) {
     dots[k].classList.toggle('is-now', k === i);
   }
 
-  // ── Entry animations (forward only; final state already painted above) ──
-  if (direction === 'forward' && !__reduce) {
-    if (b.surface === 'social') {
+  // ── Entry animations (final state already painted above) ──
+  if (!__reduce) {
+    // social scroll plays on first load (reset) AND when advancing in — not on back
+    if (b.surface === 'social' && direction !== 'back') {
       const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
-      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 600); }
+      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 650); }
     }
+    if (direction === 'forward') {
     if (b.clNotes) __type($('noteTxt'), __noteFull, tok, 17);
     if (b.clReco) setTimeout(() => { if (tok !== __anim) return; const c = $('scardPick'); c.classList.add('is-picked'); __pop(c, 'anim-pick', 600); }, 850);
     if (b.clOrder) {
@@ -1165,6 +1165,7 @@ function renderBeat(index, direction) {
     }
     if (b.mailTapped) setTimeout(() => { if (tok !== __anim) return; const m = $('mailRec1'); m.classList.add('is-tapped'); __pop(m, 'anim-tap', 560); }, 950);
     if (b.chat) __revealChat(document.querySelector('#siteChat .schat__body'), tok);
+    }
   }
 }
 
