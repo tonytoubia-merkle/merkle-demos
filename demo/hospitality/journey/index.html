@@ -40,8 +40,30 @@
               </div>
               <div class="sof__feed">
 
+                <!-- FILLER organic post (scrolled past on entry) -->
+                <article class="post post--friend">
+                  <div class="post__head">
+                    <span class="post__ava"><span class="post__crest post__crest--friend">A</span></span>
+                    <div class="post__id">
+                      <span class="post__user">ana.wanders</span>
+                      <span class="post__spon post__spon--plain">Positano, Italy</span>
+                    </div>
+                    <span class="post__dots">···</span>
+                  </div>
+                  <div class="post__media">
+                    <img class="post__img" src="../../../assets/photos/rivage/lobby.jpg" alt="Friend's trip" />
+                  </div>
+                  <div class="post__actions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+                    <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="post__cap"><b>ana.wanders</b> the coast in golden hour never gets old ✨ <span class="post__tag">#amalficoast #travel</span></div>
+                </article>
+
                 <!-- INFLUENCER post – paid partnership with Rivage (sponsored Reel) -->
-                <article class="post">
+                <article class="post" id="influencerPost">
                   <div class="post__head">
                     <span class="post__ava"><span class="post__crest post__crest--inf">C</span></span>
                     <div class="post__id">
@@ -526,6 +548,57 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 
 const $ = (id) => document.getElementById(id);
 
+/* ── Entry-animation harness ─────────────────────────────────────────
+   renderBeat always paints each beat's FINAL state first (reversibility +
+   scrubbing stay correct). Entry animations REPLAY the transition only when
+   advancing forward. Every renderBeat bumps __anim; in-flight async loops
+   see a newer token and bail, leaving the final state intact. */
+let __anim = 0;
+const __reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const __sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function __tween(el, to, dur, tok) {
+  const from = el.scrollTop, t0 = performance.now();
+  (function step(now) {
+    if (tok !== __anim) return;
+    const t = Math.min(1, (now - t0) / dur);
+    const e = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+    el.scrollTop = from + (to - from) * e;
+    if (t < 1) requestAnimationFrame(step);
+  })(t0);
+}
+function __typingBubble() {
+  const d = document.createElement('div');
+  d.className = 'sbub sbub--ai sbub--typing';
+  d.innerHTML = '<span></span><span></span><span></span>';
+  return d;
+}
+async function __revealChat(body, tok) {
+  if (!body) return;
+  body.querySelectorAll('.sbub--typing').forEach((t) => t.remove());
+  const bubs = [...body.querySelectorAll('.sbub')];
+  const showAll = () => bubs.forEach((b) => { b.style.display = ''; b.style.animation = ''; });
+  bubs.forEach((b) => { b.style.display = 'none'; });
+  for (const bub of bubs) {
+    const ai = bub.classList.contains('sbub--ai');
+    if (ai) {
+      const dots = __typingBubble();
+      body.appendChild(dots); body.scrollTop = body.scrollHeight;
+      await __sleep(820);
+      dots.remove();
+      if (tok !== __anim) { showAll(); return; }
+    } else {
+      await __sleep(440);
+      if (tok !== __anim) { showAll(); return; }
+    }
+    bub.style.display = '';
+    bub.style.animation = 'bubin .28s ease both';
+    body.scrollTop = body.scrollHeight;
+    await __sleep(190);
+    if (tok !== __anim) { showAll(); return; }
+  }
+}
+
 /* ─────────────────────────────────────────────────────────────────
    12 beats (total: 11, indices 0–11). renderBeat recomputes EVERYTHING
    from the BEATS table each call – fully reversible, no element
@@ -747,6 +820,7 @@ const PKGS = {
 function renderBeat(index, direction) {
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
+  const tok = ++__anim;   // bump every call so stale forward-animations bail
 
   // ── Surface switch (every surface toggled on/off each call) ──
   Object.entries(SURFACES).forEach(([key, id]) => {
@@ -756,6 +830,12 @@ function renderBeat(index, direction) {
   // ── Chrome URL/label ──
   $('urlHost').textContent = b.host === 'social' ? 'social' : b.host;
   $('urlPath').textContent = b.url || '';
+
+  // ── Social feed resting scroll = the influencer post (forward entry scrolls to it) ──
+  if (b.surface === 'social') {
+    const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
+    if (f && inf) f.scrollTop = Math.max(0, inf.offsetTop - 14);
+  }
 
   // ── Consumer site: page + welcome banner + Merkury toast + hero + rails ──
   Object.entries(PAGES).forEach(([key, id]) => {
@@ -813,6 +893,9 @@ function renderBeat(index, direction) {
   });
 
   // ── Profile card ──
+  // Reconcile rail vs main: hide the rail's "What we know" on the complete-
+  // profile view (where the main pane already IS the full profile).
+  $('profile').classList.toggle('is-hidden', b.surface === 'ops' && b.opsView === 'profile');
   $('profile').classList.toggle('is-known', !!b.known);
   $('avatar').textContent = b.known ? 'E' : '?';
   const filled = new Set(b.facts || []);
@@ -853,6 +936,15 @@ function renderBeat(index, direction) {
   for (let k = 0; k < dots.length; k++) {
     dots[k].classList.toggle('is-done', k < i);
     dots[k].classList.toggle('is-now', k === i);
+  }
+
+  // ── Entry animations (forward only; final state already painted above) ──
+  if (direction === 'forward' && !__reduce) {
+    if (b.surface === 'social') {
+      const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
+      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 600); }
+    }
+    if (b.chat) __revealChat($('schatBody'), tok);
   }
 }
 
