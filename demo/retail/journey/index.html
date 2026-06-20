@@ -40,8 +40,30 @@
               </div>
               <div class="sof__feed">
 
+                <!-- FILLER organic post (scrolled past on entry) -->
+                <article class="post post--friend">
+                  <div class="post__head">
+                    <span class="post__ava"><span class="post__crest post__crest--friend">M</span></span>
+                    <div class="post__id">
+                      <span class="post__user">maya.in.bk</span>
+                      <span class="post__spon post__spon--plain">Williamsburg, Brooklyn</span>
+                    </div>
+                    <span class="post__dots">···</span>
+                  </div>
+                  <div class="post__media">
+                    <img class="post__img" src="../../../assets/photos/nordhem/kitchen.jpg" alt="Friend's new kitchen" />
+                  </div>
+                  <div class="post__actions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.3 9 9 0 0 1-4-1L3 20l1.3-4a8.4 8.4 0 1 1 15.7-4.5z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+                    <svg class="post__save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="post__cap"><b>maya.in.bk</b> moving week is no joke 😅 slowly making it feel like home. <span class="post__tag">#newapartment</span></div>
+                </article>
+
                 <!-- INFLUENCER post – paid partnership with Nordhem (sponsored) -->
-                <article class="post">
+                <article class="post" id="influencerPost">
                   <div class="post__head">
                     <span class="post__ava"><span class="post__crest post__crest--inf">A</span></span>
                     <div class="post__id">
@@ -163,7 +185,7 @@
                   <div id="recNotes" class="reccard reccard--notes">
                     <div class="reccard__h">Consult notes</div>
                     <div class="noteinput">
-                      <span class="noteinput__txt">New in town – just moved to Brooklyn, furnishing a new apartment from scratch. Starting with the living room.</span>
+                      <span class="noteinput__txt" id="noteTxt">New in town – just moved to Brooklyn, furnishing a new apartment from scratch. Starting with the living room.</span>
                       <span class="noteinput__cur"></span>
                     </div>
                     <div class="notechips">
@@ -177,7 +199,7 @@
                     <div class="reccard__h"><svg class="reccard__agentic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>Clienteling agent · recommended sofas</div>
                     <p class="reco__why">Reasoned from the notes – small Brooklyn apartment, fresh start. Two sofas that anchor a compact living room.</p>
                     <div class="recogrid">
-                      <article class="scard is-picked">
+                      <article class="scard is-picked" id="scardPick">
                         <img class="scard__img" src="../../../assets/photos/nordhem/living.jpg" alt="Fjäll sofa" />
                         <div class="scard__b">
                           <span class="scard__name">Fjäll 3-Seat Sofa</span>
@@ -739,6 +761,67 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 
 const $ = (id) => document.getElementById(id);
 
+/* ── Entry-animation harness ─────────────────────────────────────────
+   renderBeat always paints each beat's FINAL state first (reversibility +
+   scrubbing stay correct). Entry animations REPLAY the transition only when
+   advancing forward. Every renderBeat bumps __anim; in-flight async loops
+   see a newer token and bail, leaving the final state intact. */
+let __anim = 0;
+const __reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const __sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function __type(el, text, tok, speed) {
+  if (!el) return;
+  el.textContent = '';
+  for (let n = 1; n <= text.length; n++) {
+    if (tok !== __anim) { el.textContent = text; return; }
+    el.textContent = text.slice(0, n);
+    await __sleep(speed);
+  }
+}
+function __tween(el, to, dur, tok) {
+  const from = el.scrollTop, t0 = performance.now();
+  (function step(now) {
+    if (tok !== __anim) return;
+    const t = Math.min(1, (now - t0) / dur);
+    const e = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+    el.scrollTop = from + (to - from) * e;
+    if (t < 1) requestAnimationFrame(step);
+  })(t0);
+}
+function __pop(el, cls, ms) { if (!el) return; el.classList.add(cls); setTimeout(() => el.classList.remove(cls), ms); }
+function __typingBubble() {
+  const d = document.createElement('div');
+  d.className = 'sbub sbub--ai sbub--typing';
+  d.innerHTML = '<span></span><span></span><span></span>';
+  return d;
+}
+async function __revealChat(body, tok) {
+  if (!body) return;
+  body.querySelectorAll('.sbub--typing').forEach((t) => t.remove());
+  const bubs = [...body.querySelectorAll('.sbub')];
+  const showAll = () => bubs.forEach((b) => { b.style.display = ''; b.style.animation = ''; });
+  bubs.forEach((b) => { b.style.display = 'none'; });
+  for (const bub of bubs) {
+    const ai = bub.classList.contains('sbub--ai');
+    if (ai) {
+      const dots = __typingBubble();
+      body.appendChild(dots); body.scrollTop = body.scrollHeight;
+      await __sleep(820);
+      dots.remove();
+      if (tok !== __anim) { showAll(); return; }
+    } else {
+      await __sleep(440);
+      if (tok !== __anim) { showAll(); return; }
+    }
+    bub.style.display = '';
+    bub.style.animation = 'bubin .28s ease both';
+    body.scrollTop = body.scrollHeight;
+    await __sleep(190);
+    if (tok !== __anim) { showAll(); return; }
+  }
+}
+
 /* ─────────────────────────────────────────────────────────────────
    15 beats (total: 14, indices 0–14). renderBeat recomputes EVERYTHING
    from the BEATS table each call – fully reversible, no element depends
@@ -933,6 +1016,7 @@ const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
 const OPSNAV = { profile:'profiles', journey:'journeys' };
 const JPANELS = { over:'jOverview', email:'jEmail', sms:'jSms', push:'jPush', decision:'jDecision' };
 const JTPS = { email:'tpEmail', sms:'tpSms', push:'tpPush' };
+const __noteFull = (document.getElementById('noteTxt') || {}).textContent || '';
 
 const RAIL_TIP = {
   base:    'New face on the floor – search for her first. If there\'s no record, create one and let Merkury fill in the gaps.',
@@ -942,11 +1026,18 @@ const RAIL_TIP = {
 function renderBeat(index, direction) {
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
+  const tok = ++__anim;   // bump every call so stale forward-animations bail
 
   // ── Surface switch (every surface toggled on/off each call) ──
   Object.entries(SURFACES).forEach(([key, id]) => {
     $(id).classList.toggle('is-on', b.surface === key);
   });
+
+  // ── Social feed resting scroll = the influencer post (forward entry scrolls to it) ──
+  if (b.surface === 'social') {
+    const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
+    if (f && inf) f.scrollTop = Math.max(0, inf.offsetTop - 14);
+  }
 
   // ── Chrome URL/label (hidden on the clienteling tablet – it's an app, not a site) ──
   document.querySelector('.chrome').classList.toggle('is-hidden', b.surface === 'client');
@@ -970,14 +1061,25 @@ function renderBeat(index, direction) {
                  : 'Emma Lindqvist · profile created · Merkury-enriched')
     : 'Unidentified · no record yet';
   $('railTip').textContent = b.clCreated ? RAIL_TIP.created : RAIL_TIP.base;
+  // consult-notes resting text = full (forward entry types it out)
+  if (b.clNotes && direction !== 'forward') $('noteTxt').textContent = __noteFull;
+  // reco resting = Emma's pick selected (forward entry shows both, then picks)
+  if (b.clReco) $('scardPick').classList.toggle('is-picked', direction !== 'forward');
+  // order resting = opt-ins on (forward entry slides them on)
+  if (b.clOrder) document.querySelectorAll('#recOrder .sw').forEach((s) => s.classList.toggle('is-on', direction !== 'forward'));
 
-  // ── Email surface: tapped-rec highlight ──
-  $('mailRec1').classList.toggle('is-tapped', !!b.mailTapped);
+  // ── Email surface: tapped-rec highlight (forward entry pops it after a beat) ──
+  $('mailRec1').classList.toggle('is-tapped', !!b.mailTapped && direction !== 'forward');
 
   // ── Consumer site: welcome banner + Merkury toast + on-site chat ──
   $('welcomeBar').classList.toggle('is-on', !!b.welcome);
   $('merkToast').classList.toggle('is-on', !!b.merk);
   $('siteChat').classList.toggle('is-open', !!b.chat);
+  // chat resting = all bubbles shown (forward entry reveals them one by one)
+  if (b.chat && direction !== 'forward') {
+    document.querySelectorAll('#siteChat .sbub--typing').forEach((t) => t.remove());
+    document.querySelectorAll('#siteChat .schat__body .sbub').forEach((x) => { x.style.display = ''; x.style.animation = ''; });
+  }
 
   // ── Backend ops: view + toolbar + sidebar highlight ──
   Object.entries(OPSVIEWS).forEach(([key, id]) => {
@@ -1002,6 +1104,10 @@ function renderBeat(index, direction) {
   });
 
   // ── Profile card ──
+  // Reconcile rail vs main: hide the rail's "What we know" wherever the main
+  // surface IS the record/profile (clienteling tablet, complete-profile view).
+  const hideRail = (b.surface === 'client') || (b.surface === 'ops' && b.opsView === 'profile');
+  $('profile').classList.toggle('is-hidden', hideRail);
   $('profile').classList.toggle('is-known', !!b.known);
   $('avatar').textContent = b.known ? 'E' : '?';
   const filled = new Set(b.facts || []);
@@ -1042,6 +1148,23 @@ function renderBeat(index, direction) {
   for (let k = 0; k < dots.length; k++) {
     dots[k].classList.toggle('is-done', k < i);
     dots[k].classList.toggle('is-now', k === i);
+  }
+
+  // ── Entry animations (forward only; final state already painted above) ──
+  if (direction === 'forward' && !__reduce) {
+    if (b.surface === 'social') {
+      const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
+      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 600); }
+    }
+    if (b.clNotes) __type($('noteTxt'), __noteFull, tok, 17);
+    if (b.clReco) setTimeout(() => { if (tok !== __anim) return; const c = $('scardPick'); c.classList.add('is-picked'); __pop(c, 'anim-pick', 600); }, 850);
+    if (b.clOrder) {
+      const sws = document.querySelectorAll('#recOrder .sw');
+      setTimeout(() => { if (tok === __anim && sws[0]) sws[0].classList.add('is-on'); }, 700);
+      setTimeout(() => { if (tok === __anim && sws[1]) sws[1].classList.add('is-on'); }, 1050);
+    }
+    if (b.mailTapped) setTimeout(() => { if (tok !== __anim) return; const m = $('mailRec1'); m.classList.add('is-tapped'); __pop(m, 'anim-tap', 560); }, 950);
+    if (b.chat) __revealChat(document.querySelector('#siteChat .schat__body'), tok);
   }
 }
 
