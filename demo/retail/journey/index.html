@@ -742,9 +742,8 @@
         <div id="feed" class="feed"></div>
       </div>
 
-      <!-- progress + caption -->
+      <!-- caption -->
       <div class="agent__foot">
-        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
           <span id="capKicker" class="cap__kicker">Social · influencer</span>
           <span id="capText" class="cap__text">An influencer she follows – a paid partnership with Nordhem.</span>
@@ -821,7 +820,7 @@ async function __revealChat(body, tok) {
 }
 
 /* ─────────────────────────────────────────────────────────────────
-   15 beats (total: 14, indices 0–14). renderBeat recomputes EVERYTHING
+   16 beats (total: 15, indices 0–15). renderBeat recomputes EVERYTHING
    from the BEATS table each call – fully reversible, no element depends
    on prior-beat DOM. Every visual is toggled on AND off.
 
@@ -912,8 +911,13 @@ const ICONS = {
 };
 
 const BEATS = [
-  { // 0 – Influencer feed
-    surface:'social', host:'social', url:' · instagram',
+  { // 0 – Social feed, resting at the top (arrow/click engages the scroll)
+    surface:'social', host:'social', url:' · instagram', socialTop:true,
+    known:false, facts:[],
+    feedTo:-1, kicker:'Social', caption:'Her feed – scrolling through.',
+  },
+  { // 1 – Scroll lands on the influencer post (paid partnership)
+    surface:'social', host:'social', url:' · instagram', socialScroll:true,
     known:false, facts:[],
     feedTo:0, kicker:'Social · influencer', caption:'An influencer she follows – a paid partnership with Nordhem.',
   },
@@ -1031,10 +1035,10 @@ function renderBeat(index, direction) {
     $(id).classList.toggle('is-on', b.surface === key);
   });
 
-  // ── Social feed resting scroll = the influencer post (forward entry scrolls to it) ──
+  // ── Social feed resting scroll: top beat rests at top, scroll beat rests on the influencer ──
   if (b.surface === 'social') {
     const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
-    if (f && inf) f.scrollTop = Math.max(0, inf.offsetTop - 14);
+    if (f && inf) f.scrollTop = b.socialScroll ? Math.max(0, inf.offsetTop - 14) : 0;
   }
 
   // ── Chrome URL/label (hidden on the clienteling tablet – it's an app, not a site) ──
@@ -1139,23 +1143,17 @@ function renderBeat(index, direction) {
   }
   requestAnimationFrame(() => { feed.scrollTop = feed.scrollHeight; });
 
-  // ── Footer: caption + dots ──
+  // ── Footer: caption ──
   $('capKicker').textContent = b.kicker;
   $('capText').textContent = b.caption;
-  const dots = $('dots').children;
-  for (let k = 0; k < dots.length; k++) {
-    dots[k].classList.toggle('is-done', k < i);
-    dots[k].classList.toggle('is-now', k === i);
-  }
 
-  // ── Entry animations (final state already painted above) ──
-  if (!__reduce) {
-    // social scroll plays on first load (reset) AND when advancing in — not on back
-    if (b.surface === 'social' && direction !== 'back') {
+  // ── Entry animations (forward entry only; final state already painted above) ──
+  if (!__reduce && direction === 'forward') {
+    // arrow/click into the scroll beat engages the feed scroll (not on load)
+    if (b.socialScroll) {
       const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
-      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 650); }
+      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 250); }
     }
-    if (direction === 'forward') {
     if (b.clNotes) __type($('noteTxt'), __noteFull, tok, 17);
     if (b.clReco) setTimeout(() => { if (tok !== __anim) return; const c = $('scardPick'); c.classList.add('is-picked'); __pop(c, 'anim-pick', 600); }, 850);
     if (b.clOrder) {
@@ -1165,11 +1163,10 @@ function renderBeat(index, direction) {
     }
     if (b.mailTapped) setTimeout(() => { if (tok !== __anim) return; const m = $('mailRec1'); m.classList.add('is-tapped'); __pop(m, 'anim-tap', 560); }, 950);
     if (b.chat) __revealChat(document.querySelector('#siteChat .schat__body'), tok);
-    }
   }
 }
 
-startSceneRuntime({ total: 14, renderBeat });
+startSceneRuntime({ total: 15, renderBeat });
 
 const __root = document.querySelector('.stage');
 const __fit = () => { const s = Math.min(window.innerWidth/1920, window.innerHeight/1080); __root.style.transform = `translate(-50%, -50%) scale(${s})`; };
