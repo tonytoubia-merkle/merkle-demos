@@ -23,7 +23,7 @@ The frame is lifted from `connections-content-26` — the shipped CNX 2026 "agen
 3. **Dual-mode demo slots** + **full-screen record mode** (see Harness changes).
 4. **Visual identity:** keep the Reveal structure / slide layouts / `.demo-window` chrome; reskin tokens into a restrained, brand-agnostic "Modern CRM" identity (drop luxury cream/bronze/gold + Cormorant/Century Gothic luxury treatment + the 信 motif). Tasteful, not over-designed.
 5. **Brands:** Hospitality = **Rivage** (fictional Riviera luxury resort; anniversary suites, signature dining). Retail = **Nordhem** (fictional Scandinavian home-furnishings retailer; kitchens & home furnishings, IKEA-like).
-6. **Agency/vendor branding kept light:** small Merkle/dentsu mark; Salesforce/Merkury referenced only where the identity-resolution beat makes it meaningful.
+6. **Agency/vendor branding kept light:** small Merkle/dentsu mark; Salesforce/dentsu.Audiences referenced only where the identity-resolution beat makes it meaningful.
 
 ## Repo layout
 

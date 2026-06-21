@@ -5,7 +5,7 @@
 **Goal:** Fuse the up-front explainer content into the demo vignettes, restructure each deck around a 3-beat agenda, rebuild the customer-experience vignette as a realistic "website + explainer panel," and add a new Marketing-Ops timeline vignette.
 
 ## Reference pattern (from connections-content-26)
-The `salesforce/journey` scene = two-pane: a realistic surface (left) + an explainer panel (right) with numbered steps, channel/owned-paid tags, status indicators, progress bar, closing through-line. The Tachibana beat layered a Merkury recognition toast on a real homepage then stepped into the Bantō advisor narrating its actions. Emulate: *real interface + a panel saying what she's doing and what the AI is doing.*
+The `salesforce/journey` scene = two-pane: a realistic surface (left) + an explainer panel (right) with numbered steps, channel/owned-paid tags, status indicators, progress bar, closing through-line. The Tachibana beat layered a dentsu.Audiences recognition toast on a real homepage then stepped into the Bantō advisor narrating its actions. Emulate: *real interface + a panel saying what she's doing and what the AI is doing.*
 
 ## Decisions (approved)
 - Agenda cards link to each beat's slide **in-deck** (anchors); standalone scene pages kept for recording.
@@ -22,7 +22,7 @@ Horizontal plan-to-launch timeline. Phases in weeks: **Strategy(3) · Creative(4
 Neutral palette + blue "AI/after" accent. Import `../scene-runtime.js`. `total: 6`.
 
 ### 2. Customer-experience vignette (REBUILD, per deck) — `demo/<deck>/journey/`
-Two-pane: **left** = the brand's real surface (Rivage property site / Nordhem storefront) that changes per beat (browse, save, recognition toast, advisor bubble, personalized offer, inbox handoff); **right** = explainer panel that FUSES the front matter — a "what we know" profile card that fills in (identity, intent signals, life moment, channels) + numbered steps with head/subhead (*what she's doing* + *what the AI is doing*), owned/paid tags, progress bar. Beats (10, total 9): anonymous arrival → recognized (Merkury-style toast) → profile enriches → meet advisor → signals/she acts → decisions/next-best → orchestration (owned+paid) → agentic execution → governed by design → measurement. Keep each deck's own brand palette (not Merkle). Import `../../scene-runtime.js`.
+Two-pane: **left** = the brand's real surface (Rivage property site / Nordhem storefront) that changes per beat (browse, save, recognition toast, advisor bubble, personalized offer, inbox handoff); **right** = explainer panel that FUSES the front matter — a "what we know" profile card that fills in (identity, intent signals, life moment, channels) + numbered steps with head/subhead (*what she's doing* + *what the AI is doing*), owned/paid tags, progress bar. Beats (10, total 9): anonymous arrival → recognized (dentsu.Audiences-style toast) → profile enriches → meet advisor → signals/she acts → decisions/next-best → orchestration (owned+paid) → agentic execution → governed by design → measurement. Keep each deck's own brand palette (not Merkle). Import `../../scene-runtime.js`.
 
 ### 3. Deck restructure (both `hospitality.html` + `retail.html`) + deck.css agenda styles
 - Condense front matter: Title → ONE setup/VO slide → **3-beat agenda slide** (cards w/ head+subhead linking to each beat's slide id). REMOVE standalone "We follow…", profile, "Without Modern CRM", and "Contrast…" slides (content now lives in the vignette).
