@@ -148,7 +148,7 @@
                     </div>
                     <div id="lookResult" class="lookresult">
                       <span class="lookresult__none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>No record found.</span>
-                      <span class="lookresult__hit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Profile created · enriched via Merkury</span>
+                      <span class="lookresult__hit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Profile created · enriched via dentsu.Audiences</span>
                     </div>
                   </div>
 
@@ -163,7 +163,7 @@
 
                   <!-- MERKURY enrichment card -->
                   <div id="recEnrich" class="reccard reccard--enrich">
-                    <div class="reccard__h">Profile · enriched via Merkury</div>
+                    <div class="reccard__h">Profile · enriched via dentsu.Audiences</div>
                     <div class="capgrid">
                       <div class="caprow">
                         <span class="caprow__k">Identity</span>
@@ -242,7 +242,7 @@
                 <div class="cl__rail">
                   <div class="railcard">
                     <div class="railcard__h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6 3 3 0 0 1-6 0 3 3 0 0 1 0-6V6a3 3 0 0 1 3-3z"/><circle cx="12" cy="9.5" r="1.1" fill="currentColor"/></svg>Associate assist</div>
-                    <p id="railTip" class="railcard__tip">New face on the floor – search for her first. If there's no record, create one and let Merkury fill in the gaps.</p>
+                    <p id="railTip" class="railcard__tip">New face on the floor – search for her first. If there's no record, create one and let dentsu.Audiences fill in the gaps.</p>
                   </div>
                   <div id="railNudge" class="railcard railcard--nudge">
                     <div class="railcard__h2">Agent nudge</div>
@@ -420,7 +420,7 @@
             <!-- MERKURY recognition toast – top right -->
             <div id="merkToast" class="merktoast">
               <span class="merktoast__dot"></span>
-              <span class="merktoast__txt">Recognized via Merkury</span>
+              <span class="merktoast__txt">Recognized via dentsu.Audiences</span>
             </div>
 
             <!-- ON-SITE CHAT WIDGET (customer-facing, anchored bottom-right) -->
@@ -487,7 +487,7 @@
                       </div>
                       <div class="prof__grid">
                         <div class="pfield"><span class="pfield__k">Identity</span><span class="pfield__v">Emma Lindqvist · emma.lindqvist@email.com</span></div>
-                        <div class="pfield"><span class="pfield__k">Merkury 3P</span><span class="pfield__v">New Mover · Brooklyn, NY · home &amp; décor intent</span></div>
+                        <div class="pfield"><span class="pfield__k">dentsu.Audiences 3P</span><span class="pfield__v">New Mover · Brooklyn, NY · home &amp; décor intent</span></div>
                         <div class="pfield"><span class="pfield__k">Purchase</span><span class="pfield__v">Fjäll 3-Seat Sofa · $1,490 · in store</span></div>
                         <div class="pfield"><span class="pfield__k">Loyalty</span><span class="pfield__v">Nordhem Members · 149 pts</span></div>
                         <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · opted in</span></div>
@@ -723,11 +723,11 @@
         </div>
         <div class="profile__facts">
           <div id="fId" class="fact"><span class="fact__k">Identity</span><span class="fact__v">Emma Lindqvist · created in store</span></div>
-          <div id="fMover" class="fact"><span class="fact__k">Merkury 3P</span><span class="fact__v">New Mover · Brooklyn, NY</span></div>
+          <div id="fMover" class="fact"><span class="fact__k">dentsu.Audiences 3P</span><span class="fact__v">New Mover · Brooklyn, NY</span></div>
           <div id="fNotes" class="fact"><span class="fact__k">Consult</span><span class="fact__v">Furnishing a new apartment</span></div>
           <div id="fPurchase" class="fact"><span class="fact__k">Purchase</span><span class="fact__v">Fjäll Sofa · $1,490 · Members 149 pts</span></div>
           <div id="fConsent" class="fact"><span class="fact__k">Channels</span><span class="fact__v">Email · SMS · App · opted in</span></div>
-          <div id="fMerkury" class="fact"><span class="fact__k">Recognized</span><span class="fact__v">On site via Merkury · no login</span></div>
+          <div id="fAudiences" class="fact"><span class="fact__k">Recognized</span><span class="fact__v">On site via dentsu.Audiences · no login</span></div>
           <div id="fChat" class="fact"><span class="fact__k">Kitchen</span><span class="fact__v">Small-space intent · from chat</span></div>
           <div id="fConstraint" class="fact"><span class="fact__k">Delivery</span><span class="fact__v">3rd floor · no elevator</span></div>
         </div>
@@ -844,10 +844,10 @@ const SIGNAL = [
   { type:'identity', icon:'search',
     text:'Searching identity by email – <b>no first-party record</b> yet.',
     tag:'Lookup · clienteling' },
-  // 2 – create + Merkury
+  // 2 – create + dentsu.Audiences
   { type:'enrich', icon:'spark',
-    text:'Identity resolved. Appending <b>3P attributes via Merkury</b> – New Mover, household, geo. <b>CRM record created.</b>',
-    tag:'Merkury · 3rd-party' },
+    text:'Identity resolved. Appending <b>3P attributes via dentsu.Audiences</b> – New Mover, household, geo. <b>CRM record created.</b>',
+    tag:'dentsu.Audiences · 3rd-party' },
   // 3 – consult notes
   { type:'note', icon:'note',
     text:'Captured from the conversation – <b>furnishing a new apartment</b>, new to Brooklyn.',
@@ -866,8 +866,8 @@ const SIGNAL = [
     tag:'Email · engagement' },
   // 7 – personalized site
   { type:'recognize', icon:'spark',
-    text:'On nordhem.com, <b>recognized via Merkury – no login.</b> Site flips to the room she\'s building.',
-    tag:'Merkury · site' },
+    text:'On nordhem.com, <b>recognized via dentsu.Audiences – no login.</b> Site flips to the room she\'s building.',
+    tag:'dentsu.Audiences · site' },
   // 8 – on-site chat
   { type:'signal', icon:'chat',
     text:'New signals from chat – <b>kitchen interest</b>, plus <b>3rd floor, no elevator</b> (delivery + install constraint).',
@@ -923,11 +923,11 @@ const BEATS = [
     known:false, facts:[],
     feedTo:1, kicker:'In store · lookup', caption:'Searching identity – no first-party record yet.',
   },
-  { // 2 – Create profile + Merkury enrichment
+  { // 2 – Create profile + dentsu.Audiences enrichment
     surface:'client', host:'nordhem-clienteling.app', url:' · New profile',
     clCreated:true, clLookup:true, clEnrich:true, clNotes:false, clReco:false, clOrder:false, clNudge:false,
     known:true, facts:['fId','fMover'],
-    feedTo:2, kicker:'Create + Merkury', caption:'New profile, enriched with Merkury 3P – New Mover, household, geo.',
+    feedTo:2, kicker:'Create + dentsu.Audiences', caption:'New profile, enriched with dentsu.Audiences 3P – New Mover, household, geo.',
   },
   { // 3 – Consult notes
     surface:'client', host:'nordhem-clienteling.app', url:' · Consult notes',
@@ -953,63 +953,63 @@ const BEATS = [
     known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent'],
     feedTo:6, kicker:'Email', caption:'An inbox email to finish the room – she taps a pick.',
   },
-  { // 7 – Personalized site (Merkury)
+  { // 7 – Personalized site (dentsu.Audiences)
     surface:'site', host:'nordhem.com', url:'',
     welcome:true, merk:true, chat:false,
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury'],
-    feedTo:7, kicker:'Personalized', caption:'Welcome, Emma – recognized via Merkury, and the room she\'s building.',
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences'],
+    feedTo:7, kicker:'Personalized', caption:'Welcome, Emma – recognized via dentsu.Audiences, and the room she\'s building.',
   },
   { // 8 – On-site chat (kitchen + 3rd floor)
     surface:'site', host:'nordhem.com', url:'/?chat=advisor',
     welcome:true, merk:false, chat:true,
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'],
     feedTo:8, kicker:'On-site chat', caption:'Kitchen ideas – and she\'s on the 3rd floor with no elevator.',
   },
   { // 9 – Complete profile
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/profiles/emma',
     opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Emma Lindqvist', opsRun:'Complete',
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'],
     feedTo:9, kicker:'Complete profile', caption:'One complete profile.',
   },
   { // 10 – 1:1 journey overview (full timeline)
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · 1:1', opsRun:'Designed · 1:1',
     jStage:'over', jActive:null,
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'],
     feedTo:10, kicker:'1:1 journey', caption:'A 6-week, multi-channel 1:1 journey – 10 touchpoints.',
   },
   { // 11 – expand the Wk 1 email creative
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/wk1-email',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Wk 1 · Email', opsRun:'Creative · email',
     jStage:'email', jActive:'email',
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'],
     feedTo:11, kicker:'Creative · email', caption:'Expand the Wk 1 welcome email – onboarding, not a receipt.',
   },
   { // 12 – expand the Wk 4 SMS creative
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/wk4-sms',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Wk 4 · SMS', opsRun:'Creative · SMS',
     jStage:'sms', jActive:'sms',
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'],
     feedTo:12, kicker:'Creative · SMS', caption:'Expand the Wk 4 SMS – points + a walk-up-friendly consult.',
   },
   { // 13 – expand the Wk 6 push creative
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/wk6-push',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Wk 6 · Push', opsRun:'Creative · push',
     jStage:'push', jActive:'push',
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'],
     feedTo:13, kicker:'Creative · push', caption:'Expand the Wk 6 push – a carry-up-friendly cross-sell.',
   },
   { // 14 – decision fork
     surface:'ops', host:'nordhem-marketing-ops.cloud', url:'/journeys/emma/decision',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Emma · Decision', opsRun:'Decision',
     jStage:'decision', jActive:null,
-    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'],
+    known:true, facts:['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'],
     feedTo:14, kicker:'Agent decision', caption:'Then the agent decides what\'s next.',
   },
 ];
 
 const SURFACES = { social:'appSocial', client:'appClient', email:'appEmail', site:'appSite', ops:'appOps' };
-const FACTS = ['fId','fMover','fNotes','fPurchase','fConsent','fMerkury','fChat','fConstraint'];
+const FACTS = ['fId','fMover','fNotes','fPurchase','fConsent','fAudiences','fChat','fConstraint'];
 const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
 const OPSNAV = { profile:'profiles', journey:'journeys' };
 const JPANELS = { over:'jOverview', email:'jEmail', sms:'jSms', push:'jPush', decision:'jDecision' };
@@ -1017,7 +1017,7 @@ const JTPS = { email:'tpEmail', sms:'tpSms', push:'tpPush' };
 const __noteFull = (document.getElementById('noteTxt') || {}).textContent || '';
 
 const RAIL_TIP = {
-  base:    'New face on the floor – search for her first. If there\'s no record, create one and let Merkury fill in the gaps.',
+  base:    'New face on the floor – search for her first. If there\'s no record, create one and let dentsu.Audiences fill in the gaps.',
   created: 'Profile created and enriched. She\'s furnishing a whole apartment – think rooms, not one piece. Capture notes, then let the agent recommend.',
 };
 
@@ -1056,7 +1056,7 @@ function renderBeat(index, direction) {
   $('recAvatar').textContent = b.clCreated ? 'E' : '?';
   $('recStatus').textContent = b.clCreated
     ? (b.clOrder ? 'Emma Lindqvist · Member · new client'
-                 : 'Emma Lindqvist · profile created · Merkury-enriched')
+                 : 'Emma Lindqvist · profile created · dentsu.Audiences-enriched')
     : 'Unidentified · no record yet';
   $('railTip').textContent = b.clCreated ? RAIL_TIP.created : RAIL_TIP.base;
   // consult-notes resting text = full (forward entry types it out)
@@ -1069,7 +1069,7 @@ function renderBeat(index, direction) {
   // ── Email surface: tapped-rec highlight (forward entry pops it after a beat) ──
   $('mailRec1').classList.toggle('is-tapped', !!b.mailTapped && direction !== 'forward');
 
-  // ── Consumer site: welcome banner + Merkury toast + on-site chat ──
+  // ── Consumer site: welcome banner + dentsu.Audiences toast + on-site chat ──
   $('welcomeBar').classList.toggle('is-on', !!b.welcome);
   $('merkToast').classList.toggle('is-on', !!b.merk);
   $('siteChat').classList.toggle('is-open', !!b.chat);

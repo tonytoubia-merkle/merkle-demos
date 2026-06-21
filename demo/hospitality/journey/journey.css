@@ -6,7 +6,7 @@
    (rivage.com); the right rail is a "Signals & reasoning" EXPLAINABILITY
    feed (icon + reasoning + tag) — NOT a chat.
    Surfaces: influencer social feed (Reel + friend post) → rivage.com
-   (Welcome + Sign in + Merkury toast + concierge chat + personalization) →
+   (Welcome + Sign in + dentsu.Audiences toast + concierge chat + personalization) →
    backend ops (complete profile → 1:1 journey w/ email/SMS/push mockups +
    books/doesn't-book decision, one view).
    100% offline: local Rivage JPEGs + inline SVG. Designed for 1920×1080.
@@ -174,7 +174,7 @@ body { background: #0e1422; }
 .welcomebar__signin { font-size: 13px; font-weight: 700; color: #fff; background: var(--ink); padding: 8px 18px; border-radius: 999px; }
 .welcomebar__not { margin-left: 2px; font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
 
-/* Merkury recognition toast — top right, animates in */
+/* dentsu.Audiences recognition toast — top right, animates in */
 .merktoast {
   position: absolute; top: 80px; right: 26px; z-index: 6;
   display: flex; align-items: center; gap: 10px;

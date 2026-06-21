@@ -222,7 +222,7 @@
             <!-- MERKURY recognition toast – top right -->
             <div id="merkToast" class="merktoast">
               <span class="merktoast__dot"></span>
-              <span class="merktoast__txt">Recognized via Merkury.</span>
+              <span class="merktoast__txt">Recognized via dentsu.Audiences.</span>
             </div>
 
             <!-- ON-SITE CHAT WIDGET (customer-facing, anchored bottom-right) -->
@@ -289,12 +289,12 @@
                         <div class="pfield"><span class="pfield__k">Dates</span><span class="pfield__v">Late September · 3 nights (flexible)</span></div>
                         <div class="pfield"><span class="pfield__k">Loyalty</span><span class="pfield__v">Rivage Cercle · enrolled</span></div>
                         <div class="pfield"><span class="pfield__k">Channels</span><span class="pfield__v">Email · SMS · App · Site · Social · opted in</span></div>
-                        <div class="pfield"><span class="pfield__k">Inbound media</span><span class="pfield__v">Merkury · paid social Reel @cami.travels</span></div>
+                        <div class="pfield"><span class="pfield__k">Inbound media</span><span class="pfield__v">dentsu.Audiences · paid social Reel @cami.travels</span></div>
                         <div class="pfield pfield--flag"><span class="pfield__k">Specific request</span><span class="pfield__v">Surprise for her partner at the sunset dinner</span></div>
                       </div>
                       <div class="prov-row">
                         <span class="provb provb--store">social</span>
-                        <span class="provb provb--mer">Merkury</span>
+                        <span class="provb provb--mer">dentsu.Audiences</span>
                         <span class="provb provb--web">site + concierge</span>
                         <span class="provb provb--agent">handed to agent</span>
                       </div>
@@ -511,7 +511,7 @@
           </div>
         </div>
         <div class="profile__facts">
-          <div id="fMerkury" class="fact"><span class="fact__k">Merkury</span><span class="fact__v">Inbound media · Reel @cami.travels</span></div>
+          <div id="fAudiences" class="fact"><span class="fact__k">dentsu.Audiences</span><span class="fact__v">Inbound media · Reel @cami.travels</span></div>
           <div id="fOccasion" class="fact"><span class="fact__k">Occasion</span><span class="fact__v">10th anniversary · trip for two</span></div>
           <div id="fPrefs" class="fact"><span class="fact__k">Preferences</span><span class="fact__v">Suite with a view · signature dining</span></div>
           <div id="fDates" class="fact"><span class="fact__k">Dates</span><span class="fact__v">Late September · 3 nights</span></div>
@@ -626,8 +626,8 @@ const SIGNAL = [
     tag:'Paid social · audience' },
   // 1 – arrives + browses
   { type:'recognize', icon:'spark',
-    text:'She lands on rivage.com and is <b>recognized via Merkury</b> – inbound paid media carried from @cami.travels. Browsing stays &amp; experiences.',
-    tag:'Merkury · inbound media' },
+    text:'She lands on rivage.com and is <b>recognized via dentsu.Audiences</b> – inbound paid media carried from @cami.travels. Browsing stays &amp; experiences.',
+    tag:'dentsu.Audiences · inbound media' },
   // 2 – concierge chat: occasion + preferences
   { type:'note', icon:'note',
     text:'Captured from the concierge chat – <b>10th anniversary, trip for two</b>, <b>suite with a view + signature dining</b>, <b>late September</b>.',
@@ -642,11 +642,11 @@ const SIGNAL = [
     tag:'On-site chat · request' },
   // 5 – return / know-before-you-go
   { type:'recognize', icon:'spark',
-    text:'Weeks later she returns – <b>recognized via Merkury</b>. The site composes around the trip: a <b>countdown</b>, her suite, and curated add-ons. White-glove.',
-    tag:'Merkury · return visit' },
+    text:'Weeks later she returns – <b>recognized via dentsu.Audiences</b>. The site composes around the trip: a <b>countdown</b>, her suite, and curated add-ons. White-glove.',
+    tag:'dentsu.Audiences · return visit' },
   // 6 – complete profile
   { type:'profile', icon:'profile',
-    text:'All signals assembled into <b>one complete profile</b> – occasion, preferences, party of two, dates, channels, Cercle loyalty, Merkury inbound media, and the sunset-dinner surprise.',
+    text:'All signals assembled into <b>one complete profile</b> – occasion, preferences, party of two, dates, channels, Cercle loyalty, dentsu.Audiences inbound media, and the sunset-dinner surprise.',
     tag:'Profile · unified' },
   // 7 – journey overview
   { type:'journey', icon:'route',
@@ -717,78 +717,78 @@ const BEATS = [
   { // 1 – Arrives + recognized, browses stays & experiences (chat closed)
     surface:'site', host:'rivage.com', url:'', page:'home', chat:false,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
-    known:false, facts:['fMerkury'],
+    known:false, facts:['fAudiences'],
     feedTo:1, kicker:'Arrives', caption:'She comes to plan – recognized, and browsing stays & experiences.',
   },
   { // 2 – Concierge chat: occasion + preferences
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates'],
     feedTo:2, kicker:'Trip planning', caption:'She tells the concierge the occasion and what she wants – captured live.',
   },
   { // 3 – Confirms + opts in + books (on-site chat)
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent'],
     feedTo:3, kicker:'Books + opts in', caption:'She confirms the stay and opts in – the booking is made, in the chat.',
   },
   { // 4 – The specific ask (on-site chat)
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:4, kicker:'One more ask', caption:'One more ask – a surprise for her partner at the sunset dinner.',
   },
   { // 5 – A few weeks later: know-before-you-go return (personalized, white-glove)
     surface:'site', host:'rivage.com', url:'/trip', page:'home', chat:false,
     welcome:true, merk:true, loyalty:true, foryou:true, packages:true, pkgs:'curated', tripStatus:true, heroMode:'return',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:5, kicker:'A few weeks later', caption:'She returns – the site composes around the trip: countdown, her suite, curated add-ons.',
   },
   { // 6 – One complete profile
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/profiles/elena',
     opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Elena Rossi', opsRun:'Complete',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:6, kicker:'Complete profile', caption:'One complete profile – Elena\'s celebration, understood.',
   },
   { // 7 – 1:1 journey overview (full timeline)
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · 1:1', opsRun:'Designed · 1:1',
     jStage:'over', jActive:null,
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:7, kicker:'1:1 journey', caption:'A 5-week, multi-channel 1:1 journey – 8 touchpoints.',
   },
   { // 8 – expand the Wk 1 email creative
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk1-email',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 1 · Email', opsRun:'Creative · email',
     jStage:'email', jActive:'email',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:8, kicker:'Creative · email', caption:'Expand the Wk 1 email – the celebration, confirmed up front.',
   },
   { // 9 – expand the Wk 3 SMS creative
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk3-sms',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 3 · SMS', opsRun:'Creative · SMS',
     jStage:'sms', jActive:'sms',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:9, kicker:'Creative · SMS', caption:'Expand the Wk 3 SMS – the sunset dinner, locked to golden hour.',
   },
   { // 10 – expand the Wk 5 push creative
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk5-push',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 5 · Push', opsRun:'Creative · push',
     jStage:'push', jActive:'push',
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:10, kicker:'Creative · push', caption:'Expand the Wk 5 push – her surprise, handled and timed.',
   },
   { // 11 – decision fork
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/decision',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Decision', opsRun:'Decision',
     jStage:'decision', jActive:null,
-    known:true, facts:['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'],
+    known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:11, kicker:'Agent decision', caption:'Then the agent plans for what\'s next.',
   },
 ];
 
 const SURFACES = { social:'appSocial', site:'appSite', ops:'appOps' };
-const FACTS = ['fMerkury','fOccasion','fPrefs','fDates','fConsent','fRequest'];
+const FACTS = ['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'];
 const PAGES = { home:'pgHome' };
 const OPSVIEWS = { profile:'vProfile', journey:'vJourney' };
 const OPSNAV = { profile:'profiles', journey:'journeys' };
@@ -835,7 +835,7 @@ function renderBeat(index, direction) {
     if (f && inf) f.scrollTop = Math.max(0, inf.offsetTop - 14);
   }
 
-  // ── Consumer site: page + welcome banner + Merkury toast + hero + rails ──
+  // ── Consumer site: page + welcome banner + dentsu.Audiences toast + hero + rails ──
   Object.entries(PAGES).forEach(([key, id]) => {
     $(id).classList.toggle('is-on', b.surface === 'site' && b.page === key);
   });

@@ -2,8 +2,8 @@
    Nordhem · Customer Journey — scripted vignette (Emma) · v3
    Two panes: the active surface (left) + profile / signals (right).
    Surfaces: influencer social feed → in-store clienteling
-     (lookup → create+Merkury → notes → reco → buy+optins+app+loyalty) →
-     inbox-framed email → nordhem.com (Welcome + Sign in + Merkury toast +
+     (lookup → create+dentsu.Audiences → notes → reco → buy+optins+app+loyalty) →
+     inbox-framed email → nordhem.com (Welcome + Sign in + dentsu.Audiences toast +
      on-site chat) → backend ops (complete profile → 1:1 journey w/
      email/SMS/push mockups + purchase/no-purchase decision, one view).
    Right rail = "What we know" profile (cumulative) + a "Signals &
@@ -373,7 +373,7 @@ body { background: #0e1422; }
 .welcomebar__not { font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
 .welcomebar__not { margin-left: 2px; }
 
-/* Merkury recognition toast — top right, animates in */
+/* dentsu.Audiences recognition toast — top right, animates in */
 .merktoast {
   position: absolute; top: 80px; right: 26px; z-index: 5;
   display: flex; align-items: center; gap: 10px;
