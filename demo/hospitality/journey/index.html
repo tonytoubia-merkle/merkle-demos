@@ -529,9 +529,8 @@
         <div id="feed" class="feed"></div>
       </div>
 
-      <!-- progress + caption -->
+      <!-- caption -->
       <div class="agent__foot">
-        <div id="dots" class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cap">
           <span id="capKicker" class="cap__kicker">Social · influencer</span>
           <span id="capText" class="cap__text">It starts on social – a creator's Reel.</span>
@@ -598,7 +597,7 @@ async function __revealChat(body, tok) {
 }
 
 /* ─────────────────────────────────────────────────────────────────
-   12 beats (total: 11, indices 0–11). renderBeat recomputes EVERYTHING
+   13 beats (total: 12, indices 0–12). renderBeat recomputes EVERYTHING
    from the BEATS table each call – fully reversible, no element
    depends on prior-beat DOM. Every visual is toggled on AND off.
 
@@ -709,8 +708,13 @@ const CHAT = {
 };
 
 const BEATS = [
-  { // 0 – Influencer feed (Reel + friend post)
-    surface:'social', host:'social', url:' · instagram',
+  { // 0 – Social feed, resting at the top (arrow/click engages the scroll)
+    surface:'social', host:'social', url:' · instagram', socialTop:true,
+    known:false, facts:[],
+    feedTo:-1, kicker:'Social', caption:'Her feed – scrolling through.',
+  },
+  { // 1 – Scroll lands on the influencer post (Reel + friend post below)
+    surface:'social', host:'social', url:' · instagram', socialScroll:true,
     known:false, facts:[],
     feedTo:0, kicker:'Social · influencer', caption:'An influencer she follows – a paid partnership with Rivage, plus a friend\'s post below.',
   },
@@ -829,10 +833,10 @@ function renderBeat(index, direction) {
   $('urlHost').textContent = b.host === 'social' ? 'social' : b.host;
   $('urlPath').textContent = b.url || '';
 
-  // ── Social feed resting scroll = the influencer post (forward entry scrolls to it) ──
+  // ── Social feed resting scroll: top beat rests at top, scroll beat rests on the influencer ──
   if (b.surface === 'social') {
     const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
-    if (f && inf) f.scrollTop = Math.max(0, inf.offsetTop - 14);
+    if (f && inf) f.scrollTop = b.socialScroll ? Math.max(0, inf.offsetTop - 14) : 0;
   }
 
   // ── Consumer site: page + welcome banner + dentsu.Audiences toast + hero + rails ──
@@ -927,27 +931,22 @@ function renderBeat(index, direction) {
   }
   requestAnimationFrame(() => { feed.scrollTop = feed.scrollHeight; });
 
-  // ── Footer: caption + dots ──
+  // ── Footer: caption ──
   $('capKicker').textContent = b.kicker;
   $('capText').textContent = b.caption;
-  const dots = $('dots').children;
-  for (let k = 0; k < dots.length; k++) {
-    dots[k].classList.toggle('is-done', k < i);
-    dots[k].classList.toggle('is-now', k === i);
-  }
 
-  // ── Entry animations (final state already painted above) ──
-  if (!__reduce) {
-    // social scroll plays on first load (reset) AND when advancing in — not on back
-    if (b.surface === 'social' && direction !== 'back') {
+  // ── Entry animations (forward entry only; final state already painted above) ──
+  if (!__reduce && direction === 'forward') {
+    // arrow/click into the scroll beat engages the feed scroll (not on load)
+    if (b.socialScroll) {
       const f = document.querySelector('#appSocial .sof__feed'); const inf = $('influencerPost');
-      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 650); }
+      if (f && inf) { f.scrollTop = 0; setTimeout(() => { if (tok === __anim) __tween(f, Math.max(0, inf.offsetTop - 14), 1150, tok); }, 250); }
     }
-    if (direction === 'forward' && b.chat) __revealChat($('schatBody'), tok);
+    if (b.chat) __revealChat($('schatBody'), tok);
   }
 }
 
-startSceneRuntime({ total: 11, renderBeat });
+startSceneRuntime({ total: 12, renderBeat });
 
 const __root = document.querySelector('.stage');
 const __fit = () => { const s = Math.min(window.innerWidth/1920, window.innerHeight/1080); __root.style.transform = `translate(-50%, -50%) scale(${s})`; };
