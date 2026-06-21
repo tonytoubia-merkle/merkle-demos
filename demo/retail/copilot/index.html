@@ -37,9 +37,7 @@
         <div class="composer__avatar">C</div>
         <div class="composer__body">
           <div class="composer__from">CMO · Nordhem</div>
-          <div class="composer__question">
-            How do I increase visits and purchases among high-intent shoppers while improving media efficiency?<span id="composerCursor" class="composer__cursor"></span>
-          </div>
+          <div class="composer__question"><span id="composerText">How do I increase visits and purchases among high-intent shoppers while improving media efficiency?</span><span id="composerCursor" class="composer__cursor"></span></div>
         </div>
         <div id="composerSend" class="composer__send">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -226,6 +224,13 @@
             </svg>
             Agent adapting – shifting budget from paid to owned as purchase signals strengthen
           </div>
+          <div class="budgetbar">
+            <div class="budgetbar__track">
+              <span class="budgetbar__seg budgetbar__paid">Paid</span>
+              <span class="budgetbar__seg budgetbar__owned">Owned</span>
+            </div>
+            <div class="budgetbar__cap"><span>Budget mix</span><span>auto-shifting toward owned</span></div>
+          </div>
         </div>
 
         <!-- Step 5: Measure & prove (complete) -->
@@ -360,6 +365,81 @@ import { startSceneRuntime } from '../../scene-runtime.js';
 
 const $ = (id) => document.getElementById(id);
 
+/* ── Entry-animation harness (forward-gated, token-guarded) ──────────
+   renderBeat paints each beat's FINAL state first (reversible / scrub-safe);
+   these replay the transition only when advancing forward. Step-driven and
+   value-agnostic: count-ups read the target from the DOM, so the same code
+   serves both copilots regardless of their numbers/steps. */
+let __anim = 0;
+const __reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const __sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const __THINK = ['Resolving identities…', 'Modeling audiences…', 'Scoring purchase signals…'];
+
+function __parseNum(s) {
+  const m = String(s).trim().match(/^([^\d-]*)(-?[\d.,]+)(.*)$/);
+  if (!m) return null;
+  const raw = m[2];
+  return { prefix: m[1], suffix: m[3], num: parseFloat(raw.replace(/,/g, '')), comma: raw.includes(','), dec: (raw.split('.')[1] || '').length };
+}
+function __fmtNum(n, p) {
+  const o = { minimumFractionDigits: p.dec, maximumFractionDigits: p.dec };
+  const v = p.comma ? n.toLocaleString('en-US', o) : (p.dec ? n.toFixed(p.dec) : String(Math.round(n)));
+  return p.prefix + v + p.suffix;
+}
+function __countUp(el, tok, dur) {
+  if (!el) return;
+  const full = el.dataset.full || (el.dataset.full = el.textContent.trim());
+  const p = __parseNum(full);
+  if (!p) { el.textContent = full; return; }
+  const t0 = performance.now();
+  (function frame(now) {
+    if (tok !== __anim) { el.textContent = full; return; }
+    const t = Math.min(1, (now - t0) / dur);
+    el.textContent = __fmtNum(p.num * (1 - Math.pow(1 - t, 3)), p);
+    if (t < 1) requestAnimationFrame(frame); else el.textContent = full;
+  })(performance.now());
+}
+async function __typeText(el, tok, speed) {
+  if (!el) return;
+  const html = el.innerHTML, text = el.textContent;
+  el.textContent = '';
+  for (let n = 1; n <= text.length; n++) {
+    if (tok !== __anim) { el.innerHTML = html; return; }
+    el.textContent = text.slice(0, n);
+    await __sleep(speed);
+  }
+  if (tok === __anim) el.innerHTML = html;
+}
+function __pop(el, cls, ms) { if (!el) return; el.classList.add(cls); setTimeout(() => el.classList.remove(cls), ms); }
+async function __goLive(scope, tok) {
+  const chips = [...scope.querySelectorAll('.dest-chip')];
+  const all = () => chips.forEach((c) => c.classList.add('is-live'));
+  chips.forEach((c) => c.classList.remove('is-live'));
+  for (const c of chips) {
+    await __sleep(170);
+    if (tok !== __anim) { all(); return; }
+    c.classList.add('is-live');
+  }
+}
+function __budget(scope, tok) {
+  const paid = scope.querySelector('.budgetbar__paid'), owned = scope.querySelector('.budgetbar__owned');
+  if (!paid || !owned) return;
+  paid.style.transition = 'none'; owned.style.transition = 'none';
+  paid.style.width = '60%'; owned.style.width = '40%';
+  void scope.offsetWidth;
+  paid.style.transition = ''; owned.style.transition = '';
+  paid.style.width = '34%'; owned.style.width = '66%';
+}
+async function __cycleThink(tok, finalText) {
+  const el = $('thinkText'); if (!el) return;
+  for (let k = 0; k < 2; k++) {
+    el.textContent = __THINK[k];
+    await __sleep(500);
+    if (tok !== __anim) { el.textContent = finalText; return; }
+  }
+  el.textContent = finalText;
+}
+
 /* ─────────────────────────────────────────────────────────────────
    Per-beat data table. Index 0..5. All state recomputed from scratch
    on every renderBeat call – no element relies on prior-beat DOM.
@@ -455,6 +535,7 @@ function renderBeat(index, direction) {
   // Clamp to valid range
   const i = Math.max(0, Math.min(index, BEATS.length - 1));
   const b = BEATS[i];
+  const tok = ++__anim;   // bump every call so stale forward-animations bail
 
   // ── Composer cursor + send button ──
   const cursor = $('composerCursor');
@@ -500,6 +581,26 @@ function renderBeat(index, direction) {
   for (let k = 0; k < dots.length; k++) {
     dots[k].classList.toggle('is-done', k < i);
     dots[k].classList.toggle('is-now', k === i);
+  }
+
+  // ── Entry animations (forward; final state already painted above) ──
+  if (!__reduce) {
+    if (i === 0 && direction !== 'back') __typeText($('composerText'), tok, 22);
+    if (direction === 'forward') {
+      if (b.objStats && i === 1) $('objStats').querySelectorAll('.obj-stat__val').forEach((el) => __countUp(el, tok, 800));
+      const step = $('step' + i);
+      if (step) {
+        step.querySelectorAll('.aud-chip__count, .metric-card__value').forEach((el) => __countUp(el, tok, 850));
+        const tot = step.querySelector('.aud-total strong'); if (tot) __countUp(tot, tok, 1000);
+        step.querySelectorAll('.loop-cell:not(.actual) .loop-cell__val').forEach((el) => __countUp(el, tok, 650));
+        step.querySelectorAll('.loop-cell.actual .loop-cell__val').forEach((el) => __countUp(el, tok, 1150));
+        step.querySelectorAll('.loop-cell.actual').forEach((c) => setTimeout(() => { if (tok === __anim) __pop(c, 'is-beat', 850); }, 1150));
+        if (step.querySelector('.dest-chip')) __goLive(step, tok);
+        if (step.querySelector('.budgetbar')) __budget(step, tok);
+      }
+      if (b.agent) __typeText($('agentMsg'), tok, 11);
+      if (b.think) __cycleThink(tok, b.thinkText);
+    }
   }
 
   // ── Scroll reply panel to show the latest step ──
