@@ -687,20 +687,20 @@ const ICONS = {
 // whole cumulative history) so the customer's own messages stay visible – you
 // watch the conversation happen, exchange by exchange.
 const CHAT = {
-  // beat 2 – occasion + preferences
-  2: [
+  // beat 3 – occasion + preferences
+  3: [
     { who:'ai',   html:'Welcome to Rivage. I\'m your concierge – I can help plan the whole trip. What\'s the occasion?' },
     { who:'user', html:'It\'s our <b>10th anniversary</b> – a trip for just the two of us. I\'d love an <b>anniversary suite with a view</b>, and somewhere special for dinner. <b>Late September</b>, if that works.' },
     { who:'ai',   html:'A milestone – congratulations. I\'ve noted a <b>suite with a view</b> and our <b>signature dining</b> for two, around late September.' },
   ],
-  // beat 3 – confirm + opt in + book
-  3: [
+  // beat 4 – confirm + opt in + book
+  4: [
     { who:'ai',   html:'Shall I <b>confirm the suite and dining</b>, send details by <b>email &amp; SMS</b>, set you up in the <b>app</b>, and add <b>Rivage Cercle</b> for celebration perks?' },
     { who:'user', html:'Yes to all of it.' },
     { who:'ai',   html:'All set – your anniversary stay is <b>confirmed</b> and you\'re opted in. I\'ll have rivage.com ready around your celebration.' },
   ],
-  // beat 4 – the specific ask
-  4: [
+  // beat 5 – the specific ask
+  5: [
     { who:'ai',   html:'Anything else I can arrange for the trip?' },
     { who:'user', html:'One more thing – can you arrange a small <b>surprise for my partner at the sunset dinner</b>?' },
     { who:'ai',   html:'A lovely idea. I\'ll arrange a champagne toast and a handwritten note timed to golden hour at Le Rivage, and brief the team. It\'s on your plan – nothing more to do.' },
@@ -718,71 +718,71 @@ const BEATS = [
     known:false, facts:[],
     feedTo:0, kicker:'Social · influencer', caption:'An influencer she follows – a paid partnership with Rivage, plus a friend\'s post below.',
   },
-  { // 1 – Arrives + recognized, browses stays & experiences (chat closed)
+  { // 2 – Arrives + recognized, browses stays & experiences (chat closed)
     surface:'site', host:'rivage.com', url:'', page:'home', chat:false,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
     known:false, facts:['fAudiences'],
     feedTo:1, kicker:'Arrives', caption:'She comes to plan – recognized, and browsing stays & experiences.',
   },
-  { // 2 – Concierge chat: occasion + preferences
+  { // 3 – Concierge chat: occasion + preferences
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates'],
     feedTo:2, kicker:'Trip planning', caption:'She tells the concierge the occasion and what she wants – captured live.',
   },
-  { // 3 – Confirms + opts in + books (on-site chat)
+  { // 4 – Confirms + opts in + books (on-site chat)
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent'],
     feedTo:3, kicker:'Books + opts in', caption:'She confirms the stay and opts in – the booking is made, in the chat.',
   },
-  { // 4 – The specific ask (on-site chat)
+  { // 5 – The specific ask (on-site chat)
     surface:'site', host:'rivage.com', url:'/?chat=concierge', page:'home', chat:true,
     welcome:true, merk:false, loyalty:false, foryou:false, packages:true, pkgs:'explore', tripStatus:false, heroMode:'plain',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:4, kicker:'One more ask', caption:'One more ask – a surprise for her partner at the sunset dinner.',
   },
-  { // 5 – A few weeks later: know-before-you-go return (personalized, white-glove)
+  { // 6 – A few weeks later: know-before-you-go return (personalized, white-glove)
     surface:'site', host:'rivage.com', url:'/trip', page:'home', chat:false,
     welcome:true, merk:true, loyalty:true, foryou:true, packages:true, pkgs:'curated', tripStatus:true, heroMode:'return',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:5, kicker:'A few weeks later', caption:'She returns – the site composes around the trip: countdown, her suite, curated add-ons.',
   },
-  { // 6 – One complete profile
+  { // 7 – One complete profile
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/profiles/elena',
     opsView:'profile', opsTitle:'Profiles', opsCrumb:'Profiles / Elena Rossi', opsRun:'Complete',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:6, kicker:'Complete profile', caption:'One complete profile – Elena\'s celebration, understood.',
   },
-  { // 7 – 1:1 journey overview (full timeline)
+  { // 8 – 1:1 journey overview (full timeline)
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · 1:1', opsRun:'Designed · 1:1',
     jStage:'over', jActive:null,
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:7, kicker:'1:1 journey', caption:'A 5-week, multi-channel 1:1 journey – 8 touchpoints.',
   },
-  { // 8 – expand the Wk 1 email creative
+  { // 9 – expand the Wk 1 email creative
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk1-email',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 1 · Email', opsRun:'Creative · email',
     jStage:'email', jActive:'email',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:8, kicker:'Creative · email', caption:'Expand the Wk 1 email – the celebration, confirmed up front.',
   },
-  { // 9 – expand the Wk 3 SMS creative
+  { // 10 – expand the Wk 3 SMS creative
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk3-sms',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 3 · SMS', opsRun:'Creative · SMS',
     jStage:'sms', jActive:'sms',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:9, kicker:'Creative · SMS', caption:'Expand the Wk 3 SMS – the sunset dinner, locked to golden hour.',
   },
-  { // 10 – expand the Wk 5 push creative
+  { // 11 – expand the Wk 5 push creative
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/wk5-push',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Wk 5 · Push', opsRun:'Creative · push',
     jStage:'push', jActive:'push',
     known:true, facts:['fAudiences','fOccasion','fPrefs','fDates','fConsent','fRequest'],
     feedTo:10, kicker:'Creative · push', caption:'Expand the Wk 5 push – her surprise, handled and timed.',
   },
-  { // 11 – decision fork
+  { // 12 – decision fork
     surface:'ops', host:'rivage-marketing-ops.cloud', url:'/journeys/elena/decision',
     opsView:'journey', opsTitle:'Journeys', opsCrumb:'Journeys / Elena · Decision', opsRun:'Decision',
     jStage:'decision', jActive:null,
@@ -854,17 +854,20 @@ function renderBeat(index, direction) {
   $('pkgsNote').textContent = pk.note;
 
   // ── On-site chat widget (customer-facing concierge thread) ──
+  // Only (re)build when the chat is shown; on exit, leave the last exchange in
+  // place so the widget fades out populated instead of blanking.
   $('siteChat').classList.toggle('is-open', !!b.chat);
-  const sb = $('schatBody');
-  sb.innerHTML = '';
-  const thread = (b.chat && CHAT[i]) ? CHAT[i] : [];
-  thread.forEach((line) => {
-    const bub = document.createElement('div');
-    bub.className = 'sbub sbub--' + line.who;
-    bub.innerHTML = line.html;
-    sb.appendChild(bub);
-  });
-  requestAnimationFrame(() => { sb.scrollTop = sb.scrollHeight; });
+  if (b.chat) {
+    const sb = $('schatBody');
+    sb.innerHTML = '';
+    (CHAT[i] || []).forEach((line) => {
+      const bub = document.createElement('div');
+      bub.className = 'sbub sbub--' + line.who;
+      bub.innerHTML = line.html;
+      sb.appendChild(bub);
+    });
+    requestAnimationFrame(() => { sb.scrollTop = sb.scrollHeight; });
+  }
 
   const hero = HERO[b.heroMode] || HERO.plain;
   $('heroKicker').textContent = hero.kicker;
